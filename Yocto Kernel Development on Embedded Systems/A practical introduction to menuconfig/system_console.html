@@ -1,0 +1,132 @@
+<pre><font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ source ../poky/oe-init-build-env .
+
+### Shell environment set up for builds. ###
+
+You can now run &apos;bitbake &lt;target&gt;&apos;
+
+Common targets are:
+    core-image-minimal
+    core-image-full-cmdline
+    core-image-sato
+    core-image-weston
+    meta-toolchain
+    meta-ide-support
+
+You can also run generated qemu images with a command like &apos;runqemu qemux86&apos;
+
+Other commonly useful commands are:
+ - &apos;devtool&apos; and &apos;recipetool&apos; handle common recipe tasks
+ - &apos;bitbake-layers&apos; handles common layer tasks
+ - &apos;oe-pkgdata-util&apos; handles common target package tasks
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake -c menuconfig virtual/kernel
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+meta-example         
+meta-custom          = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 0 Local 0 Mirrors 0 Missed 0 Current 101 (0% match, 100% complete)
+<b>NOTE</b>: Executing Tasks
+<b>NOTE</b>: Tasks Summary: Attempted 457 tasks of which 456 didn&apos;t need to be rerun and all succeeded.
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ time bitbake core-image-full-cmdline
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+meta-example         
+meta-custom          = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+<font color="#A2734C"><b>WARNING</b></font>: <font color="#A2734C">/home/georgeca/yocto_tutorial/poky/meta/recipes-kernel/linux/linux-yocto_5.15.bb:do_compile is tainted from a forced run</font>                                         | ETA:  0:00:01
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:02
+Sstate summary: Wanted 182 Local 171 Mirrors 0 Missed 11 Current 1536 (93% match, 99% complete)
+Removing 8 stale sstate objects for arch beaglebone_yocto: 100% |#########################################################################################################| Time: 0:00:00
+<b>NOTE</b>: Executing Tasks
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">core-image-full-cmdline-1.0-r0 do_rootfs: Could not invoke dnf. Command &apos;/home/georgeca/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/core-image-full-cmdline/1.0-r0/recipe-sysroot-native/usr/bin/dnf -v --rpmverbosity=info -y -c /home/georgeca/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/core-image-full-cmdline/1.0-r0/rootfs/etc/dnf/dnf.conf --setopt=reposdir=/home/georgeca/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/core-image-full-cmdline/1.0-r0/rootfs/etc/yum.repos.d --installroot=/home/georgeca/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/core-image-full-cmdline/1.0-r0/rootfs --setopt=logdir=/home/georgeca/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/core-image-full-cmdline/1.0-r0/temp --repofrompath=oe-repo,/home/georgeca/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/core-image-full-cmdline/1.0-r0/oe-rootfs-repo --nogpgcheck install example git nano packagegroup-core-boot packagegroup-core-full-cmdline packagegroup-core-ssh-openssh python3 run-postinsts locale-base-en-us locale-base-en-gb&apos; returned 1:</font>
+<font color="#C01C28">DNF version: 4.11.1</font>
+<font color="#C01C28">cachedir: /home/georgeca/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/core-image-full-cmdline/1.0-r0/rootfs/var/cache/dnf</font>
+<font color="#C01C28">Added oe-repo repo from /home/georgeca/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/core-image-full-cmdline/1.0-r0/oe-rootfs-repo</font>
+<font color="#C01C28">User-Agent: falling back to &apos;libdnf&apos;: could not detect OS or basearch</font>
+<font color="#C01C28">repo: using cache for: oe-repo</font>
+<font color="#C01C28">oe-repo: using metadata from Fri 13 Jun 2025 01:49:12 PM UTC.</font>
+<font color="#C01C28">No match for argument: example</font>
+<font color="#C01C28">Error: Unable to find a match: example</font>
+
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Logfile of failure stored in: /home/georgeca/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/core-image-full-cmdline/1.0-r0/temp/log.do_rootfs.66781</font>
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Task (/home/georgeca/yocto_tutorial/poky/meta/recipes-extended/images/core-image-full-cmdline.bb:do_rootfs) failed with exit code &apos;1&apos;</font>
+<b>NOTE</b>: Tasks Summary: Attempted 4615 tasks of which 4596 didn&apos;t need to be rerun and 1 failed.
+
+Summary: 1 task failed:
+  /home/georgeca/yocto_tutorial/poky/meta/recipes-extended/images/core-image-full-cmdline.bb:do_rootfs
+Summary: There was 1 WARNING message.
+Summary: There was 1 ERROR message, returning a non-zero exit code.
+
+real	2m51,328s
+user	0m0,946s
+sys	0m0,362s
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ nano conf/local.conf 
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ time bitbake core-image-full-cmdline
+Loading cache: 100% |                                                                                                                                                    | ETA:  --:--:--
+Loaded 0 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:31
+Parsing of 1746 .bb files complete (0 cached, 1746 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+meta-example         
+meta-custom          = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+<font color="#A2734C"><b>WARNING</b></font>: <font color="#A2734C">/home/georgeca/yocto_tutorial/poky/meta/recipes-kernel/linux/linux-yocto_5.15.bb:do_compile is tainted from a forced run</font>                                         | ETA:  0:00:01
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:02
+Sstate summary: Wanted 172 Local 170 Mirrors 0 Missed 2 Current 1539 (98% match, 99% complete)
+<b>NOTE</b>: Executing Tasks
+<b>NOTE</b>: Tasks Summary: Attempted 4613 tasks of which 4599 didn&apos;t need to be rerun and all succeeded.
+
+Summary: There was 1 WARNING message.
+
+real	1m41,747s
+user	0m0,440s
+sys	0m0,204s
+</pre>
