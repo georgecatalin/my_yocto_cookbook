@@ -1,0 +1,648 @@
+<pre><font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ ls -lh
+total 3,1M
+drwxrwxr-x 3 georgeca georgeca 4,0K mai 24 09:01 <font color="#12488B"><b>&apos;~&apos;</b></font>
+-rw-rw-r-- 1 georgeca georgeca    0 iun 12 13:59  ⚠️
+-rw-rw-r-- 1 georgeca georgeca 3,1M iun 13 13:14  bitbake-cookerdaemon.log
+drwxrwxr-x 2 georgeca georgeca 4,0K iun 13 13:14  <font color="#12488B"><b>cache</b></font>
+drwxrwxr-x 3 georgeca georgeca 4,0K iun 13 12:50  <font color="#12488B"><b>conf</b></font>
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 10 16:20  <font color="#12488B"><b>meta-advanced-calculator</b></font>
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 11 09:36  <font color="#12488B"><b>meta_advanced-calculator-makefile</b></font>
+drwxrwxr-x 4 georgeca georgeca 4,0K mai 27 16:10  <font color="#12488B"><b>meta-assignment-vars</b></font>
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ cp -r ~/Documents/my_yocto_cookbook/practical_example_do_compile_build_operation/dirs/meta-do_compile_example/ .
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ ls -lh
+total 3,1M
+drwxrwxr-x 3 georgeca georgeca 4,0K mai 24 09:01 <font color="#12488B"><b>&apos;~&apos;</b></font>
+-rw-rw-r-- 1 georgeca georgeca    0 iun 12 13:59  ⚠️
+-rw-rw-r-- 1 georgeca georgeca 3,1M iun 13 13:14  bitbake-cookerdaemon.log
+drwxrwxr-x 2 georgeca georgeca 4,0K iun 13 13:14  <font color="#12488B"><b>cache</b></font>
+drwxrwxr-x 3 georgeca georgeca 4,0K iun 13 12:50  <font color="#12488B"><b>conf</b></font>
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 10 16:20  <font color="#12488B"><b>meta-advanced-calculator</b></font>
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 11 09:36  <font color="#12488B"><b>meta_advanced-calculator-makefile</b></font>
+drwxrwxr-x 4 georgeca georgeca 4,0K mai 27 16:10  <font color="#12488B"><b>meta-assignment-vars</b></font>
+drwxrwxr-x 5 georgeca georgeca 4,0K iun 13 13:25  <font color="#12488B"><b>meta-do_compile_example</b></font>
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ mv meta-do_compile_example/ meta-example
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ ls -lh
+total 3,1M
+drwxrwxr-x 3 georgeca georgeca 4,0K mai 24 09:01 <font color="#12488B"><b>&apos;~&apos;</b></font>
+-rw-rw-r-- 1 georgeca georgeca    0 iun 12 13:59  ⚠️
+-rw-rw-r-- 1 georgeca georgeca 3,1M iun 13 13:14  bitbake-cookerdaemon.log
+drwxrwxr-x 2 georgeca georgeca 4,0K iun 13 13:14  <font color="#12488B"><b>cache</b></font>
+drwxrwxr-x 3 georgeca georgeca 4,0K iun 13 12:50  <font color="#12488B"><b>conf</b></font>
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 10 16:20  <font color="#12488B"><b>meta-advanced-calculator</b></font>
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 11 09:36  <font color="#12488B"><b>meta_advanced-calculator-makefile</b></font>
+drwxrwxr-x 4 georgeca georgeca 4,0K mai 27 16:10  <font color="#12488B"><b>meta-assignment-vars</b></font>
+drwxrwxr-x 5 georgeca georgeca 4,0K iun 13 13:25  <font color="#12488B"><b>meta-example</b></font>
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ tree meta-example/
+<font color="#12488B"><b>meta-example/</b></font>
+├── <font color="#12488B"><b>conf</b></font>
+│   └── layer.conf
+├── COPYING.MIT
+├── README
+└── <font color="#12488B"><b>recipes-example</b></font>
+    └── <font color="#12488B"><b>doCompileExample</b></font>
+        ├── doCompileExample_0.1.bb
+        └── <font color="#12488B"><b>files</b></font>
+            └── 0001-patch-example.patch
+
+4 directories, 5 files
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ meta-example/recipes-example/doCompileExample/ meta-example/recipes-example/example
+bash: meta-example/recipes-example/doCompileExample/: Is a directory
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ mv meta-example/recipes-example/doCompileExample/ meta-example/recipes-example/example
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ mv  meta-example/recipes-example/example/doCompileExample_0.1.bb meta-example/recipes-example/example/example_0.1.bb
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ rm meta-example/recipes-example/example/files/0001-patch-example.patch 
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ tree meta-example/
+<font color="#12488B"><b>meta-example/</b></font>
+├── <font color="#12488B"><b>conf</b></font>
+│   └── layer.conf
+├── COPYING.MIT
+├── README
+└── <font color="#12488B"><b>recipes-example</b></font>
+    └── <font color="#12488B"><b>example</b></font>
+        ├── example_0.1.bb
+        └── <font color="#12488B"><b>files</b></font>
+
+4 directories, 4 files
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ nano meta-example/recipes-example/example/example_0.1.bb 
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ md5sum meta-example/recipes-example/example/example_0.1.bb 
+02d9ca8d4692d321089f58c9c71d863d  meta-example/recipes-example/example/example_0.1.bb
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake-layers show-layers
+<b>NOTE</b>: Starting bitbake server...
+layer                 path                                      priority
+==========================================================================
+meta                  /home/georgeca/yocto_tutorial/poky/meta   5
+meta-poky             /home/georgeca/yocto_tutorial/poky/meta-poky  5
+meta-yocto-bsp        /home/georgeca/yocto_tutorial/poky/meta-yocto-bsp  5
+meta-oe               /home/georgeca/yocto_tutorial/poky/meta-openembedded/meta-oe  5
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake-layers add-layer meta-example/
+<b>NOTE</b>: Starting bitbake server...
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake-layers show-layers
+<b>NOTE</b>: Starting bitbake server...
+layer                 path                                      priority
+==========================================================================
+meta                  /home/georgeca/yocto_tutorial/poky/meta   5
+meta-poky             /home/georgeca/yocto_tutorial/poky/meta-poky  5
+meta-yocto-bsp        /home/georgeca/yocto_tutorial/poky/meta-yocto-bsp  5
+meta-oe               /home/georgeca/yocto_tutorial/poky/meta-openembedded/meta-oe  5
+meta-example          /home/georgeca/yocto_tutorial/my_builds/meta-example  6
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake-layers create-layer meta-custom
+<b>NOTE</b>: Starting bitbake server...
+Add your new layer with &apos;bitbake-layers add-layer meta-custom&apos;
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake-layers add-layer meta-custom
+<b>NOTE</b>: Starting bitbake server...
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake-layers show-layers
+<b>NOTE</b>: Starting bitbake server...
+layer                 path                                      priority
+==========================================================================
+meta                  /home/georgeca/yocto_tutorial/poky/meta   5
+meta-poky             /home/georgeca/yocto_tutorial/poky/meta-poky  5
+meta-yocto-bsp        /home/georgeca/yocto_tutorial/poky/meta-yocto-bsp  5
+meta-oe               /home/georgeca/yocto_tutorial/poky/meta-openembedded/meta-oe  5
+meta-example          /home/georgeca/yocto_tutorial/my_builds/meta-example  6
+meta-custom           /home/georgeca/yocto_tutorial/my_builds/meta-custom  6
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ tree meta-custom/
+<font color="#12488B"><b>meta-custom/</b></font>
+├── <font color="#12488B"><b>conf</b></font>
+│   └── layer.conf
+├── COPYING.MIT
+├── README
+└── <font color="#12488B"><b>recipes-example</b></font>
+    └── <font color="#12488B"><b>example</b></font>
+        └── example_0.1.bb
+
+3 directories, 4 files
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ mv meta-custom/recipes-example/example/example_0.1.bb ^C
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ tree meta-custom/
+<font color="#12488B"><b>meta-custom/</b></font>
+├── <font color="#12488B"><b>conf</b></font>
+│   └── layer.conf
+├── COPYING.MIT
+├── README
+└── <font color="#12488B"><b>recipes-example</b></font>
+    └── <font color="#12488B"><b>example</b></font>
+        └── example_0.1.bb
+
+3 directories, 4 files
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ mv meta-custom/recipes-example/example/example_0.1.bb meta-custom/recipes-example/example/example_0.1.bbappend
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ tree meta-custom/
+<font color="#12488B"><b>meta-custom/</b></font>
+├── <font color="#12488B"><b>conf</b></font>
+│   └── layer.conf
+├── COPYING.MIT
+├── README
+└── <font color="#12488B"><b>recipes-example</b></font>
+    └── <font color="#12488B"><b>example</b></font>
+        └── example_0.1.bbappend
+
+3 directories, 4 files
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ nano meta-custom/recipes-example/example/example_0.1.bbappend 
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ time bitbake core-image-full-cmdline
+Loading cache: 100% |                                                                                                                                                    | ETA:  --:--:--
+Loaded 0 entries from dependency cache.
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">/home/georgeca/yocto_tutorial/my_builds/meta-example/recipes-example/example/example_0.1.bb: Error during parse shell code, the last 5 lines are:</font>                  | ETA:  0:00:16
+<font color="#C01C28">    echo &quot; // this code is added via do_configure() operation in the bitbake build execution \n&quot; &gt; bbb-example.h</font>
+<font color="#C01C28">    echo &quot;#define WELCOME y&quot; &gt;&gt; bbb-example.h</font>
+<font color="#C01C28">    echo &quot;#define HELLO y&quot; &gt;&gt; bbb-example.h</font>
+<font color="#C01C28">  echo &apos;printf(&quot;Added from the .bbappend recipe&quot;) &gt;&gt; bbb-example.h</font>
+
+<font color="#A2734C"><b>WARNING</b></font>: <font color="#A2734C">/home/georgeca/yocto_tutorial/my_builds/meta-example/recipes-example/example/example_0.1.bb: Exception during build_dependencies for do_configure</font>
+<font color="#A2734C"><b>WARNING</b></font>: <font color="#A2734C">/home/georgeca/yocto_tutorial/my_builds/meta-example/recipes-example/example/example_0.1.bb: Error during finalise of /home/georgeca/yocto_tutorial/my_builds/meta-example/recipes-example/example/example_0.1.bb</font>
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Unable to parse /home/georgeca/yocto_tutorial/my_builds/meta-example/recipes-example/example/example_0.1.bb</font>
+Traceback (most recent call last):
+  File &quot;/home/georgeca/yocto_tutorial/poky/bitbake/lib/bb/pysh/pyshlex.py&quot;, line 600, in PLYLexer._parse(eof=True):
+                 elif self._state==self.ST_QUOTED:
+    &gt;                self._parse_quoted(eof)
+                 elif self._state==self.ST_HEREDOC:
+  File &quot;/home/georgeca/yocto_tutorial/poky/bitbake/lib/bb/pysh/pyshlex.py&quot;, line 688, in PLYLexer._parse_quoted(eof=True):
+                 
+    &gt;        wtree, remaining = self._wordlexer.add(input, eof)
+             self._wordlexer = None
+  File &quot;/home/georgeca/yocto_tutorial/poky/bitbake/lib/bb/pysh/pyshlex.py&quot;, line 146, in WordLexer.add(data=[&quot;&apos;&quot;, &apos;p&apos;, &apos;r&apos;, &apos;i&apos;, &apos;n&apos;, &apos;t&apos;, &apos;f&apos;, &apos;(&apos;, &apos;&quot;&apos;, &apos;A&apos;, &apos;d&apos;, &apos;d&apos;, &apos;e&apos;, &apos;d&apos;, &apos; &apos;, &apos;f&apos;, &apos;r&apos;, &apos;o&apos;, &apos;m&apos;, &apos; &apos;, &apos;t&apos;, &apos;h&apos;, &apos;e&apos;, &apos; &apos;, &apos;.&apos;, &apos;b&apos;, &apos;b&apos;, &apos;a&apos;, &apos;p&apos;, &apos;p&apos;, &apos;e&apos;, &apos;n&apos;, &apos;d&apos;, &apos; &apos;, &apos;r&apos;, &apos;e&apos;, &apos;c&apos;, &apos;i&apos;, &apos;p&apos;, &apos;e&apos;, &apos;&quot;&apos;, &apos;)&apos;, &apos; &apos;, &apos;&gt;&apos;, &apos;&gt;&apos;, &apos; &apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;-&apos;, &apos;e&apos;, &apos;x&apos;, &apos;a&apos;, &apos;m&apos;, &apos;p&apos;, &apos;l&apos;, &apos;e&apos;, &apos;.&apos;, &apos;h&apos;, &apos;\n&apos;], eof=True):
+             self._buffer += list(data)
+    &gt;        self._parse(eof)
+             
+  File &quot;/home/georgeca/yocto_tutorial/poky/bitbake/lib/bb/pysh/pyshlex.py&quot;, line 324, in WordLexer._parse(eof=True):
+                     
+    &gt;            read, closed = parsefunc(buf, result, eof)
+                     
+  File &quot;/home/georgeca/yocto_tutorial/poky/bitbake/lib/bb/pysh/pyshlex.py&quot;, line 174, in WordLexer._parse_squote(buf=[&apos;p&apos;, &apos;r&apos;, &apos;i&apos;, &apos;n&apos;, &apos;t&apos;, &apos;f&apos;, &apos;(&apos;, &apos;&quot;&apos;, &apos;A&apos;, &apos;d&apos;, &apos;d&apos;, &apos;e&apos;, &apos;d&apos;, &apos; &apos;, &apos;f&apos;, &apos;r&apos;, &apos;o&apos;, &apos;m&apos;, &apos; &apos;, &apos;t&apos;, &apos;h&apos;, &apos;e&apos;, &apos; &apos;, &apos;.&apos;, &apos;b&apos;, &apos;b&apos;, &apos;a&apos;, &apos;p&apos;, &apos;p&apos;, &apos;e&apos;, &apos;n&apos;, &apos;d&apos;, &apos; &apos;, &apos;r&apos;, &apos;e&apos;, &apos;c&apos;, &apos;i&apos;, &apos;p&apos;, &apos;e&apos;, &apos;&quot;&apos;, &apos;)&apos;, &apos; &apos;, &apos;&gt;&apos;, &apos;&gt;&apos;, &apos; &apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;-&apos;, &apos;e&apos;, &apos;x&apos;, &apos;a&apos;, &apos;m&apos;, &apos;p&apos;, &apos;l&apos;, &apos;e&apos;, &apos;.&apos;, &apos;h&apos;, &apos;\n&apos;], result=[&quot;&apos;&quot;, &apos;&apos;], eof=True):
+             except ValueError:
+    &gt;            raise NeedMore()
+             result[-1] += &apos;&apos;.join(buf[:pos])
+bb.pysh.pyshlex.NeedMore
+
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Parsing halted due to errors, see error messages above</font>
+
+Summary: There were 2 WARNING messages.
+Summary: There were 3 ERROR messages, returning a non-zero exit code.
+
+real	0m13,784s
+user	0m0,169s
+sys	0m0,041s
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ nano meta-example/recipes-example/example/example_0.1.bb 
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ nano meta-custom/recipes-example/example/example_0.1.bbappend 
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ time bitbake core-image-full-cmdline
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 1206 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:19
+Parsing of 1746 .bb files complete (752 cached, 994 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+Removing 1 recipes from the beaglebone_yocto sysroot: 100% |##############################################################################################################| Time: 0:00:00
+Removing 1 recipes from the cortexa8hf-neon sysroot: 100% |###############################################################################################################| Time: 0:00:00
+<b>NOTE</b>: Resolving any missing task queue dependencies
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Nothing RPROVIDES &apos;helloworld&apos; (but /home/georgeca/yocto_tutorial/poky/meta/recipes-extended/images/core-image-full-cmdline.bb RDEPENDS on or otherwise requires it)</font>
+<b>NOTE</b>: Runtime target &apos;helloworld&apos; is unbuildable, removing...
+Missing or unbuildable dependency chain was: [&apos;helloworld&apos;]
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Required build target &apos;core-image-full-cmdline&apos; has no buildable providers.</font>
+<font color="#C01C28">Missing or unbuildable dependency chain was: [&apos;core-image-full-cmdline&apos;, &apos;helloworld&apos;]</font>
+
+Summary: There were 2 ERROR messages, returning a non-zero exit code.
+
+real	0m21,647s
+user	0m0,275s
+sys	0m0,082s
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ nano conf/local.conf 
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ time bitbake core-image-full-cmdline
+Loading cache: 100% |                                                                                                                                                    | ETA:  --:--:--
+Loaded 0 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:33
+Parsing of 1746 .bb files complete (0 cached, 1746 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+meta-example         
+meta-custom          = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:03
+Sstate summary: Wanted 178 Local 169 Mirrors 0 Missed 9 Current 1540 (94% match, 99% complete)
+Removing 2 stale sstate objects for arch beaglebone_yocto: 100% |#########################################################################################################| Time: 0:00:00
+<b>NOTE</b>: Executing Tasks
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">example-0.1-r0 do_populate_lic: QA Issue: example: Recipe file fetches files and does not have license file information (LIC_FILES_CHKSUM) [license-checksum]</font>
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">example-0.1-r0 do_populate_lic: Fatal QA errors were found, failing task.</font>
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Logfile of failure stored in: /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/example/0.1-r0/temp/log.do_populate_lic.37620</font>
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Task (/home/georgeca/yocto_tutorial/my_builds/meta-example/recipes-example/example/example_0.1.bb:do_populate_lic) failed with exit code &apos;1&apos;</font>
+<b>NOTE</b>: Tasks Summary: Attempted 4605 tasks of which 4597 didn&apos;t need to be rerun and 1 failed.
+
+Summary: 1 task failed:
+  /home/georgeca/yocto_tutorial/my_builds/meta-example/recipes-example/example/example_0.1.bb:do_populate_lic
+Summary: There were 2 ERROR messages, returning a non-zero exit code.
+
+real	0m42,319s
+user	0m0,423s
+sys	0m0,146s
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ nano meta-example/recipes-example/example/example_0.1.bb 
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ time bitbake core-image-full-cmdline
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+meta-example         
+meta-custom          = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:02
+Sstate summary: Wanted 177 Local 169 Mirrors 0 Missed 8 Current 1541 (95% match, 99% complete)
+<b>NOTE</b>: Executing Tasks
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">example-0.1-r0 do_populate_lic: QA Issue: example: Recipe file fetches files and does not have license file information (LIC_FILES_CHKSUM) [license-checksum]</font>
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">example-0.1-r0 do_populate_lic: Fatal QA errors were found, failing task.</font>
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Logfile of failure stored in: /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/example/0.1-r0/temp/log.do_populate_lic.37722</font>
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Task (/home/georgeca/yocto_tutorial/my_builds/meta-example/recipes-example/example/example_0.1.bb:do_populate_lic) failed with exit code &apos;1&apos;</font>
+<b>NOTE</b>: Tasks Summary: Attempted 4273 tasks of which 4271 didn&apos;t need to be rerun and 1 failed.
+
+Summary: 1 task failed:
+  /home/georgeca/yocto_tutorial/my_builds/meta-example/recipes-example/example/example_0.1.bb:do_populate_lic
+Summary: There were 2 ERROR messages, returning a non-zero exit code.
+
+real	0m8,194s
+user	0m0,353s
+sys	0m0,218s
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ nano meta-example/recipes-example/example/example_0.1.bb 
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ ^C
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake -c cleansstate example
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+meta-example         
+meta-custom          = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 0 Local 0 Mirrors 0 Missed 0 Current 0 (0% match, 0% complete)
+<b>NOTE</b>: No setscene tasks
+<b>NOTE</b>: Executing Tasks
+<b>NOTE</b>: Tasks Summary: Attempted 2 tasks of which 0 didn&apos;t need to be rerun and all succeeded.
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ time bitbake core-image-full-cmdline
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+meta-example         
+meta-custom          = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:02
+Sstate summary: Wanted 178 Local 169 Mirrors 0 Missed 9 Current 1540 (94% match, 99% complete)
+<b>NOTE</b>: Executing Tasks
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">example-0.1-r0 do_populate_lic: QA Issue: example: Recipe file fetches files and does not have license file information (LIC_FILES_CHKSUM) [license-checksum]</font>
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">example-0.1-r0 do_populate_lic: Fatal QA errors were found, failing task.</font>
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Logfile of failure stored in: /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/example/0.1-r0/temp/log.do_populate_lic.37919</font>
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Task (/home/georgeca/yocto_tutorial/my_builds/meta-example/recipes-example/example/example_0.1.bb:do_populate_lic) failed with exit code &apos;1&apos;</font>
+<b>NOTE</b>: Tasks Summary: Attempted 4605 tasks of which 4599 didn&apos;t need to be rerun and 1 failed.
+
+Summary: 1 task failed:
+  /home/georgeca/yocto_tutorial/my_builds/meta-example/recipes-example/example/example_0.1.bb:do_populate_lic
+Summary: There were 2 ERROR messages, returning a non-zero exit code.
+
+real	0m8,180s
+user	0m0,462s
+sys	0m0,152s
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ nano meta-example/recipes-example/example/example_0.1.bb 
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake -e example | grep ^COMMON_LICENSE_DIR=
+<font color="#C01C28"><b>COMMON_LICENSE_DIR=</b></font>&quot;/home/georgeca/yocto_tutorial/poky/meta/files/common-licenses&quot;
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ ls /home/georgeca/yocto_tutorial/poky/meta/files/common-licenses
+0BSD                                  CC-BY-3.0-DE                DSSSL                             IJG                             NOSL                           Saxpath
+AAL                                   CC-BY-3.0-NL                dvipdfm                           ImageMagick                     Noweb                          SAX-PD
+Abstyles                              CC-BY-3.0-US                ECL-1.0                           iMatix                          NPL-1.0                        SCEA
+Adobe                                 CC-BY-4.0                   ECL-2.0                           Imlib2                          NPL-1.1                        Sendmail
+Adobe-2006                            CC-BY-NC-1.0                eCos-2.0                          Info-ZIP                        NPOSL-3.0                      Sendmail-8.23
+Adobe-Glyph                           CC-BY-NC-2.0                EDL-1.0                           Intel                           NRL                            SGI-1
+ADSL                                  CC-BY-NC-2.5                EFL-1.0                           Intel-ACPI                      NTP                            SGI-B-1.0
+AFL-1.1                               CC-BY-NC-3.0                EFL-2.0                           Interbase-1.0                   NTP-0                          SGI-B-1.1
+AFL-1.2                               CC-BY-NC-3.0-DE             eGenix                            IPA                             OASIS                          SGI-B-2.0
+AFL-2.0                               CC-BY-NC-4.0                Entessa                           IPL-1.0                         OCCT-PL                        SHL-0.5
+AFL-2.1                               CC-BY-NC-ND-1.0             EPICS                             ISC                             OCLC-2.0                       SHL-0.51
+AFL-3.0                               CC-BY-NC-ND-2.0             EPL-1.0                           JasPer-2.0                      ODbL-1.0                       SimPL-2.0
+Afmparse                              CC-BY-NC-ND-2.5             EPL-2.0                           JPNIC                           ODC-By-1.0                     Simple-2.0
+AGPL-1.0-only                         CC-BY-NC-ND-3.0             ErlPL-1.1                         JSON                            OFL-1.0                        SISSL
+AGPL-1.0-or-later                     CC-BY-NC-ND-3.0-DE          etalab-2.0                        LAL-1.2                         OFL-1.0-no-RFN                 SISSL-1.2
+AGPL-3.0-only                         CC-BY-NC-ND-3.0-IGO         EUDatagrid                        LAL-1.3                         OFL-1.0-RFN                    Sleepycat
+AGPL-3.0-or-later                     CC-BY-NC-ND-4.0             EUPL-1.0                          Latex2e                         OFL-1.1                        SMAIL_GPL
+Aladdin                               CC-BY-NC-SA-1.0             EUPL-1.1                          Leptonica                       OFL-1.1-no-RFN                 SMLNJ
+AMDPLPA                               CC-BY-NC-SA-2.0             EUPL-1.2                          LGPL-2.0-only                   OFL-1.1-RFN                    SMPPL
+AML                                   CC-BY-NC-SA-2.0-FR          Eurosym                           LGPL-2.0-or-later               OGC-1.0                        SNIA
+AMPAS                                 CC-BY-NC-SA-2.0-UK          Fair                              LGPL-2.1-only                   OGDL-Taiwan-1.0                Spencer-86
+ANTLR-PD                              CC-BY-NC-SA-2.5             Frameworx-1.0                     LGPL-2.1-or-later               OGL-Canada-2.0                 Spencer-94
+ANTLR-PD-fallback                     CC-BY-NC-SA-3.0             FreeBSD-DOC                       LGPL-3.0-only                   OGL-UK-1.0                     Spencer-99
+Apache-1.0                            CC-BY-NC-SA-3.0-DE          FreeImage                         LGPL-3.0-or-later               OGL-UK-2.0                     SPL-1.0
+Apache-1.1                            CC-BY-NC-SA-3.0-IGO         FSFAP                             LGPL-3.0-with-zeromq-exception  OGL-UK-3.0                     SSH-OpenSSH
+Apache-2.0                            CC-BY-NC-SA-4.0             FSFUL                             LGPLLR                          OGTSL                          SSH-short
+Apache-2.0-with-LLVM-exception        CC-BY-ND-1.0                FSFULLR                           Libpng                          OLDAP-1.1                      SSPL-1.0
+APAFML                                CC-BY-ND-2.0                FSF-Unlimited                     libpng-2.0                      OLDAP-1.2                      SugarCRM-1
+APL-1.0                               CC-BY-ND-2.5                FTL                               libselinux-1.0                  OLDAP-1.3                      SugarCRM-1.1.3
+APSL-1.0                              CC-BY-ND-3.0                GD                                libtiff                         OLDAP-1.4                      SWL
+APSL-1.1                              CC-BY-ND-3.0-DE             GFDL-1.1                          LiLiQ-P-1.1                     OLDAP-2.0                      TAPR-OHL-1.0
+APSL-1.2                              CC-BY-ND-4.0                GFDL-1.1-invariants-only          LiLiQ-R-1.1                     OLDAP-2.0.1                    TCL
+APSL-2.0                              CC-BY-SA-1.0                GFDL-1.1-invariants-or-later      LiLiQ-Rplus-1.1                 OLDAP-2.1                      TCP-wrappers
+Artistic-1.0                          CC-BY-SA-2.0                GFDL-1.1-no-invariants-only       Linux-OpenIB                    OLDAP-2.2                      TMate
+Artistic-1.0-cl8                      CC-BY-SA-2.0-UK             GFDL-1.1-no-invariants-or-later   LPL-1.0                         OLDAP-2.2.1                    TORQUE-1.1
+Artistic-1.0-Perl                     CC-BY-SA-2.1-JP             GFDL-1.1-only                     LPL-1.02                        OLDAP-2.2.2                    TOSL
+Artistic-2.0                          CC-BY-SA-2.5                GFDL-1.1-or-later                 LPPL-1.0                        OLDAP-2.3                      TU-Berlin-1.0
+Bahyph                                CC-BY-SA-3.0                GFDL-1.2                          LPPL-1.1                        OLDAP-2.4                      TU-Berlin-2.0
+Barr                                  CC-BY-SA-3.0-AT             GFDL-1.2-invariants-only          LPPL-1.2                        OLDAP-2.5                      UCB
+Beerware                              CC-BY-SA-3.0-DE             GFDL-1.2-invariants-or-later      LPPL-1.3a                       OLDAP-2.6                      UCL-1.0
+BitstreamVera                         CC-BY-SA-4.0                GFDL-1.2-no-invariants-only       LPPL-1.3c                       OLDAP-2.7                      unfs3
+BitTorrent-1.0                        CC-PDDC                     GFDL-1.2-no-invariants-or-later   MakeIndex                       OLDAP-2.8                      Unicode-DFS-2015
+BitTorrent-1.1                        CDDL-1.0                    GFDL-1.2-only                     MirOS                           OML                            Unicode-DFS-2016
+blessing                              CDDL-1.1                    GFDL-1.2-or-later                 MIT                             OpenSSL                        Unicode-TOU
+BlueOak-1.0.0                         CDL-1.0                     GFDL-1.3                          MIT-0                           OPL-1.0                        Unlicense
+Borceux                               CDLA-Permissive-1.0         GFDL-1.3-invariants-only          MIT-advertising                 OPUBL-1.0                      UPL-1.0
+BSD-1-Clause                          CDLA-Permissive-2.0         GFDL-1.3-invariants-or-later      MIT-CMU                         OSET-PL-2.1                    Vim
+BSD-2-Clause                          CDLA-Sharing-1.0            GFDL-1.3-no-invariants-only       MIT-enna                        OSL-1.0                        VOSTROM
+BSD-2-Clause-Patent                   CECILL-1.0                  GFDL-1.3-no-invariants-or-later   MIT-feh                         OSL-1.1                        VSL-1.0
+BSD-2-Clause-Views                    CECILL-1.1                  GFDL-1.3-only                     MIT-Modern-Variant              OSL-2.0                        W3C
+BSD-3-Clause                          CECILL-2.0                  GFDL-1.3-or-later                 MITNFA                          OSL-2.1                        W3C-19980720
+BSD-3-Clause-Attribution              CECILL-2.1                  Giftware                          MIT-open-group                  OSL-3.0                        W3C-20150513
+BSD-3-Clause-Clear                    CECILL-B                    GL2PS                             Motosoto                        O-UDA-1.0                      Watcom-1.0
+BSD-3-Clause-LBNL                     CECILL-C                    Glide                             mpich2                          ParaTypeFFL-1.3                Wsuipa
+BSD-3-Clause-Modification             CERN-OHL-1.1                Glulxe                            MPL-1.0                         Parity-6.0.0                   WTFPL
+BSD-3-Clause-No-Military-License      CERN-OHL-1.2                GLWTPL                            MPL-1.1                         Parity-7.0.0                   WXwindows
+BSD-3-Clause-No-Nuclear-License       CERN-OHL-P-2.0              gnuplot                           MPL-2.0                         PD                             X11
+BSD-3-Clause-No-Nuclear-License-2014  CERN-OHL-S-2.0              GPL-1.0-only                      MPL-2.0-no-copyleft-exception   PDDL-1.0                       Xerox
+BSD-3-Clause-No-Nuclear-Warranty      CERN-OHL-W-2.0              GPL-1.0-or-later                  MS-PL                           PHP-3.0                        XFree86-1.0
+BSD-3-Clause-Open-MPI                 ClArtistic                  GPL-2.0-only                      MS-RL                           PHP-3.01                       XFree86-1.1
+BSD-4-Clause                          CNRI-Jython                 GPL-2.0-or-later                  MTLL                            pkgconf                        xinetd
+BSD-4-Clause-Shortened                CNRI-Python                 GPL-2.0-with-autoconf-exception   MulanPSL-1.0                    Plexus                         Xnet
+BSD-4-Clause-UC                       CNRI-Python-GPL-Compatible  GPL-2.0-with-classpath-exception  MulanPSL-2.0                    PolyForm-Noncommercial-1.0.0   xpp
+BSD-Protection                        Condor-1.1                  GPL-2.0-with-font-exception       Multics                         PolyForm-Small-Business-1.0.0  XSkat
+BSD-Source-Code                       copyleft-next-0.3.0         GPL-2.0-with-GCC-exception        Mup                             PostgreSQL                     XSL
+BSL-1.0                               copyleft-next-0.3.1         GPL-2.0-with-OpenSSL-exception    NAIST-2003                      Proprietary                    YPL-1.0
+BUSL-1.1                              CPAL-1.0                    GPL-2-with-bison-exception        NASA-1.3                        PSF-2.0                        YPL-1.1
+bzip2-1.0.4                           CPL-1.0                     GPL-3.0-only                      Naumen                          psfrag                         Zed
+bzip2-1.0.5                           CPOL-1.02                   GPL-3.0-or-later                  NBPL-1.0                        psutils                        Zend-2.0
+bzip2-1.0.6                           Crossword                   GPL-3.0-with-autoconf-exception   NCGL-UK-2.0                     Python-2.0                     Zimbra-1.3
+CAL-1.0                               CrystalStacker              GPL-3.0-with-GCC-exception        NCSA                            Qhull                          Zimbra-1.4
+CAL-1.0-Combined-Work-Exception       CUA-OPL-1.0                 GPL-3-with-bison-exception        NetCDF                          QPL-1.0                        Zlib
+Caldera                               Cube                        gSOAP-1                           Net-SNMP                        Rdisc                          zlib-acknowledgement
+CATOSL-1.1                            C-UDA-1.0                   gSOAP-1.3b                        Newsletr                        RHeCos-1                       ZPL-1.1
+CC0-1.0                               curl                        HaskellReport                     NGPL                            RHeCos-1.1                     ZPL-2.0
+CC-BY-1.0                             D-FSL-1.0                   Hippocratic-2.1                   NIST-PD                         RPL-1.1                        ZPL-2.1
+CC-BY-2.0                             diffmark                    HPND                              NIST-PD-fallback                RPL-1.5
+CC-BY-2.5                             DOC                         HPND-sell-variant                 NLOD-1.0                        RPSL-1.0
+CC-BY-2.5-AU                          Dotseqn                     HTMLTIDY                          NLOD-2.0                        RSA-MD
+CC-BY-3.0                             DRL-1.0                     IBM-pibs                          NLPL                            RSCPL
+CC-BY-3.0-AT                          DSDP                        ICU                               Nokia                           Ruby
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ md5sum /home/georgeca/yocto_tutorial/poky/meta/files/common-licenses/MIT
+0835ade698e0bcf8506ecda2f7b4f302  /home/georgeca/yocto_tutorial/poky/meta/files/common-licenses/MIT
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ code meta-example/recipes-example/example/example_0.1.bb 
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ time bitbake example
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+meta-example         
+meta-custom          = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 11 Local 4 Mirrors 0 Missed 7 Current 219 (36% match, 96% complete)
+Removing 1 stale sstate objects for arch cortexa8hf-neon: 100% |##########################################################################################################| Time: 0:00:00
+<b>NOTE</b>: Executing Tasks
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">example-0.1-r0 do_compile: ExecutionError(&apos;/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/example/0.1-r0/temp/run.do_compile.38451&apos;, 1, None, None)</font>
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Logfile of failure stored in: /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/example/0.1-r0/temp/log.do_compile.38451</font>
+Log data follows:
+| DEBUG: Executing shell function do_compile
+| In file included from /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/example/0.1-r0/git/bbb-example.c:2:
+| /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/example/0.1-r0/git/bbb-example.h:5:8: error: expected declaration specifiers or &apos;...&apos; before string constant
+|     5 | printf(&quot;Added from the .bbappend recipe&quot;)
+|       |        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+| WARNING: exit code 1 from a shell command.
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Task (/home/georgeca/yocto_tutorial/my_builds/meta-example/recipes-example/example/example_0.1.bb:do_compile) failed with exit code &apos;1&apos;</font>
+<b>NOTE</b>: Tasks Summary: Attempted 776 tasks of which 768 didn&apos;t need to be rerun and 1 failed.
+
+Summary: 1 task failed:
+  /home/georgeca/yocto_tutorial/my_builds/meta-example/recipes-example/example/example_0.1.bb:do_compile
+Summary: There was 1 ERROR message, returning a non-zero exit code.
+
+real	0m6,029s
+user	0m0,382s
+sys	0m0,117s
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ nano meta-custom/recipes-example/example/example_0.1.bbappend 
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ time bitbake example
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+meta-example         
+meta-custom          = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 9 Local 4 Mirrors 0 Missed 5 Current 221 (44% match, 97% complete)
+<b>NOTE</b>: Executing Tasks
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">example-0.1-r0 do_compile: ExecutionError(&apos;/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/example/0.1-r0/temp/run.do_compile.38523&apos;, 1, None, None)</font>
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Logfile of failure stored in: /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/example/0.1-r0/temp/log.do_compile.38523</font>
+Log data follows:
+| DEBUG: Executing shell function do_compile
+| In file included from /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/example/0.1-r0/git/bbb-example.c:2:
+| /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/example/0.1-r0/git/bbb-example.h:5:8: error: expected declaration specifiers or &apos;...&apos; before string constant
+|     5 | printf(&quot;Added from the .bbappend recipe&quot;);
+|       |        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+| WARNING: exit code 1 from a shell command.
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Task (/home/georgeca/yocto_tutorial/my_builds/meta-example/recipes-example/example/example_0.1.bb:do_compile) failed with exit code &apos;1&apos;</font>
+<b>NOTE</b>: Tasks Summary: Attempted 776 tasks of which 774 didn&apos;t need to be rerun and 1 failed.
+
+Summary: 1 task failed:
+  /home/georgeca/yocto_tutorial/my_builds/meta-example/recipes-example/example/example_0.1.bb:do_compile
+Summary: There was 1 ERROR message, returning a non-zero exit code.
+
+real	0m5,294s
+user	0m0,261s
+sys	0m0,166s
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake -e example | grep ^S=
+<font color="#C01C28"><b>S=</b></font>&quot;/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/example/0.1-r0/git&quot;
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ ls /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/example/0.1-r0/git
+bbb-example.c  bbb-example.h
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ cat /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/example/0.1-r0/git/bbb-example.h
+ // this code is added via do_configure() operation in the bitbake build execution 
+
+#define WELCOME y
+#define HELLO y
+printf(&quot;Added from the .bbappend recipe&quot;);
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ tree meta-custom/
+<font color="#12488B"><b>meta-custom/</b></font>
+├── <font color="#12488B"><b>conf</b></font>
+│   └── layer.conf
+├── COPYING.MIT
+├── README
+└── <font color="#12488B"><b>recipes-example</b></font>
+    └── <font color="#12488B"><b>example</b></font>
+        └── example_0.1.bbappend
+
+3 directories, 4 files
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake -c do_cleansstate example
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+meta-example         
+meta-custom          = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 0 Local 0 Mirrors 0 Missed 0 Current 0 (0% match, 0% complete)
+<b>NOTE</b>: No setscene tasks
+<b>NOTE</b>: Executing Tasks
+<b>NOTE</b>: Tasks Summary: Attempted 2 tasks of which 0 didn&apos;t need to be rerun and all succeeded.
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ cat /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/example/0.1-r0/git/bbb-example.h
+cat: /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/example/0.1-r0/git/bbb-example.h: No such file or directory
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ mv meta-custom/recipes-example/ meta-custom/recipes-custom
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ tree meta-custom
+<font color="#12488B"><b>meta-custom</b></font>
+├── <font color="#12488B"><b>conf</b></font>
+│   └── layer.conf
+├── COPYING.MIT
+├── README
+└── <font color="#12488B"><b>recipes-custom</b></font>
+    └── <font color="#12488B"><b>example</b></font>
+        └── example_0.1.bbappend
+
+3 directories, 4 files
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ time bitbake example
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+meta-example         
+meta-custom          = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 11 Local 4 Mirrors 0 Missed 7 Current 219 (36% match, 96% complete)
+<b>NOTE</b>: Executing Tasks
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">example-0.1-r0 do_compile: ExecutionError(&apos;/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/example/0.1-r0/temp/run.do_compile.38888&apos;, 1, None, None)</font>
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Logfile of failure stored in: /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/example/0.1-r0/temp/log.do_compile.38888</font>
+Log data follows:
+| DEBUG: Executing shell function do_compile
+| In file included from /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/example/0.1-r0/git/bbb-example.c:2:
+| /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/example/0.1-r0/git/bbb-example.h:5:8: error: expected declaration specifiers or &apos;...&apos; before string constant
+|     5 | printf(&quot;Added from the .bbappend recipe&quot;);
+|       |        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+| WARNING: exit code 1 from a shell command.
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Task (/home/georgeca/yocto_tutorial/my_builds/meta-example/recipes-example/example/example_0.1.bb:do_compile) failed with exit code &apos;1&apos;</font>
+<b>NOTE</b>: Tasks Summary: Attempted 776 tasks of which 768 didn&apos;t need to be rerun and 1 failed.
+
+Summary: 1 task failed:
+  /home/georgeca/yocto_tutorial/my_builds/meta-example/recipes-example/example/example_0.1.bb:do_compile
+Summary: There was 1 ERROR message, returning a non-zero exit code.
+
+real	0m5,855s
+user	0m0,349s
+sys	0m0,113s
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ cat /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/example/0.1-r0/git/bbb-example.h
+ // this code is added via do_configure() operation in the bitbake build execution 
+
+#define WELCOME y
+#define HELLO y
+printf(&quot;Added from the .bbappend recipe&quot;);
+</pre>

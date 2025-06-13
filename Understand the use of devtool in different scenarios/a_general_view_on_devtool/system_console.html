@@ -1,0 +1,348 @@
+<pre><font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/Documents/my_yocto_cookbook/a_general_view_on_devtool</b></font>$ cd ~/yocto_tutorial/
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial</b></font>$ cd my_builds/
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds</b></font>$ source ../poky/oe-init-build-env .
+
+### Shell environment set up for builds. ###
+
+You can now run &apos;bitbake &lt;target&gt;&apos;
+
+Common targets are:
+    core-image-minimal
+    core-image-full-cmdline
+    core-image-sato
+    core-image-weston
+    meta-toolchain
+    meta-ide-support
+
+You can also run generated qemu images with a command like &apos;runqemu qemux86&apos;
+
+Other commonly useful commands are:
+ - &apos;devtool&apos; and &apos;recipetool&apos; handle common recipe tasks
+ - &apos;bitbake-layers&apos; handles common layer tasks
+ - &apos;oe-pkgdata-util&apos; handles common target package tasks
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds</b></font>$ devtool --help
+<b>NOTE</b>: Starting bitbake server...
+usage: devtool [--basepath BASEPATH] [--bbpath BBPATH] [-d] [-q] [--color COLOR] [-h] &lt;subcommand&gt; ...
+
+OpenEmbedded development tool
+
+options:
+  --basepath BASEPATH   Base directory of SDK / build directory
+  --bbpath BBPATH       Explicitly specify the BBPATH, rather than getting it from the metadata
+  -d, --debug           Enable debug output
+  -q, --quiet           Print only errors
+  --color COLOR         Colorize output (where COLOR is auto, always, never)
+  -h, --help            show this help message and exit
+
+subcommands:
+  Beginning work on a recipe:
+    add                   Add a new recipe
+    modify                Modify the source for an existing recipe
+    upgrade               Upgrade an existing recipe
+  Getting information:
+    status                Show workspace status
+    search                Search available recipes
+    latest-version        Report the latest version of an existing recipe
+    check-upgrade-status  Report upgradability for multiple (or all) recipes
+  Working on a recipe in the workspace:
+    build                 Build a recipe
+    rename                Rename a recipe file in the workspace
+    edit-recipe           Edit a recipe file
+    find-recipe           Find a recipe file
+    configure-help        Get help on configure script options
+    update-recipe         Apply changes from external source tree to recipe
+    reset                 Remove a recipe from your workspace
+    finish                Finish working on a recipe in your workspace
+  Testing changes on target:
+    deploy-target         Deploy recipe output files to live target machine
+    undeploy-target       Undeploy recipe output files in live target machine
+    build-image           Build image including workspace recipe packages
+  Advanced:
+    create-workspace      Set up workspace in an alternative location
+    menuconfig            Alter build-time configuration for a recipe
+    export                Export workspace into a tar archive
+    extract               Extract the source for an existing recipe
+    sync                  Synchronize the source tree for an existing recipe
+    import                Import exported tar archive into workspace
+Use devtool &lt;subcommand&gt; --help to get help on a specific command
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds</b></font>$ devtool add hello_devtool https://github.com/Munawar-git/bbb-tutorial-code.git
+<b>NOTE</b>: Starting bitbake server...
+INFO: Creating workspace layer in /home/georgeca/yocto_tutorial/my_builds/workspace
+ERROR: Recipe name &quot;hello_devtool&quot; is invalid: only characters 0-9, a-z, -, + and . are allowed
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds</b></font>$ devtool add hello-devtool https://github.com/Munawar-git/bbb-tutorial-code.git
+<b>NOTE</b>: Starting bitbake server...
+<b>NOTE</b>: Starting bitbake server...
+INFO: Fetching git://github.com/Munawar-git/bbb-tutorial-code.git;protocol=https;branch=master...
+Loading cache: 100% |                                                                                                                                                                       | ETA:  --:--:--
+Loaded 0 entries from dependency cache.
+Parsing recipes: 100% |######################################################################################################################################################################| Time: 0:00:31
+Parsing of 1747 .bb files complete (0 cached, 1747 parsed). 2786 targets, 78 skipped, 0 masked, 0 errors.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;x86_64-poky-linux&quot;
+MACHINE              = &quot;qemux86-64&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;m64 core2&quot;
+TARGET_FPU           = &quot;&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+meta-understand-rprovides = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+workspace            = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |###################################################################################################################################################################| Time: 0:00:01
+Sstate summary: Wanted 0 Local 0 Mirrors 0 Missed 0 Current 0 (0% match, 0% complete)
+<b>NOTE</b>: No setscene tasks
+<b>NOTE</b>: Executing Tasks
+<b>NOTE</b>: Tasks Summary: Attempted 2 tasks of which 0 didn&apos;t need to be rerun and all succeeded.
+INFO: Using default source tree path /home/georgeca/yocto_tutorial/my_builds/workspace/sources/hello-devtool
+<b>NOTE</b>: Reconnecting to bitbake server...
+<b>NOTE</b>: Retrying server connection (#1)...
+<b>NOTE</b>: Reconnecting to bitbake server...
+NOTE: Reconnecting to bitbake server...
+<b>NOTE</b>: Retrying server connection (#1)...
+NOTE: Retrying server connection (#1)...
+<b>NOTE</b>: Starting bitbake server...
+INFO: Using source tree as build directory since that would be the default for this recipe
+INFO: Recipe /home/georgeca/yocto_tutorial/my_builds/workspace/recipes/hello-devtool/hello-devtool_git.bb has been automatically created; further editing may be required to make it fully functional
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds</b></font>$ ls -lh
+total 1,9M
+drwxrwxr-x  3 georgeca georgeca 4,0K mai 24 09:01 <font color="#268BD2"><b>&apos;~&apos;</b></font>
+-rw-rw-r--  1 georgeca georgeca 1,9M iun 10 10:09  bitbake-cookerdaemon.log
+drwxrwxr-x  2 georgeca georgeca 4,0K iun 10 10:09  <font color="#268BD2"><b>cache</b></font>
+drwxrwxr-x  2 georgeca georgeca 4,0K iun  6 14:42  <font color="#268BD2"><b>conf</b></font>
+drwxrwxr-x  4 georgeca georgeca 4,0K iun  5 17:01  <font color="#268BD2"><b>downloads</b></font>
+drwxrwxr-x  4 georgeca georgeca 4,0K mai 27 16:10  <font color="#268BD2"><b>meta-assignment-vars</b></font>
+drwxrwxr-x 86 georgeca georgeca 4,0K iun  5 17:02  <font color="#268BD2"><b>sstate-cache</b></font>
+drwxrwxr-x 12 georgeca georgeca 4,0K iun  5 16:58  <font color="#268BD2"><b>tmp</b></font>
+drwxrwxr-x  6 georgeca georgeca 4,0K iun 10 10:09  <font color="#268BD2"><b>workspace</b></font>
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds</b></font>$ cd workspace/
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds/workspace</b></font>$ ls -lh
+total 20K
+drwxrwxr-x 2 georgeca georgeca 4,0K iun 10 10:09 <font color="#268BD2"><b>appends</b></font>
+drwxrwxr-x 2 georgeca georgeca 4,0K iun 10 10:08 <font color="#268BD2"><b>conf</b></font>
+-rw-rw-r-- 1 georgeca georgeca  946 iun 10 10:08 README
+drwxrwxr-x 3 georgeca georgeca 4,0K iun 10 10:09 <font color="#268BD2"><b>recipes</b></font>
+drwxrwxr-x 3 georgeca georgeca 4,0K iun 10 10:09 <font color="#268BD2"><b>sources</b></font>
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds/workspace</b></font>$ ls recipes/
+<font color="#268BD2"><b>hello-devtool</b></font>
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds/workspace</b></font>$ ls recipes/hello-devtool/
+hello-devtool_git.bb
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds/workspace</b></font>$ sudo apt install -y vim
+[sudo] password for georgeca: 
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following additional packages will be installed:
+  vim-runtime
+Suggested packages:
+  ctags vim-doc vim-scripts
+The following NEW packages will be installed:
+  vim vim-runtime
+0 upgraded, 2 newly installed, 0 to remove and 0 not upgraded.
+Need to get 8.561 kB of archives.
+After this operation, 37,6 MB of additional disk space will be used.
+Get:1 http://ro.archive.ubuntu.com/ubuntu jammy-updates/main amd64 vim-runtime all 2:8.2.3995-1ubuntu2.24 [6.833 kB]
+Get:2 http://ro.archive.ubuntu.com/ubuntu jammy-updates/main amd64 vim amd64 2:8.2.3995-1ubuntu2.24 [1.728 kB]
+Fetched 8.561 kB in 1s (9.515 kB/s)
+Selecting previously unselected package vim-runtime.
+(Reading database ... 216741 files and directories currently installed.)
+Preparing to unpack .../vim-runtime_2%3a8.2.3995-1ubuntu2.24_all.deb ...
+Adding &apos;diversion of /usr/share/vim/vim82/doc/help.txt to /usr/share/vim/vim82/doc/help.txt.vim-tiny by vim-runtime&apos;
+Adding &apos;diversion of /usr/share/vim/vim82/doc/tags to /usr/share/vim/vim82/doc/tags.vim-tiny by vim-runtime&apos;
+Unpacking vim-runtime (2:8.2.3995-1ubuntu2.24) ...
+Selecting previously unselected package vim.
+Preparing to unpack .../vim_2%3a8.2.3995-1ubuntu2.24_amd64.deb ...
+Unpacking vim (2:8.2.3995-1ubuntu2.24) ...
+Setting up vim-runtime (2:8.2.3995-1ubuntu2.24) ...
+Setting up vim (2:8.2.3995-1ubuntu2.24) ...
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/vim (vim) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/vimdiff (vimdiff) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/rvim (rvim) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/rview (rview) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/vi (vi) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/view (view) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/ex (ex) in auto mode
+Processing triggers for man-db (2.10.2-1) ...
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds/workspace</b></font>$ ls -lh
+total 20K
+drwxrwxr-x 2 georgeca georgeca 4,0K iun 10 10:09 <font color="#268BD2"><b>appends</b></font>
+drwxrwxr-x 2 georgeca georgeca 4,0K iun 10 10:08 <font color="#268BD2"><b>conf</b></font>
+-rw-rw-r-- 1 georgeca georgeca  946 iun 10 10:08 README
+drwxrwxr-x 3 georgeca georgeca 4,0K iun 10 10:09 <font color="#268BD2"><b>recipes</b></font>
+drwxrwxr-x 3 georgeca georgeca 4,0K iun 10 10:09 <font color="#268BD2"><b>sources</b></font>
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds/workspace</b></font>$ cd recipes/
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds/workspace/recipes</b></font>$ ls -lh
+total 4,0K
+drwxrwxr-x 2 georgeca georgeca 4,0K iun 10 10:09 <font color="#268BD2"><b>hello-devtool</b></font>
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds/workspace/recipes</b></font>$ vim hello-devtool/hello-devtool_git.bb 
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds/workspace/recipes</b></font>$ devtool build hello-devtool
+<b>NOTE</b>: Starting bitbake server...
+NOTE: Reconnecting to bitbake server...
+NOTE: Retrying server connection (#1)...
+Loading cache: 100% |########################################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+<font color="#DC322F"><b>ERROR</b></font>: <font color="#DC322F">ParseError at /home/georgeca/yocto_tutorial/my_builds/workspace/recipes/hello-devtool/hello-devtool_git.bb:24: unparsed line: &apos;</font>  <font color="#DC322F">echo &quot;#define WELCOME y&quot; &gt; bbb-example.h&apos;</font>           | ETA:  --:--:--
+<font color="#DC322F"><b>ERROR</b></font>: <font color="#DC322F">Parsing halted due to errors, see error messages above</font>
+
+Summary: There were 2 ERROR messages, returning a non-zero exit code.
+ERROR: Failed to start bitbake environment
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds/workspace/recipes</b></font>$ vim hello-devtool/hello-devtool_git.bb 
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds/workspace/recipes</b></font>$ devtool build hello-devtool
+<b>NOTE</b>: Starting bitbake server...
+NOTE: Reconnecting to bitbake server...
+NOTE: Retrying server connection (#1)...
+Loading cache: 100% |########################################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+<font color="#DC322F"><b>ERROR</b></font>: <font color="#DC322F">ParseError at /home/georgeca/yocto_tutorial/my_builds/workspace/recipes/hello-devtool/hello-devtool_git.bb:24: unparsed line: &apos;do_configure{&apos;</font>                                        | ETA:  --:--:--
+<font color="#DC322F"><b>ERROR</b></font>: <font color="#DC322F">Parsing halted due to errors, see error messages above</font>
+
+Summary: There were 2 ERROR messages, returning a non-zero exit code.
+ERROR: Failed to start bitbake environment
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds/workspace/recipes</b></font>$ vim hello-devtool/hello-devtool_git.bb 
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds/workspace/recipes</b></font>$ devtool build hello-devtool
+<b>NOTE</b>: Starting bitbake server...
+NOTE: Reconnecting to bitbake server...
+NOTE: Retrying server connection (#1)...
+NOTE: Reconnecting to bitbake server...
+NOTE: Previous bitbake instance shutting down?, waiting to retry...
+NOTE: Retrying server connection (#2)...
+Loading cache: 100% |########################################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+Parsing recipes: 100% |######################################################################################################################################################################| Time: 0:00:00
+Parsing of 1747 .bb files complete (1746 cached, 1 parsed). 2786 targets, 78 skipped, 0 masked, 0 errors.
+Loading cache: 100% |########################################################################################################################################################################| Time: 0:00:01
+Loaded 2785 entries from dependency cache.
+Parsing recipes: 100% |######################################################################################################################################################################| Time: 0:00:00
+Parsing of 1747 .bb files complete (1746 cached, 1 parsed). 2786 targets, 78 skipped, 0 masked, 0 errors.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;x86_64-poky-linux&quot;
+MACHINE              = &quot;qemux86-64&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;m64 core2&quot;
+TARGET_FPU           = &quot;&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+meta-understand-rprovides = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+workspace            = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |###################################################################################################################################################################| Time: 0:00:01
+Sstate summary: Wanted 8 Local 4 Mirrors 0 Missed 4 Current 143 (50% match, 97% complete)
+<b>NOTE</b>: Executing Tasks
+NOTE: hello-devtool: compiling from external source tree /home/georgeca/yocto_tutorial/my_builds/workspace/sources/hello-devtool
+<b>NOTE</b>: Tasks Summary: Attempted 631 tasks of which 623 didn&apos;t need to be rerun and all succeeded.
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds/workspace/recipes</b></font>$ ls
+<font color="#268BD2"><b>hello-devtool</b></font>
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds/workspace/recipes</b></font>$ bitbake -e hello-dev | grep ^S=
+ERROR: Nothing PROVIDES &apos;hello-dev&apos;. Close matches:
+  hello-devtool
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds/workspace/recipes</b></font>$ bitbake -e hello-devtool | grep ^S=
+<font color="#DC322F"><b>S=</b></font>&quot;/home/georgeca/yocto_tutorial/my_builds/workspace/sources/hello-devtool&quot;
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds/workspace/recipes</b></font>$ bitbake -e hello-devtool | grep ^D=
+<font color="#DC322F"><b>D=</b></font>&quot;/home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-devtool/1.0+git999-r0/image&quot;
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds/workspace/recipes</b></font>$ cd ../../
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds</b></font>$ ls -lh
+total 2,0M
+drwxrwxr-x  3 georgeca georgeca 4,0K mai 24 09:01 <font color="#268BD2"><b>&apos;~&apos;</b></font>
+-rw-rw-r--  1 georgeca georgeca 1,9M iun 10 10:28  bitbake-cookerdaemon.log
+drwxrwxr-x  2 georgeca georgeca 4,0K iun 10 10:28  <font color="#268BD2"><b>cache</b></font>
+drwxrwxr-x  2 georgeca georgeca 4,0K iun  6 14:42  <font color="#268BD2"><b>conf</b></font>
+drwxrwxr-x  4 georgeca georgeca 4,0K iun  5 17:01  <font color="#268BD2"><b>downloads</b></font>
+drwxrwxr-x  4 georgeca georgeca 4,0K mai 27 16:10  <font color="#268BD2"><b>meta-assignment-vars</b></font>
+drwxrwxr-x 86 georgeca georgeca 4,0K iun  5 17:02  <font color="#268BD2"><b>sstate-cache</b></font>
+drwxrwxr-x 12 georgeca georgeca 4,0K iun  5 16:58  <font color="#268BD2"><b>tmp</b></font>
+drwxrwxr-x  6 georgeca georgeca 4,0K iun 10 10:09  <font color="#268BD2"><b>workspace</b></font>
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds</b></font>$ cd ..
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial</b></font>$ ls
+<font color="#268BD2"><b>my_builds</b></font>  <font color="#268BD2"><b>poky</b></font>  <font color="#268BD2"><b>sources</b></font>
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial</b></font>$ cd sources/
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/sources</b></font>$ ls -lh
+total 44K
+drwxrwxr-x   4 georgeca georgeca  32K iun  6 12:37 <font color="#268BD2"><b>downloads</b></font>
+drwxrwxr-x 259 georgeca georgeca 4,0K iun  5 17:18 <font color="#268BD2"><b>sstate-cache</b></font>
+drwxrwxr-x  14 georgeca georgeca 4,0K mai 26 22:39 <font color="#268BD2"><b>tmp</b></font>
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/sources</b></font>$ cd tmp/
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/sources/tmp</b></font>$ ls
+abi_version  <font color="#268BD2"><b>buildstats</b></font>  <font color="#268BD2"><b>cache</b></font>  <font color="#268BD2"><b>deploy</b></font>  <font color="#268BD2"><b>hosttools</b></font>  <font color="#268BD2"><b>log</b></font>  <font color="#268BD2"><b>pkgdata</b></font>  qa.log  saved_tmpdir  <font color="#268BD2"><b>sstate-control</b></font>  <font color="#268BD2"><b>stamps</b></font>  <font color="#268BD2"><b>sysroots-components</b></font>  <font color="#268BD2"><b>sysroots-uninative</b></font>  <font color="#268BD2"><b>work</b></font>  <font color="#268BD2"><b>work-shared</b></font>
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/sources/tmp</b></font>$ cd work
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/sources/tmp/work</b></font>$ ls
+<font color="#268BD2"><b>all-poky-linux</b></font>  <font color="#268BD2"><b>core2-64-poky-linux</b></font>  <font color="#268BD2"><b>qemux86_64-poky-linux</b></font>  <font color="#268BD2"><b>x86_64-linux</b></font>
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/sources/tmp/work</b></font>$ cd core2-64-poky-linux/
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/sources/tmp/work/core2-64-poky-linux</b></font>$ ls
+<font color="#268BD2"><b>acl</b></font>                 <font color="#268BD2"><b>doinstallexample</b></font>       <font color="#268BD2"><b>grep</b></font>                       <font color="#268BD2"><b>libdrm</b></font>          <font color="#268BD2"><b>libpcre</b></font>           <font color="#268BD2"><b>libxfixes</b></font>            <font color="#268BD2"><b>mkfontscale</b></font>                     <font color="#268BD2"><b>python3-pycairo</b></font>       <font color="#268BD2"><b>util-macros</b></font>
+<font color="#268BD2"><b>alsa-lib</b></font>            <font color="#268BD2"><b>dosfstools</b></font>             <font color="#268BD2"><b>gst-examples</b></font>               <font color="#268BD2"><b>libepoxy</b></font>        <font color="#268BD2"><b>libpcre2</b></font>          <font color="#268BD2"><b>libxfont2</b></font>            <font color="#268BD2"><b>mobile-broadband-provider-info</b></font>  <font color="#268BD2"><b>python3-pygobject</b></font>     <font color="#268BD2"><b>vala</b></font>
+<font color="#268BD2"><b>alsa-plugins</b></font>        <font color="#268BD2"><b>dropbear</b></font>               <font color="#268BD2"><b>gstreamer1.0</b></font>               <font color="#268BD2"><b>liberror-perl</b></font>   <font color="#268BD2"><b>libpng</b></font>            <font color="#268BD2"><b>libxft</b></font>               <font color="#268BD2"><b>modutils-initscripts</b></font>            <font color="#268BD2"><b>python3-six</b></font>           <font color="#268BD2"><b>vte</b></font>
+<font color="#268BD2"><b>alsa-state</b></font>          <font color="#268BD2"><b>e2fsprogs</b></font>              <font color="#268BD2"><b>gstreamer1.0-plugins-bad</b></font>   <font color="#268BD2"><b>libevdev</b></font>        <font color="#268BD2"><b>libpsl</b></font>            <font color="#268BD2"><b>libxi</b></font>                <font color="#268BD2"><b>mpfr</b></font>                            <font color="#268BD2"><b>qemuwrapper-cross</b></font>     <font color="#268BD2"><b>vulkan-headers</b></font>
+<font color="#268BD2"><b>alsa-utils</b></font>          <font color="#268BD2"><b>elfutils</b></font>               <font color="#268BD2"><b>gstreamer1.0-plugins-base</b></font>  <font color="#268BD2"><b>libexif</b></font>         <font color="#268BD2"><b>libpthread-stubs</b></font>  <font color="#268BD2"><b>libxinerama</b></font>          <font color="#268BD2"><b>mpg123</b></font>                          <font color="#268BD2"><b>quota</b></font>                 <font color="#268BD2"><b>vulkan-loader</b></font>
+<font color="#268BD2"><b>alsa-utils-scripts</b></font>  <font color="#268BD2"><b>ell</b></font>                    <font color="#268BD2"><b>gstreamer1.0-plugins-good</b></font>  <font color="#268BD2"><b>libfakekey</b></font>      <font color="#268BD2"><b>libptytty</b></font>         <font color="#268BD2"><b>libxkbcommon</b></font>         <font color="#268BD2"><b>mtdev</b></font>                           <font color="#268BD2"><b>rdepends-example</b></font>      <font color="#268BD2"><b>wayland</b></font>
+<font color="#268BD2"><b>atk</b></font>                 <font color="#268BD2"><b>eudev</b></font>                  <font color="#268BD2"><b>gtk+3</b></font>                      <font color="#268BD2"><b>libffi</b></font>          <font color="#268BD2"><b>librepo</b></font>           <font color="#268BD2"><b>libxkbfile</b></font>           <font color="#268BD2"><b>nano</b></font>                            <font color="#268BD2"><b>readline</b></font>              <font color="#268BD2"><b>which</b></font>
+<font color="#268BD2"><b>at-spi2-atk</b></font>         <font color="#268BD2"><b>example</b></font>                <font color="#268BD2"><b>gtk-doc</b></font>                    <font color="#268BD2"><b>libfm</b></font>           <font color="#268BD2"><b>librsvg</b></font>           <font color="#268BD2"><b>libxml2</b></font>              <font color="#268BD2"><b>ncurses</b></font>                         <font color="#268BD2"><b>rgb</b></font>                   <font color="#268BD2"><b>wpa-supplicant</b></font>
+<font color="#268BD2"><b>at-spi2-core</b></font>        <font color="#268BD2"><b>expat</b></font>                  <font color="#268BD2"><b>harfbuzz</b></font>                   <font color="#268BD2"><b>libfm-extra</b></font>     <font color="#268BD2"><b>libsamplerate0</b></font>    <font color="#268BD2"><b>libxmu</b></font>               <font color="#268BD2"><b>neard</b></font>                           <font color="#268BD2"><b>rpcbind</b></font>               <font color="#268BD2"><b>xauth</b></font>
+<font color="#268BD2"><b>attr</b></font>                <font color="#268BD2"><b>file</b></font>                   <font color="#268BD2"><b>hello-devtool</b></font>              <font color="#268BD2"><b>libfontenc</b></font>      <font color="#268BD2"><b>libseccomp</b></font>        <font color="#268BD2"><b>libxrandr</b></font>            <font color="#268BD2"><b>nettle</b></font>                          <font color="#268BD2"><b>rpm</b></font>                   <font color="#268BD2"><b>xcb-proto</b></font>
+<font color="#268BD2"><b>avahi</b></font>               <font color="#268BD2"><b>findutils</b></font>              <font color="#268BD2"><b>helloworld</b></font>                 <font color="#268BD2"><b>libgcc</b></font>          <font color="#268BD2"><b>libsm</b></font>             <font color="#268BD2"><b>libxrender</b></font>           <font color="#268BD2"><b>npth</b></font>                            <font color="#268BD2"><b>rprovides-example</b></font>     <font color="#268BD2"><b>xcb-util</b></font>
+<font color="#268BD2"><b>base-passwd</b></font>         <font color="#268BD2"><b>flac</b></font>                   <font color="#268BD2"><b>icu</b></font>                        <font color="#268BD2"><b>libgcc-initial</b></font>  <font color="#268BD2"><b>libsndfile1</b></font>       <font color="#268BD2"><b>libxshmfence</b></font>         <font color="#268BD2"><b>ofono</b></font>                           <font color="#268BD2"><b>rxvt-unicode</b></font>          <font color="#268BD2"><b>xdpyinfo</b></font>
+<font color="#268BD2"><b>bash</b></font>                <font color="#268BD2"><b>fontconfig</b></font>             <font color="#268BD2"><b>initscripts</b></font>                <font color="#268BD2"><b>libgcrypt</b></font>       <font color="#268BD2"><b>libsolv</b></font>           <font color="#268BD2"><b>libxt</b></font>                <font color="#268BD2"><b>openssh</b></font>                         <font color="#268BD2"><b>sato-screenshot</b></font>       <font color="#268BD2"><b>xf86-input-libinput</b></font>
+<font color="#268BD2"><b>bash-completion</b></font>     <font color="#268BD2"><b>font-util</b></font>              <font color="#268BD2"><b>init-system-helpers</b></font>        <font color="#268BD2"><b>libglu</b></font>          <font color="#268BD2"><b>libsoup-2.4</b></font>       <font color="#268BD2"><b>libxtst</b></font>              <font color="#268BD2"><b>openssl</b></font>                         <font color="#268BD2"><b>sbc</b></font>                   <font color="#268BD2"><b>xf86-video-cirrus</b></font>
+<font color="#268BD2"><b>bc</b></font>                  <font color="#268BD2"><b>freetype</b></font>               <font color="#268BD2"><b>iproute2</b></font>                   <font color="#268BD2"><b>libgpg-error</b></font>    <font color="#268BD2"><b>libstd-rs</b></font>         <font color="#268BD2"><b>libxv</b></font>                <font color="#268BD2"><b>opkg-utils</b></font>                      <font color="#268BD2"><b>sed</b></font>                   <font color="#268BD2"><b>xf86-video-fbdev</b></font>
+<font color="#268BD2"><b>binutils</b></font>            <font color="#268BD2"><b>fribidi</b></font>                <font color="#268BD2"><b>iptables</b></font>                   <font color="#268BD2"><b>libgudev</b></font>        <font color="#268BD2"><b>libtheora</b></font>         <font color="#268BD2"><b>libxxf86vm</b></font>           <font color="#268BD2"><b>orc</b></font>                             <font color="#268BD2"><b>settings-daemon</b></font>       <font color="#268BD2"><b>xf86-video-vesa</b></font>
+<font color="#268BD2"><b>bluez5</b></font>              <font color="#268BD2"><b>gawk</b></font>                   <font color="#268BD2"><b>iw</b></font>                         <font color="#268BD2"><b>libical</b></font>         <font color="#268BD2"><b>libtirpc</b></font>          <font color="#268BD2"><b>libyaml</b></font>              <font color="#268BD2"><b>pango</b></font>                           <font color="#268BD2"><b>shadow</b></font>                <font color="#268BD2"><b>xf86-video-vmware</b></font>
+<font color="#268BD2"><b>btrfs-tools</b></font>         <font color="#268BD2"><b>gcc</b></font>                    <font color="#268BD2"><b>json-c</b></font>                     <font color="#268BD2"><b>libice</b></font>          <font color="#268BD2"><b>libtool</b></font>           <font color="#268BD2"><b>linux-libc-headers</b></font>   <font color="#268BD2"><b>pciutils</b></font>                        <font color="#268BD2"><b>shadow-sysroot</b></font>        <font color="#268BD2"><b>xhost</b></font>
+<font color="#268BD2"><b>busybox</b></font>             <font color="#268BD2"><b>gcc-runtime</b></font>            <font color="#268BD2"><b>json-glib</b></font>                  <font color="#268BD2"><b>libidn2</b></font>         <font color="#268BD2"><b>libtool-cross</b></font>     <font color="#268BD2"><b>lua</b></font>                  <font color="#268BD2"><b>pcmanfm</b></font>                         <font color="#268BD2"><b>shared-mime-info</b></font>      <font color="#268BD2"><b>xinit</b></font>
+<font color="#268BD2"><b>bzip2</b></font>               <font color="#268BD2"><b>gconf</b></font>                  <font color="#268BD2"><b>kmod</b></font>                       <font color="#268BD2"><b>libinput</b></font>        <font color="#268BD2"><b>libunistring</b></font>      <font color="#268BD2"><b>lzo</b></font>                  <font color="#268BD2"><b>perl</b></font>                            <font color="#268BD2"><b>socat</b></font>                 <font color="#268BD2"><b>xinput</b></font>
+<font color="#268BD2"><b>cairo</b></font>               <font color="#268BD2"><b>gdbm</b></font>                   <font color="#268BD2"><b>l3afpad</b></font>                    <font color="#268BD2"><b>libjpeg-turbo</b></font>   <font color="#268BD2"><b>libusb1</b></font>           <font color="#268BD2"><b>make</b></font>                 <font color="#268BD2"><b>pinentry</b></font>                        <font color="#268BD2"><b>speex</b></font>                 <font color="#268BD2"><b>xinput-calibrator</b></font>
+<font color="#268BD2"><b>connman</b></font>             <font color="#268BD2"><b>gdk-pixbuf</b></font>             <font color="#268BD2"><b>lame</b></font>                       <font color="#268BD2"><b>libksba</b></font>         <font color="#268BD2"><b>libvorbis</b></font>         <font color="#268BD2"><b>matchbox-config-gtk</b></font>  <font color="#268BD2"><b>pixman</b></font>                          <font color="#268BD2"><b>speexdsp</b></font>              <font color="#268BD2"><b>xkbcomp</b></font>
+<font color="#268BD2"><b>connman-gnome</b></font>       <font color="#268BD2"><b>git</b></font>                    <font color="#268BD2"><b>libarchive</b></font>                 <font color="#268BD2"><b>libmatchbox</b></font>     <font color="#268BD2"><b>libwebp</b></font>           <font color="#268BD2"><b>matchbox-desktop</b></font>     <font color="#268BD2"><b>popt</b></font>                            <font color="#268BD2"><b>sqlite3</b></font>               <font color="#268BD2"><b>xkeyboard-config</b></font>
+<font color="#268BD2"><b>consolekit</b></font>          <font color="#268BD2"><b>glib-2.0</b></font>               <font color="#268BD2"><b>libassuan</b></font>                  <font color="#268BD2"><b>libmicrohttpd</b></font>   <font color="#268BD2"><b>libx11</b></font>            <font color="#268BD2"><b>matchbox-keyboard</b></font>    <font color="#268BD2"><b>ppp</b></font>                             <font color="#268BD2"><b>startup-notification</b></font>  <font color="#268BD2"><b>xmodmap</b></font>
+<font color="#268BD2"><b>coreutils</b></font>           <font color="#268BD2"><b>glibc</b></font>                  <font color="#268BD2"><b>libatomic-ops</b></font>              <font color="#268BD2"><b>libmnl</b></font>          <font color="#268BD2"><b>libxau</b></font>            <font color="#268BD2"><b>matchbox-panel-2</b></font>     <font color="#268BD2"><b>procps</b></font>                          <font color="#268BD2"><b>strace</b></font>                <font color="#268BD2"><b>xorgproto</b></font>
+<font color="#268BD2"><b>curl</b></font>                <font color="#268BD2"><b>glibc-locale</b></font>           <font color="#268BD2"><b>libcap</b></font>                     <font color="#268BD2"><b>libmodulemd</b></font>     <font color="#268BD2"><b>libxcb</b></font>            <font color="#268BD2"><b>matchbox-session</b></font>     <font color="#268BD2"><b>psmisc</b></font>                          <font color="#268BD2"><b>sudo</b></font>                  <font color="#268BD2"><b>xrandr</b></font>
+<font color="#268BD2"><b>dbus</b></font>                <font color="#268BD2"><b>glib-networking</b></font>        <font color="#268BD2"><b>libcap-ng</b></font>                  <font color="#268BD2"><b>libmpc</b></font>          <font color="#268BD2"><b>libxcomposite</b></font>     <font color="#268BD2"><b>matchbox-terminal</b></font>    <font color="#268BD2"><b>psplash</b></font>                         <font color="#268BD2"><b>sysvinit</b></font>              <font color="#268BD2"><b>xserver-xorg</b></font>
+<font color="#268BD2"><b>dbus-glib</b></font>           <font color="#268BD2"><b>gmp</b></font>                    <font color="#268BD2"><b>libcheck</b></font>                   <font color="#268BD2"><b>libnl</b></font>           <font color="#268BD2"><b>libxcrypt</b></font>         <font color="#268BD2"><b>matchbox-theme-sato</b></font>  <font color="#268BD2"><b>ptest-runner</b></font>                    <font color="#268BD2"><b>taglib</b></font>                <font color="#268BD2"><b>xset</b></font>
+<font color="#268BD2"><b>dbus-wait</b></font>           <font color="#268BD2"><b>gnome-desktop-testing</b></font>  <font color="#268BD2"><b>libcomps</b></font>                   <font color="#268BD2"><b>libnsl2</b></font>         <font color="#268BD2"><b>libxcursor</b></font>        <font color="#268BD2"><b>matchbox-wm</b></font>          <font color="#268BD2"><b>pulseaudio</b></font>                      <font color="#268BD2"><b>tcp-wrappers</b></font>          <font color="#268BD2"><b>xtrans</b></font>
+<font color="#268BD2"><b>desktop-file-utils</b></font>  <font color="#268BD2"><b>gnupg</b></font>                  <font color="#268BD2"><b>libcroco</b></font>                   <font color="#268BD2"><b>libnss-mdns</b></font>     <font color="#268BD2"><b>libxcvt</b></font>           <font color="#268BD2"><b>mdadm</b></font>                <font color="#268BD2"><b>puzzles</b></font>                         <font color="#268BD2"><b>udev-extraconf</b></font>        <font color="#268BD2"><b>xz</b></font>
+<font color="#268BD2"><b>diffutils</b></font>           <font color="#268BD2"><b>gnutls</b></font>                 <font color="#268BD2"><b>libdaemon</b></font>                  <font color="#268BD2"><b>libogg</b></font>          <font color="#268BD2"><b>libxdamage</b></font>        <font color="#268BD2"><b>menu-cache</b></font>           <font color="#268BD2"><b>python3</b></font>                         <font color="#268BD2"><b>unzip</b></font>                 <font color="#268BD2"><b>zip</b></font>
+<font color="#268BD2"><b>dnf</b></font>                 <font color="#268BD2"><b>gobject-introspection</b></font>  <font color="#268BD2"><b>libdmx</b></font>                     <font color="#268BD2"><b>libpcap</b></font>         <font color="#268BD2"><b>libxdmcp</b></font>          <font color="#268BD2"><b>mesa</b></font>                 <font color="#268BD2"><b>python3-dbus</b></font>                    <font color="#268BD2"><b>util-linux</b></font>            <font color="#268BD2"><b>zlib</b></font>
+<font color="#268BD2"><b>doCompileExample</b></font>    <font color="#268BD2"><b>gpgme</b></font>                  <font color="#268BD2"><b>libdnf</b></font>                     <font color="#268BD2"><b>libpciaccess</b></font>    <font color="#268BD2"><b>libxext</b></font>           <font color="#268BD2"><b>mini-x-session</b></font>       <font color="#268BD2"><b>python3-iniparse</b></font>                <font color="#268BD2"><b>util-linux-libuuid</b></font>    <font color="#268BD2"><b>zstd</b></font>
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/sources/tmp/work/core2-64-poky-linux</b></font>$ cd hello-devtool/1.0+git999-r0
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-devtool/1.0+git999-r0</b></font>$ ls -lh
+total 56K
+-rw-r--r-- 1 georgeca georgeca  686 iun 10 10:23 debugsources.list
+drwxr-xr-x 2 georgeca georgeca 4,0K iun 10 10:23 <font color="#268BD2"><b>deploy-source-date-epoch</b></font>
+drwxr-xr-x 3 georgeca georgeca 4,0K iun 10 10:23 <font color="#268BD2"><b>image</b></font>
+drwxr-xr-x 3 georgeca georgeca 4,0K iun 10 10:23 <font color="#268BD2"><b>package</b></font>
+drwxr-xr-x 9 georgeca georgeca 4,0K iun 10 10:23 <font color="#268BD2"><b>packages-split</b></font>
+drwxr-xr-x 7 georgeca georgeca 4,0K iun 10 10:23 <font color="#268BD2"><b>pkgdata</b></font>
+drwxr-xr-x 7 georgeca georgeca 4,0K iun 10 10:23 <font color="#268BD2"><b>pkgdata-pdata-input</b></font>
+drwxr-xr-x 7 georgeca georgeca 4,0K iun 10 10:23 <font color="#268BD2"><b>pkgdata-sysroot</b></font>
+drwxrwxr-x 2 georgeca georgeca 4,0K iun 10 10:23 <font color="#268BD2"><b>pseudo</b></font>
+drwxr-xr-x 5 georgeca georgeca 4,0K iun 10 10:23 <font color="#268BD2"><b>recipe-sysroot</b></font>
+drwxr-xr-x 7 georgeca georgeca 4,0K iun 10 10:23 <font color="#268BD2"><b>recipe-sysroot-native</b></font>
+drwxr-xr-x 2 georgeca georgeca 4,0K iun 10 10:23 <font color="#268BD2"><b>source-date-epoch</b></font>
+drwxr-xr-x 3 georgeca georgeca 4,0K iun 10 10:23 <font color="#268BD2"><b>sysroot-destdir</b></font>
+drwxr-xr-x 2 georgeca georgeca 4,0K iun 10 10:23 <font color="#268BD2"><b>temp</b></font>
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-devtool/1.0+git999-r0</b></font>$ cd image/
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-devtool/1.0+git999-r0/image</b></font>$ ls -lh
+total 4,0K
+drwxr-xr-x 3 georgeca georgeca 4,0K iun 10 10:23 <font color="#268BD2"><b>usr</b></font>
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-devtool/1.0+git999-r0/image</b></font>$ cd usr/
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-devtool/1.0+git999-r0/image/usr</b></font>$ ls
+<font color="#268BD2"><b>bin</b></font>
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-devtool/1.0+git999-r0/image/usr</b></font>$ cd bin/
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-devtool/1.0+git999-r0/image/usr/bin</b></font>$ ls
+<font color="#859900"><b>hello-dev</b></font>
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-devtool/1.0+git999-r0/image/usr/bin</b></font>$ file hello-dev 
+hello-dev: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux-x86-64.so.2, BuildID[sha1]=ae47cb0179a88b6df8c09aae694580a4fe0c61aa, for GNU/Linux 3.2.0, with debug_info, not stripped
+</pre>

@@ -1,0 +1,352 @@
+<pre><font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~</b></font>$ cd yocto_tutorial/my_builds/
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ source ../poky/oe-init-build-env .
+
+### Shell environment set up for builds. ###
+
+You can now run &apos;bitbake &lt;target&gt;&apos;
+
+Common targets are:
+    core-image-minimal
+    core-image-full-cmdline
+    core-image-sato
+    core-image-weston
+    meta-toolchain
+    meta-ide-support
+
+You can also run generated qemu images with a command like &apos;runqemu qemux86&apos;
+
+Other commonly useful commands are:
+ - &apos;devtool&apos; and &apos;recipetool&apos; handle common recipe tasks
+ - &apos;bitbake-layers&apos; handles common layer tasks
+ - &apos;oe-pkgdata-util&apos; handles common target package tasks
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ ls -lh
+total 2,6M
+drwxrwxr-x 3 georgeca georgeca 4,0K mai 24 09:01 <font color="#12488B"><b>&apos;~&apos;</b></font>
+-rw-rw-r-- 1 georgeca georgeca    0 iun 12 13:59  ⚠️
+-rw-rw-r-- 1 georgeca georgeca 2,6M iun 12 15:06  bitbake-cookerdaemon.log
+drwxrwxr-x 2 georgeca georgeca 4,0K iun 12 15:06  <font color="#12488B"><b>cache</b></font>
+drwxrwxr-x 3 georgeca georgeca 4,0K iun 12 13:57  <font color="#12488B"><b>conf</b></font>
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 10 16:20  <font color="#12488B"><b>meta-advanced-calculator</b></font>
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 11 09:36  <font color="#12488B"><b>meta_advanced-calculator-makefile</b></font>
+drwxrwxr-x 4 georgeca georgeca 4,0K mai 27 16:10  <font color="#12488B"><b>meta-assignment-vars</b></font>
+drwxrwxr-x 6 georgeca georgeca 4,0K iun 12 15:01  <font color="#12488B"><b>workspace</b></font>
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake-layers show-layers
+<b>NOTE</b>: Starting bitbake server...
+layer                 path                                      priority
+==========================================================================
+meta                  /home/georgeca/yocto_tutorial/poky/meta   5
+meta-poky             /home/georgeca/yocto_tutorial/poky/meta-poky  5
+meta-yocto-bsp        /home/georgeca/yocto_tutorial/poky/meta-yocto-bsp  5
+meta-oe               /home/georgeca/yocto_tutorial/poky/meta-openembedded/meta-oe  5
+workspace             /home/georgeca/yocto_tutorial/my_builds/workspace  99
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake-layers remove-layer workspace/
+<b>NOTE</b>: Starting bitbake server...
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake-layers show-layers
+<b>NOTE</b>: Starting bitbake server...
+layer                 path                                      priority
+==========================================================================
+meta                  /home/georgeca/yocto_tutorial/poky/meta   5
+meta-poky             /home/georgeca/yocto_tutorial/poky/meta-poky  5
+meta-yocto-bsp        /home/georgeca/yocto_tutorial/poky/meta-yocto-bsp  5
+meta-oe               /home/georgeca/yocto_tutorial/poky/meta-openembedded/meta-oe  5
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ rm -rf workspace/
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ devtool add simple-c-make https://github.com/Swepz/Simple_CMake_Project.git -V 1.0.0
+<b>NOTE</b>: Starting bitbake server...
+INFO: Creating workspace layer in /home/georgeca/yocto_tutorial/my_builds/workspace
+<b>NOTE</b>: Starting bitbake server...
+INFO: Fetching git://github.com/Swepz/Simple_CMake_Project.git;protocol=https;branch=master...
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:01
+Loaded 2784 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+Removing 1 recipes from the beaglebone_yocto sysroot: 100% |##############################################################################################################| Time: 0:00:00
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+workspace            = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 0 Local 0 Mirrors 0 Missed 0 Current 0 (0% match, 0% complete)
+<b>NOTE</b>: No setscene tasks
+<b>NOTE</b>: Executing Tasks
+<b>NOTE</b>: Tasks Summary: Attempted 2 tasks of which 0 didn&apos;t need to be rerun and all succeeded.
+INFO: Using default source tree path /home/georgeca/yocto_tutorial/my_builds/workspace/sources/simple-c-make
+<b>NOTE</b>: Reconnecting to bitbake server...
+<b>NOTE</b>: Retrying server connection (#1)...
+<b>NOTE</b>: Reconnecting to bitbake server...
+NOTE: Reconnecting to bitbake server...
+<b>NOTE</b>: Retrying server connection (#1)...
+NOTE: Retrying server connection (#1)...
+<b>NOTE</b>: Starting bitbake server...
+INFO: Recipe /home/georgeca/yocto_tutorial/my_builds/workspace/recipes/simple-c-make/simple-c-make_git.bb has been automatically created; further editing may be required to make it fully functional
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ tree workspace/
+<font color="#12488B"><b>workspace/</b></font>
+├── <font color="#12488B"><b>appends</b></font>
+│   └── simple-c-make_git.bbappend
+├── <font color="#12488B"><b>conf</b></font>
+│   └── layer.conf
+├── README
+├── <font color="#12488B"><b>recipes</b></font>
+│   └── <font color="#12488B"><b>simple-c-make</b></font>
+│       └── simple-c-make_git.bb
+└── <font color="#12488B"><b>sources</b></font>
+    └── <font color="#12488B"><b>simple-c-make</b></font>
+        ├── <font color="#12488B"><b>build</b></font>
+        ├── CMakeLists.txt
+        ├── <font color="#12488B"><b>include</b></font>
+        │   └── main.h
+        ├── <font color="#12488B"><b>lib</b></font>
+        │   ├── <font color="#12488B"><b>linkedList</b></font>
+        │   │   ├── linkedList.c
+        │   │   └── linkedList.h
+        │   └── <font color="#12488B"><b>wrapper</b></font>
+        │       ├── wrapper.c
+        │       └── wrapper.h
+        ├── main.c
+        ├── README.md
+        └── <font color="#26A269"><b>run</b></font>
+
+11 directories, 13 files
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake -e simple-c-make | grep ^B=
+<font color="#C01C28"><b>B=</b></font>&quot;/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/simple-c-make/1.0.0+git999-r0/simple-c-make-1.0.0+git999&quot;
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake -e simple-c-make | grep ^D=
+<font color="#C01C28"><b>D=</b></font>&quot;/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/simple-c-make/1.0.0+git999-r0/image&quot;
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake -e simple-c-make | grep ^S=
+<font color="#C01C28"><b>S=</b></font>&quot;/home/georgeca/yocto_tutorial/my_builds/workspace/sources/simple-c-make&quot;
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ devtool build simple-c-make
+<b>NOTE</b>: Starting bitbake server...
+NOTE: Reconnecting to bitbake server...
+NOTE: Retrying server connection (#1)...
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2784 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:01
+Loaded 2784 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+workspace            = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 8 Local 4 Mirrors 0 Missed 4 Current 149 (50% match, 97% complete)
+<b>NOTE</b>: Executing Tasks
+NOTE: simple-c-make: compiling from external source tree /home/georgeca/yocto_tutorial/my_builds/workspace/sources/simple-c-make
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">simple-c-make-1.0.0+git999-r0 do_install: ExecutionError(&apos;/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/simple-c-make/1.0.0+git999-r0/temp/run.do_install.3456&apos;, 1, None, None)</font>
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Logfile of failure stored in: /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/simple-c-make/1.0.0+git999-r0/temp/log.do_install.3456</font>
+Log data follows:
+| DEBUG: Executing python function extend_recipe_sysroot
+| NOTE: Direct dependencies are [&apos;/home/georgeca/yocto_tutorial/poky/meta/recipes-core/glibc/glibc_2.35.bb:do_populate_sysroot&apos;, &apos;/home/georgeca/yocto_tutorial/poky/meta/recipes-devtools/cmake/cmake-native_3.22.3.bb:do_populate_sysroot&apos;, &apos;/home/georgeca/yocto_tutorial/poky/meta/recipes-devtools/gcc/gcc-cross_11.5.bb:do_populate_sysroot&apos;, &apos;/home/georgeca/yocto_tutorial/poky/meta/recipes-devtools/gcc/gcc-runtime_11.5.bb:do_populate_sysroot&apos;, &apos;virtual:native:/home/georgeca/yocto_tutorial/poky/meta/recipes-devtools/ninja/ninja_1.10.2.bb:do_populate_sysroot&apos;, &apos;virtual:native:/home/georgeca/yocto_tutorial/poky/meta/recipes-devtools/pseudo/pseudo_git.bb:do_populate_sysroot&apos;]
+| NOTE: Installed into sysroot: []
+| NOTE: Skipping as already exists in sysroot: [&apos;glibc&apos;, &apos;cmake-native&apos;, &apos;gcc-cross-arm&apos;, &apos;gcc-runtime&apos;, &apos;ninja-native&apos;, &apos;pseudo-native&apos;, &apos;curl-native&apos;, &apos;bzip2-native&apos;, &apos;zstd-native&apos;, &apos;zlib-native&apos;, &apos;ncurses-native&apos;, &apos;xz-native&apos;, &apos;linux-libc-headers&apos;, &apos;libgcc&apos;, &apos;re2c-native&apos;, &apos;gmp-native&apos;, &apos;libtool-native&apos;, &apos;flex-native&apos;, &apos;texinfo-dummy-native&apos;, &apos;libmpc-native&apos;, &apos;binutils-cross-arm&apos;, &apos;gnu-config-native&apos;, &apos;mpfr-native&apos;, &apos;openssl-native&apos;, &apos;gettext-minimal-native&apos;, &apos;m4-native&apos;, &apos;perl-native&apos;, &apos;make-native&apos;, &apos;gdbm-native&apos;]
+| DEBUG: Python function extend_recipe_sysroot finished
+| DEBUG: Executing shell function do_install
+| NOTE: DESTDIR=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/simple-c-make/1.0.0+git999-r0/image VERBOSE=1 cmake --build /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/simple-c-make/1.0.0+git999-r0/simple-c-make-1.0.0+git999 --target install --
+| ninja: error: unknown target &apos;install&apos;
+| WARNING: exit code 1 from a shell command.
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Task (/home/georgeca/yocto_tutorial/my_builds/workspace/recipes/simple-c-make/simple-c-make_git.bb:do_install) failed with exit code &apos;1&apos;</font>
+<b>NOTE</b>: Tasks Summary: Attempted 656 tasks of which 650 didn&apos;t need to be rerun and 1 failed.
+
+Summary: 1 task failed:
+  /home/georgeca/yocto_tutorial/my_builds/workspace/recipes/simple-c-make/simple-c-make_git.bb:do_install
+Summary: There was 1 ERROR message, returning a non-zero exit code.
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ cd /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/simple-c-make/1.0.0+git999-r0/simple-c-make-1.0.0+git999
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/simple-c-make/1.0.0+git999-r0/simple-c-make-1.0.0+git999</b></font>$ ls
+build.ninja  CMakeCache.txt  <font color="#12488B"><b>CMakeFiles</b></font>  cmake_install.cmake  <font color="#26A269"><b>main</b></font>
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/simple-c-make/1.0.0+git999-r0/simple-c-make-1.0.0+git999</b></font>$ cd ~/yocto_tutorial/my_builds/workspace/
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/workspace</b></font>$ ls
+<font color="#12488B"><b>appends</b></font>  <font color="#12488B"><b>conf</b></font>  README  <font color="#12488B"><b>recipes</b></font>  <font color="#12488B"><b>sources</b></font>
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/workspace</b></font>$ cd recipes/
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/workspace/recipes</b></font>$ ls
+<font color="#12488B"><b>simple-c-make</b></font>
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/workspace/recipes</b></font>$ cd simple-c-make/
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/workspace/recipes/simple-c-make</b></font>$ ls
+simple-c-make_git.bb
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/workspace/recipes/simple-c-make</b></font>$ nano simple-c-make_git.bb 
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/workspace/recipes/simple-c-make</b></font>$ devtool build simple-c-make
+<b>NOTE</b>: Starting bitbake server...
+NOTE: Reconnecting to bitbake server...
+NOTE: Retrying server connection (#1)...
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2784 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+Removing 1 recipes from the cortexa8hf-neon sysroot: 100% |###############################################################################################################| Time: 0:00:00
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:01
+Loaded 2784 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+workspace            = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 8 Local 4 Mirrors 0 Missed 4 Current 149 (50% match, 97% complete)
+<b>NOTE</b>: Executing Tasks
+NOTE: simple-c-make: compiling from external source tree /home/georgeca/yocto_tutorial/my_builds/workspace/sources/simple-c-make
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">simple-c-make-1.0.0-r0 do_install: ExecutionError(&apos;/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/simple-c-make/1.0.0-r0/temp/run.do_install.3700&apos;, 1, None, None)</font>
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Logfile of failure stored in: /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/simple-c-make/1.0.0-r0/temp/log.do_install.3700</font>
+Log data follows:
+| DEBUG: Executing python function extend_recipe_sysroot
+| NOTE: Direct dependencies are [&apos;/home/georgeca/yocto_tutorial/poky/meta/recipes-core/glibc/glibc_2.35.bb:do_populate_sysroot&apos;, &apos;/home/georgeca/yocto_tutorial/poky/meta/recipes-devtools/cmake/cmake-native_3.22.3.bb:do_populate_sysroot&apos;, &apos;/home/georgeca/yocto_tutorial/poky/meta/recipes-devtools/gcc/gcc-cross_11.5.bb:do_populate_sysroot&apos;, &apos;/home/georgeca/yocto_tutorial/poky/meta/recipes-devtools/gcc/gcc-runtime_11.5.bb:do_populate_sysroot&apos;, &apos;virtual:native:/home/georgeca/yocto_tutorial/poky/meta/recipes-devtools/ninja/ninja_1.10.2.bb:do_populate_sysroot&apos;, &apos;virtual:native:/home/georgeca/yocto_tutorial/poky/meta/recipes-devtools/pseudo/pseudo_git.bb:do_populate_sysroot&apos;]
+| NOTE: Installed into sysroot: []
+| NOTE: Skipping as already exists in sysroot: [&apos;glibc&apos;, &apos;cmake-native&apos;, &apos;gcc-cross-arm&apos;, &apos;gcc-runtime&apos;, &apos;ninja-native&apos;, &apos;pseudo-native&apos;, &apos;linux-libc-headers&apos;, &apos;libgcc&apos;, &apos;bzip2-native&apos;, &apos;ncurses-native&apos;, &apos;xz-native&apos;, &apos;zlib-native&apos;, &apos;zstd-native&apos;, &apos;curl-native&apos;, &apos;re2c-native&apos;, &apos;gnu-config-native&apos;, &apos;gmp-native&apos;, &apos;mpfr-native&apos;, &apos;flex-native&apos;, &apos;binutils-cross-arm&apos;, &apos;libtool-native&apos;, &apos;texinfo-dummy-native&apos;, &apos;libmpc-native&apos;, &apos;gettext-minimal-native&apos;, &apos;openssl-native&apos;, &apos;m4-native&apos;, &apos;perl-native&apos;, &apos;make-native&apos;, &apos;gdbm-native&apos;]
+| DEBUG: Python function extend_recipe_sysroot finished
+| DEBUG: Executing shell function do_install
+| install: cannot stat &apos;/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/simple-c-make/1.0.0-r0/simple-c-make-1.0.0main&apos;: No such file or directory
+| WARNING: exit code 1 from a shell command.
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Task (/home/georgeca/yocto_tutorial/my_builds/workspace/recipes/simple-c-make/simple-c-make_git.bb:do_install) failed with exit code &apos;1&apos;</font>
+<b>NOTE</b>: Tasks Summary: Attempted 656 tasks of which 650 didn&apos;t need to be rerun and 1 failed.
+
+Summary: 1 task failed:
+  /home/georgeca/yocto_tutorial/my_builds/workspace/recipes/simple-c-make/simple-c-make_git.bb:do_install
+Summary: There was 1 ERROR message, returning a non-zero exit code.
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/workspace/recipes/simple-c-make</b></font>$ nano simple-c-make_git.bb 
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/workspace/recipes/simple-c-make</b></font>$ devtool build simple-c-make
+<b>NOTE</b>: Starting bitbake server...
+NOTE: Reconnecting to bitbake server...
+NOTE: Retrying server connection (#1)...
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2784 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:01
+Loaded 2784 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+workspace            = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 7 Local 4 Mirrors 0 Missed 3 Current 150 (57% match, 98% complete)
+<b>NOTE</b>: Executing Tasks
+<b>NOTE</b>: Tasks Summary: Attempted 659 tasks of which 655 didn&apos;t need to be rerun and all succeeded.
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/workspace/recipes/simple-c-make</b></font>$ bitbake -e simple-c-make | grep ^D=
+<font color="#C01C28"><b>D=</b></font>&quot;/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/simple-c-make/1.0.0-r0/image&quot;
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/workspace/recipes/simple-c-make</b></font>$ ls /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/simple-c-make/1.0.0-r0/image
+<font color="#12488B"><b>usr</b></font>
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/workspace/recipes/simple-c-make</b></font>$ ls /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/simple-c-make/1.0.0-r0/image/usr/bin/
+<font color="#26A269"><b>main</b></font>
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/workspace/recipes/simple-c-make</b></font>$ file  /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/simple-c-make/1.0.0-r0/image/usr/bin/main
+/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/simple-c-make/1.0.0-r0/image/usr/bin/main: ELF 32-bit LSB pie executable, ARM, EABI5 version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux-armhf.so.3, BuildID[sha1]=a9fdae37b9b411c4eb62b57b7f1f4f8db5d614de, for GNU/Linux 3.2.0, with debug_info, not stripped
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/workspace/recipes/simple-c-make</b></font>$ devtool deploy-target simple-c-make root@192.168.55.86
+<b>NOTE</b>: Starting bitbake server...
+NOTE: Reconnecting to bitbake server...
+NOTE: Retrying server connection (#1)...
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2784 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+tar: ./usr/bin/main: time stamp 2025-06-12 13:18:00 is 229118774.027875363 s in the future
+tar: ./usr/bin: time stamp 2025-06-12 13:18:00 is 229118774.025458904 s in the future
+tar: ./usr: time stamp 2025-06-12 13:18:00 is 229118774.023528863 s in the future
+tar: .: time stamp 2025-06-12 13:18:00 is 229118774.022152446 s in the future
+INFO: Successfully deployed /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/simple-c-make/1.0.0-r0/image
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/workspace/recipes/simple-c-make</b></font>$ devtool undeploy-target simple-c-make root@192.168.55.86
+<b>NOTE</b>: Starting bitbake server...
+INFO: Successfully undeployed simple-c-make
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/workspace/recipes/simple-c-make</b></font>$ cd ../../..
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ devtool finish -f simple-c-make ../poky/meta-george/CMake-examples/
+<b>NOTE</b>: Starting bitbake server...
+NOTE: Reconnecting to bitbake server...
+NOTE: Retrying server connection (#1)...
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2784 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+ERROR: Unable to find layer or directory matching &quot;../poky/meta-george/CMake-examples/&quot;
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ devtool finish -f simple-c-make ../poky/meta-george/
+<b>NOTE</b>: Starting bitbake server...
+NOTE: Reconnecting to bitbake server...
+NOTE: Retrying server connection (#1)...
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2784 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+<font color="#A2734C"><b>WARNING</b></font>: <font color="#A2734C">Specified destination layer is not currently enabled in bblayers.conf, so the simple-c-make recipe will now be unavailable in your current configuration until you add the layer there</font>
+INFO: Updating SRCREV in recipe simple-c-make_git.bb
+INFO: Moving recipe file to /home/georgeca/yocto_tutorial/poky/meta-george/recipes-simple-c-make/simple-c-make
+INFO: Leaving source tree /home/georgeca/yocto_tutorial/my_builds/workspace/sources/simple-c-make as-is; if you no longer need it then please delete it manually
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ tree ../poky/meta-george
+<font color="#12488B"><b>../poky/meta-george</b></font>
+├── <font color="#12488B"><b>conf</b></font>
+│   └── layer.conf
+├── COPYING.MIT
+├── <font color="#12488B"><b>kernel-recipes</b></font>
+├── README
+├── <font color="#12488B"><b>recipes-example</b></font>
+│   └── <font color="#12488B"><b>example</b></font>
+│       └── example_0.1.bb
+├── <font color="#12488B"><b>recipes-factorial</b></font>
+│   └── <font color="#12488B"><b>factorial</b></font>
+│       └── factorial_2.0.0.bb
+├── <font color="#12488B"><b>recipes-klogger</b></font>
+│   └── <font color="#12488B"><b>klogger</b></font>
+│       ├── <font color="#12488B"><b>klogger</b></font>
+│       │   ├── 0001-modified-the-Makefile.patch
+│       │   ├── 0002-modified-Makefile.patch
+│       │   └── 0003-modified-Makefile.patch
+│       └── klogger_git.bb
+└── <font color="#12488B"><b>recipes-simple-c-make</b></font>
+    └── <font color="#12488B"><b>simple-c-make</b></font>
+        └── simple-c-make_git.bb
+
+11 directories, 10 files
+</pre>

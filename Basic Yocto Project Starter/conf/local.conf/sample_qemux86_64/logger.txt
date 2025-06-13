@@ -1,0 +1,34 @@
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ time bitbake core-image-sato
+Loading cache: 100% |                                                                                                                                                  | ETA:  --:--:--
+Loaded 0 entries from dependency cache.
+Parsing recipes: 100% |#################################################################################################################################################| Time: 0:01:05
+Parsing of 883 .bb files complete (0 cached, 883 parsed). 1644 targets, 45 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "ubuntu-22.04"
+TARGET_SYS           = "x86_64-poky-linux"
+MACHINE              = "qemux86-64"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.27"
+TUNE_FEATURES        = "m64 core2"
+TARGET_FPU           = ""
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7"
+
+NOTE: Fetching uninative binary shim http://downloads.yoctoproject.org/releases/uninative/4.7/x86_64-nativesdk-libc-4.7.tar.xz;sha256sum=5800d4e9a129d1be09cf548918d25f74e91a7c1193ae5239d5b0c9246c486d2c (will check PREMIRRORS first)
+Initialising tasks: 100% |##############################################################################################################################################| Time: 0:00:10
+Sstate summary: Wanted 2858 Local 0 Mirrors 0 Missed 2858 Current 0 (0% match, 0% complete)
+NOTE: Executing Tasks
+WARNING: libatomic-ops-7.6.14-r0 do_fetch: Failed to fetch URL https://github.com/ivmai/libatomic_ops/releases/download/v7.6.14/libatomic_ops-7.6.14.tar.gz, attempting MIRRORS if available
+NOTE: Tasks Summary: Attempted 7242 tasks of which 0 didn't need to be rerun and all succeeded.
+
+Summary: There was 1 WARNING message.
+
+real	433m29,484s
+user	0m43,188s
+sys	0m6,269s
+

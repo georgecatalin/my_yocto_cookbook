@@ -1,0 +1,219 @@
+<pre><font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ source ../poky/oe-init-build-env .
+
+### Shell environment set up for builds. ###
+
+You can now run &apos;bitbake &lt;target&gt;&apos;
+
+Common targets are:
+    core-image-minimal
+    core-image-full-cmdline
+    core-image-sato
+    core-image-weston
+    meta-toolchain
+    meta-ide-support
+
+You can also run generated qemu images with a command like &apos;runqemu qemux86&apos;
+
+Other commonly useful commands are:
+ - &apos;devtool&apos; and &apos;recipetool&apos; handle common recipe tasks
+ - &apos;bitbake-layers&apos; handles common layer tasks
+ - &apos;oe-pkgdata-util&apos; handles common target package tasks
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ ls -lh
+total 3,3M
+drwxrwxr-x 3 georgeca georgeca 4,0K mai 24 09:01 <font color="#12488B"><b>&apos;~&apos;</b></font>
+-rw-rw-r-- 1 georgeca georgeca    0 iun 12 13:59  ⚠️
+-rw-rw-r-- 1 georgeca georgeca 3,3M iun 13 15:01  bitbake-cookerdaemon.log
+drwxrwxr-x 2 georgeca georgeca 4,0K iun 13 15:01  <font color="#12488B"><b>cache</b></font>
+drwxrwxr-x 3 georgeca georgeca 4,0K iun 13 13:39  <font color="#12488B"><b>conf</b></font>
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 10 16:20  <font color="#12488B"><b>meta-advanced-calculator</b></font>
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 11 09:36  <font color="#12488B"><b>meta_advanced-calculator-makefile</b></font>
+drwxrwxr-x 4 georgeca georgeca 4,0K mai 27 16:10  <font color="#12488B"><b>meta-assignment-vars</b></font>
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 13 14:00  <font color="#12488B"><b>meta-custom</b></font>
+drwxrwxr-x 5 georgeca georgeca 4,0K iun 13 13:25  <font color="#12488B"><b>meta-example</b></font>
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake-layers show-layers
+<b>NOTE</b>: Starting bitbake server...
+layer                 path                                      priority
+==========================================================================
+meta                  /home/georgeca/yocto_tutorial/poky/meta   5
+meta-poky             /home/georgeca/yocto_tutorial/poky/meta-poky  5
+meta-yocto-bsp        /home/georgeca/yocto_tutorial/poky/meta-yocto-bsp  5
+meta-oe               /home/georgeca/yocto_tutorial/poky/meta-openembedded/meta-oe  5
+meta-example          /home/georgeca/yocto_tutorial/my_builds/meta-example  6
+meta-custom           /home/georgeca/yocto_tutorial/my_builds/meta-custom  6
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ ls -lh ../sources/
+total 44K
+drwxrwxr-x   4 georgeca georgeca  32K iun  9 07:13 <font color="#12488B"><b>downloads</b></font>
+drwxrwxr-x 259 georgeca georgeca 4,0K mai 24 11:57 <font color="#12488B"><b>sstate-cache</b></font>
+drwxrwxr-x  15 georgeca georgeca 4,0K iun  9 09:55 <font color="#12488B"><b>tmp</b></font>
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake -c clean example
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+meta-example         
+meta-custom          = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 0 Local 0 Mirrors 0 Missed 0 Current 0 (0% match, 0% complete)
+<b>NOTE</b>: No setscene tasks
+<b>NOTE</b>: Executing Tasks
+<b>NOTE</b>: Tasks Summary: Attempted 1 tasks of which 0 didn&apos;t need to be rerun and all succeeded.
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake -e example | grep ^S=
+<font color="#C01C28"><b>S=</b></font>&quot;/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/example/0.1-r0/git&quot;
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ ls home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/example/0.1-r0/git
+ls: cannot access &apos;home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/example/0.1-r0/git&apos;: No such file or directory
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake example
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+meta-example         
+meta-custom          = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 11 Local 11 Mirrors 0 Missed 0 Current 219 (100% match, 100% complete)
+<b>NOTE</b>: Executing Tasks
+<b>NOTE</b>: Tasks Summary: Attempted 785 tasks of which 782 didn&apos;t need to be rerun and all succeeded.
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ ls home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/example/0.1-r0/git
+ls: cannot access &apos;home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/example/0.1-r0/git&apos;: No such file or directory
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake -c cleansstate example
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+meta-example         
+meta-custom          = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 0 Local 0 Mirrors 0 Missed 0 Current 0 (0% match, 0% complete)
+<b>NOTE</b>: No setscene tasks
+<b>NOTE</b>: Executing Tasks
+<b>NOTE</b>: Tasks Summary: Attempted 2 tasks of which 0 didn&apos;t need to be rerun and all succeeded.
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ ls home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/example/0.1-r0/git
+ls: cannot access &apos;home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/example/0.1-r0/git&apos;: No such file or directory
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake example
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+meta-example         
+meta-custom          = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 11 Local 4 Mirrors 0 Missed 7 Current 219 (36% match, 96% complete)
+<b>NOTE</b>: Executing Tasks
+<b>NOTE</b>: Tasks Summary: Attempted 785 tasks of which 768 didn&apos;t need to be rerun and all succeeded.
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ ls home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/example/0.1-r0/git
+ls: cannot access &apos;home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/example/0.1-r0/git&apos;: No such file or directory
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake -c cleanall example
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+meta-example         
+meta-custom          = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 0 Local 0 Mirrors 0 Missed 0 Current 0 (0% match, 0% complete)
+<b>NOTE</b>: No setscene tasks
+<b>NOTE</b>: Executing Tasks
+<b>NOTE</b>: Tasks Summary: Attempted 3 tasks of which 0 didn&apos;t need to be rerun and all succeeded.
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake example
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+meta-example         
+meta-custom          = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 11 Local 4 Mirrors 0 Missed 7 Current 219 (36% match, 96% complete)
+<b>NOTE</b>: Executing Tasks
+<b>NOTE</b>: Tasks Summary: Attempted 785 tasks of which 768 didn&apos;t need to be rerun and all succeeded.
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ ls home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/example/0.1-r0/git
+ls: cannot access &apos;home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/example/0.1-r0/git&apos;: No such file or directory
+</pre>

@@ -1,0 +1,57 @@
+<pre><font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/workspace</b></font>$ devtool deploy-target factorial root@192.168.55.86
+<b>NOTE</b>: Starting bitbake server...
+NOTE: Reconnecting to bitbake server...
+NOTE: Retrying server connection (#1)...
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1747 .bb files complete (1746 cached, 1 parsed). 2786 targets, 115 skipped, 0 masked, 0 errors.
+tar: ./usr/bin/factorial: time stamp 2025-06-11 11:05:36 is 229040356.671042756 s in the future
+tar: ./usr/bin: time stamp 2025-06-11 11:05:36 is 229040356.668903089 s in the future
+tar: ./usr: time stamp 2025-06-11 11:05:36 is 229040356.666891798 s in the future
+tar: .: time stamp 2025-06-11 11:05:36 is 229040356.665444464 s in the future
+INFO: Successfully deployed /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/image
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/workspace</b></font>$ devtool undeploy-target factorial root@192.168.55.86
+<b>NOTE</b>: Starting bitbake server...
+INFO: Successfully undeployed factorial
+</pre>
+
+
+<pre><font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/workspace</b></font>$ ssh root@192.168.55.86
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+It is also possible that a host key has just been changed.
+The fingerprint for the ED25519 key sent by the remote host is
+SHA256:eTLM/UBJu3B/8XfNZWnJeI0lzg9yAZUFBeiuE+QpB28.
+Please contact your system administrator.
+Add correct host key in /home/georgeca/.ssh/known_hosts to get rid of this message.
+Offending ECDSA key in /home/georgeca/.ssh/known_hosts:3
+  remove with:
+  ssh-keygen -f &quot;/home/georgeca/.ssh/known_hosts&quot; -R &quot;192.168.55.86&quot;
+Host key for 192.168.55.86 has changed and you have requested strict checking.
+Host key verification failed.
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/workspace</b></font>$ ssh-keygen -f &quot;/home/georgeca/.ssh/known_hosts&quot; -R &quot;192.168.55.86&quot;
+# Host 192.168.55.86 found: line 1
+# Host 192.168.55.86 found: line 2
+# Host 192.168.55.86 found: line 3
+/home/georgeca/.ssh/known_hosts updated.
+Original contents retained as /home/georgeca/.ssh/known_hosts.old
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/workspace</b></font>$ ssh root@192.168.55.86
+The authenticity of host &apos;192.168.55.86 (192.168.55.86)&apos; can&apos;t be established.
+ED25519 key fingerprint is SHA256:eTLM/UBJu3B/8XfNZWnJeI0lzg9yAZUFBeiuE+QpB28.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added &apos;192.168.55.86&apos; (ED25519) to the list of known hosts.
+Last login: Fri Mar  9 12:35:32 2018
+root@beaglebone-yocto:~# which factorial
+root@beaglebone-yocto:~# which factorial
+/usr/bin/factorial
+root@beaglebone-yocto:~# factorial 5
+Factorial of 5 is 120.
+root@beaglebone-yocto:~# factorial 10
+Factorial of 10 is 3628800.
+root@beaglebone-yocto:~# which factorial
+</pre>

@@ -1,0 +1,1102 @@
+<pre><font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ cd ../sources/
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/sources</b></font>$ ls -lh
+total 44K
+drwxrwxr-x   4 georgeca georgeca  32K iun  9 07:13 <font color="#12488B"><b>downloads</b></font>
+drwxrwxr-x 259 georgeca georgeca 4,0K mai 24 11:57 <font color="#12488B"><b>sstate-cache</b></font>
+drwxrwxr-x  15 georgeca georgeca 4,0K iun  9 09:55 <font color="#12488B"><b>tmp</b></font>
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/sources</b></font>$ ls -lh downloads/
+total 1,6G
+-rw-r--r--  1 georgeca georgeca  507K mar 16  2021 <font color="#C01C28"><b>acl-2.3.1.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:02 acl-2.3.1.tar.gz.done
+-rw-r--r--  1 georgeca georgeca   17M sep 11  2021 <font color="#C01C28"><b>adwaita-icon-theme-41.0.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:12 adwaita-icon-theme-41.0.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  1,1M dec  9  2021 <font color="#C01C28"><b>alsa-lib-1.2.6.1.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 15:01 alsa-lib-1.2.6.1.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  400K dec  6  2021 <font color="#C01C28"><b>alsa-plugins-1.2.6.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:37 alsa-plugins-1.2.6.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca   12K iun 15  2021 <font color="#C01C28"><b>alsa-topology-conf-1.2.5.1.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:35 alsa-topology-conf-1.2.5.1.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca   28K dec 17  2021 <font color="#C01C28"><b>alsa-ucm-conf-1.2.6.3.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:35 alsa-ucm-conf-1.2.6.3.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  1,3M dec  6  2021 <font color="#C01C28"><b>alsa-utils-1.2.6.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:37 alsa-utils-1.2.6.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  130K feb  5  2022 <font color="#C01C28"><b>at_3.2.5.orig.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:06 at_3.2.5.orig.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  297K mar 24  2022 <font color="#C01C28"><b>atk-2.38.0.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 13:32 atk-2.38.0.tar.xz.done
+-rw-r--r--  1 georgeca georgeca   96K sep 12  2020 <font color="#C01C28"><b>at-spi2-atk-2.38.0.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:08 at-spi2-atk-2.38.0.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  194K sep 19  2021 <font color="#C01C28"><b>at-spi2-core-2.42.0.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:07 at-spi2-core-2.42.0.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  455K mar 16  2021 <font color="#C01C28"><b>attr-2.5.1.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:01 attr-2.5.1.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  2,0M ian 29  2021 <font color="#C01C28"><b>autoconf-2.71.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 09:05 autoconf-2.71.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  660K feb 11  2022 <font color="#C01C28"><b>autoconf-archive-2022.02.11.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 09:54 autoconf-archive-2022.02.11.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  2,3M oct  4  2021 <font color="#C01C28"><b>automake-1.16.5.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 09:05 automake-1.16.5.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  1,6M dec  7  2021 <font color="#C01C28"><b>avahi-0.8.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 12:25 avahi-0.8.tar.gz.done
+-rw-r--r--  1 georgeca georgeca   54K sep 25  2021 <font color="#C01C28"><b>base-passwd_3.5.52.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:02 base-passwd_3.5.52.tar.xz.done
+-rw-r--r--  1 georgeca georgeca   11M ian  4  2022 <font color="#C01C28"><b>bash-5.1.16.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:04 bash-5.1.16.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  304K dec  8  2021 <font color="#C01C28"><b>bash-completion-2.11.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:01 bash-completion-2.11.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  411K apr 10  2017 <font color="#C01C28"><b>bc-1.07.1.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:05 bc-1.07.1.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  2,7M sep 25  2021 <font color="#C01C28"><b>bison-3.8.2.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 09:05 bison-3.8.2.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  2,2M iul 25  2022 <font color="#C01C28"><b>bluez-5.65.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:03 bluez-5.65.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  2,4M dec 26  2021 <font color="#C01C28"><b>busybox-1.35.0.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:04 busybox-1.35.0.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  792K iul 13  2019 <font color="#C01C28"><b>bzip2-1.0.8.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:00 bzip2-1.0.8.tar.gz.done
+-rw-r--r--  1 georgeca georgeca   41M oct 19  2018 <font color="#C01C28"><b>cairo-1.16.0.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:05 cairo-1.16.0.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  331K dec 10  2021 <font color="#C01C28"><b>cantarell-fonts-0.303.1.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:33 cantarell-fonts-0.303.1.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  6,3M ian 13  2022 <font color="#C01C28"><b>cargo-1.58.0-x86_64-unknown-linux-gnu.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 11:55 cargo-1.58.0-x86_64-unknown-linux-gnu.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  2,0M aug 26  2015 <font color="#C01C28"><b>cdrtools-3.01.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:09 cdrtools-3.01.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  757K dec  8  2021 <font color="#C01C28"><b>check-0.15.2.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:04 check-0.15.2.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  132K ian 19  2014 <font color="#C01C28"><b>chrpath_0.16.orig.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 10:10 chrpath_0.16.orig.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  9,4M mar  4  2022 <font color="#C01C28"><b>cmake-3.22.3.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 09:36 cmake-3.22.3.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  741K ian 28  2022 <font color="#C01C28"><b>connman-1.41.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:38 connman-1.41.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  358K iul 19  2013 <font color="#C01C28"><b>ConsoleKit-0.4.6.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:37 ConsoleKit-0.4.6.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  5,4M sep 24  2021 <font color="#C01C28"><b>coreutils-9.0.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:07 coreutils-9.0.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  2,1M mai  1  2023 <font color="#C01C28"><b>cpio-2.14.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:06 cpio-2.14.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  258K apr 25  2022 <font color="#C01C28"><b>cronie-1.6.1.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:06 cronie-1.6.1.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  2,4M mar  5  2022 <font color="#C01C28"><b>curl-7.82.0.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:03 curl-7.82.0.tar.xz.done
+-rw-r--r--  1 georgeca georgeca   29K feb  1  2011 <font color="#C01C28"><b>cwautomacros-20110201.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:46 cwautomacros-20110201.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  1,4M iun  6  2023 <font color="#C01C28"><b>dbus-1.14.8.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:02 dbus-1.14.8.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  699K mar 26  2021 <font color="#C01C28"><b>dbus-glib-0.112.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 12:10 dbus-glib-0.112.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  565K iul 20  2021 <font color="#C01C28"><b>dbus-python-1.2.18.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:06 dbus-python-1.2.18.tar.gz.done
+-rw-r--r--  1 georgeca georgeca   82K iun 19  2020 <font color="#C01C28"><b>desktop-file-utils-0.26.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:47 desktop-file-utils-0.26.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  1,6M mai 21  2023 <font color="#C01C28"><b>diffutils-3.10.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:04 diffutils-3.10.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  412K ian 13  2009 <font color="#C01C28"><b>docbook-xml_4.5.orig.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 10:11 docbook-xml_4.5.orig.tar.gz.done
+-rw-r--r--  1 georgeca georgeca   21M dec 27  2015 <font color="#C01C28"><b>docbook-xsl-1.79.1.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 10:11 docbook-xsl-1.79.1.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  314K dec  7  2021 <font color="#C01C28"><b>dosfstools-4.2.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:13 dosfstools-4.2.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  2,2M oct 29  2020 <font color="#C01C28"><b>dropbear-2020.81.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:28 dropbear-2020.81.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca   65K feb  5  2022 <font color="#C01C28"><b>ed-1.18.tar.lz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:06 ed-1.18.tar.lz.done
+-rw-r--r--  1 georgeca georgeca  8,9M nov 11  2021 <font color="#C01C28"><b>elfutils-0.186.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:04 elfutils-0.186.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  522K apr 21  2022 <font color="#C01C28"><b>ell-0.50.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 12:14 ell-0.50.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  306K iul 12  2022 <font color="#C01C28"><b>encodings-1.0.6.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 11:57 encodings-1.0.6.tar.xz.done
+-rw-r--r--  1 georgeca georgeca   33K ian 28  2020 <font color="#C01C28"><b>Error-0.17029.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:05 Error-0.17029.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  419K ian 19  2022 <font color="#C01C28"><b>ethtool-5.16.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:05 ethtool-5.16.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  1,9M feb  9  2021 <font color="#C01C28"><b>eudev-3.2.10.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:03 eudev-3.2.10.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  556K oct 25  2022 <font color="#C01C28"><b>expat-2.5.0.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:01 expat-2.5.0.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  2,0M feb  2  2022 <font color="#C01C28"><b>findutils-4.9.0.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:04 findutils-4.9.0.tar.xz.done
+-rw-r--r--  1 georgeca georgeca 1015K feb 21  2022 <font color="#C01C28"><b>flac-1.3.4.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 11:55 flac-1.3.4.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  1,4M dec  7  2021 <font color="#C01C28"><b>flex-2.6.4.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:04 flex-2.6.4.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  134K apr 10  2023 <font color="#C01C28"><b>flit-3.7.1.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 09:15 flit-3.7.1.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  2,0M aug 30  2018 <font color="#C01C28"><b>fontconfig-2.13.1.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:05 fontconfig-2.13.1.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  140K iul 12  2022 <font color="#C01C28"><b>font-util-1.3.3.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 12:02 font-util-1.3.3.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  2,2M dec  2  2021 <font color="#C01C28"><b>freetype-2.11.1.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:04 freetype-2.11.1.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  1,2M mai 16  2023 <font color="#C01C28"><b>fribidi-1.0.13.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 13:29 fribidi-1.0.13.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  6,0M oct 28  2021 <font color="#C01C28"><b>gawk-5.1.1.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:04 gawk-5.1.1.tar.gz.done
+-rw-r--r--  1 georgeca georgeca   79M iul 19  2024 <font color="#C01C28"><b>gcc-11.5.0.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 09:06 gcc-11.5.0.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  1,5M ian 22  2013 <font color="#C01C28"><b>GConf-3.2.6.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:49 GConf-3.2.6.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  1,1M feb  4  2022 <font color="#C01C28"><b>gdbm-1.23.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:01 gdbm-1.23.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  6,3M oct 25  2022 <font color="#C01C28"><b>gdk-pixbuf-2.42.10.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 11:59 gdk-pixbuf-2.42.10.tar.xz.done
+-rw-r--r--  1 georgeca georgeca   24M iul 27  2020 <font color="#C01C28"><b>gettext-0.21.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 09:15 gettext-0.21.tar.gz.done
+drwxr-xr-x 87 georgeca georgeca   20K iun 13 15:01 <font color="#12488B"><b>git2</b></font>
+-rw-r--r--  1 georgeca georgeca   11M feb 14  2023 <font color="#C01C28"><b>git-2.35.7.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:07 git-2.35.7.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  374M mai  1 16:31 <font color="#C01C28"><b>git2_sourceware.org.git.glibc.git.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca     0 mai 24 13:45 git2_sourceware.org.git.glibc.git.tar.gz.done
+-rw-r--r--  1 georgeca georgeca   62M oct  4  2024 <font color="#C01C28"><b>gitshallow_sourceware.org.git.binutils-gdb.git_4d71e17-1_binutils-2_38-branch.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca     0 iun  9 07:05 gitshallow_sourceware.org.git.binutils-gdb.git_4d71e17-1_binutils-2_38-branch.tar.gz.done
+-rw-r--r--  1 georgeca georgeca   37M mai  9 21:01 <font color="#C01C28"><b>gitshallow_sourceware.org.git.glibc.git_d2febe7-1_release.2.35.master.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca     0 mai 24 09:06 gitshallow_sourceware.org.git.glibc.git_d2febe7-1_release.2.35.master.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  4,7M iun 30  2022 <font color="#C01C28"><b>glib-2.72.3.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:02 glib-2.72.3.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  260K aug  6  2022 <font color="#C01C28"><b>glib-networking-2.72.2.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 13:15 glib-networking-2.72.2.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  651K iun 25  2021 <font color="#C01C28"><b>glu-9.0.2.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 12:32 glu-9.0.2.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  2,4M nov 14  2020 <font color="#C01C28"><b>gmp-6.2.1.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:02 gmp-6.2.1.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  7,3M iul 11  2022 <font color="#C01C28"><b>gnupg-2.3.7.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:28 gnupg-2.3.7.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  5,9M mar 17  2022 <font color="#C01C28"><b>gnutls-3.7.4.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:03 gnutls-3.7.4.tar.xz.done
+-rw-r--r--  1 georgeca georgeca 1017K mar 18  2022 <font color="#C01C28"><b>gobject-introspection-1.72.0.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:03 gobject-introspection-1.72.0.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  1,2M ian  5  2017 <font color="#C01C28"><b>gperf-3.1.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 09:06 gperf-3.1.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  1,7M mar  6  2022 <font color="#C01C28"><b>gpgme-1.17.1.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:48 gpgme-1.17.1.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  205K iun 10  2021 <font color="#C01C28"><b>gptfdisk-1.0.8.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:11 gptfdisk-1.0.8.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  1,6M aug 14  2021 <font color="#C01C28"><b>grep-3.7.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:05 grep-3.7.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  4,0M dec 23  2018 <font color="#C01C28"><b>groff-1.22.4.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 10:12 groff-1.22.4.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  6,0M iul 26  2023 <font color="#C01C28"><b>gst-plugins-bad-1.20.7.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:01 gst-plugins-bad-1.20.7.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  3,2M iul 26  2023 <font color="#C01C28"><b>gst-plugins-base-1.20.7.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 12:57 gst-plugins-base-1.20.7.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  3,3M iul 26  2023 <font color="#C01C28"><b>gst-plugins-good-1.20.7.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:39 gst-plugins-good-1.20.7.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  2,6M iul 26  2023 <font color="#C01C28"><b>gstreamer-1.20.7.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 10:16 gstreamer-1.20.7.tar.xz.done
+-rw-r--r--  1 georgeca georgeca   21M mai 18  2022 <font color="#C01C28"><b>gtk+-3.24.34.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:10 gtk+-3.24.34.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  496K ian 19  2021 <font color="#C01C28"><b>gtk-doc-1.33.2.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 13:36 gtk-doc-1.33.2.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  1,3M apr  7  2022 <font color="#C01C28"><b>gzip-1.12.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:05 gzip-1.12.tar.gz.done
+-rw-r--r--  1 georgeca georgeca   15M mar 11  2022 <font color="#C01C28"><b>harfbuzz-4.0.1.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 13:30 harfbuzz-4.0.1.tar.xz.done
+-rw-r--r--  1 georgeca georgeca   52K aug 31  2017 <font color="#C01C28"><b>hicolor-icon-theme-0.17.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 13:27 hicolor-icon-theme-0.17.tar.xz.done
+-rw-r--r--  1 georgeca georgeca   18M dec  8  2021 <font color="#C01C28"><b>icu4c-70_1-data.zip</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:03 icu4c-70_1-data.zip.done
+-rw-r--r--  1 georgeca georgeca   25M dec  8  2021 <font color="#C01C28"><b>icu4c-70_1-src.tgz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:03 icu4c-70_1-src.tgz.done
+-rw-r--r--  1 georgeca georgeca   32K apr 10  2023 <font color="#C01C28"><b>iniparse-0.5.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:58 iniparse-0.5.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  459K apr 11  2023 <font color="#C01C28"><b>installer-0.5.1.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 09:15 installer-0.5.1.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  159K mar  9  2015 <font color="#C01C28"><b>intltool-0.51.0.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 12:09 intltool-0.51.0.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  851K mar 22  2022 <font color="#C01C28"><b>iproute2-5.17.0.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:05 iproute2-5.17.0.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  702K ian 16  2021 <font color="#C01C28"><b>iptables-1.8.7.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:05 iptables-1.8.7.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  103K apr  5  2022 <font color="#C01C28"><b>itstool-2.0.7.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 10:11 itstool-2.0.7.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  187K nov  8  2021 <font color="#C01C28"><b>iw-5.16.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:29 iw-5.16.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  354K iul 26  2020 <font color="#C01C28"><b>json-c-0.15.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:50 json-c-0.15.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  1,3M aug 24  2021 <font color="#C01C28"><b>json-glib-1.6.6.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 12:18 json-glib-1.6.6.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  1,5M oct 13  2017 <font color="#C01C28"><b>lame-3.100.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:05 lame-3.100.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  353K ian  7  2022 <font color="#C01C28"><b>less-600.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:06 less-600.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  7,1M dec  9  2022 <font color="#C01C28"><b>libarchive-3.6.2.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:04 libarchive-3.6.2.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  564K iun 19  2023 <font color="#C01C28"><b>libassuan-2.5.6.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:48 libassuan-2.5.6.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  489K aug 25  2022 <font color="#C01C28"><b>libatomic_ops-7.6.14.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 12:35 libatomic_ops-7.6.14.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  178K sep 25  2022 <font color="#C01C28"><b>libcap-2.66.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:03 libcap-2.66.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  446K dec  9  2020 <font color="#C01C28"><b>libcap-ng-0.8.2.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:01 libcap-ng-0.8.2.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  477K apr  6  2019 <font color="#C01C28"><b>libcroco-0.6.13.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:00 libcroco-0.6.13.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  333K oct 18  2009 <font color="#C01C28"><b>libdaemon-0.14.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 12:14 libdaemon-0.14.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  310K mai 14  2018 <font color="#C01C28"><b>libdmx-1.1.4.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:06 libdmx-1.1.4.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  427K feb 16  2022 <font color="#C01C28"><b>libdrm-2.4.110.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:04 libdrm-2.4.110.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  2,3M mar  4 00:57 <font color="#C01C28"><b>liberation-fonts-ttf-2.1.5.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:17 liberation-fonts-ttf-2.1.5.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  437K mar 25  2022 <font color="#C01C28"><b>libevdev-1.12.1.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 12:15 libevdev-1.12.1.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  1,1M dec  7  2021 <font color="#C01C28"><b>libevent-2.1.12-stable.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:04 libevent-2.1.12-stable.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  1,9M dec  6  2021 <font color="#C01C28"><b>libexif-0.6.24.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 13:33 libexif-0.6.24.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  1,3M oct 24  2022 <font color="#C01C28"><b>libffi-3.4.4.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:01 libffi-3.4.4.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  924K feb  5  2021 <font color="#C01C28"><b>libfm-1.3.2.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:01 libfm-1.3.2.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  313K feb 20  2019 <font color="#C01C28"><b>libfontenc-1.1.4.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 12:12 libfontenc-1.1.4.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  3,1M aug 22  2021 <font color="#C01C28"><b>libgcrypt-1.9.4.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:03 libgcrypt-1.9.4.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  991K ian 27  2022 <font color="#C01C28"><b>libgpg-error-1.44.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:03 libgpg-error-1.44.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca   29K aug 15  2021 <font color="#C01C28"><b>libgudev-237.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 13:16 libgudev-237.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  900K oct 17  2022 <font color="#C01C28"><b>libical-3.0.16.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:03 libical-3.0.16.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  384K iul 14  2019 <font color="#C01C28"><b>libICE-1.0.10.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:02 libICE-1.0.10.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  2,1M iul 20  2021 <font color="#C01C28"><b>libidn2-2.3.2.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:02 libidn2-2.3.2.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  641K apr 20  2022 <font color="#C01C28"><b>libinput-1.19.4.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 12:19 libinput-1.19.4.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  2,2M feb  8  2023 <font color="#C01C28"><b>libjpeg-turbo-2.1.5.1.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 11:53 libjpeg-turbo-2.1.5.1.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  653K iun 19  2023 <font color="#C01C28"><b>libksba-1.6.4.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:02 libksba-1.6.4.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  2,1M feb 27  2023 <font color="#C01C28"><b>libmicrohttpd-0.9.76.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:04 libmicrohttpd-0.9.76.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  295K iul  2  2016 <font color="#C01C28"><b>libmnl-1.0.4.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:04 libmnl-1.0.4.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  946K dec  8  2021 <font color="#C01C28"><b>libnl-3.5.0.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:04 libnl-3.5.0.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  420K iun  4  2021 <font color="#C01C28"><b>libogg-1.3.5.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 10:16 libogg-1.3.5.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  914K mar  7 18:11 <font color="#C01C28"><b>libpcap-1.10.1.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 13:33 libpcap-1.10.1.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  359K iul 17  2019 <font color="#C01C28"><b>libpciaccess-0.16.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:04 libpciaccess-0.16.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  997K nov 20  2022 <font color="#C01C28"><b>libpng-1.6.39.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:02 libpng-1.6.39.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  8,8M dec  7  2021 <font color="#C01C28"><b>libpsl-0.21.1.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 13:27 libpsl-0.21.1.tar.gz.done
+-rw-r--r--  1 georgeca georgeca   57K mar 14  2017 <font color="#C01C28"><b>libpthread-stubs-0.4.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:02 libpthread-stubs-0.4.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca   45K aug  4  2021 <font color="#C01C28"><b>libptytty-2.0.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 13:39 libptytty-2.0.tar.gz.done
+-rw-r--r--  1 georgeca georgeca   27M iul 21  2023 <font color="#C01C28"><b>librsvg-2.52.10.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:11 librsvg-2.52.10.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  3,2M dec  7  2021 <font color="#C01C28"><b>libsamplerate-0.2.2.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 13:10 libsamplerate-0.2.2.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  355K oct 10  2018 <font color="#C01C28"><b>libSM-1.2.3.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:02 libSM-1.2.3.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  855K dec  7  2021 <font color="#C01C28"><b>libsndfile-1.0.31.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 12:00 libsndfile-1.0.31.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  1,5M nov 24  2021 <font color="#C01C28"><b>libsoup-2.74.2.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 13:57 libsoup-2.74.2.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  943K aug 29  2021 <font color="#C01C28"><b>libssh2-1.10.0.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 11:54 libssh2-1.10.0.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  1,9M ian 25  2010 <font color="#C01C28"><b>libtheora-1.1.1.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 12:34 libtheora-1.1.1.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  502K mai 10  2021 <font color="#C01C28"><b>libtirpc-1.3.2.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:01 libtirpc-1.3.2.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  1,9M mar 17  2022 <font color="#C01C28"><b>libtool-2.4.7.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:00 libtool-2.4.7.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  4,1M ian  4  2022 <font color="#C01C28"><b>libunistring-1.0.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:02 libunistring-1.0.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  606K apr 10  2022 <font color="#C01C28"><b>libusb-1.0.26.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 12:05 libusb-1.0.26.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  1,2M iul  4  2020 <font color="#C01C28"><b>libvorbis-1.3.7.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 11:52 libvorbis-1.3.7.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  4,0M aug  6  2022 <font color="#C01C28"><b>libwebp-1.2.4.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 13:30 libwebp-1.2.4.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  1,8M dec 10  2021 <font color="#C01C28"><b>libX11-1.7.3.1.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:02 libX11-1.7.3.1.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  316K feb 11  2019 <font color="#C01C28"><b>libXau-1.0.9.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:02 libXau-1.0.9.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  430K feb 22  2020 <font color="#C01C28"><b>libxcb-1.14.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:02 libxcb-1.14.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  310K mar 11  2019 <font color="#C01C28"><b>libXcomposite-0.4.5.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:08 libXcomposite-0.4.5.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  327K mar 11  2019 <font color="#C01C28"><b>libXcursor-1.2.0.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:10 libXcursor-1.2.0.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  297K mar 11  2019 <font color="#C01C28"><b>libXdamage-1.1.5.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:04 libXdamage-1.1.5.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  325K mar 16  2019 <font color="#C01C28"><b>libXdmcp-1.1.3.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:02 libXdmcp-1.1.3.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  380K mar 16  2019 <font color="#C01C28"><b>libXext-1.3.4.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:03 libXext-1.3.4.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  291K mai 12  2021 <font color="#C01C28"><b>libXfixes-6.0.0.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:04 libXfixes-6.0.0.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  513K aug  2  2021 <font color="#C01C28"><b>libXfont2-2.0.5.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 12:24 libXfont2-2.0.5.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  351K aug  2  2021 <font color="#C01C28"><b>libXft-2.3.4.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 13:29 libXft-2.3.4.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  483K sep 15  2021 <font color="#C01C28"><b>libXi-1.8.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 13:10 libXi-1.8.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  281K iul  5  2018 <font color="#C01C28"><b>libXinerama-1.1.4.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 13:36 libXinerama-1.1.4.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  461K mai 22 10:28 <font color="#C01C28"><b>libxkbcommon-1.4.1.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 11:57 libxkbcommon-1.4.1.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  357K mar 16  2019 <font color="#C01C28"><b>libxkbfile-1.1.0.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 12:21 libxkbfile-1.1.0.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  3,0M mai  2  2022 <font color="#C01C28"><b>libxml2-2.9.14.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:02 libxml2-2.9.14.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  386K mar 16  2019 <font color="#C01C28"><b>libXmu-1.1.3.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 13:09 libXmu-1.1.3.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  323K mar 16  2019 <font color="#C01C28"><b>libXrandr-1.5.2.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:04 libXrandr-1.5.2.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  302K oct  4  2016 <font color="#C01C28"><b>libXrender-0.9.10.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:03 libXrender-0.9.10.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  302K feb 26  2018 <font color="#C01C28"><b>libxshmfence-1.3.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:04 libxshmfence-1.3.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  1,8M feb 16  2022 <font color="#C01C28"><b>libxslt-1.1.35.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 10:09 libxslt-1.1.35.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  767K ian 24  2021 <font color="#C01C28"><b>libXt-1.2.1.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 12:30 libXt-1.2.1.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  315K oct  4  2016 <font color="#C01C28"><b>libXtst-1.2.3.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:07 libXtst-1.2.3.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  311K oct  4  2016 <font color="#C01C28"><b>libXv-1.0.11.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 12:33 libXv-1.0.11.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  289K feb 24  2015 <font color="#C01C28"><b>libXxf86vm-1.1.4.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:04 libXxf86vm-1.1.4.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  118M ian 10  2022 <font color="#C01C28"><b>linux-5.16.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:00 linux-5.16.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  163K mai 25  2022 <font color="#C01C28"><b>logrotate-3.20.1.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:06 logrotate-3.20.1.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  353K ian 13  2022 <font color="#C01C28"><b>lua-5.4.4.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 11:46 lua-5.4.4.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  131K ian 13  2022 <font color="#C01C28"><b>lua-5.4.4-tests.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 11:46 lua-5.4.4-tests.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  119K feb  3  2022 <font color="#C01C28"><b>lzip-1.23.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:05 lzip-1.23.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  587K mar  1  2017 <font color="#C01C28"><b>lzo-2.10.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:02 lzo-2.10.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  2,9M mai 29  2021 <font color="#C01C28"><b>m4-1.4.19.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:05 m4-1.4.19.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  2,3M ian 20  2020 <font color="#C01C28"><b>make-4.3.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:05 make-4.3.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  178K mar 17  2019 <font color="#C01C28"><b>makedepend-1.0.6.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 10:09 makedepend-1.0.6.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  484K apr 11  2023 <font color="#C01C28"><b>Mako-1.1.6.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 10:09 Mako-1.1.6.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  3,3M aug 15  2021 <font color="#C01C28"><b>mc-4.8.27.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:06 mc-4.8.27.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  443K dec 30  2021 <font color="#C01C28"><b>mdadm-4.2.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:05 mdadm-4.2.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  260K nov  3  2017 <font color="#C01C28"><b>menu-cache-1.1.0.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 13:32 menu-cache-1.1.0.tar.xz.done
+-rw-r--r--  1 georgeca georgeca   15M mai  5  2022 <font color="#C01C28"><b>mesa-22.0.3.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:05 mesa-22.0.3.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  2,0M mar 14  2022 <font color="#C01C28"><b>meson-0.61.3.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 09:33 meson-0.61.3.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  141K apr  3  2022 <font color="#C01C28"><b>mkfontscale-1.2.2.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:33 mkfontscale-1.2.2.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  820K oct 23  2020 <font color="#C01C28"><b>mpc-1.2.1.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:05 mpc-1.2.1.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  1,4M nov 17  2022 <font color="#C01C28"><b>mpfr-4.1.1.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:05 mpfr-4.1.1.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  1,1M dec 11  2021 <font color="#C01C28"><b>mpg123-1.29.3.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:04 mpg123-1.29.3.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  290K sep  9  2024 <font color="#C01C28"><b>mtdev-1.1.6.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 12:15 mtdev-1.1.6.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  431K mar  3  2022 <font color="#C01C28"><b>mtools-4.0.38.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:07 mtools-4.0.38.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  1,5M feb 18  2022 <font color="#C01C28"><b>nano-6.2.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:07 nano-6.2.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  1,3M aug 28  2020 <font color="#C01C28"><b>nasm-2.15.05.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 10:13 nasm-2.15.05.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca   32K mar 28  2021 <font color="#C01C28"><b>netbase_6.3.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:17 netbase_6.3.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  2,3M iun  7  2021 <font color="#C01C28"><b>nettle-3.7.3.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:02 nettle-3.7.3.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  685K ian 22  2022 <font color="#C01C28"><b>nfs-utils-2.6.1.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:06 nfs-utils-2.6.1.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  294K iul 16  2018 <font color="#C01C28"><b>npth-1.6.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:01 npth-1.6.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  1,1M ian  5  2022 <font color="#C01C28"><b>ofono-1.34.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 12:27 ofono-1.34.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  1,8M feb 23  2022 <font color="#C01C28"><b>openssh-8.9p1.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:05 openssh-8.9p1.tar.gz.done
+-rw-r--r--  1 georgeca georgeca   15M feb 11 16:51 <font color="#C01C28"><b>openssl-3.0.16.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:00 openssl-3.0.16.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  593K dec  3  2021 <font color="#C01C28"><b>opkg-0.5.0.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 15:00 opkg-0.5.0.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  228K sep 12  2024 <font color="#C01C28"><b>orc-0.4.40.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 12:38 orc-0.4.40.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  4,1M feb  9  2022 <font color="#C01C28"><b>pango-1.50.4.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 13:30 pango-1.50.4.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  1,8M ian 28  2021 <font color="#C01C28"><b>parted-3.4.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:12 parted-3.4.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  1,2M feb  6  2018 <font color="#C01C28"><b>patch-2.7.6.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:06 patch-2.7.6.tar.gz.done
+-rw-r--r--  1 georgeca georgeca   47K dec 18  2015 <font color="#C01C28"><b>pbzip2-1.1.13.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:59 pbzip2-1.1.13.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  363K mai 31  2020 <font color="#C01C28"><b>pciutils-3.7.0.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:30 pciutils-3.7.0.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  415K feb  5  2021 <font color="#C01C28"><b>pcmanfm-1.3.2.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:26 pcmanfm-1.3.2.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  1,7M apr 15  2022 <font color="#C01C28"><b>pcre2-10.40.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 13:27 pcre2-10.40.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  1,6M iun 22  2021 <font color="#C01C28"><b>pcre-8.45.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:01 pcre-8.45.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca   19M nov 29  2023 <font color="#C01C28"><b>perl-5.34.3.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:03 perl-5.34.3.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  118K dec  2  2023 <font color="#C01C28"><b>perl-cross-1.5.2.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 09:06 perl-cross-1.5.2.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  106K ian 15  2022 <font color="#C01C28"><b>pigz-2.7.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:52 pigz-2.7.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  487K aug 25  2021 <font color="#C01C28"><b>pinentry-1.2.0.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:44 pinentry-1.2.0.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  893K apr 20  2020 <font color="#C01C28"><b>pixman-0.40.0.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:04 pixman-0.40.0.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  567K iun 23  2020 <font color="#C01C28"><b>popt-1.18.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:04 popt-1.18.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  700K ian  5  2021 <font color="#C01C28"><b>ppp-2.4.9.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:03 ppp-2.4.9.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  114K aug 24  2021 <font color="#C01C28"><b>pseudo-prebuilt-2.33.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 09:05 pseudo-prebuilt-2.33.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  1,5M iul 27  2021 <font color="#C01C28"><b>pulseaudio-15.0.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 13:04 pulseaudio-15.0.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  333K mar  7  2022 <font color="#C01C28"><b>pycairo-1.21.0.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:05 pycairo-1.21.0.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  545K sep 19  2021 <font color="#C01C28"><b>pygobject-3.42.0.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:06 pygobject-3.42.0.tar.xz.done
+-rw-r--r--  1 georgeca georgeca   19M dec  3  2024 <font color="#C01C28"><b>Python-3.10.16.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:01 Python-3.10.16.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  111M oct 27  2024 <font color="#C01C28"><b>qemu-6.2.0.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 15:04 qemu-6.2.0.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  531K feb 15  2022 <font color="#C01C28"><b>quilt-0.67.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 09:05 quilt-0.67.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  509K nov  9  2020 <font color="#C01C28"><b>quota-4.06.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:05 quota-4.06.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  1,4M ian 27  2022 <font color="#C01C28"><b>re2c-3.0.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 09:20 re2c-3.0.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  2,9M ian  5  2022 <font color="#C01C28"><b>readline-8.1.2.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:01 readline-8.1.2.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  136K nov  8  2014 <font color="#C01C28"><b>rgb-1.0.6.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:34 rgb-1.0.6.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  122K mai 10  2021 <font color="#C01C28"><b>rpcbind-1.2.6.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:05 rpcbind-1.2.6.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  1,1M oct 21  2022 <font color="#C01C28"><b>rsync-3.2.7.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 09:06 rsync-3.2.7.tar.gz.done
+-rw-r--r--  1 georgeca georgeca   54M ian 13  2022 <font color="#C01C28"><b>rustc-1.58.0-x86_64-unknown-linux-gnu.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 11:55 rustc-1.58.0-x86_64-unknown-linux-gnu.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  123M feb 24  2022 <font color="#C01C28"><b>rustc-1.59.0-src.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 12:14 rustc-1.59.0-src.tar.xz.done
+-rw-r--r--  1 georgeca georgeca   26M ian 13  2022 <font color="#C01C28"><b>rust-std-1.58.0-x86_64-unknown-linux-gnu.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 11:55 rust-std-1.58.0-x86_64-unknown-linux-gnu.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  857K nov 27  2021 <font color="#C01C28"><b>rxvt-unicode-9.30.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:33 rxvt-unicode-9.30.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  259K dec  8  2020 <font color="#C01C28"><b>sbc-1.5.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 12:22 sbc-1.5.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  6,9M ian 11  2022 <font color="#C01C28"><b>SDL2-2.0.20.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 15:01 SDL2-2.0.20.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  1,3M ian 15  2020 <font color="#C01C28"><b>sed-4.8.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:04 sed-4.8.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  2,2M apr 11  2023 <font color="#C01C28"><b>setuptools-59.5.0.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 09:25 setuptools-59.5.0.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  4,0M ian  3  2022 <font color="#C01C28"><b>shadow-4.11.1.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:02 shadow-4.11.1.tar.gz.done
+-rw-r--r--  1 georgeca georgeca   34K apr 10  2023 <font color="#C01C28"><b>six-1.16.0.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:48 six-1.16.0.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  510K oct 30  2022 <font color="#C01C28"><b>socat-1.7.4.4.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:06 socat-1.7.4.4.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca 1023K dec  8  2016 <font color="#C01C28"><b>speex-1.2.0.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:06 speex-1.2.0.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  899K iun  7  2019 <font color="#C01C28"><b>speexdsp-1.2.0.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 12:17 speexdsp-1.2.0.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  2,9M apr  7 21:56 <font color="#C01C28"><b>sqlite-autoconf-3380500.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:01 sqlite-autoconf-3380500.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  347K mai 16  2011 <font color="#C01C28"><b>startup-notification-0.12.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 12:23 startup-notification-0.12.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  2,2M ian 10  2022 <font color="#C01C28"><b>strace-5.16.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:05 strace-5.16.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  5,1M nov  9  2023 <font color="#C01C28"><b>sudo-1.9.15p2.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:06 sudo-1.9.15p2.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  7,8M iun  8  2020 <font color="#C01C28"><b>swig-4.0.2.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 12:52 swig-4.0.2.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  5,4M feb  5  2019 <font color="#C01C28"><b>syslinux-6.04-pre2.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:08 syslinux-6.04-pre2.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  124K dec 13  2021 <font color="#C01C28"><b>sysvinit-3.01.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:05 sysvinit-3.01.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  1,4M ian 20 18:14 <font color="#C01C28"><b>taglib-1.12.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 13:40 taglib-1.12.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  3,2M iul 18  2023 <font color="#C01C28"><b>tar-1.35.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:06 tar-1.35.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca   98K apr  8  1997 <font color="#C01C28"><b>tcp_wrappers_7.6.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:05 tcp_wrappers_7.6.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  583K mar 13  2018 <font color="#C01C28"><b>time-1.9.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:06 time-1.9.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  303K mar 22 23:45 <font color="#C01C28"><b>tzcode2025b.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:22 tzcode2025b.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  454K mar 22 23:45 <font color="#C01C28"><b>tzdata2025b.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:22 tzdata2025b.tar.gz.done
+-rw-r--r--  1 georgeca georgeca   66K nov  6  2020 <font color="#C01C28"><b>unifdef-2.12.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 09:06 unifdef-2.12.tar.xz.done
+drwxrwxr-x  3 georgeca georgeca  4,0K mai 24 09:04 <font color="#12488B"><b>uninative</b></font>
+-rw-r--r--  1 georgeca georgeca  1,4M apr 30  2009 <font color="#C01C28"><b>unzip60.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:06 unzip60.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  5,9M feb 14  2022 <font color="#C01C28"><b>util-linux-2.37.4.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:01 util-linux-2.37.4.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  102K ian 24  2021 <font color="#C01C28"><b>util-macros-1.19.3.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:02 util-macros-1.19.3.tar.gz.done
+-rw-r--r--  1 georgeca georgeca   85K apr 27  2011 <font color="#C01C28"><b>v86d_0.1.10.orig.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:32 v86d_0.1.10.orig.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  3,8M sep  3  2022 <font color="#C01C28"><b>vala-0.56.3.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:03 vala-0.56.3.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  875K dec  8  2021 <font color="#C01C28"><b>vte-0.66.2.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 13:44 vte-0.66.2.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  220K mai 22 22:19 <font color="#C01C28"><b>wayland-1.20.0.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:03 wayland-1.20.0.tar.xz.done
+-rw-r--r--  1 georgeca georgeca   78K mai 22 22:19 <font color="#C01C28"><b>wayland-protocols-1.25.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:52 wayland-protocols-1.25.tar.xz.done
+-rw-r--r--  1 georgeca georgeca   65K apr 11  2023 <font color="#C01C28"><b>wheel-0.37.1.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 09:15 wheel-0.37.1.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  146K mar 20  2015 <font color="#C01C28"><b>which-2.21.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:06 which-2.21.tar.gz.done
+-rw-r--r--  1 georgeca georgeca   30K oct  7  2024 <font color="#C01C28"><b>wireless-regdb-2024.10.07.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:30 wireless-regdb-2024.10.07.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  3,4M ian 16  2022 <font color="#C01C28"><b>wpa_supplicant-2.10.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 13:42 wpa_supplicant-2.10.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  164K nov 29  2021 <font color="#C01C28"><b>xauth-1.1.1.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:42 xauth-1.1.1.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  141K oct  9  2020 <font color="#C01C28"><b>xcb-proto-1.14.1.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:02 xcb-proto-1.14.1.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  291K oct 15  2014 <font color="#C01C28"><b>xcb-util-0.4.0.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 12:13 xcb-util-0.4.0.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  134K apr 28  2023 <font color="#C01C28"><b>xdpyinfo-1.3.4.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:42 xdpyinfo-1.3.4.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  306K ian 24  2022 <font color="#C01C28"><b>xf86-input-libinput-1.2.1.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:34 xf86-input-libinput-1.2.1.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  331K mai  7  2015 <font color="#C01C28"><b>xf86-video-cirrus-1.5.3.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:44 xf86-video-cirrus-1.5.3.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  289K mai 30  2018 <font color="#C01C28"><b>xf86-video-fbdev-0.5.0.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:43 xf86-video-fbdev-0.5.0.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  298K sep 11  2020 <font color="#C01C28"><b>xf86-video-vesa-2.5.0.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:43 xf86-video-vesa-2.5.0.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  463K mai 17  2018 <font color="#C01C28"><b>xf86-video-vmware-13.3.0.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:44 xf86-video-vmware-13.3.0.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  136K feb 20  2019 <font color="#C01C28"><b>xhost-1.0.8.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:42 xhost-1.0.8.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  173K mar  3  2019 <font color="#C01C28"><b>xinit-1.4.1.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:34 xinit-1.4.1.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  159K iul 17  2019 <font color="#C01C28"><b>xinput-1.6.3.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:34 xinput-1.6.3.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  246K mar 17  2021 <font color="#C01C28"><b>xkbcomp-1.4.5.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:34 xkbcomp-1.4.5.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  853K feb  8  2022 <font color="#C01C28"><b>xkeyboard-config-2.35.1.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 11:51 xkeyboard-config-2.35.1.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  249K sep 24  2019 <font color="#C01C28"><b>XML-Parser-2.46.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 11:58 XML-Parser-2.46.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  153K nov 18  2015 <font color="#C01C28"><b>xmlto-0.0.28.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 10:11 xmlto-0.0.28.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  5,7M sep  1  2008 <font color="#C01C28"><b>xmlts20080827.tar</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:02 xmlts20080827.tar.done
+-rw-r--r--  1 georgeca georgeca  137K iul 11  2022 <font color="#C01C28"><b>xmodmap-1.0.11.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:43 xmodmap-1.0.11.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  851K sep 15  2021 <font color="#C01C28"><b>xorgproto-2021.5.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:02 xorgproto-2021.5.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  4,8M mar 29  2023 <font color="#C01C28"><b>xorg-server-21.1.8.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 12:48 xorg-server-21.1.8.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  168K aug 12  2019 <font color="#C01C28"><b>xrandr-1.5.1.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:04 xrandr-1.5.1.tar.xz.done
+-rw-r--r--  1 georgeca georgeca  143K mar 10  2018 <font color="#C01C28"><b>xset-1.2.4.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:40 xset-1.2.4.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  182K mar 16  2019 <font color="#C01C28"><b>xtrans-1.4.0.tar.bz2</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:02 xtrans-1.4.0.tar.bz2.done
+-rw-r--r--  1 georgeca georgeca  2,0M aug 12  2022 <font color="#C01C28"><b>xz-5.2.6.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:01 xz-5.2.6.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  596K iun 18  2020 <font color="#C01C28"><b>yaml-0.2.5.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 mai 24 14:52 yaml-0.2.5.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  1,1M sep 24  2008 <font color="#C01C28"><b>zip30.tar.gz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:07 zip30.tar.gz.done
+-rw-r--r--  1 georgeca georgeca  457K ian 16  2017 <font color="#C01C28"><b>zlib-1.2.11.tar.xz</b></font>
+-rw-r--r--  1 georgeca georgeca   463 iun  9 07:00 zlib-1.2.11.tar.xz.done
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/sources</b></font>$ ls -lh sstate-cache/
+total 1,1M
+drwxrwxr-x  34 georgeca georgeca 4,0K iun  9 09:33 <font color="#12488B"><b>00</b></font>
+drwxrwxr-x  30 georgeca georgeca 4,0K iun 12 16:12 <font color="#12488B"><b>01</b></font>
+drwxrwxr-x  38 georgeca georgeca 4,0K iun  9 09:36 <font color="#12488B"><b>02</b></font>
+drwxrwxr-x  31 georgeca georgeca 4,0K iun 12 16:56 <font color="#12488B"><b>03</b></font>
+drwxrwxr-x  25 georgeca georgeca 4,0K iun 13 13:52 <font color="#12488B"><b>04</b></font>
+drwxrwxr-x  27 georgeca georgeca 4,0K iun 13 14:53 <font color="#12488B"><b>05</b></font>
+drwxrwxr-x  34 georgeca georgeca 4,0K iun 12 14:10 <font color="#12488B"><b>06</b></font>
+drwxrwxr-x  49 georgeca georgeca 4,0K iun 12 16:12 <font color="#12488B"><b>07</b></font>
+drwxrwxr-x  34 georgeca georgeca 4,0K iun  9 09:33 <font color="#12488B"><b>08</b></font>
+drwxrwxr-x  30 georgeca georgeca 4,0K iun  9 09:18 <font color="#12488B"><b>09</b></font>
+drwxrwxr-x  26 georgeca georgeca 4,0K iun 10 16:50 <font color="#12488B"><b>0a</b></font>
+drwxrwxr-x  24 georgeca georgeca 4,0K iun  9 08:49 <font color="#12488B"><b>0b</b></font>
+drwxrwxr-x  29 georgeca georgeca 4,0K iun 13 12:52 <font color="#12488B"><b>0c</b></font>
+drwxrwxr-x  25 georgeca georgeca 4,0K iun  9 09:53 <font color="#12488B"><b>0d</b></font>
+drwxrwxr-x  32 georgeca georgeca 4,0K iun 10 16:46 <font color="#12488B"><b>0e</b></font>
+drwxrwxr-x  34 georgeca georgeca 4,0K iun 12 14:10 <font color="#12488B"><b>0f</b></font>
+drwxrwxr-x  35 georgeca georgeca 4,0K iun 12 16:18 <font color="#12488B"><b>10</b></font>
+drwxrwxr-x  33 georgeca georgeca 4,0K iun 11 13:47 <font color="#12488B"><b>11</b></font>
+drwxrwxr-x  28 georgeca georgeca 4,0K iun  9 09:32 <font color="#12488B"><b>12</b></font>
+drwxrwxr-x  22 georgeca georgeca 4,0K iun  9 09:26 <font color="#12488B"><b>13</b></font>
+drwxrwxr-x  37 georgeca georgeca 4,0K iun 11 14:05 <font color="#12488B"><b>14</b></font>
+drwxrwxr-x  32 georgeca georgeca 4,0K iun  9 09:55 <font color="#12488B"><b>15</b></font>
+drwxrwxr-x  44 georgeca georgeca 4,0K iun  9 09:14 <font color="#12488B"><b>16</b></font>
+drwxrwxr-x  32 georgeca georgeca 4,0K iun 11 10:16 <font color="#12488B"><b>17</b></font>
+drwxrwxr-x  26 georgeca georgeca 4,0K iun 13 13:40 <font color="#12488B"><b>18</b></font>
+drwxrwxr-x  34 georgeca georgeca 4,0K iun 11 15:41 <font color="#12488B"><b>19</b></font>
+drwxrwxr-x  24 georgeca georgeca 4,0K iun 12 11:58 <font color="#12488B"><b>1a</b></font>
+drwxrwxr-x  22 georgeca georgeca 4,0K iun 11 15:41 <font color="#12488B"><b>1b</b></font>
+drwxrwxr-x  29 georgeca georgeca 4,0K iun 10 13:26 <font color="#12488B"><b>1c</b></font>
+drwxrwxr-x  40 georgeca georgeca 4,0K iun  9 09:34 <font color="#12488B"><b>1d</b></font>
+drwxrwxr-x  35 georgeca georgeca 4,0K iun 10 13:26 <font color="#12488B"><b>1e</b></font>
+drwxrwxr-x  27 georgeca georgeca 4,0K iun 11 12:22 <font color="#12488B"><b>1f</b></font>
+drwxrwxr-x  38 georgeca georgeca 4,0K iun  9 09:34 <font color="#12488B"><b>20</b></font>
+drwxrwxr-x  28 georgeca georgeca 4,0K iun  9 09:32 <font color="#12488B"><b>21</b></font>
+drwxrwxr-x  29 georgeca georgeca 4,0K iun  9 09:23 <font color="#12488B"><b>22</b></font>
+drwxrwxr-x  28 georgeca georgeca 4,0K iun 11 16:30 <font color="#12488B"><b>23</b></font>
+drwxrwxr-x  28 georgeca georgeca 4,0K iun  9 09:08 <font color="#12488B"><b>24</b></font>
+drwxrwxr-x  27 georgeca georgeca 4,0K iun 11 10:12 <font color="#12488B"><b>25</b></font>
+drwxrwxr-x  23 georgeca georgeca 4,0K iun  9 09:33 <font color="#12488B"><b>26</b></font>
+drwxrwxr-x  30 georgeca georgeca 4,0K iun  9 09:18 <font color="#12488B"><b>27</b></font>
+drwxrwxr-x  19 georgeca georgeca 4,0K iun 13 12:17 <font color="#12488B"><b>28</b></font>
+drwxrwxr-x  32 georgeca georgeca 4,0K iun  9 09:28 <font color="#12488B"><b>29</b></font>
+drwxrwxr-x  31 georgeca georgeca 4,0K iun 11 16:18 <font color="#12488B"><b>2a</b></font>
+drwxrwxr-x  31 georgeca georgeca 4,0K iun  9 09:29 <font color="#12488B"><b>2b</b></font>
+drwxrwxr-x  26 georgeca georgeca 4,0K iun  9 09:30 <font color="#12488B"><b>2c</b></font>
+drwxrwxr-x  32 georgeca georgeca 4,0K iun 13 12:17 <font color="#12488B"><b>2d</b></font>
+drwxrwxr-x  39 georgeca georgeca 4,0K iun 12 14:10 <font color="#12488B"><b>2e</b></font>
+drwxrwxr-x  31 georgeca georgeca 4,0K iun  9 08:37 <font color="#12488B"><b>2f</b></font>
+drwxrwxr-x  28 georgeca georgeca 4,0K iun 13 13:43 <font color="#12488B"><b>30</b></font>
+drwxrwxr-x  27 georgeca georgeca 4,0K iun 13 13:52 <font color="#12488B"><b>31</b></font>
+drwxrwxr-x  32 georgeca georgeca 4,0K iun 10 16:50 <font color="#12488B"><b>32</b></font>
+drwxrwxr-x  38 georgeca georgeca 4,0K iun 13 14:53 <font color="#12488B"><b>33</b></font>
+drwxrwxr-x  28 georgeca georgeca 4,0K iun  9 09:32 <font color="#12488B"><b>34</b></font>
+drwxrwxr-x  40 georgeca georgeca 4,0K iun  9 09:54 <font color="#12488B"><b>35</b></font>
+drwxrwxr-x  35 georgeca georgeca 4,0K iun 13 14:53 <font color="#12488B"><b>36</b></font>
+drwxrwxr-x  26 georgeca georgeca 4,0K iun 13 14:51 <font color="#12488B"><b>37</b></font>
+drwxrwxr-x  35 georgeca georgeca 4,0K iun 13 12:14 <font color="#12488B"><b>38</b></font>
+drwxrwxr-x  32 georgeca georgeca 4,0K iun 11 15:41 <font color="#12488B"><b>39</b></font>
+drwxrwxr-x  35 georgeca georgeca 4,0K iun 10 16:44 <font color="#12488B"><b>3a</b></font>
+drwxrwxr-x  26 georgeca georgeca 4,0K iun 11 15:41 <font color="#12488B"><b>3b</b></font>
+drwxrwxr-x  40 georgeca georgeca 4,0K iun  9 09:33 <font color="#12488B"><b>3c</b></font>
+drwxrwxr-x  31 georgeca georgeca 4,0K iun 11 16:24 <font color="#12488B"><b>3d</b></font>
+drwxrwxr-x  33 georgeca georgeca 4,0K iun 10 13:26 <font color="#12488B"><b>3e</b></font>
+drwxrwxr-x  34 georgeca georgeca 4,0K iun 11 13:51 <font color="#12488B"><b>3f</b></font>
+drwxrwxr-x  30 georgeca georgeca 4,0K iun  9 09:10 <font color="#12488B"><b>40</b></font>
+drwxrwxr-x  24 georgeca georgeca 4,0K iun  9 09:16 <font color="#12488B"><b>41</b></font>
+drwxrwxr-x  29 georgeca georgeca 4,0K iun  9 09:31 <font color="#12488B"><b>42</b></font>
+drwxrwxr-x  39 georgeca georgeca 4,0K iun 13 14:50 <font color="#12488B"><b>43</b></font>
+drwxrwxr-x  21 georgeca georgeca 4,0K iun 10 16:44 <font color="#12488B"><b>44</b></font>
+drwxrwxr-x  36 georgeca georgeca 4,0K iun  9 08:52 <font color="#12488B"><b>45</b></font>
+drwxrwxr-x  32 georgeca georgeca 4,0K iun  9 09:41 <font color="#12488B"><b>46</b></font>
+drwxrwxr-x  34 georgeca georgeca 4,0K iun  9 08:46 <font color="#12488B"><b>47</b></font>
+drwxrwxr-x  28 georgeca georgeca 4,0K iun  9 09:15 <font color="#12488B"><b>48</b></font>
+drwxrwxr-x  36 georgeca georgeca 4,0K iun 12 12:01 <font color="#12488B"><b>49</b></font>
+drwxrwxr-x  36 georgeca georgeca 4,0K iun 13 14:57 <font color="#12488B"><b>4a</b></font>
+drwxrwxr-x  30 georgeca georgeca 4,0K iun 11 15:41 <font color="#12488B"><b>4b</b></font>
+drwxrwxr-x  26 georgeca georgeca 4,0K iun  9 09:22 <font color="#12488B"><b>4c</b></font>
+drwxrwxr-x  31 georgeca georgeca 4,0K iun  9 09:38 <font color="#12488B"><b>4d</b></font>
+drwxrwxr-x  28 georgeca georgeca 4,0K iun  9 08:52 <font color="#12488B"><b>4e</b></font>
+drwxrwxr-x  29 georgeca georgeca 4,0K iun 13 14:50 <font color="#12488B"><b>4f</b></font>
+drwxrwxr-x  33 georgeca georgeca 4,0K iun  9 09:16 <font color="#12488B"><b>50</b></font>
+drwxrwxr-x  24 georgeca georgeca 4,0K iun 11 13:44 <font color="#12488B"><b>51</b></font>
+drwxrwxr-x  28 georgeca georgeca 4,0K iun 12 11:58 <font color="#12488B"><b>52</b></font>
+drwxrwxr-x  24 georgeca georgeca 4,0K iun  9 09:29 <font color="#12488B"><b>53</b></font>
+drwxrwxr-x  37 georgeca georgeca 4,0K iun 11 12:22 <font color="#12488B"><b>54</b></font>
+drwxrwxr-x  39 georgeca georgeca 4,0K iun  9 08:52 <font color="#12488B"><b>55</b></font>
+drwxrwxr-x  32 georgeca georgeca 4,0K iun 10 17:35 <font color="#12488B"><b>56</b></font>
+drwxrwxr-x  24 georgeca georgeca 4,0K iun  9 09:14 <font color="#12488B"><b>57</b></font>
+drwxrwxr-x  30 georgeca georgeca 4,0K iun  9 08:48 <font color="#12488B"><b>58</b></font>
+drwxrwxr-x  44 georgeca georgeca 4,0K iun 13 13:40 <font color="#12488B"><b>59</b></font>
+drwxrwxr-x  27 georgeca georgeca 4,0K iun 10 16:41 <font color="#12488B"><b>5a</b></font>
+drwxrwxr-x  32 georgeca georgeca 4,0K iun 10 16:46 <font color="#12488B"><b>5b</b></font>
+drwxrwxr-x  37 georgeca georgeca 4,0K iun 13 14:51 <font color="#12488B"><b>5c</b></font>
+drwxrwxr-x  37 georgeca georgeca 4,0K iun  9 09:30 <font color="#12488B"><b>5d</b></font>
+drwxrwxr-x  31 georgeca georgeca 4,0K iun 11 10:33 <font color="#12488B"><b>5e</b></font>
+drwxrwxr-x  33 georgeca georgeca 4,0K iun 13 14:53 <font color="#12488B"><b>5f</b></font>
+drwxrwxr-x  35 georgeca georgeca 4,0K iun 12 16:16 <font color="#12488B"><b>60</b></font>
+drwxrwxr-x  35 georgeca georgeca 4,0K iun 11 13:42 <font color="#12488B"><b>61</b></font>
+drwxrwxr-x  41 georgeca georgeca 4,0K iun 11 14:05 <font color="#12488B"><b>62</b></font>
+drwxrwxr-x  26 georgeca georgeca 4,0K iun  9 08:12 <font color="#12488B"><b>63</b></font>
+drwxrwxr-x  36 georgeca georgeca 4,0K iun  9 09:32 <font color="#12488B"><b>64</b></font>
+drwxrwxr-x  27 georgeca georgeca 4,0K iun 11 15:41 <font color="#12488B"><b>65</b></font>
+drwxrwxr-x  29 georgeca georgeca 4,0K iun 11 14:00 <font color="#12488B"><b>66</b></font>
+drwxrwxr-x  31 georgeca georgeca 4,0K iun 10 17:03 <font color="#12488B"><b>67</b></font>
+drwxrwxr-x  25 georgeca georgeca 4,0K iun 10 17:03 <font color="#12488B"><b>68</b></font>
+drwxrwxr-x  31 georgeca georgeca 4,0K iun  9 09:18 <font color="#12488B"><b>69</b></font>
+drwxrwxr-x  32 georgeca georgeca 4,0K iun  9 09:28 <font color="#12488B"><b>6a</b></font>
+drwxrwxr-x  32 georgeca georgeca 4,0K iun  9 09:00 <font color="#12488B"><b>6b</b></font>
+drwxrwxr-x  25 georgeca georgeca 4,0K iun 10 17:30 <font color="#12488B"><b>6c</b></font>
+drwxrwxr-x  37 georgeca georgeca 4,0K iun 13 13:41 <font color="#12488B"><b>6d</b></font>
+drwxrwxr-x  25 georgeca georgeca 4,0K iun 13 14:53 <font color="#12488B"><b>6e</b></font>
+drwxrwxr-x  21 georgeca georgeca 4,0K iun  9 09:33 <font color="#12488B"><b>6f</b></font>
+drwxrwxr-x  28 georgeca georgeca 4,0K iun 11 15:46 <font color="#12488B"><b>70</b></font>
+drwxrwxr-x  34 georgeca georgeca 4,0K iun  9 09:31 <font color="#12488B"><b>71</b></font>
+drwxrwxr-x  28 georgeca georgeca 4,0K iun 10 17:02 <font color="#12488B"><b>72</b></font>
+drwxrwxr-x  34 georgeca georgeca 4,0K iun  9 09:17 <font color="#12488B"><b>73</b></font>
+drwxrwxr-x  34 georgeca georgeca 4,0K iun  9 09:34 <font color="#12488B"><b>74</b></font>
+drwxrwxr-x  38 georgeca georgeca 4,0K iun 10 16:39 <font color="#12488B"><b>75</b></font>
+drwxrwxr-x  27 georgeca georgeca 4,0K iun 10 17:35 <font color="#12488B"><b>76</b></font>
+drwxrwxr-x  34 georgeca georgeca 4,0K iun  9 09:34 <font color="#12488B"><b>77</b></font>
+drwxrwxr-x  42 georgeca georgeca 4,0K iun 10 13:26 <font color="#12488B"><b>78</b></font>
+drwxrwxr-x  39 georgeca georgeca 4,0K iun 11 15:35 <font color="#12488B"><b>79</b></font>
+drwxrwxr-x  39 georgeca georgeca 4,0K iun 13 12:14 <font color="#12488B"><b>7a</b></font>
+drwxrwxr-x  28 georgeca georgeca 4,0K iun 12 16:55 <font color="#12488B"><b>7b</b></font>
+drwxrwxr-x  31 georgeca georgeca 4,0K iun  9 09:38 <font color="#12488B"><b>7c</b></font>
+drwxrwxr-x  32 georgeca georgeca 4,0K iun 13 12:17 <font color="#12488B"><b>7d</b></font>
+drwxrwxr-x  39 georgeca georgeca 4,0K iun 13 12:52 <font color="#12488B"><b>7e</b></font>
+drwxrwxr-x  36 georgeca georgeca 4,0K iun 11 16:24 <font color="#12488B"><b>7f</b></font>
+drwxrwxr-x  28 georgeca georgeca 4,0K iun 11 15:46 <font color="#12488B"><b>80</b></font>
+drwxrwxr-x  30 georgeca georgeca 4,0K iun 11 10:33 <font color="#12488B"><b>81</b></font>
+drwxrwxr-x  25 georgeca georgeca 4,0K iun 11 15:32 <font color="#12488B"><b>82</b></font>
+drwxrwxr-x  24 georgeca georgeca 4,0K iun  9 09:31 <font color="#12488B"><b>83</b></font>
+drwxrwxr-x  39 georgeca georgeca 4,0K iun 13 12:17 <font color="#12488B"><b>84</b></font>
+drwxrwxr-x  34 georgeca georgeca 4,0K iun 10 17:30 <font color="#12488B"><b>85</b></font>
+drwxrwxr-x  28 georgeca georgeca 4,0K iun 11 10:33 <font color="#12488B"><b>86</b></font>
+drwxrwxr-x  35 georgeca georgeca 4,0K iun 11 12:25 <font color="#12488B"><b>87</b></font>
+drwxrwxr-x  28 georgeca georgeca 4,0K iun 11 10:38 <font color="#12488B"><b>88</b></font>
+drwxrwxr-x  30 georgeca georgeca 4,0K iun 13 13:59 <font color="#12488B"><b>89</b></font>
+drwxrwxr-x  42 georgeca georgeca 4,0K iun 13 14:51 <font color="#12488B"><b>8a</b></font>
+drwxrwxr-x  33 georgeca georgeca 4,0K iun 10 16:39 <font color="#12488B"><b>8b</b></font>
+drwxrwxr-x  37 georgeca georgeca 4,0K iun 11 15:41 <font color="#12488B"><b>8c</b></font>
+drwxrwxr-x  31 georgeca georgeca 4,0K iun  9 09:38 <font color="#12488B"><b>8d</b></font>
+drwxrwxr-x  33 georgeca georgeca 4,0K iun 12 14:19 <font color="#12488B"><b>8e</b></font>
+drwxrwxr-x  38 georgeca georgeca 4,0K iun 10 13:26 <font color="#12488B"><b>8f</b></font>
+drwxrwxr-x  26 georgeca georgeca 4,0K iun 12 16:54 <font color="#12488B"><b>90</b></font>
+drwxrwxr-x  34 georgeca georgeca 4,0K iun 11 15:41 <font color="#12488B"><b>91</b></font>
+drwxrwxr-x  33 georgeca georgeca 4,0K iun 10 17:25 <font color="#12488B"><b>92</b></font>
+drwxrwxr-x  28 georgeca georgeca 4,0K iun 13 12:14 <font color="#12488B"><b>93</b></font>
+drwxrwxr-x  40 georgeca georgeca 4,0K iun  9 09:31 <font color="#12488B"><b>94</b></font>
+drwxrwxr-x  35 georgeca georgeca 4,0K iun 13 13:52 <font color="#12488B"><b>95</b></font>
+drwxrwxr-x  41 georgeca georgeca 4,0K iun 12 14:10 <font color="#12488B"><b>96</b></font>
+drwxrwxr-x  40 georgeca georgeca 4,0K iun 13 14:53 <font color="#12488B"><b>97</b></font>
+drwxrwxr-x  31 georgeca georgeca 4,0K iun  9 09:21 <font color="#12488B"><b>98</b></font>
+drwxrwxr-x  39 georgeca georgeca 4,0K iun  9 09:40 <font color="#12488B"><b>99</b></font>
+drwxrwxr-x  23 georgeca georgeca 4,0K iun  9 08:57 <font color="#12488B"><b>9a</b></font>
+drwxrwxr-x  32 georgeca georgeca 4,0K iun 11 14:02 <font color="#12488B"><b>9b</b></font>
+drwxrwxr-x  34 georgeca georgeca 4,0K iun 12 14:02 <font color="#12488B"><b>9c</b></font>
+drwxrwxr-x  32 georgeca georgeca 4,0K iun 11 10:26 <font color="#12488B"><b>9d</b></font>
+drwxrwxr-x  32 georgeca georgeca 4,0K iun  9 09:25 <font color="#12488B"><b>9e</b></font>
+drwxrwxr-x  29 georgeca georgeca 4,0K iun 13 12:17 <font color="#12488B"><b>9f</b></font>
+drwxrwxr-x  36 georgeca georgeca 4,0K iun 12 14:02 <font color="#12488B"><b>a0</b></font>
+drwxrwxr-x  33 georgeca georgeca 4,0K iun 11 10:12 <font color="#12488B"><b>a1</b></font>
+drwxrwxr-x  31 georgeca georgeca 4,0K iun  9 09:15 <font color="#12488B"><b>a2</b></font>
+drwxrwxr-x  32 georgeca georgeca 4,0K iun 13 14:57 <font color="#12488B"><b>a3</b></font>
+drwxrwxr-x  32 georgeca georgeca 4,0K iun  9 09:25 <font color="#12488B"><b>a4</b></font>
+drwxrwxr-x  30 georgeca georgeca 4,0K iun  9 09:38 <font color="#12488B"><b>a5</b></font>
+drwxrwxr-x  33 georgeca georgeca 4,0K iun  9 09:32 <font color="#12488B"><b>a6</b></font>
+drwxrwxr-x  38 georgeca georgeca 4,0K iun 11 10:38 <font color="#12488B"><b>a7</b></font>
+drwxrwxr-x  39 georgeca georgeca 4,0K iun  9 09:30 <font color="#12488B"><b>a8</b></font>
+drwxrwxr-x  26 georgeca georgeca 4,0K iun  9 08:45 <font color="#12488B"><b>a9</b></font>
+drwxrwxr-x  21 georgeca georgeca 4,0K iun 12 12:01 <font color="#12488B"><b>aa</b></font>
+drwxrwxr-x  27 georgeca georgeca 4,0K iun  9 09:23 <font color="#12488B"><b>ab</b></font>
+drwxrwxr-x  27 georgeca georgeca 4,0K iun 13 13:59 <font color="#12488B"><b>ac</b></font>
+drwxrwxr-x  27 georgeca georgeca 4,0K iun  9 09:17 <font color="#12488B"><b>ad</b></font>
+drwxrwxr-x  35 georgeca georgeca 4,0K iun  9 09:38 <font color="#12488B"><b>ae</b></font>
+drwxrwxr-x  36 georgeca georgeca 4,0K iun 11 13:52 <font color="#12488B"><b>af</b></font>
+drwxrwxr-x  29 georgeca georgeca 4,0K iun 12 14:19 <font color="#12488B"><b>b0</b></font>
+drwxrwxr-x  34 georgeca georgeca 4,0K iun 11 15:41 <font color="#12488B"><b>b1</b></font>
+drwxrwxr-x  41 georgeca georgeca 4,0K iun 13 13:40 <font color="#12488B"><b>b2</b></font>
+drwxrwxr-x  28 georgeca georgeca 4,0K iun 11 15:46 <font color="#12488B"><b>b3</b></font>
+drwxrwxr-x  39 georgeca georgeca 4,0K iun 11 12:22 <font color="#12488B"><b>b4</b></font>
+drwxrwxr-x  28 georgeca georgeca 4,0K iun 11 15:46 <font color="#12488B"><b>b5</b></font>
+drwxrwxr-x  32 georgeca georgeca 4,0K iun  9 09:34 <font color="#12488B"><b>b6</b></font>
+drwxrwxr-x  42 georgeca georgeca 4,0K iun  9 09:35 <font color="#12488B"><b>b7</b></font>
+drwxrwxr-x  29 georgeca georgeca 4,0K iun  9 09:08 <font color="#12488B"><b>b8</b></font>
+drwxrwxr-x  34 georgeca georgeca 4,0K iun  9 09:35 <font color="#12488B"><b>b9</b></font>
+drwxrwxr-x  23 georgeca georgeca 4,0K iun 13 13:40 <font color="#12488B"><b>ba</b></font>
+drwxrwxr-x  28 georgeca georgeca 4,0K iun  9 09:19 <font color="#12488B"><b>bb</b></font>
+drwxrwxr-x  27 georgeca georgeca 4,0K iun  9 09:31 <font color="#12488B"><b>bc</b></font>
+drwxrwxr-x  32 georgeca georgeca 4,0K iun 11 16:30 <font color="#12488B"><b>bd</b></font>
+drwxrwxr-x  30 georgeca georgeca 4,0K iun  9 08:49 <font color="#12488B"><b>be</b></font>
+drwxrwxr-x  30 georgeca georgeca 4,0K iun 12 14:10 <font color="#12488B"><b>bf</b></font>
+drwxrwxr-x  33 georgeca georgeca 4,0K iun 11 10:33 <font color="#12488B"><b>c0</b></font>
+drwxrwxr-x  36 georgeca georgeca 4,0K iun  9 09:34 <font color="#12488B"><b>c1</b></font>
+drwxrwxr-x  32 georgeca georgeca 4,0K iun 12 16:56 <font color="#12488B"><b>c2</b></font>
+drwxrwxr-x  28 georgeca georgeca 4,0K iun  9 09:33 <font color="#12488B"><b>c3</b></font>
+drwxrwxr-x  29 georgeca georgeca 4,0K iun 10 17:03 <font color="#12488B"><b>c4</b></font>
+drwxrwxr-x  32 georgeca georgeca 4,0K iun  9 09:31 <font color="#12488B"><b>c5</b></font>
+drwxrwxr-x  40 georgeca georgeca 4,0K iun 11 12:25 <font color="#12488B"><b>c6</b></font>
+drwxrwxr-x  28 georgeca georgeca 4,0K iun 13 14:53 <font color="#12488B"><b>c7</b></font>
+drwxrwxr-x  26 georgeca georgeca 4,0K iun  9 09:32 <font color="#12488B"><b>c8</b></font>
+drwxrwxr-x  35 georgeca georgeca 4,0K iun 11 15:41 <font color="#12488B"><b>c9</b></font>
+drwxrwxr-x  46 georgeca georgeca 4,0K iun  9 09:23 <font color="#12488B"><b>ca</b></font>
+drwxrwxr-x  40 georgeca georgeca 4,0K iun 13 12:17 <font color="#12488B"><b>cb</b></font>
+drwxrwxr-x  26 georgeca georgeca 4,0K iun 12 16:12 <font color="#12488B"><b>cc</b></font>
+drwxrwxr-x  38 georgeca georgeca 4,0K iun 11 15:46 <font color="#12488B"><b>cd</b></font>
+drwxrwxr-x  34 georgeca georgeca 4,0K iun 11 10:38 <font color="#12488B"><b>ce</b></font>
+drwxrwxr-x  24 georgeca georgeca 4,0K iun  9 09:02 <font color="#12488B"><b>cf</b></font>
+drwxrwxr-x  32 georgeca georgeca 4,0K iun 11 10:16 <font color="#12488B"><b>d0</b></font>
+drwxrwxr-x  43 georgeca georgeca 4,0K iun 13 14:51 <font color="#12488B"><b>d1</b></font>
+drwxrwxr-x  29 georgeca georgeca 4,0K iun  9 07:53 <font color="#12488B"><b>d2</b></font>
+drwxrwxr-x  33 georgeca georgeca 4,0K iun 11 10:10 <font color="#12488B"><b>d3</b></font>
+drwxrwxr-x  27 georgeca georgeca 4,0K iun 11 12:22 <font color="#12488B"><b>d4</b></font>
+drwxrwxr-x  33 georgeca georgeca 4,0K iun 13 13:52 <font color="#12488B"><b>d5</b></font>
+drwxrwxr-x  33 georgeca georgeca 4,0K iun 13 14:46 <font color="#12488B"><b>d6</b></font>
+drwxrwxr-x  31 georgeca georgeca 4,0K iun  9 09:23 <font color="#12488B"><b>d7</b></font>
+drwxrwxr-x  32 georgeca georgeca 4,0K iun 13 13:52 <font color="#12488B"><b>d8</b></font>
+drwxrwxr-x  41 georgeca georgeca 4,0K iun 13 13:52 <font color="#12488B"><b>d9</b></font>
+drwxrwxr-x  32 georgeca georgeca 4,0K iun  9 09:17 <font color="#12488B"><b>da</b></font>
+drwxrwxr-x  39 georgeca georgeca 4,0K iun 11 12:26 <font color="#12488B"><b>db</b></font>
+drwxrwxr-x  26 georgeca georgeca 4,0K iun  9 08:49 <font color="#12488B"><b>dc</b></font>
+drwxrwxr-x  30 georgeca georgeca 4,0K iun 12 16:56 <font color="#12488B"><b>dd</b></font>
+drwxrwxr-x  27 georgeca georgeca 4,0K iun  9 08:13 <font color="#12488B"><b>de</b></font>
+drwxrwxr-x  40 georgeca georgeca 4,0K iun 10 17:35 <font color="#12488B"><b>df</b></font>
+drwxrwxr-x  34 georgeca georgeca 4,0K iun 11 16:24 <font color="#12488B"><b>e0</b></font>
+drwxrwxr-x  31 georgeca georgeca 4,0K iun 13 13:53 <font color="#12488B"><b>e1</b></font>
+drwxrwxr-x  37 georgeca georgeca 4,0K iun  9 09:33 <font color="#12488B"><b>e2</b></font>
+drwxrwxr-x  27 georgeca georgeca 4,0K iun  9 09:10 <font color="#12488B"><b>e3</b></font>
+drwxrwxr-x  24 georgeca georgeca 4,0K iun 13 14:51 <font color="#12488B"><b>e4</b></font>
+drwxrwxr-x  43 georgeca georgeca 4,0K iun 11 13:32 <font color="#12488B"><b>e5</b></font>
+drwxrwxr-x  33 georgeca georgeca 4,0K iun 10 17:35 <font color="#12488B"><b>e6</b></font>
+drwxrwxr-x  30 georgeca georgeca 4,0K iun 11 15:46 <font color="#12488B"><b>e7</b></font>
+drwxrwxr-x  32 georgeca georgeca 4,0K iun  9 09:34 <font color="#12488B"><b>e8</b></font>
+drwxrwxr-x  28 georgeca georgeca 4,0K iun 12 16:54 <font color="#12488B"><b>e9</b></font>
+drwxrwxr-x  33 georgeca georgeca 4,0K iun 12 16:16 <font color="#12488B"><b>ea</b></font>
+drwxrwxr-x  28 georgeca georgeca 4,0K iun 11 10:31 <font color="#12488B"><b>eb</b></font>
+drwxrwxr-x  25 georgeca georgeca 4,0K iun 11 10:10 <font color="#12488B"><b>ec</b></font>
+drwxrwxr-x  33 georgeca georgeca 4,0K iun  9 09:35 <font color="#12488B"><b>ed</b></font>
+drwxrwxr-x  24 georgeca georgeca 4,0K iun 11 10:38 <font color="#12488B"><b>ee</b></font>
+drwxrwxr-x  33 georgeca georgeca 4,0K iun 13 12:17 <font color="#12488B"><b>ef</b></font>
+drwxrwxr-x  34 georgeca georgeca 4,0K iun  9 09:35 <font color="#12488B"><b>f0</b></font>
+drwxrwxr-x  32 georgeca georgeca 4,0K iun  9 09:26 <font color="#12488B"><b>f1</b></font>
+drwxrwxr-x  38 georgeca georgeca 4,0K iun 11 14:02 <font color="#12488B"><b>f2</b></font>
+drwxrwxr-x  33 georgeca georgeca 4,0K iun  9 09:31 <font color="#12488B"><b>f3</b></font>
+drwxrwxr-x  30 georgeca georgeca 4,0K iun 11 13:47 <font color="#12488B"><b>f4</b></font>
+drwxrwxr-x  33 georgeca georgeca 4,0K iun  9 09:31 <font color="#12488B"><b>f5</b></font>
+drwxrwxr-x  23 georgeca georgeca 4,0K iun  9 09:40 <font color="#12488B"><b>f6</b></font>
+drwxrwxr-x  34 georgeca georgeca 4,0K iun 10 17:02 <font color="#12488B"><b>f7</b></font>
+drwxrwxr-x  32 georgeca georgeca 4,0K iun  9 08:43 <font color="#12488B"><b>f8</b></font>
+drwxrwxr-x  39 georgeca georgeca 4,0K iun  9 09:55 <font color="#12488B"><b>f9</b></font>
+drwxrwxr-x  32 georgeca georgeca 4,0K iun  9 09:36 <font color="#12488B"><b>fa</b></font>
+drwxrwxr-x  35 georgeca georgeca 4,0K iun 13 12:14 <font color="#12488B"><b>fb</b></font>
+drwxrwxr-x  33 georgeca georgeca 4,0K iun  9 09:15 <font color="#12488B"><b>fc</b></font>
+drwxrwxr-x  35 georgeca georgeca 4,0K iun 11 15:35 <font color="#12488B"><b>fd</b></font>
+drwxrwxr-x  32 georgeca georgeca 4,0K iun 13 12:14 <font color="#12488B"><b>fe</b></font>
+drwxrwxr-x  32 georgeca georgeca 4,0K iun 13 14:46 <font color="#12488B"><b>ff</b></font>
+drwxrwxr-x 258 georgeca georgeca 4,0K iun  9 07:22 <font color="#12488B"><b>universal</b></font>
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/sources</b></font>$ ls -lh tmp/
+total 400K
+-rw-rw-r--  1 georgeca georgeca    2 mai 24 09:03 abi_version
+drwxrwxr-x 96 georgeca georgeca 4,0K iun 13 15:01 <font color="#12488B"><b>buildstats</b></font>
+drwxrwxr-x  3 georgeca georgeca 4,0K mai 24 09:03 <font color="#12488B"><b>cache</b></font>
+drwxr-xr-x  5 georgeca georgeca 4,0K mai 24 14:53 <font color="#12488B"><b>deploy</b></font>
+drwxrwxr-x  2 georgeca georgeca 4,0K mai 24 09:03 <font color="#12488B"><b>hosttools</b></font>
+drwxrwxr-x  4 georgeca georgeca 4,0K iun 10 16:39 <font color="#12488B"><b>log</b></font>
+drwxr-xr-x  4 georgeca georgeca 4,0K iun  9 07:00 <font color="#12488B"><b>pkgdata</b></font>
+-rw-r--r--  1 georgeca georgeca 2,4K iun 13 13:44 qa.log
+-rw-rw-r--  1 georgeca georgeca   41 mai 24 09:03 saved_tmpdir
+drwxrwxr-x  2 georgeca georgeca 336K iun 13 15:01 <font color="#12488B"><b>sstate-control</b></font>
+drwxrwxr-x  9 georgeca georgeca 4,0K iun  9 07:00 <font color="#12488B"><b>stamps</b></font>
+drwxr-xr-x  3 georgeca georgeca 4,0K iun  9 09:55 <font color="#12488B"><b>sysroots</b></font>
+drwxr-xr-x  9 georgeca georgeca 4,0K iun  9 07:07 <font color="#12488B"><b>sysroots-components</b></font>
+drwxr-xr-x  3 georgeca georgeca 4,0K apr  6  2011 <font color="#12488B"><b>sysroots-uninative</b></font>
+drwxr-xr-x  8 georgeca georgeca 4,0K iun 12 16:54 <font color="#12488B"><b>work</b></font>
+drwxr-xr-x  7 georgeca georgeca 4,0K iun 12 14:10 <font color="#12488B"><b>work-shared</b></font>
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/sources</b></font>$ ls tmp/buildstats/
+<font color="#12488B"><b>20250524060446</b></font>  <font color="#12488B"><b>20250527132018</b></font>  <font color="#12488B"><b>20250529073850</b></font>  <font color="#12488B"><b>20250610140231</b></font>  <font color="#12488B"><b>20250611071202</b></font>  <font color="#12488B"><b>20250611103208</b></font>  <font color="#12488B"><b>20250611110045</b></font>  <font color="#12488B"><b>20250611132433</b></font>  <font color="#12488B"><b>20250612131221</b></font>  <font color="#12488B"><b>20250613104114</b></font>  <font color="#12488B"><b>20250613115146</b></font>
+<font color="#12488B"><b>20250526141534</b></font>  <font color="#12488B"><b>20250527141133</b></font>  <font color="#12488B"><b>20250609040028</b></font>  <font color="#12488B"><b>20250610140357</b></font>  <font color="#12488B"><b>20250611071627</b></font>  <font color="#12488B"><b>20250611104224</b></font>  <font color="#12488B"><b>20250611110204</b></font>  <font color="#12488B"><b>20250611133053</b></font>  <font color="#12488B"><b>20250612131612</b></font>  <font color="#12488B"><b>20250613104358</b></font>  <font color="#12488B"><b>20250613115313</b></font>
+<font color="#12488B"><b>20250526151456</b></font>  <font color="#12488B"><b>20250527142330</b></font>  <font color="#12488B"><b>20250610102501</b></font>  <font color="#12488B"><b>20250610140732</b></font>  <font color="#12488B"><b>20250611072653</b></font>  <font color="#12488B"><b>20250611104433</b></font>  <font color="#12488B"><b>20250611110533</b></font>  <font color="#12488B"><b>20250612085824</b></font>  <font color="#12488B"><b>20250612131758</b></font>  <font color="#12488B"><b>20250613104410</b></font>  <font color="#12488B"><b>20250613115752</b></font>
+<font color="#12488B"><b>20250526193938</b></font>  <font color="#12488B"><b>20250527142613</b></font>  <font color="#12488B"><b>20250610133937</b></font>  <font color="#12488B"><b>20250610140839</b></font>  <font color="#12488B"><b>20250611073142</b></font>  <font color="#12488B"><b>20250611104646</b></font>  <font color="#12488B"><b>20250611123255</b></font>  <font color="#12488B"><b>20250612090155</b></font>  <font color="#12488B"><b>20250612135426</b></font>  <font color="#12488B"><b>20250613105245</b></font>  <font color="#12488B"><b>20250613120121</b></font>
+<font color="#12488B"><b>20250526194148</b></font>  <font color="#12488B"><b>20250527143635</b></font>  <font color="#12488B"><b>20250610134005</b></font>  <font color="#12488B"><b>20250610141024</b></font>  <font color="#12488B"><b>20250611073350</b></font>  <font color="#12488B"><b>20250611104750</b></font>  <font color="#12488B"><b>20250611123536</b></font>  <font color="#12488B"><b>20250612110254</b></font>  <font color="#12488B"><b>20250612135557</b></font>  <font color="#12488B"><b>20250613105348</b></font>
+<font color="#12488B"><b>20250526194421</b></font>  <font color="#12488B"><b>20250527144437</b></font>  <font color="#12488B"><b>20250610134106</b></font>  <font color="#12488B"><b>20250610142540</b></font>  <font color="#12488B"><b>20250611073721</b></font>  <font color="#12488B"><b>20250611105001</b></font>  <font color="#12488B"><b>20250611124059</b></font>  <font color="#12488B"><b>20250612111028</b></font>  <font color="#12488B"><b>20250613091431</b></font>  <font color="#12488B"><b>20250613105936</b></font>
+<font color="#12488B"><b>20250526194622</b></font>  <font color="#12488B"><b>20250527150809</b></font>  <font color="#12488B"><b>20250610134425</b></font>  <font color="#12488B"><b>20250610143003</b></font>  <font color="#12488B"><b>20250611073756</b></font>  <font color="#12488B"><b>20250611105122</b></font>  <font color="#12488B"><b>20250611124506</b></font>  <font color="#12488B"><b>20250612111750</b></font>  <font color="#12488B"><b>20250613095112</b></font>  <font color="#12488B"><b>20250613110114</b></font>
+<font color="#12488B"><b>20250526200242</b></font>  <font color="#12488B"><b>20250527151117</b></font>  <font color="#12488B"><b>20250610134559</b></font>  <font color="#12488B"><b>20250610143527</b></font>  <font color="#12488B"><b>20250611092201</b></font>  <font color="#12488B"><b>20250611105247</b></font>  <font color="#12488B"><b>20250611124609</b></font>  <font color="#12488B"><b>20250612111950</b></font>  <font color="#12488B"><b>20250613095939</b></font>  <font color="#12488B"><b>20250613114632</b></font>
+<font color="#12488B"><b>20250527114134</b></font>  <font color="#12488B"><b>20250529073719</b></font>  <font color="#12488B"><b>20250610135039</b></font>  <font color="#12488B"><b>20250611071003</b></font>  <font color="#12488B"><b>20250611103003</b></font>  <font color="#12488B"><b>20250611105918</b></font>  <font color="#12488B"><b>20250611131807</b></font>  <font color="#12488B"><b>20250612131024</b></font>  <font color="#12488B"><b>20250613104019</b></font>  <font color="#12488B"><b>20250613115006</b></font>
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/sources</b></font>$ ls -lh tmp/buildstats/
+total 412K
+drwxrwxr-x 526 georgeca georgeca  28K mai 24 15:04 <font color="#12488B"><b>20250524060446</b></font>
+drwxrwxr-x 141 georgeca georgeca 4,0K mai 26 17:16 <font color="#12488B"><b>20250526141534</b></font>
+drwxrwxr-x   5 georgeca georgeca 4,0K mai 26 18:15 <font color="#12488B"><b>20250526151456</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K mai 26 22:39 <font color="#12488B"><b>20250526193938</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K mai 26 22:41 <font color="#12488B"><b>20250526194148</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K mai 26 22:44 <font color="#12488B"><b>20250526194421</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K mai 26 22:46 <font color="#12488B"><b>20250526194622</b></font>
+drwxrwxr-x   5 georgeca georgeca 4,0K mai 26 23:02 <font color="#12488B"><b>20250526200242</b></font>
+drwxrwxr-x   2 georgeca georgeca 4,0K mai 27 14:41 <font color="#12488B"><b>20250527114134</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K mai 27 16:20 <font color="#12488B"><b>20250527132018</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K mai 27 17:11 <font color="#12488B"><b>20250527141133</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K mai 27 17:23 <font color="#12488B"><b>20250527142330</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K mai 27 17:26 <font color="#12488B"><b>20250527142613</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K mai 27 17:36 <font color="#12488B"><b>20250527143635</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K mai 27 17:44 <font color="#12488B"><b>20250527144437</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K mai 27 18:08 <font color="#12488B"><b>20250527150809</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K mai 27 18:11 <font color="#12488B"><b>20250527151117</b></font>
+drwxrwxr-x   2 georgeca georgeca 4,0K mai 29 10:37 <font color="#12488B"><b>20250529073719</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K mai 29 10:38 <font color="#12488B"><b>20250529073850</b></font>
+drwxrwxr-x 194 georgeca georgeca  12K iun  9 07:15 <font color="#12488B"><b>20250609040028</b></font>
+drwxrwxr-x 135 georgeca georgeca 4,0K iun 10 13:25 <font color="#12488B"><b>20250610102501</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 10 16:39 <font color="#12488B"><b>20250610133937</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 10 16:40 <font color="#12488B"><b>20250610134005</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 10 16:41 <font color="#12488B"><b>20250610134106</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 10 16:44 <font color="#12488B"><b>20250610134425</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 10 16:46 <font color="#12488B"><b>20250610134559</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 10 16:50 <font color="#12488B"><b>20250610135039</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 10 17:02 <font color="#12488B"><b>20250610140231</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 10 17:03 <font color="#12488B"><b>20250610140357</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 10 17:07 <font color="#12488B"><b>20250610140732</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 10 17:08 <font color="#12488B"><b>20250610140839</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 10 17:10 <font color="#12488B"><b>20250610141024</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 10 17:25 <font color="#12488B"><b>20250610142540</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 10 17:30 <font color="#12488B"><b>20250610143003</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 10 17:35 <font color="#12488B"><b>20250610143527</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 11 10:10 <font color="#12488B"><b>20250611071003</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 11 10:12 <font color="#12488B"><b>20250611071202</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 11 10:16 <font color="#12488B"><b>20250611071627</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 11 10:26 <font color="#12488B"><b>20250611072653</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 11 10:31 <font color="#12488B"><b>20250611073142</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 11 10:33 <font color="#12488B"><b>20250611073350</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 11 10:37 <font color="#12488B"><b>20250611073721</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 11 10:38 <font color="#12488B"><b>20250611073756</b></font>
+drwxrwxr-x  34 georgeca georgeca 4,0K iun 11 12:22 <font color="#12488B"><b>20250611092201</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 11 13:30 <font color="#12488B"><b>20250611103003</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 11 13:32 <font color="#12488B"><b>20250611103208</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 11 13:42 <font color="#12488B"><b>20250611104224</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 11 13:44 <font color="#12488B"><b>20250611104433</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 11 13:46 <font color="#12488B"><b>20250611104646</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 11 13:47 <font color="#12488B"><b>20250611104750</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 11 13:50 <font color="#12488B"><b>20250611105001</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 11 13:51 <font color="#12488B"><b>20250611105122</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 11 13:52 <font color="#12488B"><b>20250611105247</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 11 13:59 <font color="#12488B"><b>20250611105918</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 11 14:00 <font color="#12488B"><b>20250611110045</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 11 14:02 <font color="#12488B"><b>20250611110204</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 11 14:05 <font color="#12488B"><b>20250611110533</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 11 15:32 <font color="#12488B"><b>20250611123255</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 11 15:35 <font color="#12488B"><b>20250611123536</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 11 15:41 <font color="#12488B"><b>20250611124059</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 11 15:45 <font color="#12488B"><b>20250611124506</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 11 15:46 <font color="#12488B"><b>20250611124609</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 11 16:18 <font color="#12488B"><b>20250611131807</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 11 16:24 <font color="#12488B"><b>20250611132433</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 11 16:30 <font color="#12488B"><b>20250611133053</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 12 11:58 <font color="#12488B"><b>20250612085824</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 12 12:01 <font color="#12488B"><b>20250612090155</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 12 14:02 <font color="#12488B"><b>20250612110254</b></font>
+drwxrwxr-x   4 georgeca georgeca 4,0K iun 12 14:10 <font color="#12488B"><b>20250612111028</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 12 14:17 <font color="#12488B"><b>20250612111750</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 12 14:19 <font color="#12488B"><b>20250612111950</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 12 16:10 <font color="#12488B"><b>20250612131024</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 12 16:12 <font color="#12488B"><b>20250612131221</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 12 16:16 <font color="#12488B"><b>20250612131612</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 12 16:18 <font color="#12488B"><b>20250612131758</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 12 16:54 <font color="#12488B"><b>20250612135426</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 12 16:55 <font color="#12488B"><b>20250612135557</b></font>
+drwxrwxr-x   4 georgeca georgeca 4,0K iun 13 12:14 <font color="#12488B"><b>20250613091431</b></font>
+drwxrwxr-x   4 georgeca georgeca 4,0K iun 13 12:51 <font color="#12488B"><b>20250613095112</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 13 12:59 <font color="#12488B"><b>20250613095939</b></font>
+drwxrwxr-x   4 georgeca georgeca 4,0K iun 13 13:40 <font color="#12488B"><b>20250613104019</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 13 13:41 <font color="#12488B"><b>20250613104114</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 13 13:43 <font color="#12488B"><b>20250613104358</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 13 13:44 <font color="#12488B"><b>20250613104410</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 13 13:52 <font color="#12488B"><b>20250613105245</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 13 13:53 <font color="#12488B"><b>20250613105348</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 13 13:59 <font color="#12488B"><b>20250613105936</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 13 14:01 <font color="#12488B"><b>20250613110114</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 13 14:46 <font color="#12488B"><b>20250613114632</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 13 14:50 <font color="#12488B"><b>20250613115006</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 13 14:51 <font color="#12488B"><b>20250613115146</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 13 14:53 <font color="#12488B"><b>20250613115313</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 13 14:57 <font color="#12488B"><b>20250613115752</b></font>
+drwxrwxr-x   3 georgeca georgeca 4,0K iun 13 15:01 <font color="#12488B"><b>20250613120121</b></font>
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/sources</b></font>$ cd tmp/buildstats/20250613120121/
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/sources/tmp/buildstats/20250613120121</b></font>$ ls -lh
+total 24K
+-rw-rw-r-- 1 georgeca georgeca  210 iun 13 15:01 build_stats
+drwxr-xr-x 2 georgeca georgeca 4,0K iun 13 15:01 <font color="#12488B"><b>example-0.1-r0</b></font>
+-rw-rw-r-- 1 georgeca georgeca  140 iun 13 15:01 monitor_disk.log
+-rw-rw-r-- 1 georgeca georgeca  408 iun 13 15:01 reduced_proc_diskstats.log
+-rw-rw-r-- 1 georgeca georgeca 1,1K iun 13 15:01 reduced_proc_meminfo.log
+-rw-rw-r-- 1 georgeca georgeca  724 iun 13 15:01 reduced_proc_stat.log
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/sources/tmp/buildstats/20250613120121</b></font>$ cat monitor_disk.log 
+1749816083
+/dev/sda3: 54321610752
+
+1749816084
+/dev/sda3: 54322462720
+
+1749816085
+/dev/sda3: 54324523008
+
+1749816086
+/dev/sda3: 54328410112
+
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/sources/tmp/buildstats/20250613120121</b></font>$ cat reduced_proc_meminfo.log 
+1749816082
+12248848 3981992 294580 5110732 3991548 3991548
+
+1749816083
+12248848 3938992 294580 5112076 3991548 3991548
+
+1749816083
+12248848 3938992 294580 5112128 3991548 3991548
+
+1749816084
+12248848 3775976 294580 5112172 3991548 3991548
+
+1749816084
+12248848 3775976 294580 5112172 3991548 3991548
+
+1749816084
+12248848 3784012 294604 5112192 3991548 3991548
+
+1749816084
+12248848 3784012 294604 5112192 3991548 3991548
+
+1749816085
+12248848 3782360 294604 5112372 3991548 3991548
+
+1749816085
+12248848 3782360 294604 5112372 3991548 3991548
+
+1749816085
+12248848 3796752 294604 5114580 3991548 3991548
+
+1749816085
+12248848 3791764 294604 5114700 3991548 3991548
+
+1749816085
+12248848 3791764 294604 5114700 3991548 3991548
+
+1749816086
+12248848 3789508 294604 5115140 3991548 3991548
+
+1749816086
+12248848 3789508 294604 5115140 3991548 3991548
+
+1749816086
+12248848 3783712 294604 5115264 3991548 3991548
+
+1749816086
+12248848 3854176 294604 5112932 3991548 3991548
+
+1749816086
+12248848 3854176 294604 5112932 3991548 3991548
+
+1749816088
+12248848 3973764 294604 5112808 3991548 3991548
+
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/sources/tmp/buildstats/20250613120121</b></font>$ cd ../..
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/sources/tmp</b></font>$ ls -lh
+total 400K
+-rw-rw-r--  1 georgeca georgeca    2 mai 24 09:03 abi_version
+drwxrwxr-x 96 georgeca georgeca 4,0K iun 13 15:01 <font color="#12488B"><b>buildstats</b></font>
+drwxrwxr-x  3 georgeca georgeca 4,0K mai 24 09:03 <font color="#12488B"><b>cache</b></font>
+drwxr-xr-x  5 georgeca georgeca 4,0K mai 24 14:53 <font color="#12488B"><b>deploy</b></font>
+drwxrwxr-x  2 georgeca georgeca 4,0K mai 24 09:03 <font color="#12488B"><b>hosttools</b></font>
+drwxrwxr-x  4 georgeca georgeca 4,0K iun 10 16:39 <font color="#12488B"><b>log</b></font>
+drwxr-xr-x  4 georgeca georgeca 4,0K iun  9 07:00 <font color="#12488B"><b>pkgdata</b></font>
+-rw-r--r--  1 georgeca georgeca 2,4K iun 13 13:44 qa.log
+-rw-rw-r--  1 georgeca georgeca   41 mai 24 09:03 saved_tmpdir
+drwxrwxr-x  2 georgeca georgeca 336K iun 13 15:01 <font color="#12488B"><b>sstate-control</b></font>
+drwxrwxr-x  9 georgeca georgeca 4,0K iun  9 07:00 <font color="#12488B"><b>stamps</b></font>
+drwxr-xr-x  3 georgeca georgeca 4,0K iun  9 09:55 <font color="#12488B"><b>sysroots</b></font>
+drwxr-xr-x  9 georgeca georgeca 4,0K iun  9 07:07 <font color="#12488B"><b>sysroots-components</b></font>
+drwxr-xr-x  3 georgeca georgeca 4,0K apr  6  2011 <font color="#12488B"><b>sysroots-uninative</b></font>
+drwxr-xr-x  8 georgeca georgeca 4,0K iun 12 16:54 <font color="#12488B"><b>work</b></font>
+drwxr-xr-x  7 georgeca georgeca 4,0K iun 12 14:10 <font color="#12488B"><b>work-shared</b></font>
+</pre>

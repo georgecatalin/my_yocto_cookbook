@@ -1,0 +1,1001 @@
+<pre><font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/Documents/my_yocto_cookbook/oe_runmake_and_makefile</b></font>$ cd ~/yocto_tutorial/
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial</b></font>$ ls -lh
+total 12K
+drwxrwxr-x  6 georgeca georgeca 4,0K iun 10 13:26 <font color="#12488B"><b>my_builds</b></font>
+drwxrwxr-x 14 georgeca georgeca 4,0K mai 26 22:01 <font color="#12488B"><b>poky</b></font>
+drwxrwxr-x  5 georgeca georgeca 4,0K mai 24 09:04 <font color="#12488B"><b>sources</b></font>
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial</b></font>$ cd my_builds/
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ ls
+<font color="#12488B"><b>&apos;~&apos;</b></font>   bitbake-cookerdaemon.log   <font color="#12488B"><b>cache</b></font>   <font color="#12488B"><b>conf</b></font>   <font color="#12488B"><b>meta-assignment-vars</b></font>
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ source ../poky/oe-init-build-env .
+
+### Shell environment set up for builds. ###
+
+You can now run &apos;bitbake &lt;target&gt;&apos;
+
+Common targets are:
+    core-image-minimal
+    core-image-full-cmdline
+    core-image-sato
+    core-image-weston
+    meta-toolchain
+    meta-ide-support
+
+You can also run generated qemu images with a command like &apos;runqemu qemux86&apos;
+
+Other commonly useful commands are:
+ - &apos;devtool&apos; and &apos;recipetool&apos; handle common recipe tasks
+ - &apos;bitbake-layers&apos; handles common layer tasks
+ - &apos;oe-pkgdata-util&apos; handles common target package tasks
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake-layers show-layers
+<b>NOTE</b>: Starting bitbake server...
+layer                 path                                      priority
+==========================================================================
+meta                  /home/georgeca/yocto_tutorial/poky/meta   5
+meta-poky             /home/georgeca/yocto_tutorial/poky/meta-poky  5
+meta-yocto-bsp        /home/georgeca/yocto_tutorial/poky/meta-yocto-bsp  5
+meta-oe               /home/georgeca/yocto_tutorial/poky/meta-openembedded/meta-oe  5
+meta-my-builder       /home/georgeca/yocto_tutorial/poky/meta-my-builder  6
+meta-assignment-vars  /home/georgeca/yocto_tutorial/my_builds/meta-assignment-vars  6
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake-layers remove-layer meta-my-builder
+<b>NOTE</b>: Starting bitbake server...
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake-layers remove-layer meta-assignment-vars
+<b>NOTE</b>: Starting bitbake server...
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake-layers show-layers
+<b>NOTE</b>: Starting bitbake server...
+layer                 path                                      priority
+==========================================================================
+meta                  /home/georgeca/yocto_tutorial/poky/meta   5
+meta-poky             /home/georgeca/yocto_tutorial/poky/meta-poky  5
+meta-yocto-bsp        /home/georgeca/yocto_tutorial/poky/meta-yocto-bsp  5
+meta-oe               /home/georgeca/yocto_tutorial/poky/meta-openembedded/meta-oe  5
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ nano conf/local.conf 
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ cd conf/
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/conf</b></font>$ ls
+bblayers.conf  local.conf  templateconf.cfg
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/conf</b></font>$ mkdir C_source_files
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/conf</b></font>$ cd C_source_files/
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/conf/C_source_files</b></font>$ vim advanced-calculator.c
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/conf/C_source_files</b></font>$ vim math-lib.c
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/conf/C_source_files</b></font>$ ls -lh
+total 8,0K
+-rw-rw-r-- 1 georgeca georgeca 278 iun 10 16:03 advanced-calculator.c
+-rw-rw-r-- 1 georgeca georgeca 172 iun 10 16:05 math-lib.c
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/conf/C_source_files</b></font>$ cat math-lib.c 
+#include &lt;stdio.h&gt;
+
+int addition(int a, int b)
+{
+	return a + b;
+}
+
+int substraction(int a, int b)
+{
+	return a - b;
+}
+
+int multiplication(int a, int b)
+{
+	return a * b;
+}
+
+
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/conf/C_source_files</b></font>$ cd ..
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/conf</b></font>$ cd ..
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake-layers create-layer meta-advanced-calculator
+<b>NOTE</b>: Starting bitbake server...
+Add your new layer with &apos;bitbake-layers add-layer meta-advanced-calculator&apos;
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake-layers add-layer meta-advanced-calculator/
+<b>NOTE</b>: Starting bitbake server...
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake-layers show-layers
+<b>NOTE</b>: Starting bitbake server...
+layer                 path                                      priority
+==========================================================================
+meta                  /home/georgeca/yocto_tutorial/poky/meta   5
+meta-poky             /home/georgeca/yocto_tutorial/poky/meta-poky  5
+meta-yocto-bsp        /home/georgeca/yocto_tutorial/poky/meta-yocto-bsp  5
+meta-oe               /home/georgeca/yocto_tutorial/poky/meta-openembedded/meta-oe  5
+meta-advanced-calculator  /home/georgeca/yocto_tutorial/my_builds/meta-advanced-calculator  6
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ ls meta-advanced-calculator/recipes-example/
+<font color="#12488B"><b>example</b></font>
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ ls meta-advanced-calculator/recipes-example/example/
+example_0.1.bb
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ mkdir  meta-advanced-calculator/recipes-example/example/files
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ cp conf/C_source_files/* meta-advanced-calculator/recipes-example/example/files/
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ ls meta-advanced-calculator/recipes-example/example/
+example_0.1.bb  <font color="#12488B"><b>files</b></font>
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ ls meta-advanced-calculator/recipes-example/example//files/
+advanced-calculator.c  math-lib.c
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ nano meta-advanced-calculator/recipes-example/example/example_0.1.bb 
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ gedit meta-advanced-calculator/recipes-example/example/example_0.1.bb 
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ mv meta-advanced-calculator/recipes-example/example/example_0.1.bb meta-advanced-calculator/recipes-example/example/final-calculator_0.1.bb
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ mv meta-advanced-calculator/recipes-example/example/ meta-advanced-calculator/recipes-example/final-calculator
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ tree meta-advanced-calculator/
+<font color="#12488B"><b>meta-advanced-calculator/</b></font>
+├── <font color="#12488B"><b>conf</b></font>
+│   └── layer.conf
+├── COPYING.MIT
+├── README
+└── <font color="#12488B"><b>recipes-example</b></font>
+    └── <font color="#12488B"><b>final-calculator</b></font>
+        ├── <font color="#12488B"><b>files</b></font>
+        │   ├── advanced-calculator.c
+        │   └── math-lib.c
+        └── final-calculator_0.1.bb
+
+4 directories, 6 files
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake -c do_cleansstate final-calculator
+Loading cache: 100% |                                                                                                                                                                       | ETA:  --:--:--
+Loaded 0 entries from dependency cache.
+Parsing recipes: 100% |######################################################################################################################################################################| Time: 0:00:31
+Parsing of 1746 .bb files complete (0 cached, 1746 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+meta-advanced-calculator = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |###################################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 0 Local 0 Mirrors 0 Missed 0 Current 0 (0% match, 0% complete)
+<b>NOTE</b>: No setscene tasks
+<b>NOTE</b>: Executing Tasks
+<b>NOTE</b>: Tasks Summary: Attempted 2 tasks of which 0 didn&apos;t need to be rerun and all succeeded.
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ time bitbake final-calculator
+Loading cache: 100% |########################################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+meta-advanced-calculator = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |###################################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 11 Local 4 Mirrors 0 Missed 7 Current 219 (36% match, 96% complete)
+<b>NOTE</b>: Executing Tasks
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">final-calculator-0.1-r0 do_populate_lic: QA Issue: final-calculator: Recipe file fetches files and does not have license file information (LIC_FILES_CHKSUM) [license-checksum]</font>
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">final-calculator-0.1-r0 do_populate_lic: Fatal QA errors were found, failing task.</font>
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Logfile of failure stored in: /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/temp/log.do_populate_lic.5656</font>
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Task (/home/georgeca/yocto_tutorial/my_builds/meta-advanced-calculator/recipes-example/final-calculator/final-calculator_0.1.bb:do_populate_lic) failed with exit code &apos;1&apos;</font>
+<b>NOTE</b>: Tasks Summary: Attempted 774 tasks of which 768 didn&apos;t need to be rerun and 1 failed.
+
+Summary: 1 task failed:
+  /home/georgeca/yocto_tutorial/my_builds/meta-advanced-calculator/recipes-example/final-calculator/final-calculator_0.1.bb:do_populate_lic
+Summary: There were 2 ERROR messages, returning a non-zero exit code.
+
+real	0m4,737s
+user	0m0,289s
+sys	0m0,115s
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ nano meta-advanced-calculator/recipes-example/example/example_0.1.bb 
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ nano meta-advanced-calculator/recipes-example/final-calculator/final-calculator_0.1.bb 
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ time bitbake final-calculator
+Loading cache: 100% |########################################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+Parsing recipes: 100% |######################################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+meta-advanced-calculator = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |###################################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 10 Local 4 Mirrors 0 Missed 6 Current 220 (40% match, 97% complete)
+<b>NOTE</b>: Executing Tasks
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">final-calculator-0.1-r0 do_compile: ExecutionError(&apos;/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/temp/run.do_compile.5775&apos;, 1, None, None)</font>
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Logfile of failure stored in: /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/temp/log.do_compile.5775</font>
+Log data follows:
+| DEBUG: Executing shell function do_compile
+| /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/advanced-calculator.c: In function &apos;main&apos;:
+| /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/advanced-calculator.c:8:33: warning: implicit declaration of function &apos;addition&apos; [-Wimplicit-function-declaration]
+|     8 |         printf(&quot;Sum is : %d\n&quot;, addition(number1, number2));
+|       |                                 ^~~~~~~~
+| /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/advanced-calculator.c:9:15: error: expected &apos;;&apos; before string constant
+|     9 |         printf&quot;Substraction is: %d\n&quot;, substraction(number1, number2));
+|       |               ^~~~~~~~~~~~~~~~~~~~~~~
+|       |               ;
+| /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/advanced-calculator.c:9:70: error: expected statement before &apos;)&apos; token
+|     9 |         printf&quot;Substraction is: %d\n&quot;, substraction(number1, number2));
+|       |                                                                      ^
+| /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/advanced-calculator.c:10:43: warning: implicit declaration of function &apos;multiplication&apos; [-Wimplicit-function-declaration]
+|    10 |         printf(&quot;Multiplication is: %d\n&quot;, multiplication(number1, number2));
+|       |                                           ^~~~~~~~~~~~~~
+| WARNING: exit code 1 from a shell command.
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Task (/home/georgeca/yocto_tutorial/my_builds/meta-advanced-calculator/recipes-example/final-calculator/final-calculator_0.1.bb:do_compile) failed with exit code &apos;1&apos;</font>
+<b>NOTE</b>: Tasks Summary: Attempted 776 tasks of which 773 didn&apos;t need to be rerun and 1 failed.
+
+Summary: 1 task failed:
+  /home/georgeca/yocto_tutorial/my_builds/meta-advanced-calculator/recipes-example/final-calculator/final-calculator_0.1.bb:do_compile
+Summary: There was 1 ERROR message, returning a non-zero exit code.
+
+real	0m5,072s
+user	0m0,304s
+sys	0m0,133s
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ nano meta-advanced-calculator/recipes-example/final-calculator/files/advanced-calculator.c 
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ nano meta-advanced-calculator/recipes-example/final-calculator/files/advanced-calculator.c 
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ time bitbake final-calculator
+Loading cache: 100% |########################################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+meta-advanced-calculator = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |###################################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 11 Local 4 Mirrors 0 Missed 7 Current 219 (36% match, 96% complete)
+Removing 2 stale sstate objects for arch cortexa8hf-neon: 100% |#############################################################################################################################| Time: 0:00:00
+<b>NOTE</b>: Executing Tasks
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">final-calculator-0.1-r0 do_compile: ExecutionError(&apos;/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/temp/run.do_compile.5983&apos;, 1, None, None)</font>
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Logfile of failure stored in: /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/temp/log.do_compile.5983</font>
+Log data follows:
+| DEBUG: Executing shell function do_compile
+| /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/advanced-calculator.c: In function &apos;main&apos;:
+| /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/advanced-calculator.c:8:33: warning: implicit declaration of function &apos;addition&apos; [-Wimplicit-function-declaration]
+|     8 |         printf(&quot;Sum is : %d\n&quot;, addition(number1, number2));
+|       |                                 ^~~~~~~~
+| /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/advanced-calculator.c:9:41: warning: implicit declaration of function &apos;substraction&apos; [-Wimplicit-function-declaration]
+|     9 |         printf(&quot;Substraction is: %d\n&quot;, substraction(number1, number2));
+|       |                                         ^~~~~~~~~~~~
+| /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/advanced-calculator.c:10:43: warning: implicit declaration of function &apos;multiplication&apos; [-Wimplicit-function-declaration]
+|    10 |         printf(&quot;Multiplication is: %d\n&quot;, multiplication(number1, number2));
+|       |                                           ^~~~~~~~~~~~~~
+| /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/recipe-sysroot-native/usr/bin/arm-poky-linux-gnueabi/../../libexec/arm-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/11.5.0/ld: cannot find /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0advanced-calculator.o: No such file or directory
+| collect2: error: ld returned 1 exit status
+| WARNING: exit code 1 from a shell command.
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Task (/home/georgeca/yocto_tutorial/my_builds/meta-advanced-calculator/recipes-example/final-calculator/final-calculator_0.1.bb:do_compile) failed with exit code &apos;1&apos;</font>
+<b>NOTE</b>: Tasks Summary: Attempted 776 tasks of which 768 didn&apos;t need to be rerun and 1 failed.
+
+Summary: 1 task failed:
+  /home/georgeca/yocto_tutorial/my_builds/meta-advanced-calculator/recipes-example/final-calculator/final-calculator_0.1.bb:do_compile
+Summary: There was 1 ERROR message, returning a non-zero exit code.
+
+real	0m4,892s
+user	0m0,335s
+sys	0m0,100s
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ nano meta-advanced-calculator/recipes-example/final-calculator/files/advanced-calculator.c 
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ time bitbake final-calculator
+Loading cache: 100% |########################################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+meta-advanced-calculator = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |###################################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 11 Local 4 Mirrors 0 Missed 7 Current 219 (36% match, 96% complete)
+Removing 2 stale sstate objects for arch cortexa8hf-neon: 100% |#############################################################################################################################| Time: 0:00:00
+<b>NOTE</b>: Executing Tasks
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">final-calculator-0.1-r0 do_compile: ExecutionError(&apos;/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/temp/run.do_compile.6130&apos;, 1, None, None)</font>
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Logfile of failure stored in: /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/temp/log.do_compile.6130</font>
+Log data follows:
+| DEBUG: Executing shell function do_compile
+| /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/advanced-calculator.c:2:10: fatal error: math-lib.c: No such file or directory
+|     2 | #include &lt;math-lib.c&gt;
+|       |          ^~~~~~~~~~~~
+| compilation terminated.
+| WARNING: exit code 1 from a shell command.
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Task (/home/georgeca/yocto_tutorial/my_builds/meta-advanced-calculator/recipes-example/final-calculator/final-calculator_0.1.bb:do_compile) failed with exit code &apos;1&apos;</font>
+<b>NOTE</b>: Tasks Summary: Attempted 776 tasks of which 768 didn&apos;t need to be rerun and 1 failed.
+
+Summary: 1 task failed:
+  /home/georgeca/yocto_tutorial/my_builds/meta-advanced-calculator/recipes-example/final-calculator/final-calculator_0.1.bb:do_compile
+Summary: There was 1 ERROR message, returning a non-zero exit code.
+
+real	0m4,846s
+user	0m0,308s
+sys	0m0,125s
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ nano meta-advanced-calculator/recipes-example/final-calculator/files/advanced-calculator.c 
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ nano meta-advanced-calculator/recipes-example/final-calculator/files/math-lib.c 
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ nano meta-advanced-calculator/recipes-example/final-calculator/final-calculator_0.1.bb 
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ time bitbake final-calculator
+Loading cache: 100% |########################################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+meta-advanced-calculator = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |###################################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 11 Local 4 Mirrors 0 Missed 7 Current 219 (36% match, 96% complete)
+Removing 2 stale sstate objects for arch cortexa8hf-neon: 100% |#############################################################################################################################| Time: 0:00:00
+<b>NOTE</b>: Executing Tasks
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">final-calculator-0.1-r0 do_compile: ExecutionError(&apos;/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/temp/run.do_compile.6317&apos;, 1, None, None)</font>
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Logfile of failure stored in: /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/temp/log.do_compile.6317</font>
+Log data follows:
+| DEBUG: Executing shell function do_compile
+| /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/advanced-calculator.c: In function &apos;main&apos;:
+| /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/advanced-calculator.c:9:33: warning: implicit declaration of function &apos;addition&apos; [-Wimplicit-function-declaration]
+|     9 |         printf(&quot;Sum is : %d\n&quot;, addition(number1, number2));
+|       |                                 ^~~~~~~~
+| /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/advanced-calculator.c:10:41: warning: implicit declaration of function &apos;substraction&apos; [-Wimplicit-function-declaration]
+|    10 |         printf(&quot;Substraction is: %d\n&quot;, substraction(number1, number2));
+|       |                                         ^~~~~~~~~~~~
+| /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/advanced-calculator.c:11:43: warning: implicit declaration of function &apos;multiplication&apos; [-Wimplicit-function-declaration]
+|    11 |         printf(&quot;Multiplication is: %d\n&quot;, multiplication(number1, number2));
+|       |                                           ^~~~~~~~~~~~~~
+| /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/recipe-sysroot-native/usr/bin/arm-poky-linux-gnueabi/../../libexec/arm-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/11.5.0/ld: cannot find /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0advanced-calculator.o: No such file or directory
+| collect2: error: ld returned 1 exit status
+| WARNING: exit code 1 from a shell command.
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Task (/home/georgeca/yocto_tutorial/my_builds/meta-advanced-calculator/recipes-example/final-calculator/final-calculator_0.1.bb:do_compile) failed with exit code &apos;1&apos;</font>
+<b>NOTE</b>: Tasks Summary: Attempted 776 tasks of which 768 didn&apos;t need to be rerun and 1 failed.
+
+Summary: 1 task failed:
+  /home/georgeca/yocto_tutorial/my_builds/meta-advanced-calculator/recipes-example/final-calculator/final-calculator_0.1.bb:do_compile
+Summary: There was 1 ERROR message, returning a non-zero exit code.
+
+real	0m4,891s
+user	0m0,313s
+sys	0m0,129s
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ nano meta-advanced-calculator/recipes-example/final-calculator/final-calculator_0.1.bb 
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ nano meta-advanced-calculator/recipes-example/final-calculator/files/math-lib.h
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ ls meta-advanced-calculator/recipes-example/final-calculator/files/
+advanced-calculator.c  math-lib.c  math-lib.h
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ nano meta-advanced-calculator/recipes-example/final-calculator/files/math-lib.c
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ time bitbake final-calculator
+Loading cache: 100% |########################################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+Parsing recipes: 100% |######################################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+meta-advanced-calculator = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |###################################################################################################################################################################| Time: 0:00:01
+Sstate summary: Wanted 11 Local 4 Mirrors 0 Missed 7 Current 219 (36% match, 96% complete)
+Removing 2 stale sstate objects for arch cortexa8hf-neon: 100% |#############################################################################################################################| Time: 0:00:00
+<b>NOTE</b>: Executing Tasks
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">final-calculator-0.1-r0 do_compile: ExecutionError(&apos;/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/temp/run.do_compile.6722&apos;, 1, None, None)</font>
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Logfile of failure stored in: /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/temp/log.do_compile.6722</font>
+Log data follows:
+| DEBUG: Executing shell function do_compile
+| /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/advanced-calculator.c: In function &apos;main&apos;:
+| /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/advanced-calculator.c:9:33: warning: implicit declaration of function &apos;addition&apos; [-Wimplicit-function-declaration]
+|     9 |         printf(&quot;Sum is : %d\n&quot;, addition(number1, number2));
+|       |                                 ^~~~~~~~
+| /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/advanced-calculator.c:10:41: warning: implicit declaration of function &apos;substraction&apos; [-Wimplicit-function-declaration]
+|    10 |         printf(&quot;Substraction is: %d\n&quot;, substraction(number1, number2));
+|       |                                         ^~~~~~~~~~~~
+| /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/advanced-calculator.c:11:43: warning: implicit declaration of function &apos;multiplication&apos; [-Wimplicit-function-declaration]
+|    11 |         printf(&quot;Multiplication is: %d\n&quot;, multiplication(number1, number2));
+|       |                                           ^~~~~~~~~~~~~~
+| /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/recipe-sysroot-native/usr/bin/arm-poky-linux-gnueabi/../../libexec/arm-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/11.5.0/ld: cannot find /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0advanced-calculator.o: No such file or directory
+| collect2: error: ld returned 1 exit status
+| WARNING: exit code 1 from a shell command.
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Task (/home/georgeca/yocto_tutorial/my_builds/meta-advanced-calculator/recipes-example/final-calculator/final-calculator_0.1.bb:do_compile) failed with exit code &apos;1&apos;</font>
+<b>NOTE</b>: Tasks Summary: Attempted 776 tasks of which 768 didn&apos;t need to be rerun and 1 failed.
+
+Summary: 1 task failed:
+  /home/georgeca/yocto_tutorial/my_builds/meta-advanced-calculator/recipes-example/final-calculator/final-calculator_0.1.bb:do_compile
+Summary: There was 1 ERROR message, returning a non-zero exit code.
+
+real	0m5,720s
+user	0m0,344s
+sys	0m0,132s
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ nano meta-advanced-calculator/recipes-example/final-calculator/files/math-lib.c
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ time bitbake final-calculator
+Loading cache: 100% |########################################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+meta-advanced-calculator = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |###################################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 11 Local 4 Mirrors 0 Missed 7 Current 219 (36% match, 96% complete)
+Removing 2 stale sstate objects for arch cortexa8hf-neon: 100% |#############################################################################################################################| Time: 0:00:00
+<b>NOTE</b>: Executing Tasks
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">final-calculator-0.1-r0 do_compile: ExecutionError(&apos;/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/temp/run.do_compile.6869&apos;, 1, None, None)</font>
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Logfile of failure stored in: /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/temp/log.do_compile.6869</font>
+Log data follows:
+| DEBUG: Executing shell function do_compile
+| /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/advanced-calculator.c: In function &apos;main&apos;:
+| /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/advanced-calculator.c:9:33: warning: implicit declaration of function &apos;addition&apos; [-Wimplicit-function-declaration]
+|     9 |         printf(&quot;Sum is : %d\n&quot;, addition(number1, number2));
+|       |                                 ^~~~~~~~
+| /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/advanced-calculator.c:10:41: warning: implicit declaration of function &apos;substraction&apos; [-Wimplicit-function-declaration]
+|    10 |         printf(&quot;Substraction is: %d\n&quot;, substraction(number1, number2));
+|       |                                         ^~~~~~~~~~~~
+| /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/advanced-calculator.c:11:43: warning: implicit declaration of function &apos;multiplication&apos; [-Wimplicit-function-declaration]
+|    11 |         printf(&quot;Multiplication is: %d\n&quot;, multiplication(number1, number2));
+|       |                                           ^~~~~~~~~~~~~~
+| /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/recipe-sysroot-native/usr/bin/arm-poky-linux-gnueabi/../../libexec/arm-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/11.5.0/ld: cannot find /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0advanced-calculator.o: No such file or directory
+| collect2: error: ld returned 1 exit status
+| WARNING: exit code 1 from a shell command.
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Task (/home/georgeca/yocto_tutorial/my_builds/meta-advanced-calculator/recipes-example/final-calculator/final-calculator_0.1.bb:do_compile) failed with exit code &apos;1&apos;</font>
+<b>NOTE</b>: Tasks Summary: Attempted 776 tasks of which 768 didn&apos;t need to be rerun and 1 failed.
+
+Summary: 1 task failed:
+  /home/georgeca/yocto_tutorial/my_builds/meta-advanced-calculator/recipes-example/final-calculator/final-calculator_0.1.bb:do_compile
+Summary: There was 1 ERROR message, returning a non-zero exit code.
+
+real	0m4,977s
+user	0m0,303s
+sys	0m0,122s
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ nano meta-advanced-calculator/recipes-example/final-calculator/final-calculator_0.1.bb 
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ time bitbake final-calculator
+Loading cache: 100% |########################################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+Parsing recipes: 100% |######################################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+meta-advanced-calculator = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |###################################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 9 Local 4 Mirrors 0 Missed 5 Current 221 (44% match, 97% complete)
+<b>NOTE</b>: Executing Tasks
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">final-calculator-0.1-r0 do_compile: ExecutionError(&apos;/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/temp/run.do_compile.7030&apos;, 1, None, None)</font>
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Logfile of failure stored in: /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/temp/log.do_compile.7030</font>
+Log data follows:
+| DEBUG: Executing shell function do_compile
+| advanced-calculator.c: In function &apos;main&apos;:
+| advanced-calculator.c:9:33: warning: implicit declaration of function &apos;addition&apos; [-Wimplicit-function-declaration]
+|     9 |         printf(&quot;Sum is : %d\n&quot;, addition(number1, number2));
+|       |                                 ^~~~~~~~
+| advanced-calculator.c:10:41: warning: implicit declaration of function &apos;substraction&apos; [-Wimplicit-function-declaration]
+|    10 |         printf(&quot;Substraction is: %d\n&quot;, substraction(number1, number2));
+|       |                                         ^~~~~~~~~~~~
+| advanced-calculator.c:11:43: warning: implicit declaration of function &apos;multiplication&apos; [-Wimplicit-function-declaration]
+|    11 |         printf(&quot;Multiplication is: %d\n&quot;, multiplication(number1, number2));
+|       |                                           ^~~~~~~~~~~~~~
+| /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/recipe-sysroot-native/usr/bin/arm-poky-linux-gnueabi/../../libexec/arm-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/11.5.0/ld: cannot find /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0advanced-calculator.o: No such file or directory
+| collect2: error: ld returned 1 exit status
+| WARNING: exit code 1 from a shell command.
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Task (/home/georgeca/yocto_tutorial/my_builds/meta-advanced-calculator/recipes-example/final-calculator/final-calculator_0.1.bb:do_compile) failed with exit code &apos;1&apos;</font>
+<b>NOTE</b>: Tasks Summary: Attempted 776 tasks of which 775 didn&apos;t need to be rerun and 1 failed.
+
+Summary: 1 task failed:
+  /home/georgeca/yocto_tutorial/my_builds/meta-advanced-calculator/recipes-example/final-calculator/final-calculator_0.1.bb:do_compile
+Summary: There was 1 ERROR message, returning a non-zero exit code.
+
+real	0m4,519s
+user	0m0,288s
+sys	0m0,133s
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ nano meta-advanced-calculator/recipes-example/final-calculator/final-calculator_0.1.bb 
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ time bitbake final-calculator
+Loading cache: 100% |########################################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+Parsing recipes: 100% |######################################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+meta-advanced-calculator = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |###################################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 9 Local 4 Mirrors 0 Missed 5 Current 221 (44% match, 97% complete)
+<b>NOTE</b>: Executing Tasks
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">final-calculator-0.1-r0 do_compile: ExecutionError(&apos;/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/temp/run.do_compile.7100&apos;, 1, None, None)</font>
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Logfile of failure stored in: /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/temp/log.do_compile.7100</font>
+Log data follows:
+| DEBUG: Executing shell function do_compile
+| advanced-calculator.c: In function &apos;main&apos;:
+| advanced-calculator.c:9:33: warning: implicit declaration of function &apos;addition&apos; [-Wimplicit-function-declaration]
+|     9 |         printf(&quot;Sum is : %d\n&quot;, addition(number1, number2));
+|       |                                 ^~~~~~~~
+| advanced-calculator.c:10:41: warning: implicit declaration of function &apos;substraction&apos; [-Wimplicit-function-declaration]
+|    10 |         printf(&quot;Substraction is: %d\n&quot;, substraction(number1, number2));
+|       |                                         ^~~~~~~~~~~~
+| advanced-calculator.c:11:43: warning: implicit declaration of function &apos;multiplication&apos; [-Wimplicit-function-declaration]
+|    11 |         printf(&quot;Multiplication is: %d\n&quot;, multiplication(number1, number2));
+|       |                                           ^~~~~~~~~~~~~~
+| arm-poky-linux-gnueabi-gcc: error: unrecognized command-line option &apos;--hash-style=gnu&apos;
+| WARNING: exit code 1 from a shell command.
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Task (/home/georgeca/yocto_tutorial/my_builds/meta-advanced-calculator/recipes-example/final-calculator/final-calculator_0.1.bb:do_compile) failed with exit code &apos;1&apos;</font>
+<b>NOTE</b>: Tasks Summary: Attempted 776 tasks of which 775 didn&apos;t need to be rerun and 1 failed.
+
+Summary: 1 task failed:
+  /home/georgeca/yocto_tutorial/my_builds/meta-advanced-calculator/recipes-example/final-calculator/final-calculator_0.1.bb:do_compile
+Summary: There was 1 ERROR message, returning a non-zero exit code.
+
+real	0m5,014s
+user	0m0,268s
+sys	0m0,122s
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ nano meta-advanced-calculator/recipes-example/final-calculator/final-calculator_0.1.bb 
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ time bitbake final-calculator
+Loading cache: 100% |########################################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+Parsing recipes: 100% |######################################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+meta-advanced-calculator = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |###################################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 9 Local 4 Mirrors 0 Missed 5 Current 221 (44% match, 97% complete)
+<b>NOTE</b>: Executing Tasks
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">final-calculator-0.1-r0 do_compile: ExecutionError(&apos;/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/temp/run.do_compile.7176&apos;, 1, None, None)</font>
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Logfile of failure stored in: /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/temp/log.do_compile.7176</font>
+Log data follows:
+| DEBUG: Executing shell function do_compile
+| /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/advanced-calculator.c: In function &apos;main&apos;:
+| /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/advanced-calculator.c:9:33: warning: implicit declaration of function &apos;addition&apos; [-Wimplicit-function-declaration]
+|     9 |         printf(&quot;Sum is : %d\n&quot;, addition(number1, number2));
+|       |                                 ^~~~~~~~
+| /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/advanced-calculator.c:10:41: warning: implicit declaration of function &apos;substraction&apos; [-Wimplicit-function-declaration]
+|    10 |         printf(&quot;Substraction is: %d\n&quot;, substraction(number1, number2));
+|       |                                         ^~~~~~~~~~~~
+| /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/advanced-calculator.c:11:43: warning: implicit declaration of function &apos;multiplication&apos; [-Wimplicit-function-declaration]
+|    11 |         printf(&quot;Multiplication is: %d\n&quot;, multiplication(number1, number2));
+|       |                                           ^~~~~~~~~~~~~~
+| /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/recipe-sysroot-native/usr/bin/arm-poky-linux-gnueabi/../../libexec/arm-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/11.5.0/ld: cannot find /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0advanced-calculator.o: No such file or directory
+| collect2: error: ld returned 1 exit status
+| WARNING: exit code 1 from a shell command.
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Task (/home/georgeca/yocto_tutorial/my_builds/meta-advanced-calculator/recipes-example/final-calculator/final-calculator_0.1.bb:do_compile) failed with exit code &apos;1&apos;</font>
+<b>NOTE</b>: Tasks Summary: Attempted 776 tasks of which 775 didn&apos;t need to be rerun and 1 failed.
+
+Summary: 1 task failed:
+  /home/georgeca/yocto_tutorial/my_builds/meta-advanced-calculator/recipes-example/final-calculator/final-calculator_0.1.bb:do_compile
+Summary: There was 1 ERROR message, returning a non-zero exit code.
+
+real	0m4,633s
+user	0m0,361s
+sys	0m0,077s
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ nano meta-advanced-calculator/recipes-example/final-calculator/final-calculator_0.1.bb 
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ nano meta-advanced-calculator/recipes-example/final-calculator/final-calculator_0.1.bb 
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ time bitbake final-calculator
+Loading cache: 100% |########################################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+Parsing recipes: 100% |######################################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+meta-advanced-calculator = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |###################################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 11 Local 4 Mirrors 0 Missed 7 Current 219 (36% match, 96% complete)
+Removing 2 stale sstate objects for arch cortexa8hf-neon: 100% |#############################################################################################################################| Time: 0:00:00
+<b>NOTE</b>: Executing Tasks
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">final-calculator-0.1-r0 do_compile: oe_runmake failed</font>
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">final-calculator-0.1-r0 do_compile: ExecutionError(&apos;/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/temp/run.do_compile.7615&apos;, 1, None, None)</font>
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Logfile of failure stored in: /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/temp/log.do_compile.7615</font>
+Log data follows:
+| DEBUG: Executing shell function do_compile
+| NOTE: make -j 4 final-calculator
+| make: *** No rule to make target &apos;final-calculator&apos;.  Stop.
+| ERROR: oe_runmake failed
+| WARNING: exit code 1 from a shell command.
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Task (/home/georgeca/yocto_tutorial/my_builds/meta-advanced-calculator/recipes-example/final-calculator/final-calculator_0.1.bb:do_compile) failed with exit code &apos;1&apos;</font>
+<b>NOTE</b>: Tasks Summary: Attempted 776 tasks of which 768 didn&apos;t need to be rerun and 1 failed.
+
+Summary: 1 task failed:
+  /home/georgeca/yocto_tutorial/my_builds/meta-advanced-calculator/recipes-example/final-calculator/final-calculator_0.1.bb:do_compile
+Summary: There were 2 ERROR messages, returning a non-zero exit code.
+
+real	0m5,324s
+user	0m0,352s
+sys	0m0,110s
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ nano meta-advanced-calculator/recipes-example/final-calculator/final-calculator_0.1.bb 
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ time bitbake final-calculator
+Loading cache: 100% |########################################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+Parsing recipes: 100% |######################################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+meta-advanced-calculator = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |###################################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 11 Local 4 Mirrors 0 Missed 7 Current 219 (36% match, 96% complete)
+Removing 2 stale sstate objects for arch cortexa8hf-neon: 100% |#############################################################################################################################| Time: 0:00:00
+<b>NOTE</b>: Executing Tasks
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">final-calculator-0.1-r0 do_compile: ExecutionError(&apos;/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/temp/run.do_compile.7803&apos;, 1, None, None)</font>
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Logfile of failure stored in: /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/temp/log.do_compile.7803</font>
+Log data follows:
+| DEBUG: Executing shell function do_compile
+| /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/recipe-sysroot-native/usr/bin/arm-poky-linux-gnueabi/../../libexec/arm-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/11.5.0/ld: /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/recipe-sysroot/usr/lib/Scrt1.o: in function `_start&apos;:
+| /usr/src/debug/glibc/2.35-r0/git/csu/../sysdeps/arm/start.S:118: undefined reference to `main&apos;
+| collect2: error: ld returned 1 exit status
+| WARNING: exit code 1 from a shell command.
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Task (/home/georgeca/yocto_tutorial/my_builds/meta-advanced-calculator/recipes-example/final-calculator/final-calculator_0.1.bb:do_compile) failed with exit code &apos;1&apos;</font>
+<b>NOTE</b>: Tasks Summary: Attempted 776 tasks of which 768 didn&apos;t need to be rerun and 1 failed.
+
+Summary: 1 task failed:
+  /home/georgeca/yocto_tutorial/my_builds/meta-advanced-calculator/recipes-example/final-calculator/final-calculator_0.1.bb:do_compile
+Summary: There was 1 ERROR message, returning a non-zero exit code.
+
+real	0m5,503s
+user	0m0,295s
+sys	0m0,110s
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ nano meta-advanced-calculator/recipes-example/final-calculator/final-calculator_0.1.bb 
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ time bitbake final-calculator
+Loading cache: 100% |########################################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+Parsing recipes: 100% |######################################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+meta-advanced-calculator = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |###################################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 9 Local 4 Mirrors 0 Missed 5 Current 221 (44% match, 97% complete)
+<b>NOTE</b>: Executing Tasks
+<b>NOTE</b>: Tasks Summary: Attempted 785 tasks of which 775 didn&apos;t need to be rerun and all succeeded.
+
+real	0m9,130s
+user	0m0,332s
+sys	0m0,132s
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bibake -e final-calculator | grep ^D=
+bibake: command not found
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ source ../poky/oe-init-build-env .
+
+### Shell environment set up for builds. ###
+
+You can now run &apos;bitbake &lt;target&gt;&apos;
+
+Common targets are:
+    core-image-minimal
+    core-image-full-cmdline
+    core-image-sato
+    core-image-weston
+    meta-toolchain
+    meta-ide-support
+
+You can also run generated qemu images with a command like &apos;runqemu qemux86&apos;
+
+Other commonly useful commands are:
+ - &apos;devtool&apos; and &apos;recipetool&apos; handle common recipe tasks
+ - &apos;bitbake-layers&apos; handles common layer tasks
+ - &apos;oe-pkgdata-util&apos; handles common target package tasks
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bibake -e final-calculator | grep ^D=
+bibake: command not found
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake -e final-calculator | grep ^D=
+<font color="#C01C28"><b>D=</b></font>&quot;/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/image&quot;
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ ls /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/image
+ls: cannot access &apos;/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/image&apos;: No such file or directory
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake -e final-calculator | grep ^S=
+<font color="#C01C28"><b>S=</b></font>&quot;/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0&quot;
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ ls /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0
+<font color="#12488B"><b>temp</b></font>
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ ls /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/final-calculator/0.1-r0/temp/
+<font color="#2AA1B3"><b>depsig.do_deploy_source_date_epoch</b></font>       <font color="#2AA1B3"><b>log.do_prepare_recipe_sysroot</b></font>            run.do_patch.5635                          run.package_do_shlibs.7953            run.sstate_report_unihash.6674
+depsig.do_deploy_source_date_epoch.5657  log.do_prepare_recipe_sysroot.5623       run.do_patch.5927                          run.package_do_split_locales.7953     run.sstate_report_unihash.6675
+depsig.do_deploy_source_date_epoch.5936  log.do_prepare_recipe_sysroot.5911       run.do_patch.6074                          run.package_fixsymlinks.7953          run.sstate_report_unihash.6821
+depsig.do_deploy_source_date_epoch.6083  log.do_prepare_recipe_sysroot.6056       run.do_patch.6261                          run.package_get_auto_pr.8124          run.sstate_report_unihash.6822
+depsig.do_deploy_source_date_epoch.6270  log.do_prepare_recipe_sysroot.6245       run.do_patch.6666                          run.package_name_hook.7953            run.sstate_report_unihash.7567
+depsig.do_deploy_source_date_epoch.6675  log.do_prepare_recipe_sysroot.6646       run.do_patch.6812                          run.package_prepare_pkgdata.7953      run.sstate_report_unihash.7568
+depsig.do_deploy_source_date_epoch.6822  log.do_prepare_recipe_sysroot.6794       run.do_patch.7559                          run.patch_do_patch.5635               run.sstate_report_unihash.7755
+depsig.do_deploy_source_date_epoch.7568  log.do_prepare_recipe_sysroot.7543       run.do_patch.7747                          run.patch_do_patch.5927               run.sstate_report_unihash.7756
+depsig.do_deploy_source_date_epoch.7756  log.do_prepare_recipe_sysroot.7729       <font color="#2AA1B3"><b>run.do_populate_lic</b></font>                        run.patch_do_patch.6074               run.sstate_report_unihash.7953
+<font color="#2AA1B3"><b>depsig.do_package</b></font>                        <font color="#2AA1B3"><b>log.do_rm_work</b></font>                           run.do_populate_lic.5656                   run.patch_do_patch.6261               run.sstate_report_unihash.7954
+depsig.do_package.7953                   log.do_rm_work.8276                      run.do_populate_lic.5758                   run.patch_do_patch.6666               run.sstate_report_unihash.8124
+<font color="#2AA1B3"><b>depsig.do_packagedata</b></font>                    <font color="#2AA1B3"><b>log.do_unpack</b></font>                            run.do_populate_lic.5935                   run.patch_do_patch.6812               run.sstate_report_unihash.8171
+depsig.do_packagedata.8124               log.do_unpack.5624                       run.do_populate_lic.6082                   run.patch_do_patch.7559               run.sstate_report_unihash.8172
+<font color="#2AA1B3"><b>depsig.do_package_qa</b></font>                     log.do_unpack.5912                       run.do_populate_lic.6269                   run.patch_do_patch.7747               run.sstate_task_postfunc.5657
+depsig.do_package_qa.8171                log.do_unpack.6057                       run.do_populate_lic.6674                   run.perform_packagecopy.7953          run.sstate_task_postfunc.5758
+<font color="#2AA1B3"><b>depsig.do_package_write_rpm</b></font>              log.do_unpack.6246                       run.do_populate_lic.6821                   run.populate_lic_qa_checksum.5656     run.sstate_task_postfunc.5935
+depsig.do_package_write_rpm.8172         log.do_unpack.6647                       run.do_populate_lic.7567                   run.populate_lic_qa_checksum.5758     run.sstate_task_postfunc.5936
+<font color="#2AA1B3"><b>depsig.do_populate_lic</b></font>                   log.do_unpack.6795                       run.do_populate_lic.7755                   run.populate_lic_qa_checksum.5935     run.sstate_task_postfunc.6082
+depsig.do_populate_lic.5758              log.do_unpack.7544                       <font color="#2AA1B3"><b>run.do_populate_sysroot</b></font>                    run.populate_lic_qa_checksum.6082     run.sstate_task_postfunc.6083
+depsig.do_populate_lic.5935              log.do_unpack.7730                       run.do_populate_sysroot.7954               run.populate_lic_qa_checksum.6269     run.sstate_task_postfunc.6269
+depsig.do_populate_lic.6082              log.task_order                           <font color="#2AA1B3"><b>run.do_prepare_recipe_sysroot</b></font>              run.populate_lic_qa_checksum.6674     run.sstate_task_postfunc.6270
+depsig.do_populate_lic.6269              run.base_do_fetch.5618                   run.do_prepare_recipe_sysroot.5623         run.populate_lic_qa_checksum.6821     run.sstate_task_postfunc.6674
+depsig.do_populate_lic.6674              run.base_do_fetch.5906                   run.do_prepare_recipe_sysroot.5911         run.populate_lic_qa_checksum.7567     run.sstate_task_postfunc.6675
+depsig.do_populate_lic.6821              run.base_do_fetch.6051                   run.do_prepare_recipe_sysroot.6056         run.populate_lic_qa_checksum.7755     run.sstate_task_postfunc.6821
+depsig.do_populate_lic.7567              run.base_do_fetch.6240                   run.do_prepare_recipe_sysroot.6245         run.populate_packages.7953            run.sstate_task_postfunc.6822
+depsig.do_populate_lic.7755              run.base_do_fetch.6641                   run.do_prepare_recipe_sysroot.6646         run.read_shlibdeps.7953               run.sstate_task_postfunc.7567
+<font color="#2AA1B3"><b>depsig.do_populate_sysroot</b></font>               run.base_do_fetch.6789                   run.do_prepare_recipe_sysroot.6794         run.read_subpackage_metadata.8171     run.sstate_task_postfunc.7568
+depsig.do_populate_sysroot.7954          run.base_do_fetch.7538                   run.do_prepare_recipe_sysroot.7543         run.read_subpackage_metadata.8172     run.sstate_task_postfunc.7755
+<font color="#2AA1B3"><b>log.do_cleansstate</b></font>                       run.base_do_fetch.7724                   run.do_prepare_recipe_sysroot.7729         <font color="#26A269"><b>run.remove_libtool_la.7939</b></font>            run.sstate_task_postfunc.7756
+log.do_cleansstate.5568                  run.base_do_unpack.5624                  run.do_qa_configure.5759                   run.split_and_strip_files.7953        run.sstate_task_postfunc.7953
+<font color="#2AA1B3"><b>log.do_compile</b></font>                           run.base_do_unpack.5912                  run.do_qa_configure.5971                   <font color="#26A269"><b>run.sstate_create_package.5657</b></font>        run.sstate_task_postfunc.7954
+log.do_compile.5775                      run.base_do_unpack.6057                  run.do_qa_configure.6118                   <font color="#26A269"><b>run.sstate_create_package.5758</b></font>        run.sstate_task_postfunc.8124
+log.do_compile.5983                      run.base_do_unpack.6246                  run.do_qa_configure.6305                   <font color="#26A269"><b>run.sstate_create_package.5935</b></font>        run.sstate_task_postfunc.8171
+log.do_compile.6130                      run.base_do_unpack.6647                  run.do_qa_configure.6710                   <font color="#26A269"><b>run.sstate_create_package.5936</b></font>        run.sstate_task_postfunc.8172
+log.do_compile.6317                      run.base_do_unpack.6795                  run.do_qa_configure.6857                   <font color="#26A269"><b>run.sstate_create_package.6082</b></font>        run.sstate_task_prefunc.5656
+log.do_compile.6722                      run.base_do_unpack.7544                  run.do_qa_configure.7603                   <font color="#26A269"><b>run.sstate_create_package.6083</b></font>        run.sstate_task_prefunc.5657
+log.do_compile.6869                      run.base_do_unpack.7730                  run.do_qa_configure.7791                   <font color="#26A269"><b>run.sstate_create_package.6269</b></font>        run.sstate_task_prefunc.5758
+log.do_compile.7030                      <font color="#26A269"><b>run.BUILDSPEC.8172</b></font>                       run.do_qa_patch.5635                       <font color="#26A269"><b>run.sstate_create_package.6270</b></font>        run.sstate_task_prefunc.5935
+log.do_compile.7100                      run.create_source_date_epoch_stamp.5624  run.do_qa_patch.5927                       <font color="#26A269"><b>run.sstate_create_package.6674</b></font>        run.sstate_task_prefunc.5936
+log.do_compile.7176                      run.create_source_date_epoch_stamp.5912  run.do_qa_patch.6074                       <font color="#26A269"><b>run.sstate_create_package.6675</b></font>        run.sstate_task_prefunc.6082
+log.do_compile.7615                      run.create_source_date_epoch_stamp.6057  run.do_qa_patch.6261                       <font color="#26A269"><b>run.sstate_create_package.6821</b></font>        run.sstate_task_prefunc.6083
+log.do_compile.7803                      run.create_source_date_epoch_stamp.6246  run.do_qa_patch.6666                       <font color="#26A269"><b>run.sstate_create_package.6822</b></font>        run.sstate_task_prefunc.6269
+log.do_compile.7914                      run.create_source_date_epoch_stamp.6647  run.do_qa_patch.6812                       <font color="#26A269"><b>run.sstate_create_package.7567</b></font>        run.sstate_task_prefunc.6270
+<font color="#2AA1B3"><b>log.do_configure</b></font>                         run.create_source_date_epoch_stamp.6795  run.do_qa_patch.7559                       <font color="#26A269"><b>run.sstate_create_package.7568</b></font>        run.sstate_task_prefunc.6674
+log.do_configure.5759                    run.create_source_date_epoch_stamp.7544  run.do_qa_patch.7747                       <font color="#26A269"><b>run.sstate_create_package.7755</b></font>        run.sstate_task_prefunc.6675
+log.do_configure.5971                    run.create_source_date_epoch_stamp.7730  run.do_qa_staging.7954                     <font color="#26A269"><b>run.sstate_create_package.7756</b></font>        run.sstate_task_prefunc.6821
+log.do_configure.6118                    run.debian_package_name_hook.7953        run.do_qa_unpack.5624                      <font color="#26A269"><b>run.sstate_create_package.7953</b></font>        run.sstate_task_prefunc.6822
+log.do_configure.6305                    <font color="#2AA1B3"><b>run.do_cleansstate</b></font>                       run.do_qa_unpack.5912                      <font color="#26A269"><b>run.sstate_create_package.7954</b></font>        run.sstate_task_prefunc.7567
+log.do_configure.6710                    run.do_cleansstate.5568                  run.do_qa_unpack.6057                      <font color="#26A269"><b>run.sstate_create_package.8124</b></font>        run.sstate_task_prefunc.7568
+log.do_configure.6857                    <font color="#2AA1B3"><b>run.do_compile</b></font>                           run.do_qa_unpack.6246                      <font color="#26A269"><b>run.sstate_create_package.8171</b></font>        run.sstate_task_prefunc.7755
+log.do_configure.7603                    <font color="#26A269"><b>run.do_compile.5775</b></font>                      run.do_qa_unpack.6647                      <font color="#26A269"><b>run.sstate_create_package.8172</b></font>        run.sstate_task_prefunc.7756
+log.do_configure.7791                    <font color="#26A269"><b>run.do_compile.5983</b></font>                      run.do_qa_unpack.6795                      run.sstate_hardcode_path.5657         run.sstate_task_prefunc.7953
+<font color="#2AA1B3"><b>log.do_deploy_source_date_epoch</b></font>          <font color="#26A269"><b>run.do_compile.6130</b></font>                      run.do_qa_unpack.7544                      run.sstate_hardcode_path.5758         run.sstate_task_prefunc.7954
+log.do_deploy_source_date_epoch.5657     <font color="#26A269"><b>run.do_compile.6317</b></font>                      run.do_qa_unpack.7730                      run.sstate_hardcode_path.5935         run.sstate_task_prefunc.8124
+log.do_deploy_source_date_epoch.5936     <font color="#26A269"><b>run.do_compile.6722</b></font>                      <font color="#2AA1B3"><b>run.do_rm_work</b></font>                             run.sstate_hardcode_path.5936         run.sstate_task_prefunc.8171
+log.do_deploy_source_date_epoch.6083     <font color="#26A269"><b>run.do_compile.6869</b></font>                      <font color="#26A269"><b>run.do_rm_work.8276</b></font>                        run.sstate_hardcode_path.6082         run.sstate_task_prefunc.8172
+log.do_deploy_source_date_epoch.6270     <font color="#26A269"><b>run.do_compile.7030</b></font>                      <font color="#2AA1B3"><b>run.do_unpack</b></font>                              run.sstate_hardcode_path.6083         <font color="#26A269"><b>run.sysroot_stage_all.7954</b></font>
+log.do_deploy_source_date_epoch.6675     <font color="#26A269"><b>run.do_compile.7100</b></font>                      run.do_unpack.5624                         run.sstate_hardcode_path.6269         run.sysroot_strip.7954
+log.do_deploy_source_date_epoch.6822     <font color="#26A269"><b>run.do_compile.7176</b></font>                      run.do_unpack.5912                         run.sstate_hardcode_path.6270         run.target_add_sysroot_deps.5657
+log.do_deploy_source_date_epoch.7568     <font color="#26A269"><b>run.do_compile.7615</b></font>                      run.do_unpack.6057                         run.sstate_hardcode_path.6674         run.target_add_sysroot_deps.5758
+log.do_deploy_source_date_epoch.7756     <font color="#26A269"><b>run.do_compile.7803</b></font>                      run.do_unpack.6246                         run.sstate_hardcode_path.6675         run.target_add_sysroot_deps.5935
+<font color="#2AA1B3"><b>log.do_fetch</b></font>                             <font color="#26A269"><b>run.do_compile.7914</b></font>                      run.do_unpack.6647                         run.sstate_hardcode_path.6821         run.target_add_sysroot_deps.5936
+log.do_fetch.5618                        <font color="#2AA1B3"><b>run.do_configure</b></font>                         run.do_unpack.6795                         run.sstate_hardcode_path.6822         run.target_add_sysroot_deps.6082
+log.do_fetch.5906                        <font color="#26A269"><b>run.do_configure.5759</b></font>                    run.do_unpack.7544                         run.sstate_hardcode_path.7567         run.target_add_sysroot_deps.6083
+log.do_fetch.6051                        <font color="#26A269"><b>run.do_configure.5971</b></font>                    run.do_unpack.7730                         run.sstate_hardcode_path.7568         run.target_add_sysroot_deps.6269
+log.do_fetch.6240                        <font color="#26A269"><b>run.do_configure.6118</b></font>                    run.emit_pkgdata.7953                      run.sstate_hardcode_path.7755         run.target_add_sysroot_deps.6270
+log.do_fetch.6641                        <font color="#26A269"><b>run.do_configure.6305</b></font>                    run.extend_recipe_sysroot.5623             run.sstate_hardcode_path.7756         run.target_add_sysroot_deps.6674
+log.do_fetch.6789                        <font color="#26A269"><b>run.do_configure.6710</b></font>                    run.extend_recipe_sysroot.5635             run.sstate_hardcode_path.7953         run.target_add_sysroot_deps.6675
+log.do_fetch.7538                        <font color="#26A269"><b>run.do_configure.6857</b></font>                    run.extend_recipe_sysroot.5759             run.sstate_hardcode_path.7954         run.target_add_sysroot_deps.6821
+log.do_fetch.7724                        <font color="#26A269"><b>run.do_configure.7603</b></font>                    run.extend_recipe_sysroot.5911             run.sstate_hardcode_path.8124         run.target_add_sysroot_deps.6822
+<font color="#2AA1B3"><b>log.do_install</b></font>                           <font color="#26A269"><b>run.do_configure.7791</b></font>                    run.extend_recipe_sysroot.5927             run.sstate_hardcode_path.8171         run.target_add_sysroot_deps.7567
+log.do_install.7939                      <font color="#2AA1B3"><b>run.do_deploy_source_date_epoch</b></font>          run.extend_recipe_sysroot.5971             run.sstate_hardcode_path.8172         run.target_add_sysroot_deps.7568
+<font color="#2AA1B3"><b>log.do_package</b></font>                           <font color="#26A269"><b>run.do_deploy_source_date_epoch.5657</b></font>     run.extend_recipe_sysroot.6056             run.sstate_hardcode_path_unpack.5657  run.target_add_sysroot_deps.7755
+log.do_package.7953                      <font color="#26A269"><b>run.do_deploy_source_date_epoch.5936</b></font>     run.extend_recipe_sysroot.6074             run.sstate_hardcode_path_unpack.5758  run.target_add_sysroot_deps.7756
+<font color="#2AA1B3"><b>log.do_packagedata</b></font>                       <font color="#26A269"><b>run.do_deploy_source_date_epoch.6083</b></font>     run.extend_recipe_sysroot.6118             run.sstate_hardcode_path_unpack.5935  run.target_add_sysroot_deps.7953
+log.do_packagedata.8124                  <font color="#26A269"><b>run.do_deploy_source_date_epoch.6270</b></font>     run.extend_recipe_sysroot.6245             run.sstate_hardcode_path_unpack.5936  run.target_add_sysroot_deps.7954
+<font color="#2AA1B3"><b>log.do_package_qa</b></font>                        <font color="#26A269"><b>run.do_deploy_source_date_epoch.6675</b></font>     run.extend_recipe_sysroot.6261             run.sstate_hardcode_path_unpack.6082  run.target_add_sysroot_deps.8124
+log.do_package_qa.8171                   <font color="#26A269"><b>run.do_deploy_source_date_epoch.6822</b></font>     run.extend_recipe_sysroot.6305             run.sstate_hardcode_path_unpack.6083  run.target_add_sysroot_deps.8171
+<font color="#2AA1B3"><b>log.do_package_write_rpm</b></font>                 <font color="#26A269"><b>run.do_deploy_source_date_epoch.7568</b></font>     run.extend_recipe_sysroot.6646             run.sstate_hardcode_path_unpack.6269  run.target_add_sysroot_deps.8172
+log.do_package_write_rpm.8172            <font color="#26A269"><b>run.do_deploy_source_date_epoch.7756</b></font>     run.extend_recipe_sysroot.6666             run.sstate_hardcode_path_unpack.6270  run.uninative_changeinterp.5657
+<font color="#2AA1B3"><b>log.do_patch</b></font>                             <font color="#2AA1B3"><b>run.do_fetch</b></font>                             run.extend_recipe_sysroot.6710             run.sstate_hardcode_path_unpack.6674  run.uninative_changeinterp.5758
+log.do_patch.5635                        run.do_fetch.5618                        run.extend_recipe_sysroot.6794             run.sstate_hardcode_path_unpack.6675  run.uninative_changeinterp.5935
+log.do_patch.5927                        run.do_fetch.5906                        run.extend_recipe_sysroot.6812             run.sstate_hardcode_path_unpack.6821  run.uninative_changeinterp.5936
+log.do_patch.6074                        run.do_fetch.6051                        run.extend_recipe_sysroot.6857             run.sstate_hardcode_path_unpack.6822  run.uninative_changeinterp.6082
+log.do_patch.6261                        run.do_fetch.6240                        run.extend_recipe_sysroot.7543             run.sstate_hardcode_path_unpack.7567  run.uninative_changeinterp.6083
+log.do_patch.6666                        run.do_fetch.6641                        run.extend_recipe_sysroot.7559             run.sstate_hardcode_path_unpack.7568  run.uninative_changeinterp.6269
+log.do_patch.6812                        run.do_fetch.6789                        run.extend_recipe_sysroot.7603             run.sstate_hardcode_path_unpack.7755  run.uninative_changeinterp.6270
+log.do_patch.7559                        run.do_fetch.7538                        run.extend_recipe_sysroot.7729             run.sstate_hardcode_path_unpack.7756  run.uninative_changeinterp.6674
+log.do_patch.7747                        run.do_fetch.7724                        run.extend_recipe_sysroot.7747             run.sstate_hardcode_path_unpack.7953  run.uninative_changeinterp.6675
+<font color="#2AA1B3"><b>log.do_populate_lic</b></font>                      <font color="#2AA1B3"><b>run.do_install</b></font>                           run.extend_recipe_sysroot.7791             run.sstate_hardcode_path_unpack.7954  run.uninative_changeinterp.6821
+log.do_populate_lic.5656                 <font color="#26A269"><b>run.do_install.7939</b></font>                      run.extend_recipe_sysroot.7939             run.sstate_hardcode_path_unpack.8124  run.uninative_changeinterp.6822
+log.do_populate_lic.5758                 <font color="#2AA1B3"><b>run.do_package</b></font>                           run.extend_recipe_sysroot.7953             run.sstate_hardcode_path_unpack.8171  run.uninative_changeinterp.7567
+log.do_populate_lic.5935                 run.do_package.7953                      run.extend_recipe_sysroot.7954             run.sstate_hardcode_path_unpack.8172  run.uninative_changeinterp.7568
+log.do_populate_lic.6082                 <font color="#2AA1B3"><b>run.do_packagedata</b></font>                       run.extend_recipe_sysroot.8171             run.sstate_report_unihash.5657        run.uninative_changeinterp.7755
+log.do_populate_lic.6269                 run.do_packagedata.8124                  run.extend_recipe_sysroot.8172             run.sstate_report_unihash.5758        run.uninative_changeinterp.7756
+log.do_populate_lic.6674                 <font color="#2AA1B3"><b>run.do_package_qa</b></font>                        run.fixup_perms.7953                       run.sstate_report_unihash.5935        run.uninative_changeinterp.7953
+log.do_populate_lic.6821                 run.do_package_qa.8171                   run.package_convert_pr_autoinc.7953        run.sstate_report_unihash.5936        run.uninative_changeinterp.7954
+log.do_populate_lic.7567                 run.do_package_rpm.8172                  <font color="#26A269"><b>run.packagedata_translate_pr_autoinc.8124</b></font>  run.sstate_report_unihash.6082        run.uninative_changeinterp.8124
+log.do_populate_lic.7755                 <font color="#2AA1B3"><b>run.do_package_write_rpm</b></font>                 run.package_depchains.7953                 run.sstate_report_unihash.6083        run.uninative_changeinterp.8171
+<font color="#2AA1B3"><b>log.do_populate_sysroot</b></font>                  run.do_package_write_rpm.8172            run.package_do_filedeps.7953               run.sstate_report_unihash.6269        run.uninative_changeinterp.8172
+log.do_populate_sysroot.7954             <font color="#2AA1B3"><b>run.do_patch</b></font>                             run.package_do_pkgconfig.7953              run.sstate_report_unihash.6270        run.write_specfile.8172
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ cd ../sources/
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/sources</b></font>$ ls
+<font color="#12488B"><b>downloads</b></font>  <font color="#12488B"><b>sstate-cache</b></font>  <font color="#12488B"><b>tmp</b></font>
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/sources</b></font>$ cd tmp/
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/sources/tmp</b></font>$ ls
+abi_version  <font color="#12488B"><b>buildstats</b></font>  <font color="#12488B"><b>cache</b></font>  <font color="#12488B"><b>deploy</b></font>  <font color="#12488B"><b>hosttools</b></font>  <font color="#12488B"><b>log</b></font>  <font color="#12488B"><b>pkgdata</b></font>  qa.log  saved_tmpdir  <font color="#12488B"><b>sstate-control</b></font>  <font color="#12488B"><b>stamps</b></font>  <font color="#12488B"><b>sysroots</b></font>  <font color="#12488B"><b>sysroots-components</b></font>  <font color="#12488B"><b>sysroots-uninative</b></font>  <font color="#12488B"><b>work</b></font>  <font color="#12488B"><b>work-shared</b></font>
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/sources/tmp</b></font>$ cd deploy/
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/sources/tmp/deploy</b></font>$ ls
+<font color="#12488B"><b>images</b></font>  <font color="#12488B"><b>licenses</b></font>  <font color="#12488B"><b>rpm</b></font>
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/sources/tmp/deploy</b></font>$ cd images/
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/sources/tmp/deploy/images</b></font>$ ls
+<font color="#12488B"><b>beaglebone-yocto</b></font>  <font color="#12488B"><b>qemux86-64</b></font>
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/sources/tmp/deploy/images</b></font>$ cd beaglebone-yocto/
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/sources/tmp/deploy/images/beaglebone-yocto</b></font>$ ls
+am335x-bone--5.15.150+git0+896128cbf5_4fca0c4373-r0-beaglebone-yocto-20250609040028.dtb       <font color="#C01C28"><b>core-image-minimal-beaglebone-yocto-20250610102501.rootfs.tar.bz2</b></font>
+<font color="#2AA1B3"><b>am335x-bone-beaglebone-yocto.dtb</b></font>                                                              core-image-minimal-beaglebone-yocto-20250610102501.rootfs.wic
+am335x-boneblack--5.15.150+git0+896128cbf5_4fca0c4373-r0-beaglebone-yocto-20250609040028.dtb  core-image-minimal-beaglebone-yocto-20250610102501.rootfs.wic.bmap
+<font color="#2AA1B3"><b>am335x-boneblack-beaglebone-yocto.dtb</b></font>                                                         core-image-minimal-beaglebone-yocto-20250610102501.testdata.json
+<font color="#2AA1B3"><b>am335x-boneblack.dtb</b></font>                                                                          <font color="#2AA1B3"><b>core-image-minimal-beaglebone-yocto.jffs2</b></font>
+<font color="#2AA1B3"><b>am335x-bone.dtb</b></font>                                                                               <font color="#2AA1B3"><b>core-image-minimal-beaglebone-yocto.manifest</b></font>
+am335x-bonegreen--5.15.150+git0+896128cbf5_4fca0c4373-r0-beaglebone-yocto-20250609040028.dtb  <font color="#2AA1B3"><b>core-image-minimal-beaglebone-yocto.qemuboot.conf</b></font>
+<font color="#2AA1B3"><b>am335x-bonegreen-beaglebone-yocto.dtb</b></font>                                                         <font color="#2AA1B3"><b>core-image-minimal-beaglebone-yocto.tar.bz2</b></font>
+<font color="#2AA1B3"><b>am335x-bonegreen.dtb</b></font>                                                                          <font color="#2AA1B3"><b>core-image-minimal-beaglebone-yocto.testdata.json</b></font>
+core-image-full-cmdline-beaglebone-yocto-20250609040028.qemuboot.conf                         <font color="#2AA1B3"><b>core-image-minimal-beaglebone-yocto.wic</b></font>
+core-image-full-cmdline-beaglebone-yocto-20250609040028.rootfs.jffs2                          <font color="#2AA1B3"><b>core-image-minimal-beaglebone-yocto.wic.bmap</b></font>
+core-image-full-cmdline-beaglebone-yocto-20250609040028.rootfs.manifest                       core-image-minimal.env
+<font color="#C01C28"><b>core-image-full-cmdline-beaglebone-yocto-20250609040028.rootfs.tar.bz2</b></font>                        <font color="#2AA1B3"><b>MLO</b></font>
+core-image-full-cmdline-beaglebone-yocto-20250609040028.rootfs.wic                            <font color="#2AA1B3"><b>MLO-beaglebone-yocto</b></font>
+core-image-full-cmdline-beaglebone-yocto-20250609040028.rootfs.wic.bmap                       MLO-beaglebone-yocto-2022.01-r0
+core-image-full-cmdline-beaglebone-yocto-20250609040028.testdata.json                         <font color="#C01C28"><b>modules--5.15.150+git0+896128cbf5_4fca0c4373-r0-beaglebone-yocto-20250609040028.tgz</b></font>
+<font color="#2AA1B3"><b>core-image-full-cmdline-beaglebone-yocto.jffs2</b></font>                                                <font color="#2AA1B3"><b>modules-beaglebone-yocto.tgz</b></font>
+<font color="#2AA1B3"><b>core-image-full-cmdline-beaglebone-yocto.manifest</b></font>                                             u-boot-beaglebone-yocto-2022.01-r0.img
+<font color="#2AA1B3"><b>core-image-full-cmdline-beaglebone-yocto.qemuboot.conf</b></font>                                        <font color="#2AA1B3"><b>u-boot-beaglebone-yocto.img</b></font>
+<font color="#2AA1B3"><b>core-image-full-cmdline-beaglebone-yocto.tar.bz2</b></font>                                              <font color="#2AA1B3"><b>u-boot.img</b></font>
+<font color="#2AA1B3"><b>core-image-full-cmdline-beaglebone-yocto.testdata.json</b></font>                                        <font color="#2AA1B3"><b>u-boot-initial-env</b></font>
+<font color="#2AA1B3"><b>core-image-full-cmdline-beaglebone-yocto.wic</b></font>                                                  <font color="#2AA1B3"><b>u-boot-initial-env-beaglebone-yocto</b></font>
+<font color="#2AA1B3"><b>core-image-full-cmdline-beaglebone-yocto.wic.bmap</b></font>                                             u-boot-initial-env-beaglebone-yocto-2022.01-r0
+core-image-full-cmdline.env                                                                   <font color="#2AA1B3"><b>zImage</b></font>
+core-image-minimal-beaglebone-yocto-20250610102501.qemuboot.conf                              zImage--5.15.150+git0+896128cbf5_4fca0c4373-r0-beaglebone-yocto-20250609040028.bin
+core-image-minimal-beaglebone-yocto-20250610102501.rootfs.jffs2                               <font color="#2AA1B3"><b>zImage-beaglebone-yocto.bin</b></font>
+core-image-minimal-beaglebone-yocto-20250610102501.rootfs.manifest
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/sources/tmp/deploy/images/beaglebone-yocto</b></font>$  cd ..
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/sources/tmp/deploy/images</b></font>$ ls
+<font color="#12488B"><b>beaglebone-yocto</b></font>  <font color="#12488B"><b>qemux86-64</b></font>
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/sources/tmp/deploy/images</b></font>$ cd ..
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/sources/tmp/deploy</b></font>$ ls
+<font color="#12488B"><b>images</b></font>  <font color="#12488B"><b>licenses</b></font>  <font color="#12488B"><b>rpm</b></font>
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/sources/tmp/deploy</b></font>$ cd ..
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/sources/tmp</b></font>$ ls
+abi_version  <font color="#12488B"><b>buildstats</b></font>  <font color="#12488B"><b>cache</b></font>  <font color="#12488B"><b>deploy</b></font>  <font color="#12488B"><b>hosttools</b></font>  <font color="#12488B"><b>log</b></font>  <font color="#12488B"><b>pkgdata</b></font>  qa.log  saved_tmpdir  <font color="#12488B"><b>sstate-control</b></font>  <font color="#12488B"><b>stamps</b></font>  <font color="#12488B"><b>sysroots</b></font>  <font color="#12488B"><b>sysroots-components</b></font>  <font color="#12488B"><b>sysroots-uninative</b></font>  <font color="#12488B"><b>work</b></font>  <font color="#12488B"><b>work-shared</b></font>
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/sources/tmp</b></font>$ cd work
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/sources/tmp/work</b></font>$ ls
+<font color="#12488B"><b>all-poky-linux</b></font>  <font color="#12488B"><b>beaglebone_yocto-poky-linux-gnueabi</b></font>  <font color="#12488B"><b>core2-64-poky-linux</b></font>  <font color="#12488B"><b>cortexa8hf-neon-poky-linux-gnueabi</b></font>  <font color="#12488B"><b>qemux86_64-poky-linux</b></font>  <font color="#12488B"><b>x86_64-linux</b></font>
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/sources/tmp/work</b></font>$ cd beaglebone_yocto-poky-linux-gnueabi/
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi</b></font>$ ls 
+<font color="#12488B"><b>base-files</b></font>  <font color="#12488B"><b>core-image-full-cmdline</b></font>  <font color="#12488B"><b>core-image-minimal</b></font>  <font color="#12488B"><b>depmodwrapper-cross</b></font>  <font color="#12488B"><b>init-ifupdown</b></font>  <font color="#12488B"><b>linux-yocto</b></font>  <font color="#12488B"><b>packagegroup-core-boot</b></font>  <font color="#12488B"><b>shadow-securetty</b></font>  <font color="#12488B"><b>sysvinit-inittab</b></font>  <font color="#12488B"><b>u-boot</b></font>
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi</b></font>$ cd ../..
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/sources/tmp</b></font>$ ls
+abi_version  <font color="#12488B"><b>buildstats</b></font>  <font color="#12488B"><b>cache</b></font>  <font color="#12488B"><b>deploy</b></font>  <font color="#12488B"><b>hosttools</b></font>  <font color="#12488B"><b>log</b></font>  <font color="#12488B"><b>pkgdata</b></font>  qa.log  saved_tmpdir  <font color="#12488B"><b>sstate-control</b></font>  <font color="#12488B"><b>stamps</b></font>  <font color="#12488B"><b>sysroots</b></font>  <font color="#12488B"><b>sysroots-components</b></font>  <font color="#12488B"><b>sysroots-uninative</b></font>  <font color="#12488B"><b>work</b></font>  <font color="#12488B"><b>work-shared</b></font>
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/sources/tmp</b></font>$ cd ..
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/sources</b></font>$ cd ../my_builds/
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ ls
+<font color="#12488B"><b>&apos;~&apos;</b></font>   bitbake-cookerdaemon.log   <font color="#12488B"><b>cache</b></font>   <font color="#12488B"><b>conf</b></font>   <font color="#12488B"><b>meta-advanced-calculator</b></font>   <font color="#12488B"><b>meta-assignment-vars</b></font>
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ cp -r conf/ meta-advanced-calculator/ ~/Documents/my_yocto_cookbook/
+
+</pre>

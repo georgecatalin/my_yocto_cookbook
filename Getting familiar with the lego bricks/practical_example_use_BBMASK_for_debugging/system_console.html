@@ -1,0 +1,176 @@
+<pre><font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ source ../poky/oe-init-build-env .
+
+### Shell environment set up for builds. ###
+
+You can now run &apos;bitbake &lt;target&gt;&apos;
+
+Common targets are:
+    core-image-minimal
+    core-image-full-cmdline
+    core-image-sato
+    core-image-weston
+    meta-toolchain
+    meta-ide-support
+
+You can also run generated qemu images with a command like &apos;runqemu qemux86&apos;
+
+Other commonly useful commands are:
+ - &apos;devtool&apos; and &apos;recipetool&apos; handle common recipe tasks
+ - &apos;bitbake-layers&apos; handles common layer tasks
+ - &apos;oe-pkgdata-util&apos; handles common target package tasks
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ ls -lh ../poky/
+total 104K
+drwxrwxr-x  6 georgeca georgeca 4,0K mai 24 08:38 <font color="#12488B"><b>bitbake</b></font>
+drwxrwxr-x  4 georgeca georgeca 4,0K mai 24 08:38 <font color="#12488B"><b>contrib</b></font>
+drwxrwxr-x 21 georgeca georgeca 4,0K mai 24 08:38 <font color="#12488B"><b>documentation</b></font>
+-rw-rw-r--  1 georgeca georgeca  834 mai 24 08:38 LICENSE
+-rw-rw-r--  1 georgeca georgeca  16K mai 24 08:38 LICENSE.GPL-2.0-only
+-rw-rw-r--  1 georgeca georgeca 1,3K mai 24 08:38 LICENSE.MIT
+-rw-rw-r--  1 georgeca georgeca 2,2K mai 24 08:38 MAINTAINERS.md
+-rw-rw-r--  1 georgeca georgeca 1,2K mai 24 08:38 Makefile
+-rw-rw-r--  1 georgeca georgeca  244 mai 24 08:38 MEMORIAM
+drwxrwxr-x 20 georgeca georgeca 4,0K mai 24 08:38 <font color="#12488B"><b>meta</b></font>
+drwxrwxr-x  8 georgeca georgeca 4,0K iun 12 16:22 <font color="#12488B"><b>meta-george</b></font>
+drwxrwxr-x  5 georgeca georgeca 4,0K iun 11 16:30 <font color="#12488B"><b>meta-george-append-layer</b></font>
+drwxrwxr-x  4 georgeca georgeca 4,0K mai 26 22:22 <font color="#12488B"><b>meta-my-builder</b></font>
+drwxrwxr-x 14 georgeca georgeca 4,0K mai 26 17:54 <font color="#12488B"><b>meta-openembedded</b></font>
+drwxrwxr-x  5 georgeca georgeca 4,0K mai 24 08:38 <font color="#12488B"><b>meta-poky</b></font>
+drwxrwxr-x  9 georgeca georgeca 4,0K mai 24 08:38 <font color="#12488B"><b>meta-selftest</b></font>
+drwxrwxr-x  8 georgeca georgeca 4,0K mai 24 08:38 <font color="#12488B"><b>meta-skeleton</b></font>
+drwxrwxr-x  8 georgeca georgeca 4,0K mai 24 08:38 <font color="#12488B"><b>meta-yocto-bsp</b></font>
+-rwxrwxr-x  1 georgeca georgeca 1,3K mai 24 08:38 <font color="#26A269"><b>oe-init-build-env</b></font>
+lrwxrwxrwx  1 georgeca georgeca   33 mai 24 08:38 <font color="#2AA1B3"><b>README.hardware.md</b></font> -&gt; meta-yocto-bsp/README.hardware.md
+lrwxrwxrwx  1 georgeca georgeca   14 mai 24 08:38 <font color="#2AA1B3"><b>README.md</b></font> -&gt; README.poky.md
+-rw-rw-r--  1 georgeca georgeca  791 mai 24 08:38 README.OE-Core.md
+lrwxrwxrwx  1 georgeca georgeca   24 mai 24 08:38 <font color="#2AA1B3"><b>README.poky.md</b></font> -&gt; meta-poky/README.poky.md
+-rw-rw-r--  1 georgeca georgeca  529 mai 24 08:38 README.qemu.md
+drwxrwxr-x 10 georgeca georgeca 4,0K mai 24 08:38 <font color="#12488B"><b>scripts</b></font>
+-rw-rw-r--  1 georgeca georgeca 1,2K mai 24 08:38 SECURITY.md
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ tree ../poky/meta-my-builder/
+<font color="#12488B"><b>../poky/meta-my-builder/</b></font>
+├── <font color="#12488B"><b>conf</b></font>
+│   └── layer.conf
+├── COPYING.MIT
+├── README
+└── <font color="#12488B"><b>recipes-example</b></font>
+    └── <font color="#12488B"><b>helloworld</b></font>
+        ├── <font color="#12488B"><b>files</b></font>
+        │   └── helloworld.c
+        └── helloworld_0.1.bb
+
+4 directories, 5 files
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake-layers show-layers
+<b>NOTE</b>: Starting bitbake server...
+layer                 path                                      priority
+==========================================================================
+meta                  /home/georgeca/yocto_tutorial/poky/meta   5
+meta-poky             /home/georgeca/yocto_tutorial/poky/meta-poky  5
+meta-yocto-bsp        /home/georgeca/yocto_tutorial/poky/meta-yocto-bsp  5
+meta-oe               /home/georgeca/yocto_tutorial/poky/meta-openembedded/meta-oe  5
+workspace             /home/georgeca/yocto_tutorial/my_builds/workspace  99
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake-layers remove-layer workspace/
+<b>NOTE</b>: Starting bitbake server...
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake-layers add-layer ../poky/meta-my-builder/
+<b>NOTE</b>: Starting bitbake server...
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake-layers show-layers
+<b>NOTE</b>: Starting bitbake server...
+layer                 path                                      priority
+==========================================================================
+meta                  /home/georgeca/yocto_tutorial/poky/meta   5
+meta-poky             /home/georgeca/yocto_tutorial/poky/meta-poky  5
+meta-yocto-bsp        /home/georgeca/yocto_tutorial/poky/meta-yocto-bsp  5
+meta-oe               /home/georgeca/yocto_tutorial/poky/meta-openembedded/meta-oe  5
+meta-my-builder       /home/georgeca/yocto_tutorial/poky/meta-my-builder  6
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ code conf/local.conf 
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ time bitbake core-image-full-cmdline
+Loading cache: 100% |                                                                                                                                                    | ETA:  --:--:--
+Loaded 0 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:01:00
+Parsing of 1746 .bb files complete (0 cached, 1746 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+Removing 1 recipes from the beaglebone_yocto sysroot: 100% |##############################################################################################################| Time: 0:00:01
+Removing 1 recipes from the cortexa8hf-neon sysroot: 100% |###############################################################################################################| Time: 0:00:00
+<b>NOTE</b>: Resolving any missing task queue dependencies
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Nothing RPROVIDES &apos;final-calculator&apos; (but /home/georgeca/yocto_tutorial/poky/meta/recipes-extended/images/core-image-full-cmdline.bb RDEPENDS on or otherwise requires it)</font>
+<b>NOTE</b>: Runtime target &apos;final-calculator&apos; is unbuildable, removing...
+Missing or unbuildable dependency chain was: [&apos;final-calculator&apos;]
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Required build target &apos;core-image-full-cmdline&apos; has no buildable providers.</font>
+<font color="#C01C28">Missing or unbuildable dependency chain was: [&apos;core-image-full-cmdline&apos;, &apos;final-calculator&apos;]</font>
+
+Summary: There were 2 ERROR messages, returning a non-zero exit code.
+
+real	1m6,887s
+user	0m0,552s
+sys	0m0,297s
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ md5sum conf/local.conf 
+9a0dca1f509c359b7780d5bdaf4a7da4  conf/local.conf
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ time bitbake core-image-full-cmdline
+Loading cache: 100% |                                                                                                                                                    | ETA:  --:--:--
+Loaded 0 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:55
+Parsing of 1746 .bb files complete (0 cached, 1746 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+meta-my-builder      = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:09
+Sstate summary: Wanted 178 Local 169 Mirrors 0 Missed 9 Current 1540 (94% match, 99% complete)
+Removing 2 stale sstate objects for arch beaglebone_yocto: 100% |#########################################################################################################| Time: 0:00:00
+<b>NOTE</b>: Executing Tasks
+<b>NOTE</b>: Tasks Summary: Attempted 4628 tasks of which 4597 didn&apos;t need to be rerun and all succeeded.
+
+real	4m16,167s
+user	0m1,475s
+sys	0m0,466s
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ md5sum conf/local.conf 
+02393a914670ef6e2080ff9a77176935  conf/local.conf
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ time bitbake core-image-full-cmdline
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Unable to parse /home/georgeca/yocto_tutorial/poky/bitbake/lib/bb/parse/parse_py/ConfHandler.py</font>
+Traceback (most recent call last):
+  File &quot;/home/georgeca/yocto_tutorial/poky/bitbake/lib/bb/parse/parse_py/ConfHandler.py&quot;, line 192, in feeder(lineno=289, s=&apos;BBMASK: append = &quot; ../poky/meta-my-builder&quot;&apos;, fn=&apos;/home/georgeca/yocto_tutorial/my_builds/conf/local.conf&apos;, statements=[&lt;bb.parse.ast.DataNode object at 0x714c333e3e50&gt;, &lt;bb.parse.ast.DataNode object at 0x714c333e3f40&gt;, &lt;bb.parse.ast.DataNode object at 0x714c333e3fa0&gt;, &lt;bb.parse.ast.DataNode object at 0x714c33454040&gt;, &lt;bb.parse.ast.DataNode object at 0x714c334540a0&gt;, &lt;bb.parse.ast.DataNode object at 0x714c33454100&gt;, &lt;bb.parse.ast.DataNode object at 0x714c33454160&gt;, &lt;bb.parse.ast.DataNode object at 0x714c334541c0&gt;, &lt;bb.parse.ast.DataNode object at 0x714c33454220&gt;, &lt;bb.parse.ast.DataNode object at 0x714c33454280&gt;, &lt;bb.parse.ast.DataNode object at 0x714c334542e0&gt;, &lt;bb.parse.ast.DataNode object at 0x714c33454340&gt;, &lt;bb.parse.ast.DataNode object at 0x714c334543a0&gt;, &lt;bb.parse.ast.DataNode object at 0x714c33454400&gt;, &lt;bb.parse.ast.DataNode object at 0x714c33454460&gt;, &lt;bb.parse.ast.DataNode object at 0x714c334544c0&gt;]):
+     
+    &gt;    raise ParseError(&quot;unparsed line: &apos;%s&apos;&quot; % s, fn, lineno);
+     
+bb.parse.ParseError: ParseError at /home/georgeca/yocto_tutorial/my_builds/conf/local.conf:289: unparsed line: &apos;BBMASK: append = &quot; ../poky/meta-my-builder&quot;&apos;
+
+
+real	0m1,228s
+user	0m0,525s
+sys	0m0,123s
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ md5sum conf/local.conf 
+1084df50c0e87ff81e7c5f1213c75d6c  conf/local.conf
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ time bitbake core-image-full-cmdline
+Loading cache: 100% |                                                                                                                                                    | ETA:  --:--:--
+Loaded 0 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:56
+Parsing of 1745 .bb files complete (0 cached, 1745 parsed). 2784 targets, 115 skipped, 1 masked, 0 errors.
+<font color="#A2734C"><b>WARNING</b></font>: <font color="#A2734C">No bb files in default matched BBFILE_PATTERN_meta-my-builder &apos;^/home/georgeca/yocto_tutorial/poky/meta-my-builder/&apos;</font>
+Removing 1 recipes from the beaglebone_yocto sysroot: 100% |##############################################################################################################| Time: 0:00:00
+Removing 1 recipes from the cortexa8hf-neon sysroot: 100% |###############################################################################################################| Time: 0:00:00
+<b>NOTE</b>: Resolving any missing task queue dependencies
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Nothing RPROVIDES &apos;helloworld&apos; (but /home/georgeca/yocto_tutorial/poky/meta/recipes-extended/images/core-image-full-cmdline.bb RDEPENDS on or otherwise requires it)</font>
+<b>NOTE</b>: Runtime target &apos;helloworld&apos; is unbuildable, removing...
+Missing or unbuildable dependency chain was: [&apos;helloworld&apos;]
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Required build target &apos;core-image-full-cmdline&apos; has no buildable providers.</font>
+<font color="#C01C28">Missing or unbuildable dependency chain was: [&apos;core-image-full-cmdline&apos;, &apos;helloworld&apos;]</font>
+
+Summary: There was 1 WARNING message.
+Summary: There were 2 ERROR messages, returning a non-zero exit code.
+
+real	1m0,724s
+user	0m0,535s
+sys	0m0,237s
+</pre>

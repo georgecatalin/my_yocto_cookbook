@@ -1,0 +1,529 @@
+<pre><font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ source ../poky/oe-init-build-env .
+
+### Shell environment set up for builds. ###
+
+You can now run &apos;bitbake &lt;target&gt;&apos;
+
+Common targets are:
+    core-image-minimal
+    core-image-full-cmdline
+    core-image-sato
+    core-image-weston
+    meta-toolchain
+    meta-ide-support
+
+You can also run generated qemu images with a command like &apos;runqemu qemux86&apos;
+
+Other commonly useful commands are:
+ - &apos;devtool&apos; and &apos;recipetool&apos; handle common recipe tasks
+ - &apos;bitbake-layers&apos; handles common layer tasks
+ - &apos;oe-pkgdata-util&apos; handles common target package tasks
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ ls -lh
+total 2,4M
+drwxrwxr-x 3 georgeca georgeca 4,0K mai 24 09:01 <font color="#12488B"><b>&apos;~&apos;</b></font>
+-rw-rw-r-- 1 georgeca georgeca    0 iun 12 13:59  ⚠️
+-rw-rw-r-- 1 georgeca georgeca 2,4M iun 12 13:59  bitbake-cookerdaemon.log
+drwxrwxr-x 2 georgeca georgeca 4,0K iun 12 13:59  <font color="#12488B"><b>cache</b></font>
+drwxrwxr-x 3 georgeca georgeca 4,0K iun 12 13:57  <font color="#12488B"><b>conf</b></font>
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 10 16:20  <font color="#12488B"><b>meta-advanced-calculator</b></font>
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 11 09:36  <font color="#12488B"><b>meta_advanced-calculator-makefile</b></font>
+drwxrwxr-x 4 georgeca georgeca 4,0K mai 27 16:10  <font color="#12488B"><b>meta-assignment-vars</b></font>
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ devtool add klogger https://github.com/tianyuanhao/kernel-syslog.git -B main
+<b>NOTE</b>: Starting bitbake server...
+INFO: Creating workspace layer in /home/georgeca/yocto_tutorial/my_builds/workspace
+<b>NOTE</b>: Starting bitbake server...
+INFO: Fetching git://github.com/tianyuanhao/kernel-syslog.git;protocol=https;branch=main...
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:01
+Loaded 2784 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+Removing 1 recipes from the beaglebone_yocto sysroot: 100% |##############################################################################################################| Time: 0:00:00
+Removing 1 recipes from the cortexa8hf-neon sysroot: 100% |###############################################################################################################| Time: 0:00:00
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+workspace            = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 0 Local 0 Mirrors 0 Missed 0 Current 0 (0% match, 0% complete)
+<b>NOTE</b>: No setscene tasks
+<b>NOTE</b>: Executing Tasks
+<b>NOTE</b>: Tasks Summary: Attempted 2 tasks of which 0 didn&apos;t need to be rerun and all succeeded.
+WARNING: Kernel path in install makefile is hardcoded - you will need to patch the makefile. Note that the variable KERNEL_SRC will be passed in as the kernel source path.
+INFO: Using default source tree path /home/georgeca/yocto_tutorial/my_builds/workspace/sources/klogger
+<b>NOTE</b>: Reconnecting to bitbake server...
+<b>NOTE</b>: Retrying server connection (#1)...
+<b>NOTE</b>: Reconnecting to bitbake server...
+NOTE: Reconnecting to bitbake server...
+<b>NOTE</b>: Retrying server connection (#1)...
+NOTE: Retrying server connection (#1)...
+<b>NOTE</b>: Starting bitbake server...
+INFO: Using source tree as build directory since that would be the default for this recipe
+INFO: Recipe /home/georgeca/yocto_tutorial/my_builds/workspace/recipes/klogger/klogger_git.bb has been automatically created; further editing may be required to make it fully functional
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ ls -lh
+total 2,4M
+drwxrwxr-x 3 georgeca georgeca 4,0K mai 24 09:01 <font color="#12488B"><b>&apos;~&apos;</b></font>
+-rw-rw-r-- 1 georgeca georgeca    0 iun 12 13:59  ⚠️
+-rw-rw-r-- 1 georgeca georgeca 2,4M iun 12 14:02  bitbake-cookerdaemon.log
+drwxrwxr-x 2 georgeca georgeca 4,0K iun 12 14:02  <font color="#12488B"><b>cache</b></font>
+drwxrwxr-x 3 georgeca georgeca 4,0K iun 12 13:57  <font color="#12488B"><b>conf</b></font>
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 10 16:20  <font color="#12488B"><b>meta-advanced-calculator</b></font>
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 11 09:36  <font color="#12488B"><b>meta_advanced-calculator-makefile</b></font>
+drwxrwxr-x 4 georgeca georgeca 4,0K mai 27 16:10  <font color="#12488B"><b>meta-assignment-vars</b></font>
+drwxrwxr-x 6 georgeca georgeca 4,0K iun 12 14:02  <font color="#12488B"><b>workspace</b></font>
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake-layers show-layers
+<b>NOTE</b>: Starting bitbake server...
+layer                 path                                      priority
+==========================================================================
+meta                  /home/georgeca/yocto_tutorial/poky/meta   5
+meta-poky             /home/georgeca/yocto_tutorial/poky/meta-poky  5
+meta-yocto-bsp        /home/georgeca/yocto_tutorial/poky/meta-yocto-bsp  5
+meta-oe               /home/georgeca/yocto_tutorial/poky/meta-openembedded/meta-oe  5
+workspace             /home/georgeca/yocto_tutorial/my_builds/workspace  99
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ tree workspace/
+<font color="#12488B"><b>workspace/</b></font>
+├── <font color="#12488B"><b>appends</b></font>
+│   └── klogger_git.bbappend
+├── <font color="#12488B"><b>conf</b></font>
+│   └── layer.conf
+├── README
+├── <font color="#12488B"><b>recipes</b></font>
+│   └── <font color="#12488B"><b>klogger</b></font>
+│       └── klogger_git.bb
+└── <font color="#12488B"><b>sources</b></font>
+    └── <font color="#12488B"><b>klogger</b></font>
+        ├── LICENSE
+        ├── logger.c
+        ├── Makefile
+        └── README.md
+
+6 directories, 8 files
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ code workspace/recipes/klogger/klogger_git.bb 
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ code workspace/sources/klogger/Makefile 
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ git status
+fatal: not a git repository (or any of the parent directories): .git
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ cd workspace/sources/
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/workspace/sources</b></font>$ git status
+fatal: not a git repository (or any of the parent directories): .git
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/workspace/sources</b></font>$ cd klogger/
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/workspace/sources/klogger</b></font>$ git status
+On branch devtool
+Changes not staged for commit:
+  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
+  (use &quot;git restore &lt;file&gt;...&quot; to discard changes in working directory)
+	<font color="#C01C28">modified:   Makefile</font>
+
+no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/workspace/sources/klogger</b></font>$ git add Makefile 
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/workspace/sources/klogger</b></font>$ git commit -m &quot;modified the Makefile&quot;
+[devtool 88e1dbf] modified the Makefile
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/workspace/sources/klogger</b></font>$ cd ../..
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/workspace</b></font>$ git build --help
+git: &apos;build&apos; is not a git command. See &apos;git --help&apos;.
+
+The most similar command is
+	bundle
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/workspace</b></font>$ devtool build --help
+<b>NOTE</b>: Starting bitbake server...
+usage: devtool build [-h] [-s] [-c] recipename
+
+Builds the specified recipe using bitbake (up to and including do_populate_sysroot, do_packagedata)
+
+arguments:
+  recipename            Recipe to build
+
+options:
+  -h, --help            show this help message and exit
+  -s, --disable-parallel-make
+                        Disable make parallelism
+  -c, --clean           clean up recipe building results
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/workspace</b></font>$ devtool build klogger
+<b>NOTE</b>: Starting bitbake server...
+NOTE: Reconnecting to bitbake server...
+NOTE: Retrying server connection (#1)...
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2784 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:01
+Loaded 2784 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+workspace            = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:01
+Sstate summary: Wanted 9 Local 4 Mirrors 0 Missed 5 Current 151 (44% match, 96% complete)
+<b>NOTE</b>: Executing Tasks
+NOTE: klogger: compiling from external source tree /home/georgeca/yocto_tutorial/my_builds/workspace/sources/klogger
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">klogger-1.0-r0 do_compile: oe_runmake failed</font>
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">klogger-1.0-r0 do_compile: ExecutionError(&apos;/home/georgeca/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/klogger/1.0-r0/temp/run.do_compile.16829&apos;, 1, None, None)</font>
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Logfile of failure stored in: /home/georgeca/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/klogger/1.0-r0/temp/log.do_compile.16829</font>
+Log data follows:
+| DEBUG: Executing python function externalsrc_compile_prefunc
+| NOTE: klogger: compiling from external source tree /home/georgeca/yocto_tutorial/my_builds/workspace/sources/klogger
+| DEBUG: Python function externalsrc_compile_prefunc finished
+| DEBUG: Executing shell function do_compile
+| NOTE: make -j 4 KERNEL_SRC=/home/georgeca/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source KERNEL_PATH=/home/georgeca/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source KERNEL_VERSION=5.15.150-yocto-standard CC=arm-poky-linux-gnueabi-gcc   -fuse-ld=bfd -fmacro-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/klogger/1.0-r0=/usr/src/debug/klogger/1.0-r0                      -fdebug-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/klogger/1.0-r0=/usr/src/debug/klogger/1.0-r0                      -fdebug-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/klogger/1.0-r0/recipe-sysroot=                      -fdebug-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/klogger/1.0-r0/recipe-sysroot-native=  -fdebug-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source=/usr/src/kernel -fdebug-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-build-artifacts=/usr/src/kernel LD=arm-poky-linux-gnueabi-ld.bfd   AR=arm-poky-linux-gnueabi-ar  O=/home/georgeca/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-build-artifacts KBUILD_EXTRA_SYMBOLS=
+| make -C KERNEL_SRC uname -r)/build M=/home/georgeca/yocto_tutorial/my_builds/workspace/sources/klogger modules
+| /bin/sh: 1: Syntax error: &quot;)&quot; unexpected
+| make: *** [Makefile:9: all] Error 2
+| ERROR: oe_runmake failed
+| WARNING: exit code 1 from a shell command.
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Task (/home/georgeca/yocto_tutorial/my_builds/workspace/recipes/klogger/klogger_git.bb:do_compile) failed with exit code &apos;1&apos;</font>
+<b>NOTE</b>: Tasks Summary: Attempted 677 tasks of which 666 didn&apos;t need to be rerun and 1 failed.
+
+Summary: 1 task failed:
+  /home/georgeca/yocto_tutorial/my_builds/workspace/recipes/klogger/klogger_git.bb:do_compile
+Summary: There were 2 ERROR messages, returning a non-zero exit code.
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/workspace</b></font>$ git commit -m &quot;modified the Makefile&quot;
+fatal: not a git repository (or any of the parent directories): .git
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/workspace</b></font>$ git add Makefile 
+fatal: not a git repository (or any of the parent directories): .git
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/workspace</b></font>$ cd sources/klogger/
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/workspace/sources/klogger</b></font>$ git add Makefile 
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/workspace/sources/klogger</b></font>$ git status
+On branch devtool
+Changes to be committed:
+  (use &quot;git restore --staged &lt;file&gt;...&quot; to unstage)
+	<font color="#26A269">modified:   Makefile</font>
+
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/workspace/sources/klogger</b></font>$ git commit -m &quot;modified Makefile&quot;
+[devtool 98a3fdd] modified Makefile
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/workspace/sources/klogger</b></font>$ cd ../..
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/workspace</b></font>$ cd ..
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ devtool build klogger
+<b>NOTE</b>: Starting bitbake server...
+NOTE: Reconnecting to bitbake server...
+NOTE: Retrying server connection (#1)...
+NOTE: Reconnecting to bitbake server...
+NOTE: Previous bitbake instance shutting down?, waiting to retry...
+NOTE: Retrying server connection (#2)...
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2784 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:01
+Loaded 2784 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+workspace            = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 7 Local 4 Mirrors 0 Missed 3 Current 153 (57% match, 98% complete)
+<b>NOTE</b>: Executing Tasks
+NOTE: klogger: compiling from external source tree /home/georgeca/yocto_tutorial/my_builds/workspace/sources/klogger
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">klogger-1.0-r0 do_compile: oe_runmake failed</font>
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">klogger-1.0-r0 do_compile: ExecutionError(&apos;/home/georgeca/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/klogger/1.0-r0/temp/run.do_compile.17023&apos;, 1, None, None)</font>
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Logfile of failure stored in: /home/georgeca/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/klogger/1.0-r0/temp/log.do_compile.17023</font>
+Log data follows:
+| DEBUG: Executing python function externalsrc_compile_prefunc
+| NOTE: klogger: compiling from external source tree /home/georgeca/yocto_tutorial/my_builds/workspace/sources/klogger
+| DEBUG: Python function externalsrc_compile_prefunc finished
+| DEBUG: Executing shell function do_compile
+| NOTE: make -j 4 KERNEL_SRC=/home/georgeca/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source KERNEL_PATH=/home/georgeca/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source KERNEL_VERSION=5.15.150-yocto-standard CC=arm-poky-linux-gnueabi-gcc   -fuse-ld=bfd -fmacro-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/klogger/1.0-r0=/usr/src/debug/klogger/1.0-r0                      -fdebug-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/klogger/1.0-r0=/usr/src/debug/klogger/1.0-r0                      -fdebug-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/klogger/1.0-r0/recipe-sysroot=                      -fdebug-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/klogger/1.0-r0/recipe-sysroot-native=  -fdebug-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source=/usr/src/kernel -fdebug-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-build-artifacts=/usr/src/kernel LD=arm-poky-linux-gnueabi-ld.bfd   AR=arm-poky-linux-gnueabi-ar  O=/home/georgeca/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-build-artifacts KBUILD_EXTRA_SYMBOLS=
+| make -C KERNEL_SRC M=/home/georgeca/yocto_tutorial/my_builds/workspace/sources/klogger modules
+| make[1]: *** KERNEL_SRC: No such file or directory.  Stop.
+| make: *** [Makefile:9: all] Error 2
+| ERROR: oe_runmake failed
+| WARNING: exit code 1 from a shell command.
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Task (/home/georgeca/yocto_tutorial/my_builds/workspace/recipes/klogger/klogger_git.bb:do_compile) failed with exit code &apos;1&apos;</font>
+<b>NOTE</b>: Tasks Summary: Attempted 677 tasks of which 676 didn&apos;t need to be rerun and 1 failed.
+
+Summary: 1 task failed:
+  /home/georgeca/yocto_tutorial/my_builds/workspace/recipes/klogger/klogger_git.bb:do_compile
+Summary: There were 2 ERROR messages, returning a non-zero exit code.
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ cd workspace/sources/klogger/
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/workspace/sources/klogger</b></font>$ git add Makefile 
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/workspace/sources/klogger</b></font>$ git commit -m &quot;modified Makefile&quot;
+[devtool db23ae0] modified Makefile
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds/workspace/sources/klogger</b></font>$ cd ../../..
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ devtool build klogger
+<b>NOTE</b>: Starting bitbake server...
+NOTE: Reconnecting to bitbake server...
+NOTE: Retrying server connection (#1)...
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2784 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:01
+Loaded 2784 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+workspace            = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:01
+Sstate summary: Wanted 7 Local 4 Mirrors 0 Missed 3 Current 153 (57% match, 98% complete)
+<b>NOTE</b>: Executing Tasks
+NOTE: klogger: compiling from external source tree /home/georgeca/yocto_tutorial/my_builds/workspace/sources/klogger
+<b>NOTE</b>: Tasks Summary: Attempted 681 tasks of which 676 didn&apos;t need to be rerun and all succeeded.
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ devtool deploy-target --help
+<b>NOTE</b>: Starting bitbake server...
+usage: devtool deploy-target [-h] [-c] [-s] [-n] [-p] [--no-check-space] [-e SSH_EXEC] [-P PORT] [-I KEY] [-S | --no-strip] recipename target
+
+Deploys a recipe&apos;s build output (i.e. the output of the do_install task) to a live target machine over ssh. By default, any existing files will be preserved instead of being
+overwritten and will be restored if you run devtool undeploy-target. Note: this only deploys the recipe itself and not any runtime dependencies, so it is assumed that those have been
+installed on the target beforehand.
+
+arguments:
+  recipename            Recipe to deploy
+  target                Live target machine running an ssh server: user@hostname[:destdir]
+
+options:
+  -h, --help            show this help message and exit
+  -c, --no-host-check   Disable ssh host key checking
+  -s, --show-status     Show progress/status output
+  -n, --dry-run         List files to be deployed only
+  -p, --no-preserve     Do not preserve existing files
+  --no-check-space      Do not check for available space before deploying
+  -e SSH_EXEC, --ssh-exec SSH_EXEC
+                        Executable to use in place of ssh
+  -P PORT, --port PORT  Specify port to use for connection to the target
+  -I KEY, --key KEY     Specify ssh private key for connection to the target
+  -S, --strip           Strip executables prior to deploying (default: False). The default value of this option can be controlled by setting the strip option in the [Deploy] section
+                        to True or False.
+  --no-strip            Do not strip executables prior to deploy
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ devtool deploy-target klogger root@192.168.55.86
+<b>NOTE</b>: Starting bitbake server...
+NOTE: Reconnecting to bitbake server...
+NOTE: Retrying server connection (#1)...
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2784 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+tar: ./etc/modules-load.d: time stamp 2025-06-12 11:19:54 is 229118793.720059251 s in the future
+tar: ./etc/modprobe.d: time stamp 2025-06-12 11:19:54 is 229118793.717339543 s in the future
+tar: ./etc: time stamp 2025-06-12 11:19:54 is 229118793.715141335 s in the future
+tar: ./usr/include/klogger/Module.symvers: time stamp 2025-06-12 11:19:54 is 229118793.712293793 s in the future
+tar: ./usr/include/klogger: time stamp 2025-06-12 11:19:54 is 229118793.71016746 s in the future
+tar: ./usr/include: time stamp 2025-06-12 11:19:54 is 229118793.708448543 s in the future
+tar: ./usr: time stamp 2025-06-12 11:19:54 is 229118793.70685321 s in the future
+tar: ./lib/modules/5.15.150-yocto-standard/extra/logger.ko: time stamp 2025-06-12 11:19:54 is 229118793.699500043 s in the future
+tar: ./lib/modules/5.15.150-yocto-standard/extra: time stamp 2025-06-12 11:19:54 is 229118793.697753293 s in the future
+tar: ./lib/modules/5.15.150-yocto-standard: time stamp 2025-06-12 11:19:54 is 229118793.695687293 s in the future
+tar: ./lib/modules: time stamp 2025-06-12 11:19:54 is 229118793.69417696 s in the future
+tar: ./lib: time stamp 2025-06-12 11:19:54 is 229118793.693087501 s in the future
+tar: .: time stamp 2025-06-12 11:19:54 is 229118793.69261246 s in the future
+INFO: Successfully deployed /home/georgeca/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/klogger/1.0-r0/image
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ devtool undeploy klogger root@192.168.55.86
+<b>NOTE</b>: Starting bitbake server...
+devtool: error: argument &lt;subcommand&gt;: invalid choice: &apos;undeploy&apos; (choose from &apos;create-workspace&apos;, &apos;menuconfig&apos;, &apos;export&apos;, &apos;build-image&apos;, &apos;search&apos;, &apos;deploy-target&apos;, &apos;undeploy-target&apos;, &apos;upgrade&apos;, &apos;latest-version&apos;, &apos;check-upgrade-status&apos;, &apos;add&apos;, &apos;modify&apos;, &apos;extract&apos;, &apos;sync&apos;, &apos;rename&apos;, &apos;update-recipe&apos;, &apos;status&apos;, &apos;reset&apos;, &apos;finish&apos;, &apos;import&apos;, &apos;build&apos;, &apos;edit-recipe&apos;, &apos;find-recipe&apos;, &apos;configure-help&apos;)
+usage: devtool [--basepath BASEPATH] [--bbpath BBPATH] [-d] [-q] [--color COLOR] [-h] &lt;subcommand&gt; ...
+
+OpenEmbedded development tool
+
+options:
+  --basepath BASEPATH   Base directory of SDK / build directory
+  --bbpath BBPATH       Explicitly specify the BBPATH, rather than getting it from the metadata
+  -d, --debug           Enable debug output
+  -q, --quiet           Print only errors
+  --color COLOR         Colorize output (where COLOR is auto, always, never)
+  -h, --help            show this help message and exit
+
+subcommands:
+  Beginning work on a recipe:
+    add                   Add a new recipe
+    modify                Modify the source for an existing recipe
+    upgrade               Upgrade an existing recipe
+  Getting information:
+    status                Show workspace status
+    search                Search available recipes
+    latest-version        Report the latest version of an existing recipe
+    check-upgrade-status  Report upgradability for multiple (or all) recipes
+  Working on a recipe in the workspace:
+    build                 Build a recipe
+    rename                Rename a recipe file in the workspace
+    edit-recipe           Edit a recipe file
+    find-recipe           Find a recipe file
+    configure-help        Get help on configure script options
+    update-recipe         Apply changes from external source tree to recipe
+    reset                 Remove a recipe from your workspace
+    finish                Finish working on a recipe in your workspace
+  Testing changes on target:
+    deploy-target         Deploy recipe output files to live target machine
+    undeploy-target       Undeploy recipe output files in live target machine
+    build-image           Build image including workspace recipe packages
+  Advanced:
+    create-workspace      Set up workspace in an alternative location
+    menuconfig            Alter build-time configuration for a recipe
+    export                Export workspace into a tar archive
+    extract               Extract the source for an existing recipe
+    sync                  Synchronize the source tree for an existing recipe
+    import                Import exported tar archive into workspace
+Use devtool &lt;subcommand&gt; --help to get help on a specific command
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ devtool undeploy-target klogger root@192.168.55.86
+<b>NOTE</b>: Starting bitbake server...
+INFO: Successfully undeployed klogger
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ devtool finish -f klogger ../poky/meta-george/kernel-recipes
+<b>NOTE</b>: Starting bitbake server...
+NOTE: Reconnecting to bitbake server...
+NOTE: Retrying server connection (#1)...
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2784 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+ERROR: Unable to find layer or directory matching &quot;../poky/meta-george/kernel-recipes&quot;
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake-layers show-layers
+<b>NOTE</b>: Starting bitbake server...
+layer                 path                                      priority
+==========================================================================
+meta                  /home/georgeca/yocto_tutorial/poky/meta   5
+meta-poky             /home/georgeca/yocto_tutorial/poky/meta-poky  5
+meta-yocto-bsp        /home/georgeca/yocto_tutorial/poky/meta-yocto-bsp  5
+meta-oe               /home/georgeca/yocto_tutorial/poky/meta-openembedded/meta-oe  5
+workspace             /home/georgeca/yocto_tutorial/my_builds/workspace  99
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ tree ../poky/meta-george
+<font color="#12488B"><b>../poky/meta-george</b></font>
+├── <font color="#12488B"><b>conf</b></font>
+│   └── layer.conf
+├── COPYING.MIT
+├── README
+├── <font color="#12488B"><b>recipes-example</b></font>
+│   └── <font color="#12488B"><b>example</b></font>
+│       └── example_0.1.bb
+└── <font color="#12488B"><b>recipes-factorial</b></font>
+    └── <font color="#12488B"><b>factorial</b></font>
+        └── factorial_2.0.0.bb
+
+5 directories, 5 files
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ devtool finish -f klogger ../poky/meta-george/kernel-recipes/
+<b>NOTE</b>: Starting bitbake server...
+NOTE: Reconnecting to bitbake server...
+NOTE: Retrying server connection (#1)...
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2784 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+ERROR: Unable to find layer or directory matching &quot;../poky/meta-george/kernel-recipes/&quot;
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ mkdir ../poky/meta-george/kernel-recipes
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ devtool finish -f klogger ../poky/meta-george/kernel-recipes/
+<b>NOTE</b>: Starting bitbake server...
+NOTE: Reconnecting to bitbake server...
+NOTE: Retrying server connection (#1)...
+NOTE: Reconnecting to bitbake server...
+NOTE: Previous bitbake instance shutting down?, waiting to retry...
+NOTE: Retrying server connection (#2)...
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2784 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+ERROR: Unable to determine destination layer path - check that ../poky/meta-george/kernel-recipes/ specifies an actual layer and /home/georgeca/yocto_tutorial/poky/meta-george/kernel-recipes/conf/layer.conf specifies BBFILES. You may also need to specify a more complete path.
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ tree ../poky/meta-george
+<font color="#12488B"><b>../poky/meta-george</b></font>
+├── <font color="#12488B"><b>conf</b></font>
+│   └── layer.conf
+├── COPYING.MIT
+├── <font color="#12488B"><b>kernel-recipes</b></font>
+├── README
+├── <font color="#12488B"><b>recipes-example</b></font>
+│   └── <font color="#12488B"><b>example</b></font>
+│       └── example_0.1.bb
+└── <font color="#12488B"><b>recipes-factorial</b></font>
+    └── <font color="#12488B"><b>factorial</b></font>
+        └── factorial_2.0.0.bb
+
+6 directories, 5 files
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ devtool finish -f klogger ../poky/meta-george/
+<b>NOTE</b>: Starting bitbake server...
+NOTE: Reconnecting to bitbake server...
+NOTE: Retrying server connection (#1)...
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2784 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+<font color="#A2734C"><b>WARNING</b></font>: <font color="#A2734C">Specified destination layer is not currently enabled in bblayers.conf, so the klogger recipe will now be unavailable in your current configuration until you add the layer there</font>
+INFO: Adding new patch 0001-modified-the-Makefile.patch
+INFO: Adding new patch 0002-modified-Makefile.patch
+INFO: Adding new patch 0003-modified-Makefile.patch
+INFO: Updating recipe klogger_git.bb
+INFO: Moving recipe file to /home/georgeca/yocto_tutorial/poky/meta-george/recipes-klogger/klogger
+INFO: Leaving source tree /home/georgeca/yocto_tutorial/my_builds/workspace/sources/klogger as-is; if you no longer need it then please delete it manually
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ tree ../poky/meta-george
+<font color="#12488B"><b>../poky/meta-george</b></font>
+├── <font color="#12488B"><b>conf</b></font>
+│   └── layer.conf
+├── COPYING.MIT
+├── <font color="#12488B"><b>kernel-recipes</b></font>
+├── README
+├── <font color="#12488B"><b>recipes-example</b></font>
+│   └── <font color="#12488B"><b>example</b></font>
+│       └── example_0.1.bb
+├── <font color="#12488B"><b>recipes-factorial</b></font>
+│   └── <font color="#12488B"><b>factorial</b></font>
+│       └── factorial_2.0.0.bb
+└── <font color="#12488B"><b>recipes-klogger</b></font>
+    └── <font color="#12488B"><b>klogger</b></font>
+        ├── <font color="#12488B"><b>klogger</b></font>
+        │   ├── 0001-modified-the-Makefile.patch
+        │   ├── 0002-modified-Makefile.patch
+        │   └── 0003-modified-Makefile.patch
+        └── klogger_git.bb
+
+9 directories, 9 files
+</pre>
+
+
+

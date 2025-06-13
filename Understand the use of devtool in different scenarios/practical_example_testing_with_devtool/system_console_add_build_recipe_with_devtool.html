@@ -1,0 +1,1002 @@
+georgeca@georgeca-VirtualBox:~$ cd yocto_tutorial/my_builds/
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ source ../poky/oe-init-build-env .
+
+### Shell environment set up for builds. ###
+
+You can now run 'bitbake <target>'
+
+Common targets are:
+    core-image-minimal
+    core-image-full-cmdline
+    core-image-sato
+    core-image-weston
+    meta-toolchain
+    meta-ide-support
+
+You can also run generated qemu images with a command like 'runqemu qemux86'
+
+Other commonly useful commands are:
+ - 'devtool' and 'recipetool' handle common recipe tasks
+ - 'bitbake-layers' handles common layer tasks
+ - 'oe-pkgdata-util' handles common target package tasks
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ devtool add --help
+NOTE: Starting bitbake server...
+usage: devtool add [-h] [--same-dir | --no-same-dir] [--fetch URI] [--npm-dev] [--version VERSION] [--no-git] [--srcrev SRCREV | --autorev] [--srcbranch SRCBRANCH] [--binary]
+                   [--also-native] [--src-subdir SUBDIR] [--mirrors] [--provides PROVIDES]
+                   [recipename] [srctree] [fetchuri]
+
+Adds a new recipe to the workspace to build a specified source tree. Can optionally fetch a remote URI and unpack it to create the source tree.
+
+arguments:
+  recipename            Name for new recipe to add (just name - no version, path or extension). If not specified, will attempt to auto-detect it.
+  srctree               Path to external source tree. If not specified, a subdirectory of /home/georgeca/yocto_tutorial/my_builds/workspace/sources will be used.
+  fetchuri              Fetch the specified URI and extract it to create the source tree
+
+options:
+  -h, --help            show this help message and exit
+  --same-dir, -s        Build in same directory as source
+  --no-same-dir         Force build in a separate build directory
+  --fetch URI, -f URI   Fetch the specified URI and extract it to create the source tree (deprecated - pass as positional argument instead)
+  --npm-dev             For npm, also fetch devDependencies
+  --version VERSION, -V VERSION
+                        Version to use within recipe (PV)
+  --no-git, -g          If fetching source, do not set up source tree as a git repository
+  --srcrev SRCREV, -S SRCREV
+                        Source revision to fetch if fetching from an SCM such as git (default latest)
+  --autorev, -a         When fetching from a git repository, set SRCREV in the recipe to a floating revision instead of fixed
+  --srcbranch SRCBRANCH, -B SRCBRANCH
+                        Branch in source repository if fetching from an SCM such as git (default master)
+  --binary, -b          Treat the source tree as something that should be installed verbatim (no compilation, same directory structure). Useful with binary packages e.g. RPMs.
+  --also-native         Also add native variant (i.e. support building recipe for the build host as well as the target machine)
+  --src-subdir SUBDIR   Specify subdirectory within source tree to use
+  --mirrors             Enable PREMIRRORS and MIRRORS for source tree fetching (disable by default).
+  --provides PROVIDES, -p PROVIDES
+                        Specify an alias for the item provided by the recipe. E.g. virtual/libgl
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ devtool add factorial https://github.com/Munawar-git/factorial.git --srcbranch=main
+NOTE: Starting bitbake server...
+INFO: Creating workspace layer in /home/georgeca/yocto_tutorial/my_builds/workspace
+NOTE: Starting bitbake server...
+INFO: Fetching git://github.com/Munawar-git/factorial.git;protocol=https;branch=main...
+Loading cache: 100% |                                                                                                                                                    | ETA:  --:--:--
+Loaded 0 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:31
+Parsing of 1747 .bb files complete (0 cached, 1747 parsed). 2786 targets, 115 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "beaglebone-yocto"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.27"
+TUNE_FEATURES        = "arm vfp cortexa8 neon callconvention-hard"
+TARGET_FPU           = "hard"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7"
+meta-oe              = "kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0"
+meta_advanced-calculator-makefile 
+workspace            = "<unknown>:<unknown>"
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:01
+Sstate summary: Wanted 0 Local 0 Mirrors 0 Missed 0 Current 0 (0% match, 0% complete)
+NOTE: No setscene tasks
+NOTE: Executing Tasks
+NOTE: Tasks Summary: Attempted 2 tasks of which 0 didn't need to be rerun and all succeeded.
+INFO: Using default source tree path /home/georgeca/yocto_tutorial/my_builds/workspace/sources/factorial
+NOTE: Reconnecting to bitbake server...
+NOTE: Retrying server connection (#1)...
+NOTE: Reconnecting to bitbake server...
+NOTE: Reconnecting to bitbake server...
+NOTE: Retrying server connection (#1)...
+NOTE: Retrying server connection (#1)...
+NOTE: Starting bitbake server...
+INFO: Using source tree as build directory since that would be the default for this recipe
+INFO: Recipe /home/georgeca/yocto_tutorial/my_builds/workspace/recipes/factorial/factorial_git.bb has been automatically created; further editing may be required to make it fully functional
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ ls -lh
+total 1,4M
+drwxrwxr-x 3 georgeca georgeca 4,0K mai 24 09:01 '~'
+-rw-rw-r-- 1 georgeca georgeca 1,4M iun 11 13:30  bitbake-cookerdaemon.log
+drwxrwxr-x 2 georgeca georgeca 4,0K iun 11 13:30  cache
+drwxrwxr-x 3 georgeca georgeca 4,0K iun 11 12:20  conf
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 10 16:20  meta-advanced-calculator
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 11 09:36  meta_advanced-calculator-makefile
+drwxrwxr-x 4 georgeca georgeca 4,0K mai 27 16:10  meta-assignment-vars
+drwxrwxr-x 6 georgeca georgeca 4,0K iun 11 13:30  workspace
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ tree workspace/
+workspace/
+├── appends
+│   └── factorial_git.bbappend
+├── conf
+│   └── layer.conf
+├── README
+├── recipes
+│   └── factorial
+│       └── factorial_git.bb
+└── sources
+    └── factorial
+        ├── factorial.c
+        └── Makefile
+
+6 directories, 6 files
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ devtool build factorial
+NOTE: Starting bitbake server...
+NOTE: Reconnecting to bitbake server...
+NOTE: Retrying server connection (#1)...
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1747 .bb files complete (1746 cached, 1 parsed). 2786 targets, 115 skipped, 0 masked, 0 errors.
+NOTE: Reconnecting to bitbake server...
+NOTE: Previous bitbake instance shutting down?, waiting to retry...
+NOTE: Retrying server connection (#1)...
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:01
+Loaded 2785 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1747 .bb files complete (1746 cached, 1 parsed). 2786 targets, 115 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "beaglebone-yocto"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.27"
+TUNE_FEATURES        = "arm vfp cortexa8 neon callconvention-hard"
+TARGET_FPU           = "hard"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7"
+meta-oe              = "kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0"
+meta_advanced-calculator-makefile 
+workspace            = "<unknown>:<unknown>"
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 8 Local 4 Mirrors 0 Missed 4 Current 143 (50% match, 97% complete)
+NOTE: Executing Tasks
+NOTE: factorial: compiling from external source tree /home/georgeca/yocto_tutorial/my_builds/workspace/sources/factorial
+ERROR: factorial-1.0+git999-r0 do_install: oe_runmake failed
+ERROR: factorial-1.0+git999-r0 do_install: ExecutionError('/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/temp/run.do_install.27241', 1, None, None)
+ERROR: Logfile of failure stored in: /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/temp/log.do_install.27241
+Log data follows:
+| DEBUG: Executing python function extend_recipe_sysroot
+| NOTE: Direct dependencies are ['/home/georgeca/yocto_tutorial/poky/meta/recipes-core/glibc/glibc_2.35.bb:do_populate_sysroot', '/home/georgeca/yocto_tutorial/poky/meta/recipes-devtools/gcc/gcc-cross_11.5.bb:do_populate_sysroot', '/home/georgeca/yocto_tutorial/poky/meta/recipes-devtools/gcc/gcc-runtime_11.5.bb:do_populate_sysroot', 'virtual:native:/home/georgeca/yocto_tutorial/poky/meta/recipes-devtools/pseudo/pseudo_git.bb:do_populate_sysroot']
+| NOTE: Installed into sysroot: []
+| NOTE: Skipping as already exists in sysroot: ['glibc', 'gcc-cross-arm', 'gcc-runtime', 'pseudo-native', 'linux-libc-headers', 'binutils-cross-arm', 'zlib-native', 'xz-native', 'zstd-native', 'texinfo-dummy-native', 'libtool-native', 'gmp-native', 'libmpc-native', 'mpfr-native', 'flex-native', 'gnu-config-native', 'libgcc', 'gettext-minimal-native', 'm4-native']
+| DEBUG: Python function extend_recipe_sysroot finished
+| DEBUG: Executing shell function do_install
+| NOTE: make -j 4 install
+| install -m 755 factorial /usr/bin
+| install: cannot create regular file '/usr/bin/factorial': Permission denied
+| make: *** [Makefile:13: install] Error 1
+| ERROR: oe_runmake failed
+| WARNING: exit code 1 from a shell command.
+ERROR: Task (/home/georgeca/yocto_tutorial/my_builds/workspace/recipes/factorial/factorial_git.bb:do_install) failed with exit code '1'
+NOTE: Tasks Summary: Attempted 628 tasks of which 623 didn't need to be rerun and 1 failed.
+
+Summary: 1 task failed:
+  /home/georgeca/yocto_tutorial/my_builds/workspace/recipes/factorial/factorial_git.bb:do_install
+Summary: There were 2 ERROR messages, returning a non-zero exit code.
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ cd workspace/
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/workspace$ ls
+appends  conf  README  recipes  sources
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/workspace$ cd recipes/
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/workspace/recipes$ ls
+factorial
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/workspace/recipes$ cd factorial/
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/workspace/recipes/factorial$ ls
+factorial_git.bb
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/workspace/recipes/factorial$ nano factorial_git.bb 
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/workspace/recipes/factorial$ code factorial_git.bb 
+Command 'code' not found, but can be installed with:
+sudo snap install code
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/workspace/recipes/factorial$ sudo snal install code 
+[sudo] password for georgeca: 
+sudo: snal: command not found
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/workspace/recipes/factorial$ sudo snap install code 
+error: This revision of snap "code" was published using classic confinement and thus may perform
+       arbitrary system changes outside of the security sandbox that snaps are usually confined to,
+       which may put your system at risk.
+
+       If you understand and want to proceed repeat the command including --classic.
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/workspace/recipes/factorial$ sudo snap install code --classic
+code 258e40fe from Visual Studio Code (vscode✓) installed
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/workspace/recipes/factorial$ code factorial_git.bb 
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/workspace/recipes/factorial$ devtool build factorial
+NOTE: Starting bitbake server...
+NOTE: Reconnecting to bitbake server...
+NOTE: Retrying server connection (#1)...
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1747 .bb files complete (1746 cached, 1 parsed). 2786 targets, 115 skipped, 0 masked, 0 errors.
+NOTE: Reconnecting to bitbake server...
+NOTE: Previous bitbake instance shutting down?, waiting to retry...
+NOTE: Retrying server connection (#1)...
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:01
+Loaded 2785 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1747 .bb files complete (1746 cached, 1 parsed). 2786 targets, 115 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "beaglebone-yocto"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.27"
+TUNE_FEATURES        = "arm vfp cortexa8 neon callconvention-hard"
+TARGET_FPU           = "hard"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7"
+meta-oe              = "kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0"
+meta_advanced-calculator-makefile 
+workspace            = "<unknown>:<unknown>"
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 7 Local 4 Mirrors 0 Missed 3 Current 144 (57% match, 98% complete)
+NOTE: Executing Tasks
+NOTE: factorial: compiling from external source tree /home/georgeca/yocto_tutorial/my_builds/workspace/sources/factorial
+ERROR: factorial-1.0+git999-r0 do_install: oe_runmake failed
+ERROR: factorial-1.0+git999-r0 do_install: ExecutionError('/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/temp/run.do_install.29443', 1, None, None)
+ERROR: Logfile of failure stored in: /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/temp/log.do_install.29443
+Log data follows:
+| DEBUG: Executing python function extend_recipe_sysroot
+| NOTE: Direct dependencies are ['/home/georgeca/yocto_tutorial/poky/meta/recipes-core/glibc/glibc_2.35.bb:do_populate_sysroot', '/home/georgeca/yocto_tutorial/poky/meta/recipes-devtools/gcc/gcc-cross_11.5.bb:do_populate_sysroot', '/home/georgeca/yocto_tutorial/poky/meta/recipes-devtools/gcc/gcc-runtime_11.5.bb:do_populate_sysroot', 'virtual:native:/home/georgeca/yocto_tutorial/poky/meta/recipes-devtools/pseudo/pseudo_git.bb:do_populate_sysroot']
+| NOTE: Installed into sysroot: []
+| NOTE: Skipping as already exists in sysroot: ['glibc', 'gcc-cross-arm', 'gcc-runtime', 'pseudo-native', 'libgcc', 'linux-libc-headers', 'binutils-cross-arm', 'libmpc-native', 'libtool-native', 'mpfr-native', 'xz-native', 'gnu-config-native', 'zlib-native', 'zstd-native', 'gmp-native', 'texinfo-dummy-native', 'flex-native', 'gettext-minimal-native', 'm4-native']
+| DEBUG: Python function extend_recipe_sysroot finished
+| DEBUG: Executing shell function do_install
+| NOTE: make -j 4 PREFIX=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/image/usr/bin install
+| install -m 755 factorial /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/image/usr/bin
+| install: cannot create regular file '/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/image/usr/bin': No such file or directory
+| make: *** [Makefile:13: install] Error 1
+| ERROR: oe_runmake failed
+| WARNING: exit code 1 from a shell command.
+ERROR: Task (/home/georgeca/yocto_tutorial/my_builds/workspace/recipes/factorial/factorial_git.bb:do_install) failed with exit code '1'
+NOTE: Tasks Summary: Attempted 628 tasks of which 626 didn't need to be rerun and 1 failed.
+
+Summary: 1 task failed:
+  /home/georgeca/yocto_tutorial/my_builds/workspace/recipes/factorial/factorial_git.bb:do_install
+Summary: There were 2 ERROR messages, returning a non-zero exit code.
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/workspace/recipes/factorial$ code factorial_git.bb 
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/workspace/recipes/factorial$ devtool build factorial
+NOTE: Starting bitbake server...
+NOTE: Reconnecting to bitbake server...
+NOTE: Retrying server connection (#1)...
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1747 .bb files complete (1746 cached, 1 parsed). 2786 targets, 115 skipped, 0 masked, 0 errors.
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:01
+Loaded 2785 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1747 .bb files complete (1746 cached, 1 parsed). 2786 targets, 115 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "beaglebone-yocto"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.27"
+TUNE_FEATURES        = "arm vfp cortexa8 neon callconvention-hard"
+TARGET_FPU           = "hard"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7"
+meta-oe              = "kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0"
+meta_advanced-calculator-makefile 
+workspace            = "<unknown>:<unknown>"
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 7 Local 4 Mirrors 0 Missed 3 Current 144 (57% match, 98% complete)
+NOTE: Executing Tasks
+ERROR: factorial-1.0+git999-r0 do_package: Fatal errors occurred in subprocesses:
+Command '['arm-poky-linux-gnueabi-objcopy', '--only-keep-debug', '/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/package/usr/bin/factorial', '/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/package/usr/bin/.debug/factorial']' returned non-zero exit status 1.
+Subprocess output:arm-poky-linux-gnueabi-objcopy: /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/package/usr/bin/factorial: file format not recognized
+
+ERROR: Logfile of failure stored in: /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/temp/log.do_package.29764
+ERROR: Task (/home/georgeca/yocto_tutorial/my_builds/workspace/recipes/factorial/factorial_git.bb:do_package) failed with exit code '1'
+NOTE: Tasks Summary: Attempted 630 tasks of which 627 didn't need to be rerun and 1 failed.
+
+Summary: 1 task failed:
+  /home/georgeca/yocto_tutorial/my_builds/workspace/recipes/factorial/factorial_git.bb:do_package
+Summary: There was 1 ERROR message, returning a non-zero exit code.
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/workspace/recipes/factorial$ ls -lh
+total 4,0K
+-rw-rw-r-- 1 georgeca georgeca 1,4K iun 11 13:44 factorial_git.bb
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/workspace/recipes/factorial$ cd ../..
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/workspace$ ls -lh
+total 20K
+drwxrwxr-x 2 georgeca georgeca 4,0K iun 11 13:30 appends
+drwxrwxr-x 2 georgeca georgeca 4,0K iun 11 13:29 conf
+-rw-rw-r-- 1 georgeca georgeca  946 iun 11 13:29 README
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 11 13:38 recipes
+drwxrwxr-x 3 georgeca georgeca 4,0K iun 11 13:30 sources
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/workspace$ ls sources/
+factorial
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/workspace$ ls sources/factorial/
+factorial  factorial.c  Makefile  oe-logs  oe-workdir
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/workspace$ file sources/factorial/factorial
+sources/factorial/factorial: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=0f7cdfc5282152017b3923b2d8edcef83c80dda4, for GNU/Linux 3.2.0, not stripped
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/workspace$ devtool build factorial
+NOTE: Starting bitbake server...
+NOTE: Reconnecting to bitbake server...
+NOTE: Retrying server connection (#1)...
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1747 .bb files complete (1746 cached, 1 parsed). 2786 targets, 115 skipped, 0 masked, 0 errors.
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:01
+Loaded 2785 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1747 .bb files complete (1746 cached, 1 parsed). 2786 targets, 115 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "beaglebone-yocto"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.27"
+TUNE_FEATURES        = "arm vfp cortexa8 neon callconvention-hard"
+TARGET_FPU           = "hard"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7"
+meta-oe              = "kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0"
+meta_advanced-calculator-makefile 
+workspace            = "<unknown>:<unknown>"
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:01
+Sstate summary: Wanted 7 Local 4 Mirrors 0 Missed 3 Current 144 (57% match, 98% complete)
+Removing 1 stale sstate objects for arch cortexa8hf-neon: 100% |##########################################################################################################| Time: 0:00:00
+NOTE: Executing Tasks
+NOTE: factorial: compiling from external source tree /home/georgeca/yocto_tutorial/my_builds/workspace/sources/factorial
+ERROR: factorial-1.0+git999-r0 do_compile: oe_runmake failed
+ERROR: factorial-1.0+git999-r0 do_compile: ExecutionError('/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/temp/run.do_compile.29970', 1, None, None)
+ERROR: Logfile of failure stored in: /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/temp/log.do_compile.29970
+Log data follows:
+| DEBUG: Executing python function externalsrc_compile_prefunc
+| NOTE: factorial: compiling from external source tree /home/georgeca/yocto_tutorial/my_builds/workspace/sources/factorial
+| DEBUG: Python function externalsrc_compile_prefunc finished
+| DEBUG: Executing shell function do_compile
+| NOTE: make -j 4 PREFIX=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/image/usr/bin CC=arm-poky-linux-gnueabi-gcc -mfpu=neon -mfloat-abi=hard -mcpu=cortex-a8 -fstack-protector-strong -O2 -D_FORTIFY_SOURCE=2 -Wformat -Wformat-security -Werror=format-security --sysroot=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/recipe-sysroot CFLAGS= -O2 -pipe -g -feliminate-unused-debug-types -fmacro-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0=/usr/src/debug/factorial/1.0+git999-r0 -fdebug-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0=/usr/src/debug/factorial/1.0+git999-r0 -fdebug-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/recipe-sysroot= -fdebug-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/recipe-sysroot-native=
+| # GNU Make 4.3
+| # Built for x86_64-pc-linux-gnu
+| # Copyright (C) 1988-2020 Free Software Foundation, Inc.
+| # License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+| # This is free software: you are free to change and redistribute it.
+| # There is NO WARRANTY, to the extent permitted by law.
+| 
+| # Make data base, printed on Wed Jun 11 10:46:47 2025
+| 
+| # Variables
+| 
+| # environment
+| localstatedir = /var
+| # environment
+| BUILD_CPPFLAGS = -isystem/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/recipe-sysroot-native/usr/include
+| # environment
+| PSEUDO_UNLOAD = 1
+| # environment
+| AS = arm-poky-linux-gnueabi-as
+| # environment
+| LC_ALL = en_US.UTF-8
+| # environment
+| systemd_user_unitdir = /usr/lib/systemd/user
+| # environment
+| nonarch_libdir = /usr/lib
+| # environment
+| AR = arm-poky-linux-gnueabi-gcc-ar
+| # environment
+| systemd_system_unitdir = /lib/systemd/system
+| # environment
+| nonarch_base_libdir = /lib
+| # environment
+| BUILD_CXX = g++
+| # environment
+| base_libdir = /lib
+| # environment
+| prefix = /usr
+| # environment
+| BUILD_AR = ar
+| # environment
+| base_bindir = /bin
+| # default
+| .VARIABLES :=
+| # environment
+| PWD = /home/georgeca/yocto_tutorial/my_builds/workspace/sources/factorial
+| # environment
+| SOURCE_DATE_EPOCH = 1749637928
+| # environment
+| datadir = /usr/share
+| # environment
+| OLDPWD = /home/georgeca/yocto_tutorial/my_builds
+| # environment
+| OMP_NUM_THREADS = 4
+| # default
+| .LOADED :=
+| # environment
+| mandir = /usr/share/man
+| # environment
+| PKG_CONFIG_DIR = /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/recipe-sysroot/usr/lib/pkgconfig
+| # environment
+| PKG_CONFIG_PATH = /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/recipe-sysroot/usr/lib/pkgconfig:/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/recipe-sysroot/usr/share/pkgconfig
+| # environment
+| PYTHONHASHSEED = 0
+| # environment
+| BUILD_CFLAGS = -isystem/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/recipe-sysroot-native/usr/include -O2 -pipe
+| # environment
+| PSEUDO_DISABLED = 1
+| # environment
+| libexecdir = /usr/libexec
+| # default
+| .SHELLFLAGS := -c
+| # environment
+| docdir = /usr/share/doc
+| # environment
+| BUILD_CXXFLAGS = -isystem/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/recipe-sysroot-native/usr/include -O2 -pipe
+| # environment
+| BUILD_CPP = gcc  -E
+| # environment
+| BUILD_FC = gfortran
+| # environment
+| RANLIB = arm-poky-linux-gnueabi-gcc-ranlib
+| # environment
+| PKG_CONFIG_SYSTEM_INCLUDE_PATH = /usr/include
+| # environment
+| BUILD_LD = ld
+| # environment
+| base_sbindir = /sbin
+| # environment
+| oldincludedir = /usr/include
+| # environment
+| sysconfdir = /etc
+| # environment
+| STRINGS = arm-poky-linux-gnueabi-strings
+| # environment
+| servicedir = /srv
+| # environment
+| OBJDUMP = arm-poky-linux-gnueabi-objdump
+| # environment
+| MAKE = make
+| # environment
+| FC = arm-poky-linux-gnueabi-gfortran  -mfpu=neon -mfloat-abi=hard -mcpu=cortex-a8 -fstack-protector-strong  -O2 -D_FORTIFY_SOURCE=2 -Wformat -Wformat-security -Werror=format-security --sysroot=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/recipe-sysroot
+| # environment
+| PATH = /home/georgeca/yocto_tutorial/sources/tmp/sysroots-uninative/x86_64-linux/usr/bin:/home/georgeca/yocto_tutorial/poky/scripts:/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/recipe-sysroot-native/usr/bin/arm-poky-linux-gnueabi:/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/recipe-sysroot/usr/bin/crossscripts:/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/recipe-sysroot-native/usr/sbin:/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/recipe-sysroot-native/usr/bin:/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/recipe-sysroot-native/sbin:/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/recipe-sysroot-native/bin:/home/georgeca/yocto_tutorial/poky/bitbake/bin:/home/georgeca/yocto_tutorial/sources/tmp/hosttools
+| # environment
+| BUILD_RANLIB = ranlib -D
+| # environment
+| infodir = /usr/share/info
+| # environment
+| CCLD = arm-poky-linux-gnueabi-gcc  -mfpu=neon -mfloat-abi=hard -mcpu=cortex-a8 -fstack-protector-strong  -O2 -D_FORTIFY_SOURCE=2 -Wformat -Wformat-security -Werror=format-security --sysroot=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/recipe-sysroot
+| # environment
+| BUILD_AS = as
+| # environment
+| bindir = /usr/bin
+| # environment
+| TZ = UTC
+| # command line
+| PREFIX = /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/image/usr/bin
+| # environment
+| CPP = arm-poky-linux-gnueabi-gcc -E --sysroot=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/recipe-sysroot  -mfpu=neon -mfloat-abi=hard -mcpu=cortex-a8 -fstack-protector-strong  -O2 -D_FORTIFY_SOURCE=2 -Wformat -Wformat-security -Werror=format-security
+| # environment
+| BUILD_CC = gcc
+| # environment
+| exec_prefix = /usr
+| # environment
+| BUILD_LDFLAGS = -L/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/recipe-sysroot-native/usr/lib                         -L/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/recipe-sysroot-native/lib                         -Wl,--enable-new-dtags                         -Wl,-rpath-link,/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/recipe-sysroot-native/usr/lib                         -Wl,-rpath-link,/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/recipe-sysroot-native/lib                         -Wl,-rpath,/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/recipe-sysroot-native/usr/lib                         -Wl,-rpath,/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/recipe-sysroot-native/lib                         -Wl,-O1 -Wl,--allow-shlib-undefined -Wl,--dynamic-linker=/home/georgeca/yocto_tutorial/sources/tmp/sysroots-uninative/x86_64-linux/lib/ld-linux-x86-64.so.2
+| # environment
+| READELF = arm-poky-linux-gnueabi-readelf
+| # environment
+| includedir = /usr/include
+| # environment
+| GNUMAKEFLAGS :=
+| # environment
+| sharedstatedir = /com
+| # environment
+| LOGNAME = georgeca
+| # environment
+| base_prefix =
+| # environment
+| CPPFLAGS =
+| # environment
+| PKG_CONFIG_LIBDIR = /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/recipe-sysroot/usr/lib/pkgconfig
+| # environment
+| PKG_CONFIG_SYSROOT_DIR = /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/recipe-sysroot
+| # environment
+| USER = georgeca
+| # environment
+| BUILD_CCLD = gcc
+| # environment
+| LDFLAGS = -Wl,-O1 -Wl,--hash-style=gnu -Wl,--as-needed -fmacro-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0=/usr/src/debug/factorial/1.0+git999-r0                      -fdebug-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0=/usr/src/debug/factorial/1.0+git999-r0                      -fdebug-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/recipe-sysroot=                      -fdebug-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/recipe-sysroot-native=  -Wl,-z,relro,-z,now
+| # environment
+| BUILD_STRIP = strip
+| # environment
+| BUILD_NM = nm
+| # environment
+| systemd_unitdir = /lib/systemd
+| # command line
+| CFLAGS =
+| # environment
+| sbindir = /usr/sbin
+| # environment
+| PKG_CONFIG_SYSTEM_LIBRARY_PATH = /lib:/usr/lib
+| # environment
+| HOME = /home/georgeca
+| # environment
+| NM = arm-poky-linux-gnueabi-gcc-nm
+| # environment
+| GIT_CEILING_DIRECTORIES = /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0
+| # default
+| .RECIPEPREFIX :=
+| # environment
+| LD = arm-poky-linux-gnueabi-ld --sysroot=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/recipe-sysroot
+| # environment
+| PKG_CONFIG_DISABLE_UNINSTALLED = yes
+| # environment
+| CXXFLAGS =  -O2 -pipe -g -feliminate-unused-debug-types -fmacro-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0=/usr/src/debug/factorial/1.0+git999-r0                      -fdebug-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0=/usr/src/debug/factorial/1.0+git999-r0                      -fdebug-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/recipe-sysroot=                      -fdebug-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/recipe-sysroot-native=  -fvisibility-inlines-hidden
+| # environment
+| libdir = /usr/lib
+| # environment
+| STRIP = arm-poky-linux-gnueabi-strip
+| # default
+| .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink load
+| # environment
+| CXX = arm-poky-linux-gnueabi-g++  -mfpu=neon -mfloat-abi=hard -mcpu=cortex-a8 -fstack-protector-strong  -O2 -D_FORTIFY_SOURCE=2 -Wformat -Wformat-security -Werror=format-security --sysroot=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/recipe-sysroot
+| # environment
+| PERL_HASH_SEED = 0
+| # command line
+| CC = arm-poky-linux-gnueabi-gcc
+| # environment
+| OBJCOPY = arm-poky-linux-gnueabi-objcopy
+| # variable set hash-table stats:
+| # Load=89/1024=9%, Rehash=0, Collisions=4/93=4%
+| 
+| # Pattern-specific Variable Values
+| 
+| # No pattern-specific variable values.
+| 
+| # Directories
+| 
+| 
+| # No files, no impossibilities in 0 directories.
+| 
+| # Implicit Rules
+| 
+| # No implicit rules.
+| 
+| # Files
+| 
+| # files hash-table stats:
+| # Load=0/1024=0%, Rehash=0, Collisions=0/0=0%
+| # VPATH Search Paths
+| 
+| # No 'vpath' search paths.
+| 
+| # No general ('VPATH' variable) search path.
+| 
+| # strcache buffers: 1 (0) / strings = 12 / storage = 736 B / avg = 61 B
+| # current buf: size = 8162 B / used = 736 B / count = 12 / avg = 61 B
+| 
+| # strcache performance: lookups = 12 / hit rate = 0%
+| # hash-table stats:
+| # Load=12/8192=0%, Rehash=0, Collisions=0/12=0%
+| # Finished Make data base on Wed Jun 11 10:46:47 2025
+| 
+| make: invalid option -- 'c'
+| make: invalid option -- 'u'
+| make: invalid option -- '='
+| make: invalid option -- 'c'
+| make: invalid option -- 'D'
+| make: invalid option -- '_'
+| make: invalid option -- 'F'
+| make: unrecognized option '--sysroot=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/recipe-sysroot'
+| make: invalid option -- 'g'
+| Usage: make [options] [target] ...
+| Options:
+|   -b, -m                      Ignored for compatibility.
+|   -B, --always-make           Unconditionally make all targets.
+|   -C DIRECTORY, --directory=DIRECTORY
+|                               Change to DIRECTORY before doing anything.
+|   -d                          Print lots of debugging information.
+|   --debug[=FLAGS]             Print various types of debugging information.
+|   -e, --environment-overrides
+|                               Environment variables override makefiles.
+|   -E STRING, --eval=STRING    Evaluate STRING as a makefile statement.
+|   -f FILE, --file=FILE, --makefile=FILE
+|                               Read FILE as a makefile.
+|   -h, --help                  Print this message and exit.
+|   -i, --ignore-errors         Ignore errors from recipes.
+|   -I DIRECTORY, --include-dir=DIRECTORY
+|                               Search DIRECTORY for included makefiles.
+|   -j [N], --jobs[=N]          Allow N jobs at once; infinite jobs with no arg.
+|   -k, --keep-going            Keep going when some targets can't be made.
+|   -l [N], --load-average[=N], --max-load[=N]
+|                               Don't start multiple jobs unless load is below N.
+|   -L, --check-symlink-times   Use the latest mtime between symlinks and target.
+|   -n, --just-print, --dry-run, --recon
+|                               Don't actually run any recipe; just print them.
+|   -o FILE, --old-file=FILE, --assume-old=FILE
+|                               Consider FILE to be very old and don't remake it.
+|   -O[TYPE], --output-sync[=TYPE]
+|                               Synchronize output of parallel jobs by TYPE.
+|   -p, --print-data-base       Print make's internal database.
+|   -q, --question              Run no recipe; exit status says if up to date.
+|   -r, --no-builtin-rules      Disable the built-in implicit rules.
+|   -R, --no-builtin-variables  Disable the built-in variable settings.
+|   -s, --silent, --quiet       Don't echo recipes.
+|   --no-silent                 Echo recipes (disable --silent mode).
+|   -S, --no-keep-going, --stop
+|                               Turns off -k.
+|   -t, --touch                 Touch targets instead of remaking them.
+|   --trace                     Print tracing information.
+|   -v, --version               Print the version number of make and exit.
+|   -w, --print-directory       Print the current directory.
+|   --no-print-directory        Turn off -w, even if it was turned on implicitly.
+|   -W FILE, --what-if=FILE, --new-file=FILE, --assume-new=FILE
+|                               Consider FILE to be infinitely new.
+|   --warn-undefined-variables  Warn when an undefined variable is referenced.
+| 
+| This program built for x86_64-pc-linux-gnu
+| Report bugs to <bug-make@gnu.org>
+| ERROR: oe_runmake failed
+| WARNING: exit code 1 from a shell command.
+ERROR: Task (/home/georgeca/yocto_tutorial/my_builds/workspace/recipes/factorial/factorial_git.bb:do_compile) failed with exit code '1'
+NOTE: Tasks Summary: Attempted 627 tasks of which 626 didn't need to be rerun and 1 failed.
+
+Summary: 1 task failed:
+  /home/georgeca/yocto_tutorial/my_builds/workspace/recipes/factorial/factorial_git.bb:do_compile
+Summary: There were 2 ERROR messages, returning a non-zero exit code.
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/workspace$ devtool build factorial
+NOTE: Starting bitbake server...
+NOTE: Reconnecting to bitbake server...
+NOTE: Retrying server connection (#1)...
+NOTE: Reconnecting to bitbake server...
+NOTE: Previous bitbake instance shutting down?, waiting to retry...
+NOTE: Retrying server connection (#2)...
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1747 .bb files complete (1746 cached, 1 parsed). 2786 targets, 115 skipped, 0 masked, 0 errors.
+NOTE: Reconnecting to bitbake server...
+NOTE: Retrying server connection (#1)...
+NOTE: Reconnecting to bitbake server...
+NOTE: Previous bitbake instance shutting down?, waiting to retry...
+NOTE: Retrying server connection (#2)...
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:01
+Loaded 2785 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1747 .bb files complete (1746 cached, 1 parsed). 2786 targets, 115 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "beaglebone-yocto"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.27"
+TUNE_FEATURES        = "arm vfp cortexa8 neon callconvention-hard"
+TARGET_FPU           = "hard"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7"
+meta-oe              = "kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0"
+meta_advanced-calculator-makefile 
+workspace            = "<unknown>:<unknown>"
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 7 Local 4 Mirrors 0 Missed 3 Current 144 (57% match, 98% complete)
+NOTE: Executing Tasks
+NOTE: factorial: compiling from external source tree /home/georgeca/yocto_tutorial/my_builds/workspace/sources/factorial
+ERROR: factorial-1.0+git999-r0 do_package: Fatal errors occurred in subprocesses:
+Command '['arm-poky-linux-gnueabi-objcopy', '--only-keep-debug', '/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/package/usr/bin/factorial', '/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/package/usr/bin/.debug/factorial']' returned non-zero exit status 1.
+Subprocess output:arm-poky-linux-gnueabi-objcopy: /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/package/usr/bin/factorial: file format not recognized
+
+ERROR: Logfile of failure stored in: /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/temp/log.do_package.30121
+ERROR: Task (/home/georgeca/yocto_tutorial/my_builds/workspace/recipes/factorial/factorial_git.bb:do_package) failed with exit code '1'
+NOTE: Tasks Summary: Attempted 630 tasks of which 626 didn't need to be rerun and 1 failed.
+
+Summary: 1 task failed:
+  /home/georgeca/yocto_tutorial/my_builds/workspace/recipes/factorial/factorial_git.bb:do_package
+Summary: There was 1 ERROR message, returning a non-zero exit code.
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/workspace$ devtool build factorial
+NOTE: Starting bitbake server...
+NOTE: Reconnecting to bitbake server...
+NOTE: Retrying server connection (#1)...
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1747 .bb files complete (1746 cached, 1 parsed). 2786 targets, 115 skipped, 0 masked, 0 errors.
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:01
+Loaded 2785 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1747 .bb files complete (1746 cached, 1 parsed). 2786 targets, 115 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "beaglebone-yocto"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.27"
+TUNE_FEATURES        = "arm vfp cortexa8 neon callconvention-hard"
+TARGET_FPU           = "hard"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7"
+meta-oe              = "kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0"
+meta_advanced-calculator-makefile 
+workspace            = "<unknown>:<unknown>"
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 6 Local 4 Mirrors 0 Missed 2 Current 145 (66% match, 98% complete)
+NOTE: Executing Tasks
+ERROR: factorial-1.0+git999-r0 do_package: Fatal errors occurred in subprocesses:
+Command '['arm-poky-linux-gnueabi-objcopy', '--only-keep-debug', '/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/package/usr/bin/factorial', '/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/package/usr/bin/.debug/factorial']' returned non-zero exit status 1.
+Subprocess output:arm-poky-linux-gnueabi-objcopy: /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/package/usr/bin/factorial: file format not recognized
+
+ERROR: Logfile of failure stored in: /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/temp/log.do_package.30300
+ERROR: Task (/home/georgeca/yocto_tutorial/my_builds/workspace/recipes/factorial/factorial_git.bb:do_package) failed with exit code '1'
+NOTE: Tasks Summary: Attempted 630 tasks of which 629 didn't need to be rerun and 1 failed.
+
+Summary: 1 task failed:
+  /home/georgeca/yocto_tutorial/my_builds/workspace/recipes/factorial/factorial_git.bb:do_package
+Summary: There was 1 ERROR message, returning a non-zero exit code.
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/workspace$ devtool build factorial
+NOTE: Starting bitbake server...
+NOTE: Reconnecting to bitbake server...
+NOTE: Retrying server connection (#1)...
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1747 .bb files complete (1746 cached, 1 parsed). 2786 targets, 115 skipped, 0 masked, 0 errors.
+NOTE: Reconnecting to bitbake server...
+NOTE: Previous bitbake instance shutting down?, waiting to retry...
+NOTE: Retrying server connection (#1)...
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:01
+Loaded 2785 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1747 .bb files complete (1746 cached, 1 parsed). 2786 targets, 115 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "beaglebone-yocto"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.27"
+TUNE_FEATURES        = "arm vfp cortexa8 neon callconvention-hard"
+TARGET_FPU           = "hard"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7"
+meta-oe              = "kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0"
+meta_advanced-calculator-makefile 
+workspace            = "<unknown>:<unknown>"
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 7 Local 4 Mirrors 0 Missed 3 Current 144 (57% match, 98% complete)
+Removing 1 stale sstate objects for arch cortexa8hf-neon: 100% |##########################################################################################################| Time: 0:00:00
+NOTE: Executing Tasks
+NOTE: factorial: compiling from external source tree /home/georgeca/yocto_tutorial/my_builds/workspace/sources/factorial
+ERROR: factorial-1.0+git999-r0 do_package: Fatal errors occurred in subprocesses:
+Command '['arm-poky-linux-gnueabi-objcopy', '--only-keep-debug', '/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/package/usr/bin/factorial', '/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/package/usr/bin/.debug/factorial']' returned non-zero exit status 1.
+Subprocess output:arm-poky-linux-gnueabi-objcopy: /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/package/usr/bin/factorial: file format not recognized
+
+ERROR: Logfile of failure stored in: /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/temp/log.do_package.30475
+ERROR: Task (/home/georgeca/yocto_tutorial/my_builds/workspace/recipes/factorial/factorial_git.bb:do_package) failed with exit code '1'
+NOTE: Tasks Summary: Attempted 630 tasks of which 626 didn't need to be rerun and 1 failed.
+
+Summary: 1 task failed:
+  /home/georgeca/yocto_tutorial/my_builds/workspace/recipes/factorial/factorial_git.bb:do_package
+Summary: There was 1 ERROR message, returning a non-zero exit code.
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/workspace$ devtool build factorial
+NOTE: Starting bitbake server...
+NOTE: Reconnecting to bitbake server...
+NOTE: Retrying server connection (#1)...
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1747 .bb files complete (1746 cached, 1 parsed). 2786 targets, 115 skipped, 0 masked, 0 errors.
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:01
+Loaded 2785 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1747 .bb files complete (1746 cached, 1 parsed). 2786 targets, 115 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "beaglebone-yocto"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.27"
+TUNE_FEATURES        = "arm vfp cortexa8 neon callconvention-hard"
+TARGET_FPU           = "hard"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7"
+meta-oe              = "kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0"
+meta_advanced-calculator-makefile 
+workspace            = "<unknown>:<unknown>"
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:01
+Sstate summary: Wanted 7 Local 4 Mirrors 0 Missed 3 Current 144 (57% match, 98% complete)
+Removing 1 stale sstate objects for arch cortexa8hf-neon: 100% |##########################################################################################################| Time: 0:00:00
+NOTE: Executing Tasks
+NOTE: factorial: compiling from external source tree /home/georgeca/yocto_tutorial/my_builds/workspace/sources/factorial
+ERROR: factorial-1.0+git999-r0 do_package: Fatal errors occurred in subprocesses:
+Command '['arm-poky-linux-gnueabi-objcopy', '--only-keep-debug', '/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/package/usr/bin/factorial', '/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/package/usr/bin/.debug/factorial']' returned non-zero exit status 1.
+Subprocess output:arm-poky-linux-gnueabi-objcopy: /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/package/usr/bin/factorial: file format not recognized
+
+ERROR: Logfile of failure stored in: /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/temp/log.do_package.30687
+ERROR: Task (/home/georgeca/yocto_tutorial/my_builds/workspace/recipes/factorial/factorial_git.bb:do_package) failed with exit code '1'
+NOTE: Tasks Summary: Attempted 630 tasks of which 625 didn't need to be rerun and 1 failed.
+
+Summary: 1 task failed:
+  /home/georgeca/yocto_tutorial/my_builds/workspace/recipes/factorial/factorial_git.bb:do_package
+Summary: There was 1 ERROR message, returning a non-zero exit code.
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/workspace$ bitbake -e factorial | grep CC=
+export BUILD_CC="gcc "
+export CC="arm-poky-linux-gnueabi-gcc  -mfpu=neon -mfloat-abi=hard -mcpu=cortex-a8 -fstack-protector-strong  -O2 -D_FORTIFY_SOURCE=2 -Wformat -Wformat-security -Werror=format-security --sysroot=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/recipe-sysroot"
+#     "PREFIX=${D}${bindir} CC='${CC}' CFLAGS='${CFLAGS}'"
+#   "PREFIX=${D}${bindir} CC='${CC}' CFLAGS='${CFLAGS}'"
+EXTRA_OEMAKE="PREFIX=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/image/usr/bin CC='arm-poky-linux-gnueabi-gcc  -mfpu=neon -mfloat-abi=hard -mcpu=cortex-a8 -fstack-protector-strong  -O2 -D_FORTIFY_SOURCE=2 -Wformat -Wformat-security -Werror=format-security --sysroot=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/recipe-sysroot' CFLAGS=' -O2 -pipe -g -feliminate-unused-debug-types -fmacro-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0=/usr/src/debug/factorial/1.0+git999-r0                      -fdebug-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0=/usr/src/debug/factorial/1.0+git999-r0                      -fdebug-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/recipe-sysroot=                      -fdebug-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/recipe-sysroot-native= '"
+	bbnote make PREFIX=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/image/usr/bin CC='arm-poky-linux-gnueabi-gcc  -mfpu=neon -mfloat-abi=hard -mcpu=cortex-a8 -fstack-protector-strong  -O2 -D_FORTIFY_SOURCE=2 -Wformat -Wformat-security -Werror=format-security --sysroot=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/recipe-sysroot' CFLAGS=' -O2 -pipe -g -feliminate-unused-debug-types -fmacro-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0=/usr/src/debug/factorial/1.0+git999-r0                      -fdebug-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0=/usr/src/debug/factorial/1.0+git999-r0                      -fdebug-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/recipe-sysroot=                      -fdebug-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/recipe-sysroot-native= ' "$@"
+	make PREFIX=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/image/usr/bin CC='arm-poky-linux-gnueabi-gcc  -mfpu=neon -mfloat-abi=hard -mcpu=cortex-a8 -fstack-protector-strong  -O2 -D_FORTIFY_SOURCE=2 -Wformat -Wformat-security -Werror=format-security --sysroot=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/recipe-sysroot' CFLAGS=' -O2 -pipe -g -feliminate-unused-debug-types -fmacro-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0=/usr/src/debug/factorial/1.0+git999-r0                      -fdebug-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0=/usr/src/debug/factorial/1.0+git999-r0                      -fdebug-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/recipe-sysroot=                      -fdebug-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/recipe-sysroot-native= ' "$@"
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/workspace$ ls sources/
+factorial
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/workspace$ file sources/factorial/factorial
+sources/factorial/factorial: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=0f7cdfc5282152017b3923b2d8edcef83c80dda4, for GNU/Linux 3.2.0, not stripped
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/workspace$ devtool build factorial
+NOTE: Starting bitbake server...
+NOTE: Reconnecting to bitbake server...
+NOTE: Retrying server connection (#1)...
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1747 .bb files complete (1746 cached, 1 parsed). 2786 targets, 115 skipped, 0 masked, 0 errors.
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:01
+Loaded 2785 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1747 .bb files complete (1746 cached, 1 parsed). 2786 targets, 115 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "beaglebone-yocto"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.27"
+TUNE_FEATURES        = "arm vfp cortexa8 neon callconvention-hard"
+TARGET_FPU           = "hard"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7"
+meta-oe              = "kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0"
+meta_advanced-calculator-makefile 
+workspace            = "<unknown>:<unknown>"
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 6 Local 4 Mirrors 0 Missed 2 Current 145 (66% match, 98% complete)
+NOTE: Executing Tasks
+ERROR: factorial-1.0+git999-r0 do_package: Fatal errors occurred in subprocesses:
+Command '['arm-poky-linux-gnueabi-objcopy', '--only-keep-debug', '/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/package/usr/bin/factorial', '/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/package/usr/bin/.debug/factorial']' returned non-zero exit status 1.
+Subprocess output:arm-poky-linux-gnueabi-objcopy: /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/package/usr/bin/factorial: file format not recognized
+
+ERROR: Logfile of failure stored in: /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/temp/log.do_package.31028
+ERROR: Task (/home/georgeca/yocto_tutorial/my_builds/workspace/recipes/factorial/factorial_git.bb:do_package) failed with exit code '1'
+NOTE: Tasks Summary: Attempted 630 tasks of which 629 didn't need to be rerun and 1 failed.
+
+Summary: 1 task failed:
+  /home/georgeca/yocto_tutorial/my_builds/workspace/recipes/factorial/factorial_git.bb:do_package
+Summary: There was 1 ERROR message, returning a non-zero exit code.
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/workspace$ devtool build factorial
+NOTE: Starting bitbake server...
+NOTE: Reconnecting to bitbake server...
+NOTE: Retrying server connection (#1)...
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1747 .bb files complete (1746 cached, 1 parsed). 2786 targets, 115 skipped, 0 masked, 0 errors.
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:01
+Loaded 2785 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1747 .bb files complete (1746 cached, 1 parsed). 2786 targets, 115 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "beaglebone-yocto"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.27"
+TUNE_FEATURES        = "arm vfp cortexa8 neon callconvention-hard"
+TARGET_FPU           = "hard"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7"
+meta-oe              = "kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0"
+meta_advanced-calculator-makefile 
+workspace            = "<unknown>:<unknown>"
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:01
+Sstate summary: Wanted 7 Local 4 Mirrors 0 Missed 3 Current 144 (57% match, 98% complete)
+Removing 1 stale sstate objects for arch cortexa8hf-neon: 100% |##########################################################################################################| Time: 0:00:00
+NOTE: Executing Tasks
+NOTE: factorial: compiling from external source tree /home/georgeca/yocto_tutorial/my_builds/workspace/sources/factorial
+ERROR: factorial-1.0+git999-r0 do_package: Fatal errors occurred in subprocesses:
+Command '['arm-poky-linux-gnueabi-objcopy', '--only-keep-debug', '/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/package/usr/bin/factorial', '/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/package/usr/bin/.debug/factorial']' returned non-zero exit status 1.
+Subprocess output:arm-poky-linux-gnueabi-objcopy: /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/package/usr/bin/factorial: file format not recognized
+
+ERROR: Logfile of failure stored in: /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+git999-r0/temp/log.do_package.31198
+ERROR: Task (/home/georgeca/yocto_tutorial/my_builds/workspace/recipes/factorial/factorial_git.bb:do_package) failed with exit code '1'
+NOTE: Tasks Summary: Attempted 630 tasks of which 626 didn't need to be rerun and 1 failed.
+
+Summary: 1 task failed:
+  /home/georgeca/yocto_tutorial/my_builds/workspace/recipes/factorial/factorial_git.bb:do_package
+Summary: There was 1 ERROR message, returning a non-zero exit code.
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/workspace$ devtool build factorial
+NOTE: Starting bitbake server...
+NOTE: Reconnecting to bitbake server...
+NOTE: Retrying server connection (#1)...
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1747 .bb files complete (1746 cached, 1 parsed). 2786 targets, 115 skipped, 0 masked, 0 errors.
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:01
+Loaded 2785 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1747 .bb files complete (1746 cached, 1 parsed). 2786 targets, 115 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "beaglebone-yocto"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.27"
+TUNE_FEATURES        = "arm vfp cortexa8 neon callconvention-hard"
+TARGET_FPU           = "hard"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7"
+meta-oe              = "kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0"
+meta_advanced-calculator-makefile 
+workspace            = "<unknown>:<unknown>"
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 7 Local 4 Mirrors 0 Missed 3 Current 144 (57% match, 98% complete)
+Removing 1 stale sstate objects for arch cortexa8hf-neon: 100% |##########################################################################################################| Time: 0:00:00
+NOTE: Executing Tasks
+NOTE: factorial: compiling from external source tree /home/georgeca/yocto_tutorial/my_builds/workspace/sources/factorial
+NOTE: Tasks Summary: Attempted 631 tasks of which 625 didn't need to be rerun and all succeeded.
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/workspace$ file sources/factorial/factorial
+sources/factorial/factorial: ELF 32-bit LSB pie executable, ARM, EABI5 version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux-armhf.so.3, BuildID[sha1]=0ef6cb4e195ca1bdabf8a20a8cba2c614f4a8904, for GNU/Linux 3.2.0, with debug_info, not stripped

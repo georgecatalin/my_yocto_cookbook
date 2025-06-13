@@ -1,0 +1,22 @@
+From 88e1dbff124ee532fdaade18214bed8c5d7648e0 Mon Sep 17 00:00:00 2001
+From: George Calin <george.calin@gmail.com>
+Date: Thu, 12 Jun 2025 14:09:25 +0300
+Subject: [PATCH] modified the Makefile
+
+---
+ Makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Makefile b/Makefile
+index a6a95ef..34399d0 100644
+--- a/Makefile
++++ b/Makefile
+@@ -6,7 +6,7 @@ else
+ 
+ .PHONY: all
+ all:
+-	$(MAKE) -C /lib/modules/$(shell uname -r)/build M=$(shell pwd) modules
++	$(MAKE) -C KERNEL_SRC uname -r)/build M=$(shell pwd) modules
+ 
+ .PHONY: clean
+ clean:

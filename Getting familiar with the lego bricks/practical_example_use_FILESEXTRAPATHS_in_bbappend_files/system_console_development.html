@@ -1,0 +1,200 @@
+<pre><font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ source ../poky/oe-init-build-env .
+
+### Shell environment set up for builds. ###
+
+You can now run &apos;bitbake &lt;target&gt;&apos;
+
+Common targets are:
+    core-image-minimal
+    core-image-full-cmdline
+    core-image-sato
+    core-image-weston
+    meta-toolchain
+    meta-ide-support
+
+You can also run generated qemu images with a command like &apos;runqemu qemux86&apos;
+
+Other commonly useful commands are:
+ - &apos;devtool&apos; and &apos;recipetool&apos; handle common recipe tasks
+ - &apos;bitbake-layers&apos; handles common layer tasks
+ - &apos;oe-pkgdata-util&apos; handles common target package tasks
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake -c do_cleansstate example
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+<font color="#A2734C"><b>WARNING</b></font>: <font color="#A2734C">/home/georgeca/yocto_tutorial/my_builds/meta-example/recipes-example/example/example_0.1.bb: Unable to get checksum for example SRC_URI entry 0001-patch-example.patch: file could not be found</font>
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+meta-example         
+meta-custom          = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 0 Local 0 Mirrors 0 Missed 0 Current 0 (0% match, 0% complete)
+<b>NOTE</b>: No setscene tasks
+<b>NOTE</b>: Executing Tasks
+<b>NOTE</b>: Tasks Summary: Attempted 2 tasks of which 0 didn&apos;t need to be rerun and all succeeded.
+
+Summary: There was 1 WARNING message.
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ code meta-custom/recipes-custom/example/example_0.1.bbappend 
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake -e example | grep ^THIS_DIR=
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake -e example | grep ^THIS*
+<font color="#C01C28"><b>THIS</b></font>DIR=&quot;/home/georgeca/yocto_tutorial/my_builds/meta-example/recipes-example/example&quot;
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake -c do_cleansstate example
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+<font color="#A2734C"><b>WARNING</b></font>: <font color="#A2734C">/home/georgeca/yocto_tutorial/my_builds/meta-example/recipes-example/example/example_0.1.bb: FILESEXTRAPATHS-variable, must always use :prepend (or :append)</font>    | ETA:  --:--:--
+<font color="#A2734C">type of assignment, and don&apos;t forget the colon.</font>
+<font color="#A2734C">Please assign it with the format of:</font>
+<font color="#A2734C">  FILESEXTRAPATHS:append := &quot;:${THISDIR}/Your_Files_Path&quot; or</font>
+<font color="#A2734C">  FILESEXTRAPATHS:prepend := &quot;${THISDIR}/Your_Files_Path:&quot;</font>
+<font color="#A2734C">in your bbappend file</font>
+
+<font color="#A2734C">Your incorrect assignment is:</font>
+<font color="#A2734C">/home/georgeca/yocto_tutorial/my_builds/meta-custom/recipes-custom/example/files__default:</font>
+
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+meta-example         
+meta-custom          = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 0 Local 0 Mirrors 0 Missed 0 Current 0 (0% match, 0% complete)
+<b>NOTE</b>: No setscene tasks
+<b>NOTE</b>: Executing Tasks
+<font color="#A2734C"><b>WARNING</b></font>: <font color="#A2734C">FILESEXTRAPATHS-variable, must always use :prepend (or :append)</font>
+<font color="#A2734C">type of assignment, and don&apos;t forget the colon.</font>
+<font color="#A2734C">Please assign it with the format of:</font>
+<font color="#A2734C">  FILESEXTRAPATHS:append := &quot;:${THISDIR}/Your_Files_Path&quot; or</font>
+<font color="#A2734C">  FILESEXTRAPATHS:prepend := &quot;${THISDIR}/Your_Files_Path:&quot;</font>
+<font color="#A2734C">in your bbappend file</font>
+
+<font color="#A2734C">Your incorrect assignment is:</font>
+<font color="#A2734C">/home/georgeca/yocto_tutorial/my_builds/meta-custom/recipes-custom/example/files__default:</font>
+
+<font color="#A2734C"><b>WARNING</b></font>: <font color="#A2734C">FILESEXTRAPATHS-variable, must always use :prepend (or :append)</font>
+<font color="#A2734C">type of assignment, and don&apos;t forget the colon.</font>
+<font color="#A2734C">Please assign it with the format of:</font>
+<font color="#A2734C">  FILESEXTRAPATHS:append := &quot;:${THISDIR}/Your_Files_Path&quot; or</font>
+<font color="#A2734C">  FILESEXTRAPATHS:prepend := &quot;${THISDIR}/Your_Files_Path:&quot;</font>
+<font color="#A2734C">in your bbappend file</font>
+
+<font color="#A2734C">Your incorrect assignment is:</font>
+<font color="#A2734C">/home/georgeca/yocto_tutorial/my_builds/meta-custom/recipes-custom/example/files__default:</font>
+
+<b>NOTE</b>: Tasks Summary: Attempted 2 tasks of which 0 didn&apos;t need to be rerun and all succeeded.
+
+Summary: There were 3 WARNING messages.
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake example
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+meta-example         
+meta-custom          = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 11 Local 4 Mirrors 0 Missed 7 Current 219 (36% match, 96% complete)
+<b>NOTE</b>: Executing Tasks
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">example-0.1-r0 do_compile: ExecutionError(&apos;/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/example/0.1-r0/temp/run.do_compile.40809&apos;, 1, None, None)</font>
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Logfile of failure stored in: /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/example/0.1-r0/temp/log.do_compile.40809</font>
+Log data follows:
+| DEBUG: Executing shell function do_compile
+| In file included from /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/example/0.1-r0/git/bbb-example.c:2:
+| /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/example/0.1-r0/git/bbb-example.h:5:8: error: expected declaration specifiers or &apos;...&apos; before string constant
+|     5 | printf(&quot;Added from the .bbappend recipe&quot;);
+|       |        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+| WARNING: exit code 1 from a shell command.
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Task (/home/georgeca/yocto_tutorial/my_builds/meta-example/recipes-example/example/example_0.1.bb:do_compile) failed with exit code &apos;1&apos;</font>
+<b>NOTE</b>: Tasks Summary: Attempted 776 tasks of which 768 didn&apos;t need to be rerun and 1 failed.
+
+Summary: 1 task failed:
+  /home/georgeca/yocto_tutorial/my_builds/meta-example/recipes-example/example/example_0.1.bb:do_compile
+Summary: There was 1 ERROR message, returning a non-zero exit code.
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ code meta-example/recipes-example/example/example_0.1.bb 
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake example
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+meta-example         
+meta-custom          = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 9 Local 4 Mirrors 0 Missed 5 Current 221 (44% match, 97% complete)
+<b>NOTE</b>: Executing Tasks
+<b>NOTE</b>: Tasks Summary: Attempted 785 tasks of which 774 didn&apos;t need to be rerun and all succeeded.
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake -e example | grep ^S=
+<font color="#C01C28"><b>S=</b></font>&quot;/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/example/0.1-r0/git&quot;
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ cd ${bitbake -e example | grep ^S=}
+bash: ${bitbake -e example | grep ^S=}: bad substitution
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ cd bitbake -e example | grep ^S=
+bash: cd: too many arguments
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ cd /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/example/0.1-r0/git
+bash: cd: /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/example/0.1-r0/git: No such file or directory
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ cd /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/example/0.1-r0
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/example/0.1-r0</b></font>$ ls
+<font color="#12488B"><b>temp</b></font>
+</pre>

@@ -1,0 +1,2 @@
+## Task Objective
+Demonstrate the usage of EXTRA_OEMAKE with a recipe in Yocto Project.

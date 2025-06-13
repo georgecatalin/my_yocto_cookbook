@@ -1,0 +1,22 @@
+Demonstrate the use of a recipe to build a program that comprises multiple C files.
+
+********
+
+This documents the step-by-step process of building and troubleshooting a simple C project using Yocto without a Makefile. It shows terminal commands and outputs as the user:
+
+Navigates directories and sets up the Yocto build environment.
+
+Creates and adds custom layers and recipes in Yocto (specifically meta-advanced-calculator and its recipe final-calculator).
+
+Adds multiple C source files (advanced-calculator.c and math-lib.c), and attempts to build them.
+
+Encounters and resolves various build errors.
+Updates the project structure and recipe files to fix issues (like missing license info, linking errors, and header includes).
+
+Rebuilds the project multiple times, showing both errors and successful commands.
+
+Checks the build outputs and navigates the build directories.
+
+
+In summary:
+practical_example_build_multiple_files_at_once_with_yocto_no_makefile/system_console.html is a detailed console output capturing the workflow and challenges of compiling multiple C files in Yocto (without using a Makefile), aimed at demonstrating the process and common pitfalls for Yocto beginners.

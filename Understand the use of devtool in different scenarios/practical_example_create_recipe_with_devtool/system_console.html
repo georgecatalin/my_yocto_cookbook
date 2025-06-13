@@ -1,0 +1,813 @@
+<pre><font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds</b></font>$ source ../poky/oe-init-build-env .
+
+### Shell environment set up for builds. ###
+
+You can now run &apos;bitbake &lt;target&gt;&apos;
+
+Common targets are:
+    core-image-minimal
+    core-image-full-cmdline
+    core-image-sato
+    core-image-weston
+    meta-toolchain
+    meta-ide-support
+
+You can also run generated qemu images with a command like &apos;runqemu qemux86&apos;
+
+Other commonly useful commands are:
+ - &apos;devtool&apos; and &apos;recipetool&apos; handle common recipe tasks
+ - &apos;bitbake-layers&apos; handles common layer tasks
+ - &apos;oe-pkgdata-util&apos; handles common target package tasks
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds</b></font>$ devtool add hello-factorial https://github.com/Munawar-git/factorial.git
+<b>NOTE</b>: Starting bitbake server...
+<font color="#DC322F"><b>ERROR</b></font>: <font color="#DC322F">The following layer directories do not exist:</font>
+<font color="#DC322F"><b>ERROR</b></font>: <font color="#DC322F">   /home/georgeca/yocto_tutorial/my_builds/workspace</font>
+<font color="#DC322F"><b>ERROR</b></font>: <font color="#DC322F">Please check BBLAYERS in /home/georgeca/yocto_tutorial/my_builds/conf/bblayers.conf</font>
+<font color="#DC322F"><b>ERROR</b></font>: <font color="#DC322F">The following layer directories do not exist:</font>
+<font color="#DC322F"><b>ERROR</b></font>: <font color="#DC322F">   /home/georgeca/yocto_tutorial/my_builds/workspace</font>
+<font color="#DC322F"><b>ERROR</b></font>: <font color="#DC322F">Please check BBLAYERS in /home/georgeca/yocto_tutorial/my_builds/conf/bblayers.conf</font>
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds</b></font>$ devtool --help
+<b>NOTE</b>: Starting bitbake server...
+<font color="#DC322F"><b>ERROR</b></font>: <font color="#DC322F">The following layer directories do not exist:</font>
+<font color="#DC322F"><b>ERROR</b></font>: <font color="#DC322F">   /home/georgeca/yocto_tutorial/my_builds/workspace</font>
+<font color="#DC322F"><b>ERROR</b></font>: <font color="#DC322F">Please check BBLAYERS in /home/georgeca/yocto_tutorial/my_builds/conf/bblayers.conf</font>
+<font color="#DC322F"><b>ERROR</b></font>: <font color="#DC322F">The following layer directories do not exist:</font>
+<font color="#DC322F"><b>ERROR</b></font>: <font color="#DC322F">   /home/georgeca/yocto_tutorial/my_builds/workspace</font>
+<font color="#DC322F"><b>ERROR</b></font>: <font color="#DC322F">Please check BBLAYERS in /home/georgeca/yocto_tutorial/my_builds/conf/bblayers.conf</font>
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds</b></font>$ source ../poky/oe-init-build-env .
+
+### Shell environment set up for builds. ###
+
+You can now run &apos;bitbake &lt;target&gt;&apos;
+
+Common targets are:
+    core-image-minimal
+    core-image-full-cmdline
+    core-image-sato
+    core-image-weston
+    meta-toolchain
+    meta-ide-support
+
+You can also run generated qemu images with a command like &apos;runqemu qemux86&apos;
+
+Other commonly useful commands are:
+ - &apos;devtool&apos; and &apos;recipetool&apos; handle common recipe tasks
+ - &apos;bitbake-layers&apos; handles common layer tasks
+ - &apos;oe-pkgdata-util&apos; handles common target package tasks
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds</b></font>$ devtool -h
+<b>NOTE</b>: Starting bitbake server...
+<font color="#DC322F"><b>ERROR</b></font>: <font color="#DC322F">The following layer directories do not exist:</font>
+<font color="#DC322F"><b>ERROR</b></font>: <font color="#DC322F">   /home/georgeca/yocto_tutorial/my_builds/workspace</font>
+<font color="#DC322F"><b>ERROR</b></font>: <font color="#DC322F">Please check BBLAYERS in /home/georgeca/yocto_tutorial/my_builds/conf/bblayers.conf</font>
+<font color="#DC322F"><b>ERROR</b></font>: <font color="#DC322F">The following layer directories do not exist:</font>
+<font color="#DC322F"><b>ERROR</b></font>: <font color="#DC322F">   /home/georgeca/yocto_tutorial/my_builds/workspace</font>
+<font color="#DC322F"><b>ERROR</b></font>: <font color="#DC322F">Please check BBLAYERS in /home/georgeca/yocto_tutorial/my_builds/conf/bblayers.conf</font>
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds</b></font>$ nano conf/bblayers.conf 
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake-layers show-layers
+<b>NOTE</b>: Starting bitbake server...
+<font color="#DC322F"><b>ERROR</b></font>: <font color="#DC322F">The following layer directories do not exist:</font>
+<font color="#DC322F"><b>ERROR</b></font>: <font color="#DC322F">   /home/georgeca/yocto_tutorial/my_builds/workspace</font>
+<font color="#DC322F"><b>ERROR</b></font>: <font color="#DC322F">Please check BBLAYERS in /home/georgeca/yocto_tutorial/my_builds/conf/bblayers.conf</font>
+<font color="#DC322F"><b>ERROR</b></font>: <font color="#DC322F">The following layer directories do not exist:</font>
+<font color="#DC322F"><b>ERROR</b></font>: <font color="#DC322F">   /home/georgeca/yocto_tutorial/my_builds/workspace</font>
+<font color="#DC322F"><b>ERROR</b></font>: <font color="#DC322F">Please check BBLAYERS in /home/georgeca/yocto_tutorial/my_builds/conf/bblayers.conf</font>
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds</b></font>$ nano conf/bblayers.conf 
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds</b></font>$ nano conf/bblayers.conf 
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds</b></font>$ devtool --help
+<b>NOTE</b>: Starting bitbake server...
+usage: devtool [--basepath BASEPATH] [--bbpath BBPATH] [-d] [-q] [--color COLOR] [-h] &lt;subcommand&gt; ...
+
+OpenEmbedded development tool
+
+options:
+  --basepath BASEPATH   Base directory of SDK / build directory
+  --bbpath BBPATH       Explicitly specify the BBPATH, rather than getting it from the metadata
+  -d, --debug           Enable debug output
+  -q, --quiet           Print only errors
+  --color COLOR         Colorize output (where COLOR is auto, always, never)
+  -h, --help            show this help message and exit
+
+subcommands:
+  Beginning work on a recipe:
+    add                   Add a new recipe
+    modify                Modify the source for an existing recipe
+    upgrade               Upgrade an existing recipe
+  Getting information:
+    status                Show workspace status
+    search                Search available recipes
+    latest-version        Report the latest version of an existing recipe
+    check-upgrade-status  Report upgradability for multiple (or all) recipes
+  Working on a recipe in the workspace:
+    build                 Build a recipe
+    rename                Rename a recipe file in the workspace
+    edit-recipe           Edit a recipe file
+    find-recipe           Find a recipe file
+    configure-help        Get help on configure script options
+    update-recipe         Apply changes from external source tree to recipe
+    reset                 Remove a recipe from your workspace
+    finish                Finish working on a recipe in your workspace
+  Testing changes on target:
+    deploy-target         Deploy recipe output files to live target machine
+    undeploy-target       Undeploy recipe output files in live target machine
+    build-image           Build image including workspace recipe packages
+  Advanced:
+    create-workspace      Set up workspace in an alternative location
+    menuconfig            Alter build-time configuration for a recipe
+    export                Export workspace into a tar archive
+    extract               Extract the source for an existing recipe
+    sync                  Synchronize the source tree for an existing recipe
+    import                Import exported tar archive into workspace
+Use devtool &lt;subcommand&gt; --help to get help on a specific command
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds</b></font>$ devtool add hello-factorial https://github.com/Munawar-git/factorial.git
+<b>NOTE</b>: Starting bitbake server...
+INFO: Creating workspace layer in /home/georgeca/yocto_tutorial/my_builds/workspace
+<b>NOTE</b>: Starting bitbake server...
+INFO: Fetching git://github.com/Munawar-git/factorial.git;protocol=https;branch=master...
+Loading cache: 100% |                                                                                                                                                                       | ETA:  --:--:--
+Loaded 0 entries from dependency cache.
+<font color="#DC322F"><b>ERROR</b></font>: <font color="#DC322F">ExpansionError during parsing /home/georgeca/yocto_tutorial/my_builds/workspace/recipes/recipetool/tmp-recipetool-73tpjgdd.bb</font>                                                         | ETA:  0:00:38
+Traceback (most recent call last):
+  File &quot;/home/georgeca/yocto_tutorial/poky/bitbake/lib/bb/fetch2/git.py&quot;, line 250, in Git.urldata_init(ud=&lt;bb.fetch2.FetchData object at 0x727fe2eff2b0&gt;, d=&lt;bb.data_smart.DataSmart object at 0x727fe2efd090&gt;):
+     
+    &gt;        ud.setup_revisions(d)
+     
+  File &quot;/home/georgeca/yocto_tutorial/poky/bitbake/lib/bb/fetch2/__init__.py&quot;, line 1349, in FetchData.setup_revisions(d=&lt;bb.data_smart.DataSmart object at 0x727fe2efd090&gt;):
+             for name in self.names:
+    &gt;            self.revisions[name] = srcrev_internal_helper(self, d, name)
+     
+  File &quot;/home/georgeca/yocto_tutorial/poky/bitbake/lib/bb/fetch2/__init__.py&quot;, line 1214, in srcrev_internal_helper(ud=&lt;bb.fetch2.FetchData object at 0x727fe2eff2b0&gt;, d=&lt;bb.data_smart.DataSmart object at 0x727fe2efd090&gt;, name=&apos;default&apos;):
+         if srcrev == &quot;AUTOINC&quot;:
+    &gt;        srcrev = ud.method.latest_revision(ud, d, name)
+     
+  File &quot;/home/georgeca/yocto_tutorial/poky/bitbake/lib/bb/fetch2/__init__.py&quot;, line 1626, in Git.latest_revision(ud=&lt;bb.fetch2.FetchData object at 0x727fe2eff2b0&gt;, d=&lt;bb.data_smart.DataSmart object at 0x727fe2efd090&gt;, name=&apos;default&apos;):
+                 except KeyError:
+    &gt;                revs[key] = rev = self._latest_revision(ud, d, name)
+                     return rev
+  File &quot;/home/georgeca/yocto_tutorial/poky/bitbake/lib/bb/fetch2/git.py&quot;, line 802, in Git._latest_revision(ud=&lt;bb.fetch2.FetchData object at 0x727fe2eff2b0&gt;, d=&lt;bb.data_smart.DataSmart object at 0x727fe2efd090&gt;, name=&apos;default&apos;):
+                         return sha1
+    &gt;        raise bb.fetch2.FetchError(&quot;Unable to resolve &apos;%s&apos; in upstream git repository in git ls-remote output for %s&quot; % \
+                 (ud.unresolvedrev[name], ud.host+ud.path))
+bb.data_smart.ExpansionError: Failure expanding variable SRCPV, expression was ${@bb.fetch2.get_srcrev(d)} which triggered exception FetchError: Fetcher failure: Unable to resolve &apos;master&apos; in upstream git repository in git ls-remote output for github.com/Munawar-git/factorial.git
+The variable dependency chain for the failure is: SRCPV -&gt; PV -&gt; BP -&gt; FILESPATH
+
+<font color="#DC322F"><b>ERROR</b></font>: <font color="#DC322F">Parsing halted due to errors, see error messages above</font>
+
+Summary: There were 2 ERROR messages, returning a non-zero exit code.
+Traceback (most recent call last):
+  File &quot;/home/georgeca/yocto_tutorial/poky/scripts/recipetool&quot;, line 111, in &lt;module&gt;
+    ret = main()
+  File &quot;/home/georgeca/yocto_tutorial/poky/scripts/recipetool&quot;, line 100, in main
+    ret = args.func(args)
+  File &quot;/home/georgeca/yocto_tutorial/poky/scripts/lib/recipetool/create.py&quot;, line 492, in create_recipe
+    checksums, ftmpdir = scriptutils.fetch_url(tinfoil, fetchuri, srcrev, srctree, logger, preserve_tmp=args.keep_temp)
+  File &quot;/home/georgeca/yocto_tutorial/poky/scripts/lib/scriptutils.py&quot;, line 199, in fetch_url
+    tinfoil.parse_recipes()
+  File &quot;/home/georgeca/yocto_tutorial/poky/bitbake/lib/bb/tinfoil.py&quot;, line 448, in parse_recipes
+    self.run_actions(config_params)
+  File &quot;/home/georgeca/yocto_tutorial/poky/bitbake/lib/bb/tinfoil.py&quot;, line 431, in run_actions
+    raise TinfoilUIException(ret)
+bb.tinfoil.TinfoilUIException: 1
+ERROR: Command &apos;script -e -q -c &quot;recipetool --color=always create --devtool -o /tmp/devtoolhdznjse_ &apos;https://github.com/Munawar-git/factorial.git&apos;  -x /home/georgeca/yocto_tutorial/my_builds/workspace/sources/devtoolsrc4t0h1utt -N hello-factorial&quot; /dev/null&apos; failed
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds</b></font>$ devtool add --help
+<b>NOTE</b>: Starting bitbake server...
+usage: devtool add [-h] [--same-dir | --no-same-dir] [--fetch URI] [--npm-dev] [--version VERSION] [--no-git] [--srcrev SRCREV | --autorev] [--srcbranch SRCBRANCH] [--binary] [--also-native]
+                   [--src-subdir SUBDIR] [--mirrors] [--provides PROVIDES]
+                   [recipename] [srctree] [fetchuri]
+
+Adds a new recipe to the workspace to build a specified source tree. Can optionally fetch a remote URI and unpack it to create the source tree.
+
+arguments:
+  recipename            Name for new recipe to add (just name - no version, path or extension). If not specified, will attempt to auto-detect it.
+  srctree               Path to external source tree. If not specified, a subdirectory of /home/georgeca/yocto_tutorial/my_builds/workspace/sources will be used.
+  fetchuri              Fetch the specified URI and extract it to create the source tree
+
+options:
+  -h, --help            show this help message and exit
+  --same-dir, -s        Build in same directory as source
+  --no-same-dir         Force build in a separate build directory
+  --fetch URI, -f URI   Fetch the specified URI and extract it to create the source tree (deprecated - pass as positional argument instead)
+  --npm-dev             For npm, also fetch devDependencies
+  --version VERSION, -V VERSION
+                        Version to use within recipe (PV)
+  --no-git, -g          If fetching source, do not set up source tree as a git repository
+  --srcrev SRCREV, -S SRCREV
+                        Source revision to fetch if fetching from an SCM such as git (default latest)
+  --autorev, -a         When fetching from a git repository, set SRCREV in the recipe to a floating revision instead of fixed
+  --srcbranch SRCBRANCH, -B SRCBRANCH
+                        Branch in source repository if fetching from an SCM such as git (default master)
+  --binary, -b          Treat the source tree as something that should be installed verbatim (no compilation, same directory structure). Useful with binary packages e.g. RPMs.
+  --also-native         Also add native variant (i.e. support building recipe for the build host as well as the target machine)
+  --src-subdir SUBDIR   Specify subdirectory within source tree to use
+  --mirrors             Enable PREMIRRORS and MIRRORS for source tree fetching (disable by default).
+  --provides PROVIDES, -p PROVIDES
+                        Specify an alias for the item provided by the recipe. E.g. virtual/libgl
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds</b></font>$ devtool add hello-factorial https://github.com/Munawar-git/factorial.git --srcbranch=main
+<b>NOTE</b>: Starting bitbake server...
+<b>NOTE</b>: Starting bitbake server...
+INFO: Fetching git://github.com/Munawar-git/factorial.git;protocol=https;branch=main...
+Loading cache: 100% |########################################################################################################################################################################| Time: 0:00:00
+Loaded 291 entries from dependency cache.
+Parsing recipes: 100% |######################################################################################################################################################################| Time: 0:00:37
+Parsing of 1746 .bb files complete (184 cached, 1562 parsed). 2785 targets, 78 skipped, 0 masked, 0 errors.
+Removing 2 recipes from the core2-64 sysroot: 100% |#########################################################################################################################################| Time: 0:00:00
+Removing 2 recipes from the qemux86_64 sysroot: 100% |#######################################################################################################################################| Time: 0:00:00
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;x86_64-poky-linux&quot;
+MACHINE              = &quot;qemux86-64&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;m64 core2&quot;
+TARGET_FPU           = &quot;&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+workspace            = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |###################################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 0 Local 0 Mirrors 0 Missed 0 Current 0 (0% match, 0% complete)
+<b>NOTE</b>: No setscene tasks
+<b>NOTE</b>: Executing Tasks
+<b>NOTE</b>: Tasks Summary: Attempted 2 tasks of which 0 didn&apos;t need to be rerun and all succeeded.
+INFO: Using default source tree path /home/georgeca/yocto_tutorial/my_builds/workspace/sources/hello-factorial
+<b>NOTE</b>: Reconnecting to bitbake server...
+<b>NOTE</b>: Retrying server connection (#1)...
+<b>NOTE</b>: Reconnecting to bitbake server...
+NOTE: Reconnecting to bitbake server...
+<b>NOTE</b>: Retrying server connection (#1)...
+NOTE: Retrying server connection (#1)...
+<b>NOTE</b>: Reconnecting to bitbake server...
+<b>NOTE</b>: Previous bitbake instance shutting down?, waiting to retry...
+<b>NOTE</b>: Retrying server connection (#2)...
+<b>NOTE</b>: Reconnecting to bitbake server...
+NOTE: Reconnecting to bitbake server...
+<b>NOTE</b>: Previous bitbake instance shutting down?, waiting to retry...
+NOTE: Previous bitbake instance shutting down?, waiting to retry...
+<b>NOTE</b>: Retrying server connection (#2)...
+NOTE: Retrying server connection (#2)...
+<b>NOTE</b>: Starting bitbake server...
+INFO: Using source tree as build directory since that would be the default for this recipe
+INFO: Recipe /home/georgeca/yocto_tutorial/my_builds/workspace/recipes/hello-factorial/hello-factorial_git.bb has been automatically created; further editing may be required to make it fully functional
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds</b></font>$ ls workspace/recipes/
+<font color="#268BD2"><b>hello-factorial</b></font>
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds</b></font>$ ls workspace/recipes/hello-factorial/
+hello-factorial_git.bb
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds</b></font>$ nano workspace/recipes/hello-factorial/hello-factorial_git.bb 
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds</b></font>$ devtool build factorial
+<b>NOTE</b>: Starting bitbake server...
+ERROR: No recipe named &apos;factorial&apos; in your workspace
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds</b></font>$ devtool build hello-factorial
+<b>NOTE</b>: Starting bitbake server...
+NOTE: Reconnecting to bitbake server...
+NOTE: Retrying server connection (#1)...
+Loading cache: 100% |########################################################################################################################################################################| Time: 0:00:00
+Loaded 2784 entries from dependency cache.
+Parsing recipes: 100% |######################################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 78 skipped, 0 masked, 0 errors.
+Loading cache: 100% |########################################################################################################################################################################| Time: 0:00:01
+Loaded 2784 entries from dependency cache.
+Parsing recipes: 100% |######################################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 78 skipped, 0 masked, 0 errors.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;x86_64-poky-linux&quot;
+MACHINE              = &quot;qemux86-64&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;m64 core2&quot;
+TARGET_FPU           = &quot;&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+workspace            = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |###################################################################################################################################################################| Time: 0:00:01
+Sstate summary: Wanted 8 Local 4 Mirrors 0 Missed 4 Current 143 (50% match, 97% complete)
+<b>NOTE</b>: Executing Tasks
+NOTE: hello-factorial: compiling from external source tree /home/georgeca/yocto_tutorial/my_builds/workspace/sources/hello-factorial
+<font color="#DC322F"><b>ERROR</b></font>: <font color="#DC322F">hello-factorial-1.0+git999-r0 do_install: oe_runmake failed</font>
+<font color="#DC322F"><b>ERROR</b></font>: <font color="#DC322F">hello-factorial-1.0+git999-r0 do_install: ExecutionError(&apos;/home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/temp/run.do_install.5275&apos;, 1, None, None)</font>
+<font color="#DC322F"><b>ERROR</b></font>: <font color="#DC322F">Logfile of failure stored in: /home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/temp/log.do_install.5275</font>
+Log data follows:
+| DEBUG: Executing python function extend_recipe_sysroot
+| NOTE: Direct dependencies are [&apos;/home/georgeca/yocto_tutorial/poky/meta/recipes-core/glibc/glibc_2.35.bb:do_populate_sysroot&apos;, &apos;/home/georgeca/yocto_tutorial/poky/meta/recipes-devtools/gcc/gcc-cross_11.5.bb:do_populate_sysroot&apos;, &apos;/home/georgeca/yocto_tutorial/poky/meta/recipes-devtools/gcc/gcc-runtime_11.5.bb:do_populate_sysroot&apos;, &apos;virtual:native:/home/georgeca/yocto_tutorial/poky/meta/recipes-devtools/pseudo/pseudo_git.bb:do_populate_sysroot&apos;]
+| NOTE: Installed into sysroot: []
+| NOTE: Skipping as already exists in sysroot: [&apos;glibc&apos;, &apos;gcc-cross-x86_64&apos;, &apos;gcc-runtime&apos;, &apos;pseudo-native&apos;, &apos;flex-native&apos;, &apos;libtool-native&apos;, &apos;texinfo-dummy-native&apos;, &apos;zstd-native&apos;, &apos;libmpc-native&apos;, &apos;gnu-config-native&apos;, &apos;binutils-cross-x86_64&apos;, &apos;linux-libc-headers&apos;, &apos;gmp-native&apos;, &apos;mpfr-native&apos;, &apos;zlib-native&apos;, &apos;xz-native&apos;, &apos;libgcc&apos;, &apos;m4-native&apos;, &apos;gettext-minimal-native&apos;]
+| DEBUG: Python function extend_recipe_sysroot finished
+| DEBUG: Executing shell function do_install
+| NOTE: make -j 4 install
+| install -m 755 factorial /usr/bin
+| install: cannot create regular file &apos;/usr/bin/factorial&apos;: Permission denied
+| make: *** [Makefile:13: install] Error 1
+| ERROR: oe_runmake failed
+| WARNING: exit code 1 from a shell command.
+<font color="#DC322F"><b>ERROR</b></font>: <font color="#DC322F">Task (/home/georgeca/yocto_tutorial/my_builds/workspace/recipes/hello-factorial/hello-factorial_git.bb:do_install) failed with exit code &apos;1&apos;</font>
+<b>NOTE</b>: Tasks Summary: Attempted 628 tasks of which 623 didn&apos;t need to be rerun and 1 failed.
+
+Summary: 1 task failed:
+  /home/georgeca/yocto_tutorial/my_builds/workspace/recipes/hello-factorial/hello-factorial_git.bb:do_install
+Summary: There were 2 ERROR messages, returning a non-zero exit code.
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds</b></font>$ ls workspace/
+<font color="#268BD2"><b>appends</b></font>  <font color="#268BD2"><b>conf</b></font>  README  <font color="#268BD2"><b>recipes</b></font>  <font color="#268BD2"><b>sources</b></font>
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds</b></font>$ ls workspace/sources/
+<font color="#268BD2"><b>hello-factorial</b></font>
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds</b></font>$ ls workspace/sources/hello-factorial/
+<font color="#859900"><b>factorial</b></font>  factorial.c  Makefile  <font color="#2AA198"><b>oe-logs</b></font>  <font color="#2AA198"><b>oe-workdir</b></font>
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds</b></font>$ nano workspace/sources/hello-factorial/
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds</b></font>$ nano workspace/sources/hello-factorial/Makefile 
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds</b></font>$ nano workspace/recipes/hello-factorial/hello-factorial_git.bb 
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds</b></font>$ devtool build hello-factorial
+<b>NOTE</b>: Starting bitbake server...
+NOTE: Reconnecting to bitbake server...
+NOTE: Retrying server connection (#1)...
+Loading cache: 100% |########################################################################################################################################################################| Time: 0:00:00
+Loaded 2784 entries from dependency cache.
+Parsing recipes: 100% |######################################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 78 skipped, 0 masked, 0 errors.
+Loading cache: 100% |########################################################################################################################################################################| Time: 0:00:01
+Loaded 2784 entries from dependency cache.
+Parsing recipes: 100% |######################################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 78 skipped, 0 masked, 0 errors.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;x86_64-poky-linux&quot;
+MACHINE              = &quot;qemux86-64&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;m64 core2&quot;
+TARGET_FPU           = &quot;&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+workspace            = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |###################################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 7 Local 4 Mirrors 0 Missed 3 Current 144 (57% match, 98% complete)
+<b>NOTE</b>: Executing Tasks
+NOTE: hello-factorial: compiling from external source tree /home/georgeca/yocto_tutorial/my_builds/workspace/sources/hello-factorial
+<font color="#DC322F"><b>ERROR</b></font>: <font color="#DC322F">hello-factorial-1.0+git999-r0 do_install: oe_runmake failed</font>
+<font color="#DC322F"><b>ERROR</b></font>: <font color="#DC322F">hello-factorial-1.0+git999-r0 do_install: ExecutionError(&apos;/home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/temp/run.do_install.5457&apos;, 1, None, None)</font>
+<font color="#DC322F"><b>ERROR</b></font>: <font color="#DC322F">Logfile of failure stored in: /home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/temp/log.do_install.5457</font>
+Log data follows:
+| DEBUG: Executing python function extend_recipe_sysroot
+| NOTE: Direct dependencies are [&apos;/home/georgeca/yocto_tutorial/poky/meta/recipes-core/glibc/glibc_2.35.bb:do_populate_sysroot&apos;, &apos;/home/georgeca/yocto_tutorial/poky/meta/recipes-devtools/gcc/gcc-cross_11.5.bb:do_populate_sysroot&apos;, &apos;/home/georgeca/yocto_tutorial/poky/meta/recipes-devtools/gcc/gcc-runtime_11.5.bb:do_populate_sysroot&apos;, &apos;virtual:native:/home/georgeca/yocto_tutorial/poky/meta/recipes-devtools/pseudo/pseudo_git.bb:do_populate_sysroot&apos;]
+| NOTE: Installed into sysroot: []
+| NOTE: Skipping as already exists in sysroot: [&apos;glibc&apos;, &apos;gcc-cross-x86_64&apos;, &apos;gcc-runtime&apos;, &apos;pseudo-native&apos;, &apos;linux-libc-headers&apos;, &apos;libgcc&apos;, &apos;texinfo-dummy-native&apos;, &apos;libtool-native&apos;, &apos;libmpc-native&apos;, &apos;gmp-native&apos;, &apos;binutils-cross-x86_64&apos;, &apos;zstd-native&apos;, &apos;xz-native&apos;, &apos;flex-native&apos;, &apos;gnu-config-native&apos;, &apos;zlib-native&apos;, &apos;mpfr-native&apos;, &apos;gettext-minimal-native&apos;, &apos;m4-native&apos;]
+| DEBUG: Python function extend_recipe_sysroot finished
+| DEBUG: Executing shell function do_install
+| NOTE: make -j 4 PREFIX=/home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/image/usr/bin install
+| install -m 755 factorial /home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/image/usr/bin
+| install: cannot create regular file &apos;/home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/image/usr/bin&apos;: No such file or directory
+| make: *** [Makefile:13: install] Error 1
+| ERROR: oe_runmake failed
+| WARNING: exit code 1 from a shell command.
+<font color="#DC322F"><b>ERROR</b></font>: <font color="#DC322F">Task (/home/georgeca/yocto_tutorial/my_builds/workspace/recipes/hello-factorial/hello-factorial_git.bb:do_install) failed with exit code &apos;1&apos;</font>
+<b>NOTE</b>: Tasks Summary: Attempted 628 tasks of which 626 didn&apos;t need to be rerun and 1 failed.
+
+Summary: 1 task failed:
+  /home/georgeca/yocto_tutorial/my_builds/workspace/recipes/hello-factorial/hello-factorial_git.bb:do_install
+Summary: There were 2 ERROR messages, returning a non-zero exit code.
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds</b></font>$ nano workspace/recipes/hello-factorial/hello-factorial_git.bb 
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds</b></font>$ nano workspace/recipes/hello-factorial/hello-factorial_git.bb 
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds</b></font>$ devtool build hello-factorial
+<b>NOTE</b>: Starting bitbake server...
+NOTE: Reconnecting to bitbake server...
+NOTE: Retrying server connection (#1)...
+NOTE: Reconnecting to bitbake server...
+NOTE: Previous bitbake instance shutting down?, waiting to retry...
+NOTE: Retrying server connection (#2)...
+Loading cache: 100% |########################################################################################################################################################################| Time: 0:00:00
+Loaded 2784 entries from dependency cache.
+Parsing recipes: 100% |######################################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 78 skipped, 0 masked, 0 errors.
+Loading cache: 100% |########################################################################################################################################################################| Time: 0:00:01
+Loaded 2784 entries from dependency cache.
+Parsing recipes: 100% |######################################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 78 skipped, 0 masked, 0 errors.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;x86_64-poky-linux&quot;
+MACHINE              = &quot;qemux86-64&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;m64 core2&quot;
+TARGET_FPU           = &quot;&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+workspace            = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |###################################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 7 Local 4 Mirrors 0 Missed 3 Current 144 (57% match, 98% complete)
+<b>NOTE</b>: Executing Tasks
+<b>NOTE</b>: Tasks Summary: Attempted 631 tasks of which 627 didn&apos;t need to be rerun and all succeeded.
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds</b></font>$ nano workspace/recipes/hello-factorial/hello-factorial_git.bb 
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds</b></font>$ devtool build hello-factorial
+<b>NOTE</b>: Starting bitbake server...
+NOTE: Reconnecting to bitbake server...
+NOTE: Retrying server connection (#1)...
+Loading cache: 100% |########################################################################################################################################################################| Time: 0:00:00
+Loaded 2784 entries from dependency cache.
+Parsing recipes: 100% |######################################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 78 skipped, 0 masked, 0 errors.
+Loading cache: 100% |########################################################################################################################################################################| Time: 0:00:01
+Loaded 2784 entries from dependency cache.
+Parsing recipes: 100% |######################################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 78 skipped, 0 masked, 0 errors.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;x86_64-poky-linux&quot;
+MACHINE              = &quot;qemux86-64&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;m64 core2&quot;
+TARGET_FPU           = &quot;&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+workspace            = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |###################################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 7 Local 4 Mirrors 0 Missed 3 Current 144 (57% match, 98% complete)
+Removing 1 stale sstate objects for arch qemux86_64: 100% |##################################################################################################################################| Time: 0:00:00
+Removing 2 stale sstate objects for arch core2-64: 100% |####################################################################################################################################| Time: 0:00:00
+<b>NOTE</b>: Executing Tasks
+NOTE: hello-factorial: compiling from external source tree /home/georgeca/yocto_tutorial/my_builds/workspace/sources/hello-factorial
+<font color="#DC322F"><b>ERROR</b></font>: <font color="#DC322F">hello-factorial-1.0+git999-r0 do_compile: oe_runmake failed</font>
+<font color="#DC322F"><b>ERROR</b></font>: <font color="#DC322F">hello-factorial-1.0+git999-r0 do_compile: ExecutionError(&apos;/home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/temp/run.do_compile.5878&apos;, 1, None, None)</font>
+<font color="#DC322F"><b>ERROR</b></font>: <font color="#DC322F">Logfile of failure stored in: /home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/temp/log.do_compile.5878</font>
+Log data follows:
+| DEBUG: Executing python function externalsrc_compile_prefunc
+| NOTE: hello-factorial: compiling from external source tree /home/georgeca/yocto_tutorial/my_builds/workspace/sources/hello-factorial
+| DEBUG: Python function externalsrc_compile_prefunc finished
+| DEBUG: Executing shell function do_compile
+| NOTE: make -j 4 PREFIX=/home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/image/usr/bin CC=x86_64-poky-linux-gcc -m64 -march=core2 -mtune=core2 -msse3 -mfpmath=sse -fstack-protector-strong -O2 -D_FORTIFY_SOURCE=2 -Wformat -Wformat-security -Werror=format-security --sysroot=/home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/recipe-sysroot CFLAGS= -O2 -pipe -g -feliminate-unused-debug-types -fmacro-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0=/usr/src/debug/hello-factorial/1.0+git999-r0 -fdebug-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0=/usr/src/debug/hello-factorial/1.0+git999-r0 -fdebug-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/recipe-sysroot= -fdebug-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/recipe-sysroot-native=
+| ERROR: oe_runmake failed
+| # GNU Make 4.3
+| # Built for x86_64-pc-linux-gnu
+| # Copyright (C) 1988-2020 Free Software Foundation, Inc.
+| # License GPLv3+: GNU GPL version 3 or later &lt;http://gnu.org/licenses/gpl.html&gt;
+| # This is free software: you are free to change and redistribute it.
+| # There is NO WARRANTY, to the extent permitted by law.
+| 
+| # Make data base, printed on Tue Jun 10 08:30:43 2025
+| 
+| # Variables
+| 
+| # environment
+| localstatedir = /var
+| # environment
+| BUILD_CPPFLAGS = -isystem/home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/recipe-sysroot-native/usr/include
+| # environment
+| PSEUDO_UNLOAD = 1
+| # environment
+| AS = x86_64-poky-linux-as
+| # environment
+| LC_ALL = en_US.UTF-8
+| # environment
+| systemd_user_unitdir = /usr/lib/systemd/user
+| # environment
+| nonarch_libdir = /usr/lib
+| # environment
+| AR = x86_64-poky-linux-gcc-ar
+| # environment
+| systemd_system_unitdir = /lib/systemd/system
+| # environment
+| nonarch_base_libdir = /lib
+| # environment
+| BUILD_CXX = g++
+| # environment
+| base_libdir = /lib
+| # environment
+| prefix = /usr
+| # environment
+| BUILD_AR = ar
+| # environment
+| base_bindir = /bin
+| # default
+| .VARIABLES :=
+| # environment
+| PWD = /home/georgeca/yocto_tutorial/my_builds/workspace/sources/hello-factorial
+| # environment
+| SOURCE_DATE_EPOCH = 1749543599
+| # environment
+| datadir = /usr/share
+| # environment
+| OLDPWD = /home/georgeca/yocto_tutorial/my_builds
+| # environment
+| OMP_NUM_THREADS = 4
+| # default
+| .LOADED :=
+| # environment
+| mandir = /usr/share/man
+| # environment
+| PKG_CONFIG_DIR = /home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/recipe-sysroot/usr/lib/pkgconfig
+| # environment
+| PKG_CONFIG_PATH = /home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/recipe-sysroot/usr/lib/pkgconfig:/home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/recipe-sysroot/usr/share/pkgconfig
+| # environment
+| PYTHONHASHSEED = 0
+| # environment
+| BUILD_CFLAGS = -isystem/home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/recipe-sysroot-native/usr/include -O2 -pipe
+| # environment
+| PSEUDO_DISABLED = 1
+| # environment
+| libexecdir = /usr/libexec
+| # default
+| .SHELLFLAGS := -c
+| # environment
+| docdir = /usr/share/doc
+| # environment
+| BUILD_CXXFLAGS = -isystem/home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/recipe-sysroot-native/usr/include -O2 -pipe
+| # environment
+| BUILD_CPP = gcc  -E
+| # environment
+| BUILD_FC = gfortran
+| # environment
+| RANLIB = x86_64-poky-linux-gcc-ranlib
+| # environment
+| PKG_CONFIG_SYSTEM_INCLUDE_PATH = /usr/include
+| # environment
+| BUILD_LD = ld
+| # environment
+| base_sbindir = /sbin
+| # environment
+| oldincludedir = /usr/include
+| # environment
+| sysconfdir = /etc
+| # environment
+| STRINGS = x86_64-poky-linux-strings
+| # environment
+| servicedir = /srv
+| # environment
+| OBJDUMP = x86_64-poky-linux-objdump
+| # environment
+| MAKE = make
+| # environment
+| FC = x86_64-poky-linux-gfortran  -m64 -march=core2 -mtune=core2 -msse3 -mfpmath=sse -fstack-protector-strong  -O2 -D_FORTIFY_SOURCE=2 -Wformat -Wformat-security -Werror=format-security --sysroot=/home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/recipe-sysroot
+| # environment
+| PATH = /home/georgeca/yocto_tutorial/sources/tmp/sysroots-uninative/x86_64-linux/usr/bin:/home/georgeca/yocto_tutorial/poky/scripts:/home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/recipe-sysroot-native/usr/bin/x86_64-poky-linux:/home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/recipe-sysroot/usr/bin/crossscripts:/home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/recipe-sysroot-native/usr/sbin:/home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/recipe-sysroot-native/usr/bin:/home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/recipe-sysroot-native/sbin:/home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/recipe-sysroot-native/bin:/home/georgeca/yocto_tutorial/poky/bitbake/bin:/home/georgeca/yocto_tutorial/sources/tmp/hosttools
+| # environment
+| BUILD_RANLIB = ranlib -D
+| # environment
+| infodir = /usr/share/info
+| # environment
+| CCLD = x86_64-poky-linux-gcc  -m64 -march=core2 -mtune=core2 -msse3 -mfpmath=sse -fstack-protector-strong  -O2 -D_FORTIFY_SOURCE=2 -Wformat -Wformat-security -Werror=format-security --sysroot=/home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/recipe-sysroot
+| # environment
+| BUILD_AS = as
+| # environment
+| bindir = /usr/bin
+| # environment
+| TZ = UTC
+| # command line
+| PREFIX = /home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/image/usr/bin
+| # environment
+| CPP = x86_64-poky-linux-gcc -E --sysroot=/home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/recipe-sysroot  -m64 -march=core2 -mtune=core2 -msse3 -mfpmath=sse -fstack-protector-strong  -O2 -D_FORTIFY_SOURCE=2 -Wformat -Wformat-security -Werror=format-security
+| # environment
+| BUILD_CC = gcc
+| # environment
+| exec_prefix = /usr
+| # environment
+| BUILD_LDFLAGS = -L/home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/recipe-sysroot-native/usr/lib                         -L/home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/recipe-sysroot-native/lib                         -Wl,--enable-new-dtags                         -Wl,-rpath-link,/home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/recipe-sysroot-native/usr/lib                         -Wl,-rpath-link,/home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/recipe-sysroot-native/lib                         -Wl,-rpath,/home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/recipe-sysroot-native/usr/lib                         -Wl,-rpath,/home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/recipe-sysroot-native/lib                         -Wl,-O1 -Wl,--allow-shlib-undefined -Wl,--dynamic-linker=/home/georgeca/yocto_tutorial/sources/tmp/sysroots-uninative/x86_64-linux/lib/ld-linux-x86-64.so.2
+| # environment
+| READELF = x86_64-poky-linux-readelf
+| # environment
+| includedir = /usr/include
+| # environment
+| GNUMAKEFLAGS :=
+| # environment
+| sharedstatedir = /com
+| # environment
+| LOGNAME = georgeca
+| # environment
+| base_prefix =
+| # environment
+| CPPFLAGS =
+| # environment
+| PKG_CONFIG_LIBDIR = /home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/recipe-sysroot/usr/lib/pkgconfig
+| # environment
+| PKG_CONFIG_SYSROOT_DIR = /home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/recipe-sysroot
+| # environment
+| USER = georgeca
+| # environment
+| BUILD_CCLD = gcc
+| # environment
+| LDFLAGS = -Wl,-O1 -Wl,--hash-style=gnu -Wl,--as-needed -fmacro-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0=/usr/src/debug/hello-factorial/1.0+git999-r0                      -fdebug-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0=/usr/src/debug/hello-factorial/1.0+git999-r0                      -fdebug-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/recipe-sysroot=                      -fdebug-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/recipe-sysroot-native=  -Wl,-z,relro,-z,now
+| # environment
+| BUILD_STRIP = strip
+| # environment
+| BUILD_NM = nm
+| # environment
+| systemd_unitdir = /lib/systemd
+| # command line
+| CFLAGS =
+| # environment
+| sbindir = /usr/sbin
+| # environment
+| PKG_CONFIG_SYSTEM_LIBRARY_PATH = /lib:/usr/lib
+| # environment
+| HOME = /home/georgeca
+| # environment
+| NM = x86_64-poky-linux-gcc-nm
+| # environment
+| GIT_CEILING_DIRECTORIES = /home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0
+| # default
+| .RECIPEPREFIX :=
+| # environment
+| LD = x86_64-poky-linux-ld --sysroot=/home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/recipe-sysroot
+| # environment
+| PKG_CONFIG_DISABLE_UNINSTALLED = yes
+| # environment
+| CXXFLAGS =  -O2 -pipe -g -feliminate-unused-debug-types -fmacro-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0=/usr/src/debug/hello-factorial/1.0+git999-r0                      -fdebug-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0=/usr/src/debug/hello-factorial/1.0+git999-r0                      -fdebug-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/recipe-sysroot=                      -fdebug-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/recipe-sysroot-native=  -fvisibility-inlines-hidden
+| # environment
+| libdir = /usr/lib
+| # environment
+| STRIP = x86_64-poky-linux-strip
+| # default
+| .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink load
+| # environment
+| CXX = x86_64-poky-linux-g++  -m64 -march=core2 -mtune=core2 -msse3 -mfpmath=sse -fstack-protector-strong  -O2 -D_FORTIFY_SOURCE=2 -Wformat -Wformat-security -Werror=format-security --sysroot=/home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/recipe-sysroot
+| # environment
+| PERL_HASH_SEED = 0
+| # command line
+| CC = x86_64-poky-linux-gcc
+| # environment
+| OBJCOPY = x86_64-poky-linux-objcopy
+| # variable set hash-table stats:
+| # Load=89/1024=9%, Rehash=0, Collisions=4/93=4%
+| 
+| # Pattern-specific Variable Values
+| 
+| # No pattern-specific variable values.
+| 
+| # Directories
+| 
+| 
+| # No files, no impossibilities in 0 directories.
+| 
+| # Implicit Rules
+| 
+| # No implicit rules.
+| 
+| # Files
+| 
+| # files hash-table stats:
+| # Load=0/1024=0%, Rehash=0, Collisions=0/0=0%
+| # VPATH Search Paths
+| 
+| # No &apos;vpath&apos; search paths.
+| 
+| # No general (&apos;VPATH&apos; variable) search path.
+| 
+| # strcache buffers: 1 (0) / strings = 11 / storage = 696 B / avg = 63 B
+| # current buf: size = 8162 B / used = 696 B / count = 11 / avg = 63 B
+| 
+| # strcache performance: lookups = 12 / hit rate = 8%
+| # hash-table stats:
+| # Load=11/8192=0%, Rehash=0, Collisions=0/12=0%
+| # Finished Make data base on Tue Jun 10 08:30:43 2025
+| 
+| WARNING: exit code 1 from a shell command.
+| make: invalid option -- &apos;6&apos;
+| make: invalid option -- &apos;4&apos;
+| make: invalid option -- &apos;a&apos;
+| make: invalid option -- &apos;c&apos;
+| make: invalid option -- &apos;=&apos;
+| make: invalid option -- &apos;c&apos;
+| make: invalid option -- &apos;u&apos;
+| make: invalid option -- &apos;=&apos;
+| make: invalid option -- &apos;c&apos;
+| make: invalid option -- &apos;3&apos;
+| make: invalid option -- &apos;D&apos;
+| make: invalid option -- &apos;_&apos;
+| make: invalid option -- &apos;F&apos;
+| make: unrecognized option &apos;--sysroot=/home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/recipe-sysroot&apos;
+| make: invalid option -- &apos;g&apos;
+| Usage: make [options] [target] ...
+| Options:
+|   -b, -m                      Ignored for compatibility.
+|   -B, --always-make           Unconditionally make all targets.
+|   -C DIRECTORY, --directory=DIRECTORY
+|                               Change to DIRECTORY before doing anything.
+|   -d                          Print lots of debugging information.
+|   --debug[=FLAGS]             Print various types of debugging information.
+|   -e, --environment-overrides
+|                               Environment variables override makefiles.
+|   -E STRING, --eval=STRING    Evaluate STRING as a makefile statement.
+|   -f FILE, --file=FILE, --makefile=FILE
+|                               Read FILE as a makefile.
+|   -h, --help                  Print this message and exit.
+|   -i, --ignore-errors         Ignore errors from recipes.
+|   -I DIRECTORY, --include-dir=DIRECTORY
+|                               Search DIRECTORY for included makefiles.
+|   -j [N], --jobs[=N]          Allow N jobs at once; infinite jobs with no arg.
+|   -k, --keep-going            Keep going when some targets can&apos;t be made.
+|   -l [N], --load-average[=N], --max-load[=N]
+|                               Don&apos;t start multiple jobs unless load is below N.
+|   -L, --check-symlink-times   Use the latest mtime between symlinks and target.
+|   -n, --just-print, --dry-run, --recon
+|                               Don&apos;t actually run any recipe; just print them.
+|   -o FILE, --old-file=FILE, --assume-old=FILE
+|                               Consider FILE to be very old and don&apos;t remake it.
+|   -O[TYPE], --output-sync[=TYPE]
+|                               Synchronize output of parallel jobs by TYPE.
+|   -p, --print-data-base       Print make&apos;s internal database.
+|   -q, --question              Run no recipe; exit status says if up to date.
+|   -r, --no-builtin-rules      Disable the built-in implicit rules.
+|   -R, --no-builtin-variables  Disable the built-in variable settings.
+|   -s, --silent, --quiet       Don&apos;t echo recipes.
+|   --no-silent                 Echo recipes (disable --silent mode).
+|   -S, --no-keep-going, --stop
+|                               Turns off -k.
+|   -t, --touch                 Touch targets instead of remaking them.
+|   --trace                     Print tracing information.
+|   -v, --version               Print the version number of make and exit.
+|   -w, --print-directory       Print the current directory.
+|   --no-print-directory        Turn off -w, even if it was turned on implicitly.
+|   -W FILE, --what-if=FILE, --new-file=FILE, --assume-new=FILE
+|                               Consider FILE to be infinitely new.
+|   --warn-undefined-variables  Warn when an undefined variable is referenced.
+| 
+| This program built for x86_64-pc-linux-gnu
+| Report bugs to &lt;bug-make@gnu.org&gt;
+<font color="#DC322F"><b>ERROR</b></font>: <font color="#DC322F">Task (/home/georgeca/yocto_tutorial/my_builds/workspace/recipes/hello-factorial/hello-factorial_git.bb:do_compile) failed with exit code &apos;1&apos;</font>
+<b>NOTE</b>: Tasks Summary: Attempted 627 tasks of which 626 didn&apos;t need to be rerun and 1 failed.
+
+Summary: 1 task failed:
+  /home/georgeca/yocto_tutorial/my_builds/workspace/recipes/hello-factorial/hello-factorial_git.bb:do_compile
+Summary: There were 2 ERROR messages, returning a non-zero exit code.
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds</b></font>$ nano workspace/recipes/hello-factorial/hello-factorial_git.bb 
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds</b></font>$ devtool build hello-factorial
+<b>NOTE</b>: Starting bitbake server...
+NOTE: Reconnecting to bitbake server...
+NOTE: Retrying server connection (#1)...
+Loading cache: 100% |########################################################################################################################################################################| Time: 0:00:00
+Loaded 2784 entries from dependency cache.
+Parsing recipes: 100% |######################################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 78 skipped, 0 masked, 0 errors.
+Loading cache: 100% |########################################################################################################################################################################| Time: 0:00:01
+Loaded 2784 entries from dependency cache.
+Parsing recipes: 100% |######################################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 78 skipped, 0 masked, 0 errors.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;x86_64-poky-linux&quot;
+MACHINE              = &quot;qemux86-64&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;m64 core2&quot;
+TARGET_FPU           = &quot;&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+workspace            = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |###################################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 7 Local 4 Mirrors 0 Missed 3 Current 144 (57% match, 98% complete)
+<b>NOTE</b>: Executing Tasks
+NOTE: hello-factorial: compiling from external source tree /home/georgeca/yocto_tutorial/my_builds/workspace/sources/hello-factorial
+<b>NOTE</b>: Tasks Summary: Attempted 631 tasks of which 626 didn&apos;t need to be rerun and all succeeded.
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds</b></font>$ cd workspace/
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds/workspace</b></font>$ ls
+<font color="#268BD2"><b>appends</b></font>  <font color="#268BD2"><b>conf</b></font>  README  <font color="#268BD2"><b>recipes</b></font>  <font color="#268BD2"><b>sources</b></font>
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds/workspace</b></font>$ bitbake -e hello-factorial | grep ^D=
+<font color="#DC322F"><b>D=</b></font>&quot;/home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/image&quot;
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/my_builds/workspace</b></font>$ cd /home/georgeca/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/image
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/image</b></font>$ ls -lh
+total 4,0K
+drwxr-xr-x 3 georgeca georgeca 4,0K iun 10 11:32 <font color="#268BD2"><b>usr</b></font>
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/image</b></font>$ cd usr/bin/
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/image/usr/bin</b></font>$ ls
+<font color="#859900"><b>factorial</b></font>
+<font color="#859900"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#268BD2"><b>~/yocto_tutorial/sources/tmp/work/core2-64-poky-linux/hello-factorial/1.0+git999-r0/image/usr/bin</b></font>$ file factorial 
+factorial: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=0f7cdfc5282152017b3923b2d8edcef83c80dda4, for GNU/Linux 3.2.0, not stripped
+</pre>

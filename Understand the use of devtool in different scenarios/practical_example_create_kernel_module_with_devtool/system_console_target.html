@@ -1,0 +1,757 @@
+root@beaglebone-yocto:~# dmesg
+[    0.000000] Booting Linux on physical CPU 0x0
+[    0.000000] Linux version 5.15.150-yocto-standard (oe-user@oe-host) (arm-poky-linux-gnueabi-gcc (GCC) 11.5.0, GNU ld (GNU Binutils) 2.38.20220708) #1 PREEMPT Mon Mar 11 14:54:41 UTC 2024
+[    0.000000] CPU: ARMv7 Processor [413fc082] revision 2 (ARMv7), cr=10c5387d
+[    0.000000] CPU: PIPT / VIPT nonaliasing data cache, VIPT aliasing instruction cache
+[    0.000000] OF: fdt: Machine model: TI AM335x BeagleBone Black
+[    0.000000] Memory policy: Data cache writeback
+[    0.000000] cma: Reserved 16 MiB at 0x9e800000
+[    0.000000] Zone ranges:
+[    0.000000]   Normal   [mem 0x0000000080000000-0x000000009fefffff]
+[    0.000000]   HighMem  empty
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x0000000080000000-0x000000009fefffff]
+[    0.000000] Initmem setup node 0 [mem 0x0000000080000000-0x000000009fefffff]
+[    0.000000] CPU: All CPU(s) started in SVC mode.
+[    0.000000] AM335X ES2.1 (sgx neon)
+[    0.000000] pcpu-alloc: s0 r0 d32768 u32768 alloc=1*32768
+[    0.000000] pcpu-alloc: [0] 0 
+[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 129666
+[    0.000000] Kernel command line: root=PARTUUID=7fb7574c-02 rootwait console=ttyS0,115200
+[    0.000000] Dentry cache hash table entries: 65536 (order: 6, 262144 bytes, linear)
+[    0.000000] Inode-cache hash table entries: 32768 (order: 5, 131072 bytes, linear)
+[    0.000000] mem auto-init: stack:off, heap alloc:off, heap free:off
+[    0.000000] Memory: 482236K/523264K available (11264K kernel code, 1558K rwdata, 4100K rodata, 1024K init, 328K bss, 24644K reserved, 16384K cma-reserved, 0K highmem)
+[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+[    0.000000] ftrace: allocating 42062 entries in 124 pages
+[    0.000000] ftrace: allocated 124 pages with 5 groups
+[    0.000000] trace event string verifier disabled
+[    0.000000] rcu: Preemptible hierarchical RCU implementation.
+[    0.000000] rcu: 	RCU event tracing is enabled.
+[    0.000000] 	Trampoline variant of Tasks RCU enabled.
+[    0.000000] 	Rude variant of Tasks RCU enabled.
+[    0.000000] 	Tracing variant of Tasks RCU enabled.
+[    0.000000] rcu: RCU calculated value of scheduler-enlistment delay is 10 jiffies.
+[    0.000000] NR_IRQS: 16, nr_irqs: 16, preallocated irqs: 16
+[    0.000000] IRQ: Found an INTC at 0x(ptrval) (revision 5.0) with 128 interrupts
+[    0.000000] TI gptimer clocksource: always-on /ocp/interconnect@44c00000/segment@200000/target-module@31000
+[    0.000002] sched_clock: 32 bits at 24MHz, resolution 41ns, wraps every 89478484971ns
+[    0.000029] clocksource: dmtimer: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 79635851949 ns
+[    0.000421] TI gptimer clockevent: 24000000 Hz at /ocp/interconnect@48000000/segment@0/target-module@40000
+[    0.001862] Console: colour dummy device 80x30
+[    0.001940] Calibrating delay loop... 996.14 BogoMIPS (lpj=4980736)
+[    0.090525] CPU: Testing write buffer coherency: ok
+[    0.090622] CPU0: Spectre v2: using BPIALL workaround
+[    0.090635] pid_max: default: 32768 minimum: 301
+[    0.090746] LSM: Security Framework initializing
+[    0.090805] landlock: Up and running.
+[    0.091009] Mount-cache hash table entries: 1024 (order: 0, 4096 bytes, linear)
+[    0.091035] Mountpoint-cache hash table entries: 1024 (order: 0, 4096 bytes, linear)
+[    0.093921] Setting up static identity map for 0x80100000 - 0x80100060
+[    0.094142] rcu: Hierarchical SRCU implementation.
+[    0.095590] devtmpfs: initialized
+[    0.112985] VFP support v0.3: implementor 41 architecture 3 part 30 variant c rev 3
+[    0.113303] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112604462750000 ns
+[    0.113339] futex hash table entries: 256 (order: -1, 3072 bytes, linear)
+[    0.114811] pinctrl core: initialized pinctrl subsystem
+[    0.116622] NET: Registered PF_NETLINK/PF_ROUTE protocol family
+[    0.119432] DMA: preallocated 256 KiB pool for atomic coherent allocations
+[    0.120828] thermal_sys: Registered thermal governor &apos;step_wise&apos;
+[    0.121327] cpuidle: using governor ladder
+[    0.121385] cpuidle: using governor menu
+[    0.136788] hw-breakpoint: debug architecture 0x4 unsupported.
+[    0.137922] Serial: AMBA PL011 UART driver
+[    0.148448] kprobes: kprobe jump-optimization is enabled. All kprobes are optimized if possible.
+[    0.320667] raid6: int32x8  gen()   170 MB/s
+[    0.490974] raid6: int32x8  xor()   105 MB/s
+[    0.660630] raid6: int32x4  gen()   199 MB/s
+[    0.830608] raid6: int32x4  xor()   117 MB/s
+[    1.000493] raid6: int32x2  gen()   365 MB/s
+[    1.170546] raid6: int32x2  xor()   202 MB/s
+[    1.340540] raid6: int32x1  gen()   367 MB/s
+[    1.510536] raid6: int32x1  xor()   172 MB/s
+[    1.510547] raid6: using algorithm int32x1 gen() 367 MB/s
+[    1.510557] raid6: .... xor() 172 MB/s, rmw enabled
+[    1.510565] raid6: using intx1 recovery algorithm
+[    1.513357] SCSI subsystem initialized
+[    1.513698] usbcore: registered new interface driver usbfs
+[    1.513767] usbcore: registered new interface driver hub
+[    1.513833] usbcore: registered new device driver usb
+[    1.514235] pps_core: LinuxPPS API ver. 1 registered
+[    1.514252] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti &lt;giometti@linux.it&gt;
+[    1.514282] PTP clock support registered
+[    1.516408] clocksource: Switched to clocksource dmtimer
+[    1.644509] NET: Registered PF_INET protocol family
+[    1.644809] IP idents hash table entries: 8192 (order: 4, 65536 bytes, linear)
+[    1.657100] tcp_listen_portaddr_hash hash table entries: 1024 (order: 0, 4096 bytes, linear)
+[    1.657162] Table-perturb hash table entries: 65536 (order: 6, 262144 bytes, linear)
+[    1.657184] TCP established hash table entries: 4096 (order: 2, 16384 bytes, linear)
+[    1.657229] TCP bind hash table entries: 4096 (order: 2, 16384 bytes, linear)
+[    1.657271] TCP: Hash tables configured (established 4096 bind 4096)
+[    1.657403] UDP hash table entries: 256 (order: 0, 4096 bytes, linear)
+[    1.657433] UDP-Lite hash table entries: 256 (order: 0, 4096 bytes, linear)
+[    1.657672] NET: Registered PF_UNIX/PF_LOCAL protocol family
+[    1.658509] RPC: Registered named UNIX socket transport module.
+[    1.658528] RPC: Registered udp transport module.
+[    1.658536] RPC: Registered tcp transport module.
+[    1.658544] RPC: Registered tcp NFSv4.1 backchannel transport module.
+[    2.338438] Initialise system trusted keyrings
+[    2.338929] workingset: timestamp_bits=14 max_order=17 bucket_order=3
+[    2.348897] NFS: Registering the id_resolver key type
+[    2.348988] Key type id_resolver registered
+[    2.349000] Key type id_legacy registered
+[    2.350191] Key type cifs.idmap registered
+[    2.439961] xor: measuring software checksum speed
+[    2.447874]    arm4regs        :  1274 MB/sec
+[    2.458473]    8regs           :   939 MB/sec
+[    2.466213]    32regs          :  1273 MB/sec
+[    2.466223] xor: using function: arm4regs (1274 MB/sec)
+[    2.466247] Key type asymmetric registered
+[    2.466258] Asymmetric key parser &apos;x509&apos; registered
+[    2.466517] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 248)
+[    2.466538] io scheduler mq-deadline registered
+[    2.466550] io scheduler kyber registered
+[    2.469698] Serial: 8250/16550 driver, 4 ports, IRQ sharing disabled
+[    2.485176] brd: module loaded
+[    2.486192] mtdoops: mtd device (mtddev=name/number) must be supplied
+[    2.488217] ehci_hcd: USB 2.0 &apos;Enhanced&apos; Host Controller (EHCI) Driver
+[    2.488244] ehci-omap: OMAP-EHCI Host Controller driver
+[    2.488400] usbcore: registered new interface driver usb-storage
+[    2.488939] SPI driver ads7846 has no spi_device_id for ti,tsc2046
+[    2.488957] SPI driver ads7846 has no spi_device_id for ti,ads7843
+[    2.488965] SPI driver ads7846 has no spi_device_id for ti,ads7845
+[    2.488974] SPI driver ads7846 has no spi_device_id for ti,ads7873
+[    2.489327] i2c_dev: i2c /dev entries driver
+[    2.489803] sdhci: Secure Digital Host Controller Interface driver
+[    2.489815] sdhci: Copyright(c) Pierre Ossman
+[    2.489822] sdhci-pltfm: SDHCI platform and OF driver helper
+[    2.490732] usbcore: registered new interface driver usbhid
+[    2.490749] usbhid: USB HID core driver
+[    2.491037] u32 classifier
+[    2.491048]     input device check on
+[    2.491055]     Actions configured
+[    2.491876] NET: Registered PF_INET6 protocol family
+[    2.493429] Segment Routing with IPv6
+[    2.493521] In-situ OAM (IOAM) with IPv6
+[    2.493636] sit: IPv6, IPv4 and MPLS over IPv4 tunneling driver
+[    2.494473] NET: Registered PF_PACKET protocol family
+[    2.494616] Bridge firewalling registered
+[    2.494757] Key type dns_resolver registered
+[    2.495153] NET: Registered PF_VSOCK protocol family
+[    2.495402] ThumbEE CPU extension supported.
+[    2.495420] omap_voltage_late_init: Voltage driver support not added
+[    2.496236] Loading compiled-in X.509 certificates
+[    2.496352] Key type .fscrypt registered
+[    2.496365] Key type fscrypt-provisioning registered
+[    2.498499] Btrfs loaded, crc32c=crc32c-generic, zoned=no, fsverity=no
+[    2.500471] Key type encrypted registered
+[    2.532802] pinctrl-single 44e10800.pinmux: 142 pins, size 568
+[    2.536900] ti-sysc: probe of 44e31000.target-module failed with error -16
+[    2.540136] omap_wdt: OMAP Watchdog Timer Rev 0x01: initial timeout 60 sec
+[    2.543472] omap_rtc 44e3e000.rtc: registered as rtc0
+[    2.543547] omap_rtc 44e3e000.rtc: setting system clock to 2000-01-01T00:00:00 UTC (946684800)
+[    2.553307] ti-sysc: probe of 48040000.target-module failed with error -16
+[    2.564295] OMAP GPIO hardware version 0.1
+[    2.576078] omap_i2c 4819c000.i2c: bus 2 rev0.11 at 100 kHz
+[    2.587991] sdhci-omap 481d8000.mmc: supply vqmmc not found, using dummy regulator
+[    2.608257] omap_rng 48310000.rng: Random Number Generator ver. 20
+[    2.615451] random: crng init done
+[    2.666447] davinci_mdio 4a101000.mdio: davinci mdio revision 1.6, bus freq 1000000
+[    2.668942] davinci_mdio 4a101000.mdio: phy[0]: device 4a101000.mdio:00, driver SMSC LAN8710/LAN8720
+[    2.669269] cpsw-switch 4a100000.switch: initialized cpsw ale version 1.4
+[    2.669291] cpsw-switch 4a100000.switch: ALE Table size 1024
+[    2.669422] cpsw-switch 4a100000.switch: Detected MACID = 04:79:b7:ec:35:73
+[    2.670841] cpsw-switch 4a100000.switch: initialized (regs 0x4a100000, pool size 256) hw_ver:0019010C 1.12 (0)
+[    2.681430] debugfs: Directory &apos;49000000.dma&apos; with parent &apos;dmaengine&apos; already present!
+[    2.681483] edma 49000000.dma: TI EDMA DMA engine driver
+[    2.688024] am335x-phy-driver 47401300.usb-phy: supply vcc not found, using dummy regulator
+[    2.688415] am335x-phy-driver 47401300.usb-phy: dummy supplies not allowed for exclusive requests
+[    2.699169] am335x-phy-driver 47401b00.usb-phy: supply vcc not found, using dummy regulator
+[    2.699486] am335x-phy-driver 47401b00.usb-phy: dummy supplies not allowed for exclusive requests
+[    2.719387] hw perfevents: enabled with armv7_cortex_a8 PMU driver, 5 counters available
+[    2.724576] l3-aon-clkctrl:0000:0: failed to disable
+[    2.727703] printk: console [ttyS0] disabled
+[    2.727835] 44e09000.serial: ttyS0 at MMIO 0x44e09000 (irq = 18, base_baud = 3000000) is a 8250
+[    3.506327] printk: console [ttyS0] enabled
+[    3.537135] tps65217-pmic: Failed to locate of_node [id: -1]
+[    3.549162] tps65217-bl: Failed to locate of_node [id: -1]
+[    3.556290] tps65217 0-0024: TPS65217 ID 0xe version 1.2
+[    3.560978] i2c 0-0070: Fixing up cyclic dependency with 4830e000.lcdc
+[    3.708999] tda998x 0-0070: found TDA19988
+[    3.714541] omap_i2c 44e0b000.i2c: bus 0 rev0.11 at 400 kHz
+[    3.720497] omap_gpio 44e07000.gpio: Could not set line 6 debounce to 200000 microseconds (-22)
+[    3.729275] tilcdc 4830e000.lcdc: bound 0-0070 (ops tda998x_ops)
+[    3.734313] sdhci-omap 48060000.mmc: Got CD GPIO
+[    3.738682] [drm] Initialized tilcdc 1.0.0 20121205 for 4830e000.lcdc on minor 0
+[    3.745177] sdhci-omap 48060000.mmc: supply vqmmc not found, using dummy regulator
+[    3.751787] tilcdc 4830e000.lcdc: [drm] Cannot find any crtc or sizes
+[    3.768341] sdhci-omap 481d8000.mmc: supply vqmmc not found, using dummy regulator
+[    3.801263] musb-hdrc musb-hdrc.1: MUSB HDRC host driver
+[    3.805353] musb-hdrc musb-hdrc.1: new USB bus registered, assigned bus number 1
+[    3.847553] hub 1-0:1.0: USB hub found
+[    3.850099] hub 1-0:1.0: 1 port detected
+[    3.859037] printk: console [netcon0] enabled
+[    3.862125] netconsole: network logging started
+[    3.886642] cfg80211: Loading compiled-in X.509 certificates for regulatory database
+[    3.908893] cfg80211: Loaded X.509 cert &apos;sforshee: 00b28ddf47aef9cea7&apos;
+[    3.916233] cfg80211: Loaded X.509 cert &apos;wens: 61c038651aabdcf94bd0ac7ff06c7248db18c600&apos;
+[    3.933215] platform regulatory.0: Direct firmware load for regulatory.db failed with error -2
+[    3.941754] cfg80211: failed to load regulatory.db
+[    3.953939] mmc0: SDHCI controller on 48060000.mmc [48060000.mmc] using External DMA
+[    3.960595] mmc1: SDHCI controller on 481d8000.mmc [481d8000.mmc] using External DMA
+[    3.968235] Waiting for root device PARTUUID=7fb7574c-02...
+[    4.027993] mmc1: new high speed MMC card at address 0001
+[    4.033212] mmcblk1: mmc1:0001 M62704 3.56 GiB 
+[    4.036773] mmc0: new high speed SDHC card at address aaaa
+[    4.041848] mmcblk0: mmc0:aaaa SC32G 29.7 GiB 
+[    4.048342]  mmcblk1: p1
+[    4.050577] mmcblk1boot0: mmc1:0001 M62704 2.00 MiB 
+[    4.057257] mmcblk1boot1: mmc1:0001 M62704 2.00 MiB 
+[    4.061216]  mmcblk0: p1 p2
+[    4.065337] mmcblk1rpmb: mmc1:0001 M62704 512 KiB, chardev (247:0)
+[    4.096125] EXT4-fs (mmcblk0p2): mounted filesystem with ordered data mode. Opts: (null). Quota mode: disabled.
+[    4.105264] VFS: Mounted root (ext4 filesystem) readonly on device 179:10.
+[    4.115082] devtmpfs: mounted
+[    4.122276] Freeing unused kernel image (initmem) memory: 1024K
+[    4.127636] Run /sbin/init as init process
+[    4.130446]   with arguments:
+[    4.130452]     /sbin/init
+[    4.130458]   with environment:
+[    4.130463]     HOME=/
+[    4.130468]     TERM=linux
+[    4.861496] FAT-fs (mmcblk0p1): Volume was not properly unmounted. Some data may be corrupt. Please run fsck.
+[    5.182663] udevd[128]: starting version 3.2.10
+[    5.244804] udevd[129]: starting eudev-3.2.10
+[    6.495204] EXT4-fs (mmcblk0p2): re-mounted. Opts: (null). Quota mode: disabled.
+[    9.300427] cpsw-switch 4a100000.switch: starting ndev. mode: dual_mac
+[    9.398229] SMSC LAN8710/LAN8720 4a101000.mdio:00: attached PHY driver (mii_bus:phy_addr=4a101000.mdio:00, irq=POLL)
+[   11.528212] cpsw-switch 4a100000.switch eth0: Link is Up - 100Mbps/Full - flow control off
+[   11.535532] IPv6: ADDRCONF(NETDEV_CHANGE): eth0: link becomes ready
+root@beaglebone-yocto:~# dmesg | grep klogger
+root@beaglebone-yocto:~# dmesg
+[    0.000000] Booting Linux on physical CPU 0x0
+[    0.000000] Linux version 5.15.150-yocto-standard (oe-user@oe-host) (arm-poky-linux-gnueabi-gcc (GCC) 11.5.0, GNU ld (GNU Binutils) 2.38.20220708) #1 PREEMPT Mon Mar 11 14:54:41 UTC 2024
+[    0.000000] CPU: ARMv7 Processor [413fc082] revision 2 (ARMv7), cr=10c5387d
+[    0.000000] CPU: PIPT / VIPT nonaliasing data cache, VIPT aliasing instruction cache
+[    0.000000] OF: fdt: Machine model: TI AM335x BeagleBone Black
+[    0.000000] Memory policy: Data cache writeback
+[    0.000000] cma: Reserved 16 MiB at 0x9e800000
+[    0.000000] Zone ranges:
+[    0.000000]   Normal   [mem 0x0000000080000000-0x000000009fefffff]
+[    0.000000]   HighMem  empty
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x0000000080000000-0x000000009fefffff]
+[    0.000000] Initmem setup node 0 [mem 0x0000000080000000-0x000000009fefffff]
+[    0.000000] CPU: All CPU(s) started in SVC mode.
+[    0.000000] AM335X ES2.1 (sgx neon)
+[    0.000000] pcpu-alloc: s0 r0 d32768 u32768 alloc=1*32768
+[    0.000000] pcpu-alloc: [0] 0 
+[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 129666
+[    0.000000] Kernel command line: root=PARTUUID=7fb7574c-02 rootwait console=ttyS0,115200
+[    0.000000] Dentry cache hash table entries: 65536 (order: 6, 262144 bytes, linear)
+[    0.000000] Inode-cache hash table entries: 32768 (order: 5, 131072 bytes, linear)
+[    0.000000] mem auto-init: stack:off, heap alloc:off, heap free:off
+[    0.000000] Memory: 482236K/523264K available (11264K kernel code, 1558K rwdata, 4100K rodata, 1024K init, 328K bss, 24644K reserved, 16384K cma-reserved, 0K highmem)
+[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+[    0.000000] ftrace: allocating 42062 entries in 124 pages
+[    0.000000] ftrace: allocated 124 pages with 5 groups
+[    0.000000] trace event string verifier disabled
+[    0.000000] rcu: Preemptible hierarchical RCU implementation.
+[    0.000000] rcu: 	RCU event tracing is enabled.
+[    0.000000] 	Trampoline variant of Tasks RCU enabled.
+[    0.000000] 	Rude variant of Tasks RCU enabled.
+[    0.000000] 	Tracing variant of Tasks RCU enabled.
+[    0.000000] rcu: RCU calculated value of scheduler-enlistment delay is 10 jiffies.
+[    0.000000] NR_IRQS: 16, nr_irqs: 16, preallocated irqs: 16
+[    0.000000] IRQ: Found an INTC at 0x(ptrval) (revision 5.0) with 128 interrupts
+[    0.000000] TI gptimer clocksource: always-on /ocp/interconnect@44c00000/segment@200000/target-module@31000
+[    0.000002] sched_clock: 32 bits at 24MHz, resolution 41ns, wraps every 89478484971ns
+[    0.000029] clocksource: dmtimer: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 79635851949 ns
+[    0.000421] TI gptimer clockevent: 24000000 Hz at /ocp/interconnect@48000000/segment@0/target-module@40000
+[    0.001862] Console: colour dummy device 80x30
+[    0.001940] Calibrating delay loop... 996.14 BogoMIPS (lpj=4980736)
+[    0.090525] CPU: Testing write buffer coherency: ok
+[    0.090622] CPU0: Spectre v2: using BPIALL workaround
+[    0.090635] pid_max: default: 32768 minimum: 301
+[    0.090746] LSM: Security Framework initializing
+[    0.090805] landlock: Up and running.
+[    0.091009] Mount-cache hash table entries: 1024 (order: 0, 4096 bytes, linear)
+[    0.091035] Mountpoint-cache hash table entries: 1024 (order: 0, 4096 bytes, linear)
+[    0.093921] Setting up static identity map for 0x80100000 - 0x80100060
+[    0.094142] rcu: Hierarchical SRCU implementation.
+[    0.095590] devtmpfs: initialized
+[    0.112985] VFP support v0.3: implementor 41 architecture 3 part 30 variant c rev 3
+[    0.113303] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112604462750000 ns
+[    0.113339] futex hash table entries: 256 (order: -1, 3072 bytes, linear)
+[    0.114811] pinctrl core: initialized pinctrl subsystem
+[    0.116622] NET: Registered PF_NETLINK/PF_ROUTE protocol family
+[    0.119432] DMA: preallocated 256 KiB pool for atomic coherent allocations
+[    0.120828] thermal_sys: Registered thermal governor &apos;step_wise&apos;
+[    0.121327] cpuidle: using governor ladder
+[    0.121385] cpuidle: using governor menu
+[    0.136788] hw-breakpoint: debug architecture 0x4 unsupported.
+[    0.137922] Serial: AMBA PL011 UART driver
+[    0.148448] kprobes: kprobe jump-optimization is enabled. All kprobes are optimized if possible.
+[    0.320667] raid6: int32x8  gen()   170 MB/s
+[    0.490974] raid6: int32x8  xor()   105 MB/s
+[    0.660630] raid6: int32x4  gen()   199 MB/s
+[    0.830608] raid6: int32x4  xor()   117 MB/s
+[    1.000493] raid6: int32x2  gen()   365 MB/s
+[    1.170546] raid6: int32x2  xor()   202 MB/s
+[    1.340540] raid6: int32x1  gen()   367 MB/s
+[    1.510536] raid6: int32x1  xor()   172 MB/s
+[    1.510547] raid6: using algorithm int32x1 gen() 367 MB/s
+[    1.510557] raid6: .... xor() 172 MB/s, rmw enabled
+[    1.510565] raid6: using intx1 recovery algorithm
+[    1.513357] SCSI subsystem initialized
+[    1.513698] usbcore: registered new interface driver usbfs
+[    1.513767] usbcore: registered new interface driver hub
+[    1.513833] usbcore: registered new device driver usb
+[    1.514235] pps_core: LinuxPPS API ver. 1 registered
+[    1.514252] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti &lt;giometti@linux.it&gt;
+[    1.514282] PTP clock support registered
+[    1.516408] clocksource: Switched to clocksource dmtimer
+[    1.644509] NET: Registered PF_INET protocol family
+[    1.644809] IP idents hash table entries: 8192 (order: 4, 65536 bytes, linear)
+[    1.657100] tcp_listen_portaddr_hash hash table entries: 1024 (order: 0, 4096 bytes, linear)
+[    1.657162] Table-perturb hash table entries: 65536 (order: 6, 262144 bytes, linear)
+[    1.657184] TCP established hash table entries: 4096 (order: 2, 16384 bytes, linear)
+[    1.657229] TCP bind hash table entries: 4096 (order: 2, 16384 bytes, linear)
+[    1.657271] TCP: Hash tables configured (established 4096 bind 4096)
+[    1.657403] UDP hash table entries: 256 (order: 0, 4096 bytes, linear)
+[    1.657433] UDP-Lite hash table entries: 256 (order: 0, 4096 bytes, linear)
+[    1.657672] NET: Registered PF_UNIX/PF_LOCAL protocol family
+[    1.658509] RPC: Registered named UNIX socket transport module.
+[    1.658528] RPC: Registered udp transport module.
+[    1.658536] RPC: Registered tcp transport module.
+[    1.658544] RPC: Registered tcp NFSv4.1 backchannel transport module.
+[    2.338438] Initialise system trusted keyrings
+[    2.338929] workingset: timestamp_bits=14 max_order=17 bucket_order=3
+[    2.348897] NFS: Registering the id_resolver key type
+[    2.348988] Key type id_resolver registered
+[    2.349000] Key type id_legacy registered
+[    2.350191] Key type cifs.idmap registered
+[    2.439961] xor: measuring software checksum speed
+[    2.447874]    arm4regs        :  1274 MB/sec
+[    2.458473]    8regs           :   939 MB/sec
+[    2.466213]    32regs          :  1273 MB/sec
+[    2.466223] xor: using function: arm4regs (1274 MB/sec)
+[    2.466247] Key type asymmetric registered
+[    2.466258] Asymmetric key parser &apos;x509&apos; registered
+[    2.466517] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 248)
+[    2.466538] io scheduler mq-deadline registered
+[    2.466550] io scheduler kyber registered
+[    2.469698] Serial: 8250/16550 driver, 4 ports, IRQ sharing disabled
+[    2.485176] brd: module loaded
+[    2.486192] mtdoops: mtd device (mtddev=name/number) must be supplied
+[    2.488217] ehci_hcd: USB 2.0 &apos;Enhanced&apos; Host Controller (EHCI) Driver
+[    2.488244] ehci-omap: OMAP-EHCI Host Controller driver
+[    2.488400] usbcore: registered new interface driver usb-storage
+[    2.488939] SPI driver ads7846 has no spi_device_id for ti,tsc2046
+[    2.488957] SPI driver ads7846 has no spi_device_id for ti,ads7843
+[    2.488965] SPI driver ads7846 has no spi_device_id for ti,ads7845
+[    2.488974] SPI driver ads7846 has no spi_device_id for ti,ads7873
+[    2.489327] i2c_dev: i2c /dev entries driver
+[    2.489803] sdhci: Secure Digital Host Controller Interface driver
+[    2.489815] sdhci: Copyright(c) Pierre Ossman
+[    2.489822] sdhci-pltfm: SDHCI platform and OF driver helper
+[    2.490732] usbcore: registered new interface driver usbhid
+[    2.490749] usbhid: USB HID core driver
+[    2.491037] u32 classifier
+[    2.491048]     input device check on
+[    2.491055]     Actions configured
+[    2.491876] NET: Registered PF_INET6 protocol family
+[    2.493429] Segment Routing with IPv6
+[    2.493521] In-situ OAM (IOAM) with IPv6
+[    2.493636] sit: IPv6, IPv4 and MPLS over IPv4 tunneling driver
+[    2.494473] NET: Registered PF_PACKET protocol family
+[    2.494616] Bridge firewalling registered
+[    2.494757] Key type dns_resolver registered
+[    2.495153] NET: Registered PF_VSOCK protocol family
+[    2.495402] ThumbEE CPU extension supported.
+[    2.495420] omap_voltage_late_init: Voltage driver support not added
+[    2.496236] Loading compiled-in X.509 certificates
+[    2.496352] Key type .fscrypt registered
+[    2.496365] Key type fscrypt-provisioning registered
+[    2.498499] Btrfs loaded, crc32c=crc32c-generic, zoned=no, fsverity=no
+[    2.500471] Key type encrypted registered
+[    2.532802] pinctrl-single 44e10800.pinmux: 142 pins, size 568
+[    2.536900] ti-sysc: probe of 44e31000.target-module failed with error -16
+[    2.540136] omap_wdt: OMAP Watchdog Timer Rev 0x01: initial timeout 60 sec
+[    2.543472] omap_rtc 44e3e000.rtc: registered as rtc0
+[    2.543547] omap_rtc 44e3e000.rtc: setting system clock to 2000-01-01T00:00:00 UTC (946684800)
+[    2.553307] ti-sysc: probe of 48040000.target-module failed with error -16
+[    2.564295] OMAP GPIO hardware version 0.1
+[    2.576078] omap_i2c 4819c000.i2c: bus 2 rev0.11 at 100 kHz
+[    2.587991] sdhci-omap 481d8000.mmc: supply vqmmc not found, using dummy regulator
+[    2.608257] omap_rng 48310000.rng: Random Number Generator ver. 20
+[    2.615451] random: crng init done
+[    2.666447] davinci_mdio 4a101000.mdio: davinci mdio revision 1.6, bus freq 1000000
+[    2.668942] davinci_mdio 4a101000.mdio: phy[0]: device 4a101000.mdio:00, driver SMSC LAN8710/LAN8720
+[    2.669269] cpsw-switch 4a100000.switch: initialized cpsw ale version 1.4
+[    2.669291] cpsw-switch 4a100000.switch: ALE Table size 1024
+[    2.669422] cpsw-switch 4a100000.switch: Detected MACID = 04:79:b7:ec:35:73
+[    2.670841] cpsw-switch 4a100000.switch: initialized (regs 0x4a100000, pool size 256) hw_ver:0019010C 1.12 (0)
+[    2.681430] debugfs: Directory &apos;49000000.dma&apos; with parent &apos;dmaengine&apos; already present!
+[    2.681483] edma 49000000.dma: TI EDMA DMA engine driver
+[    2.688024] am335x-phy-driver 47401300.usb-phy: supply vcc not found, using dummy regulator
+[    2.688415] am335x-phy-driver 47401300.usb-phy: dummy supplies not allowed for exclusive requests
+[    2.699169] am335x-phy-driver 47401b00.usb-phy: supply vcc not found, using dummy regulator
+[    2.699486] am335x-phy-driver 47401b00.usb-phy: dummy supplies not allowed for exclusive requests
+[    2.719387] hw perfevents: enabled with armv7_cortex_a8 PMU driver, 5 counters available
+[    2.724576] l3-aon-clkctrl:0000:0: failed to disable
+[    2.727703] printk: console [ttyS0] disabled
+[    2.727835] 44e09000.serial: ttyS0 at MMIO 0x44e09000 (irq = 18, base_baud = 3000000) is a 8250
+[    3.506327] printk: console [ttyS0] enabled
+[    3.537135] tps65217-pmic: Failed to locate of_node [id: -1]
+[    3.549162] tps65217-bl: Failed to locate of_node [id: -1]
+[    3.556290] tps65217 0-0024: TPS65217 ID 0xe version 1.2
+[    3.560978] i2c 0-0070: Fixing up cyclic dependency with 4830e000.lcdc
+[    3.708999] tda998x 0-0070: found TDA19988
+[    3.714541] omap_i2c 44e0b000.i2c: bus 0 rev0.11 at 400 kHz
+[    3.720497] omap_gpio 44e07000.gpio: Could not set line 6 debounce to 200000 microseconds (-22)
+[    3.729275] tilcdc 4830e000.lcdc: bound 0-0070 (ops tda998x_ops)
+[    3.734313] sdhci-omap 48060000.mmc: Got CD GPIO
+[    3.738682] [drm] Initialized tilcdc 1.0.0 20121205 for 4830e000.lcdc on minor 0
+[    3.745177] sdhci-omap 48060000.mmc: supply vqmmc not found, using dummy regulator
+[    3.751787] tilcdc 4830e000.lcdc: [drm] Cannot find any crtc or sizes
+[    3.768341] sdhci-omap 481d8000.mmc: supply vqmmc not found, using dummy regulator
+[    3.801263] musb-hdrc musb-hdrc.1: MUSB HDRC host driver
+[    3.805353] musb-hdrc musb-hdrc.1: new USB bus registered, assigned bus number 1
+[    3.847553] hub 1-0:1.0: USB hub found
+[    3.850099] hub 1-0:1.0: 1 port detected
+[    3.859037] printk: console [netcon0] enabled
+[    3.862125] netconsole: network logging started
+[    3.886642] cfg80211: Loading compiled-in X.509 certificates for regulatory database
+[    3.908893] cfg80211: Loaded X.509 cert &apos;sforshee: 00b28ddf47aef9cea7&apos;
+[    3.916233] cfg80211: Loaded X.509 cert &apos;wens: 61c038651aabdcf94bd0ac7ff06c7248db18c600&apos;
+[    3.933215] platform regulatory.0: Direct firmware load for regulatory.db failed with error -2
+[    3.941754] cfg80211: failed to load regulatory.db
+[    3.953939] mmc0: SDHCI controller on 48060000.mmc [48060000.mmc] using External DMA
+[    3.960595] mmc1: SDHCI controller on 481d8000.mmc [481d8000.mmc] using External DMA
+[    3.968235] Waiting for root device PARTUUID=7fb7574c-02...
+[    4.027993] mmc1: new high speed MMC card at address 0001
+[    4.033212] mmcblk1: mmc1:0001 M62704 3.56 GiB 
+[    4.036773] mmc0: new high speed SDHC card at address aaaa
+[    4.041848] mmcblk0: mmc0:aaaa SC32G 29.7 GiB 
+[    4.048342]  mmcblk1: p1
+[    4.050577] mmcblk1boot0: mmc1:0001 M62704 2.00 MiB 
+[    4.057257] mmcblk1boot1: mmc1:0001 M62704 2.00 MiB 
+[    4.061216]  mmcblk0: p1 p2
+[    4.065337] mmcblk1rpmb: mmc1:0001 M62704 512 KiB, chardev (247:0)
+[    4.096125] EXT4-fs (mmcblk0p2): mounted filesystem with ordered data mode. Opts: (null). Quota mode: disabled.
+[    4.105264] VFS: Mounted root (ext4 filesystem) readonly on device 179:10.
+[    4.115082] devtmpfs: mounted
+[    4.122276] Freeing unused kernel image (initmem) memory: 1024K
+[    4.127636] Run /sbin/init as init process
+[    4.130446]   with arguments:
+[    4.130452]     /sbin/init
+[    4.130458]   with environment:
+[    4.130463]     HOME=/
+[    4.130468]     TERM=linux
+[    4.861496] FAT-fs (mmcblk0p1): Volume was not properly unmounted. Some data may be corrupt. Please run fsck.
+[    5.182663] udevd[128]: starting version 3.2.10
+[    5.244804] udevd[129]: starting eudev-3.2.10
+[    6.495204] EXT4-fs (mmcblk0p2): re-mounted. Opts: (null). Quota mode: disabled.
+[    9.300427] cpsw-switch 4a100000.switch: starting ndev. mode: dual_mac
+[    9.398229] SMSC LAN8710/LAN8720 4a101000.mdio:00: attached PHY driver (mii_bus:phy_addr=4a101000.mdio:00, irq=POLL)
+[   11.528212] cpsw-switch 4a100000.switch eth0: Link is Up - 100Mbps/Full - flow control off
+[   11.535532] IPv6: ADDRCONF(NETDEV_CHANGE): eth0: link becomes ready
+root@beaglebone-yocto:~# dmesg | grep logger
+root@beaglebone-yocto:~# dmesg
+[    0.000000] Booting Linux on physical CPU 0x0
+[    0.000000] Linux version 5.15.150-yocto-standard (oe-user@oe-host) (arm-poky-linux-gnueabi-gcc (GCC) 11.5.0, GNU ld (GNU Binutils) 2.38.20220708) #1 PREEMPT Mon Mar 11 14:54:41 UTC 2024
+[    0.000000] CPU: ARMv7 Processor [413fc082] revision 2 (ARMv7), cr=10c5387d
+[    0.000000] CPU: PIPT / VIPT nonaliasing data cache, VIPT aliasing instruction cache
+[    0.000000] OF: fdt: Machine model: TI AM335x BeagleBone Black
+[    0.000000] Memory policy: Data cache writeback
+[    0.000000] cma: Reserved 16 MiB at 0x9e800000
+[    0.000000] Zone ranges:
+[    0.000000]   Normal   [mem 0x0000000080000000-0x000000009fefffff]
+[    0.000000]   HighMem  empty
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x0000000080000000-0x000000009fefffff]
+[    0.000000] Initmem setup node 0 [mem 0x0000000080000000-0x000000009fefffff]
+[    0.000000] CPU: All CPU(s) started in SVC mode.
+[    0.000000] AM335X ES2.1 (sgx neon)
+[    0.000000] pcpu-alloc: s0 r0 d32768 u32768 alloc=1*32768
+[    0.000000] pcpu-alloc: [0] 0 
+[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 129666
+[    0.000000] Kernel command line: root=PARTUUID=7fb7574c-02 rootwait console=ttyS0,115200
+[    0.000000] Dentry cache hash table entries: 65536 (order: 6, 262144 bytes, linear)
+[    0.000000] Inode-cache hash table entries: 32768 (order: 5, 131072 bytes, linear)
+[    0.000000] mem auto-init: stack:off, heap alloc:off, heap free:off
+[    0.000000] Memory: 482236K/523264K available (11264K kernel code, 1558K rwdata, 4100K rodata, 1024K init, 328K bss, 24644K reserved, 16384K cma-reserved, 0K highmem)
+[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+[    0.000000] ftrace: allocating 42062 entries in 124 pages
+[    0.000000] ftrace: allocated 124 pages with 5 groups
+[    0.000000] trace event string verifier disabled
+[    0.000000] rcu: Preemptible hierarchical RCU implementation.
+[    0.000000] rcu: 	RCU event tracing is enabled.
+[    0.000000] 	Trampoline variant of Tasks RCU enabled.
+[    0.000000] 	Rude variant of Tasks RCU enabled.
+[    0.000000] 	Tracing variant of Tasks RCU enabled.
+[    0.000000] rcu: RCU calculated value of scheduler-enlistment delay is 10 jiffies.
+[    0.000000] NR_IRQS: 16, nr_irqs: 16, preallocated irqs: 16
+[    0.000000] IRQ: Found an INTC at 0x(ptrval) (revision 5.0) with 128 interrupts
+[    0.000000] TI gptimer clocksource: always-on /ocp/interconnect@44c00000/segment@200000/target-module@31000
+[    0.000002] sched_clock: 32 bits at 24MHz, resolution 41ns, wraps every 89478484971ns
+[    0.000029] clocksource: dmtimer: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 79635851949 ns
+[    0.000421] TI gptimer clockevent: 24000000 Hz at /ocp/interconnect@48000000/segment@0/target-module@40000
+[    0.001862] Console: colour dummy device 80x30
+[    0.001940] Calibrating delay loop... 996.14 BogoMIPS (lpj=4980736)
+[    0.090525] CPU: Testing write buffer coherency: ok
+[    0.090622] CPU0: Spectre v2: using BPIALL workaround
+[    0.090635] pid_max: default: 32768 minimum: 301
+[    0.090746] LSM: Security Framework initializing
+[    0.090805] landlock: Up and running.
+[    0.091009] Mount-cache hash table entries: 1024 (order: 0, 4096 bytes, linear)
+[    0.091035] Mountpoint-cache hash table entries: 1024 (order: 0, 4096 bytes, linear)
+[    0.093921] Setting up static identity map for 0x80100000 - 0x80100060
+[    0.094142] rcu: Hierarchical SRCU implementation.
+[    0.095590] devtmpfs: initialized
+[    0.112985] VFP support v0.3: implementor 41 architecture 3 part 30 variant c rev 3
+[    0.113303] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112604462750000 ns
+[    0.113339] futex hash table entries: 256 (order: -1, 3072 bytes, linear)
+[    0.114811] pinctrl core: initialized pinctrl subsystem
+[    0.116622] NET: Registered PF_NETLINK/PF_ROUTE protocol family
+[    0.119432] DMA: preallocated 256 KiB pool for atomic coherent allocations
+[    0.120828] thermal_sys: Registered thermal governor &apos;step_wise&apos;
+[    0.121327] cpuidle: using governor ladder
+[    0.121385] cpuidle: using governor menu
+[    0.136788] hw-breakpoint: debug architecture 0x4 unsupported.
+[    0.137922] Serial: AMBA PL011 UART driver
+[    0.148448] kprobes: kprobe jump-optimization is enabled. All kprobes are optimized if possible.
+[    0.320667] raid6: int32x8  gen()   170 MB/s
+[    0.490974] raid6: int32x8  xor()   105 MB/s
+[    0.660630] raid6: int32x4  gen()   199 MB/s
+[    0.830608] raid6: int32x4  xor()   117 MB/s
+[    1.000493] raid6: int32x2  gen()   365 MB/s
+[    1.170546] raid6: int32x2  xor()   202 MB/s
+[    1.340540] raid6: int32x1  gen()   367 MB/s
+[    1.510536] raid6: int32x1  xor()   172 MB/s
+[    1.510547] raid6: using algorithm int32x1 gen() 367 MB/s
+[    1.510557] raid6: .... xor() 172 MB/s, rmw enabled
+[    1.510565] raid6: using intx1 recovery algorithm
+[    1.513357] SCSI subsystem initialized
+[    1.513698] usbcore: registered new interface driver usbfs
+[    1.513767] usbcore: registered new interface driver hub
+[    1.513833] usbcore: registered new device driver usb
+[    1.514235] pps_core: LinuxPPS API ver. 1 registered
+[    1.514252] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti &lt;giometti@linux.it&gt;
+[    1.514282] PTP clock support registered
+[    1.516408] clocksource: Switched to clocksource dmtimer
+[    1.644509] NET: Registered PF_INET protocol family
+[    1.644809] IP idents hash table entries: 8192 (order: 4, 65536 bytes, linear)
+[    1.657100] tcp_listen_portaddr_hash hash table entries: 1024 (order: 0, 4096 bytes, linear)
+[    1.657162] Table-perturb hash table entries: 65536 (order: 6, 262144 bytes, linear)
+[    1.657184] TCP established hash table entries: 4096 (order: 2, 16384 bytes, linear)
+[    1.657229] TCP bind hash table entries: 4096 (order: 2, 16384 bytes, linear)
+[    1.657271] TCP: Hash tables configured (established 4096 bind 4096)
+[    1.657403] UDP hash table entries: 256 (order: 0, 4096 bytes, linear)
+[    1.657433] UDP-Lite hash table entries: 256 (order: 0, 4096 bytes, linear)
+[    1.657672] NET: Registered PF_UNIX/PF_LOCAL protocol family
+[    1.658509] RPC: Registered named UNIX socket transport module.
+[    1.658528] RPC: Registered udp transport module.
+[    1.658536] RPC: Registered tcp transport module.
+[    1.658544] RPC: Registered tcp NFSv4.1 backchannel transport module.
+[    2.338438] Initialise system trusted keyrings
+[    2.338929] workingset: timestamp_bits=14 max_order=17 bucket_order=3
+[    2.348897] NFS: Registering the id_resolver key type
+[    2.348988] Key type id_resolver registered
+[    2.349000] Key type id_legacy registered
+[    2.350191] Key type cifs.idmap registered
+[    2.439961] xor: measuring software checksum speed
+[    2.447874]    arm4regs        :  1274 MB/sec
+[    2.458473]    8regs           :   939 MB/sec
+[    2.466213]    32regs          :  1273 MB/sec
+[    2.466223] xor: using function: arm4regs (1274 MB/sec)
+[    2.466247] Key type asymmetric registered
+[    2.466258] Asymmetric key parser &apos;x509&apos; registered
+[    2.466517] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 248)
+[    2.466538] io scheduler mq-deadline registered
+[    2.466550] io scheduler kyber registered
+[    2.469698] Serial: 8250/16550 driver, 4 ports, IRQ sharing disabled
+[    2.485176] brd: module loaded
+[    2.486192] mtdoops: mtd device (mtddev=name/number) must be supplied
+[    2.488217] ehci_hcd: USB 2.0 &apos;Enhanced&apos; Host Controller (EHCI) Driver
+[    2.488244] ehci-omap: OMAP-EHCI Host Controller driver
+[    2.488400] usbcore: registered new interface driver usb-storage
+[    2.488939] SPI driver ads7846 has no spi_device_id for ti,tsc2046
+[    2.488957] SPI driver ads7846 has no spi_device_id for ti,ads7843
+[    2.488965] SPI driver ads7846 has no spi_device_id for ti,ads7845
+[    2.488974] SPI driver ads7846 has no spi_device_id for ti,ads7873
+[    2.489327] i2c_dev: i2c /dev entries driver
+[    2.489803] sdhci: Secure Digital Host Controller Interface driver
+[    2.489815] sdhci: Copyright(c) Pierre Ossman
+[    2.489822] sdhci-pltfm: SDHCI platform and OF driver helper
+[    2.490732] usbcore: registered new interface driver usbhid
+[    2.490749] usbhid: USB HID core driver
+[    2.491037] u32 classifier
+[    2.491048]     input device check on
+[    2.491055]     Actions configured
+[    2.491876] NET: Registered PF_INET6 protocol family
+[    2.493429] Segment Routing with IPv6
+[    2.493521] In-situ OAM (IOAM) with IPv6
+[    2.493636] sit: IPv6, IPv4 and MPLS over IPv4 tunneling driver
+[    2.494473] NET: Registered PF_PACKET protocol family
+[    2.494616] Bridge firewalling registered
+[    2.494757] Key type dns_resolver registered
+[    2.495153] NET: Registered PF_VSOCK protocol family
+[    2.495402] ThumbEE CPU extension supported.
+[    2.495420] omap_voltage_late_init: Voltage driver support not added
+[    2.496236] Loading compiled-in X.509 certificates
+[    2.496352] Key type .fscrypt registered
+[    2.496365] Key type fscrypt-provisioning registered
+[    2.498499] Btrfs loaded, crc32c=crc32c-generic, zoned=no, fsverity=no
+[    2.500471] Key type encrypted registered
+[    2.532802] pinctrl-single 44e10800.pinmux: 142 pins, size 568
+[    2.536900] ti-sysc: probe of 44e31000.target-module failed with error -16
+[    2.540136] omap_wdt: OMAP Watchdog Timer Rev 0x01: initial timeout 60 sec
+[    2.543472] omap_rtc 44e3e000.rtc: registered as rtc0
+[    2.543547] omap_rtc 44e3e000.rtc: setting system clock to 2000-01-01T00:00:00 UTC (946684800)
+[    2.553307] ti-sysc: probe of 48040000.target-module failed with error -16
+[    2.564295] OMAP GPIO hardware version 0.1
+[    2.576078] omap_i2c 4819c000.i2c: bus 2 rev0.11 at 100 kHz
+[    2.587991] sdhci-omap 481d8000.mmc: supply vqmmc not found, using dummy regulator
+[    2.608257] omap_rng 48310000.rng: Random Number Generator ver. 20
+[    2.615451] random: crng init done
+[    2.666447] davinci_mdio 4a101000.mdio: davinci mdio revision 1.6, bus freq 1000000
+[    2.668942] davinci_mdio 4a101000.mdio: phy[0]: device 4a101000.mdio:00, driver SMSC LAN8710/LAN8720
+[    2.669269] cpsw-switch 4a100000.switch: initialized cpsw ale version 1.4
+[    2.669291] cpsw-switch 4a100000.switch: ALE Table size 1024
+[    2.669422] cpsw-switch 4a100000.switch: Detected MACID = 04:79:b7:ec:35:73
+[    2.670841] cpsw-switch 4a100000.switch: initialized (regs 0x4a100000, pool size 256) hw_ver:0019010C 1.12 (0)
+[    2.681430] debugfs: Directory &apos;49000000.dma&apos; with parent &apos;dmaengine&apos; already present!
+[    2.681483] edma 49000000.dma: TI EDMA DMA engine driver
+[    2.688024] am335x-phy-driver 47401300.usb-phy: supply vcc not found, using dummy regulator
+[    2.688415] am335x-phy-driver 47401300.usb-phy: dummy supplies not allowed for exclusive requests
+[    2.699169] am335x-phy-driver 47401b00.usb-phy: supply vcc not found, using dummy regulator
+[    2.699486] am335x-phy-driver 47401b00.usb-phy: dummy supplies not allowed for exclusive requests
+[    2.719387] hw perfevents: enabled with armv7_cortex_a8 PMU driver, 5 counters available
+[    2.724576] l3-aon-clkctrl:0000:0: failed to disable
+[    2.727703] printk: console [ttyS0] disabled
+[    2.727835] 44e09000.serial: ttyS0 at MMIO 0x44e09000 (irq = 18, base_baud = 3000000) is a 8250
+[    3.506327] printk: console [ttyS0] enabled
+[    3.537135] tps65217-pmic: Failed to locate of_node [id: -1]
+[    3.549162] tps65217-bl: Failed to locate of_node [id: -1]
+[    3.556290] tps65217 0-0024: TPS65217 ID 0xe version 1.2
+[    3.560978] i2c 0-0070: Fixing up cyclic dependency with 4830e000.lcdc
+[    3.708999] tda998x 0-0070: found TDA19988
+[    3.714541] omap_i2c 44e0b000.i2c: bus 0 rev0.11 at 400 kHz
+[    3.720497] omap_gpio 44e07000.gpio: Could not set line 6 debounce to 200000 microseconds (-22)
+[    3.729275] tilcdc 4830e000.lcdc: bound 0-0070 (ops tda998x_ops)
+[    3.734313] sdhci-omap 48060000.mmc: Got CD GPIO
+[    3.738682] [drm] Initialized tilcdc 1.0.0 20121205 for 4830e000.lcdc on minor 0
+[    3.745177] sdhci-omap 48060000.mmc: supply vqmmc not found, using dummy regulator
+[    3.751787] tilcdc 4830e000.lcdc: [drm] Cannot find any crtc or sizes
+[    3.768341] sdhci-omap 481d8000.mmc: supply vqmmc not found, using dummy regulator
+[    3.801263] musb-hdrc musb-hdrc.1: MUSB HDRC host driver
+[    3.805353] musb-hdrc musb-hdrc.1: new USB bus registered, assigned bus number 1
+[    3.847553] hub 1-0:1.0: USB hub found
+[    3.850099] hub 1-0:1.0: 1 port detected
+[    3.859037] printk: console [netcon0] enabled
+[    3.862125] netconsole: network logging started
+[    3.886642] cfg80211: Loading compiled-in X.509 certificates for regulatory database
+[    3.908893] cfg80211: Loaded X.509 cert &apos;sforshee: 00b28ddf47aef9cea7&apos;
+[    3.916233] cfg80211: Loaded X.509 cert &apos;wens: 61c038651aabdcf94bd0ac7ff06c7248db18c600&apos;
+[    3.933215] platform regulatory.0: Direct firmware load for regulatory.db failed with error -2
+[    3.941754] cfg80211: failed to load regulatory.db
+[    3.953939] mmc0: SDHCI controller on 48060000.mmc [48060000.mmc] using External DMA
+[    3.960595] mmc1: SDHCI controller on 481d8000.mmc [481d8000.mmc] using External DMA
+[    3.968235] Waiting for root device PARTUUID=7fb7574c-02...
+[    4.027993] mmc1: new high speed MMC card at address 0001
+[    4.033212] mmcblk1: mmc1:0001 M62704 3.56 GiB 
+[    4.036773] mmc0: new high speed SDHC card at address aaaa
+[    4.041848] mmcblk0: mmc0:aaaa SC32G 29.7 GiB 
+[    4.048342]  mmcblk1: p1
+[    4.050577] mmcblk1boot0: mmc1:0001 M62704 2.00 MiB 
+[    4.057257] mmcblk1boot1: mmc1:0001 M62704 2.00 MiB 
+[    4.061216]  mmcblk0: p1 p2
+[    4.065337] mmcblk1rpmb: mmc1:0001 M62704 512 KiB, chardev (247:0)
+[    4.096125] EXT4-fs (mmcblk0p2): mounted filesystem with ordered data mode. Opts: (null). Quota mode: disabled.
+[    4.105264] VFS: Mounted root (ext4 filesystem) readonly on device 179:10.
+[    4.115082] devtmpfs: mounted
+[    4.122276] Freeing unused kernel image (initmem) memory: 1024K
+[    4.127636] Run /sbin/init as init process
+[    4.130446]   with arguments:
+[    4.130452]     /sbin/init
+[    4.130458]   with environment:
+[    4.130463]     HOME=/
+[    4.130468]     TERM=linux
+[    4.861496] FAT-fs (mmcblk0p1): Volume was not properly unmounted. Some data may be corrupt. Please run fsck.
+[    5.182663] udevd[128]: starting version 3.2.10
+[    5.244804] udevd[129]: starting eudev-3.2.10
+[    6.495204] EXT4-fs (mmcblk0p2): re-mounted. Opts: (null). Quota mode: disabled.
+[    9.300427] cpsw-switch 4a100000.switch: starting ndev. mode: dual_mac
+[    9.398229] SMSC LAN8710/LAN8720 4a101000.mdio:00: attached PHY driver (mii_bus:phy_addr=4a101000.mdio:00, irq=POLL)
+[   11.528212] cpsw-switch 4a100000.switch eth0: Link is Up - 100Mbps/Full - flow control off
+[   11.535532] IPv6: ADDRCONF(NETDEV_CHANGE): eth0: link becomes ready
+
+-> after deploying the kernel module to the target with 'devtool deploy-target'
+
+root@beaglebone-yocto:~# find / -iname &quot;*logger.ko*&quot;
+/lib/modules/5.15.150-yocto-standard/extra/logger.ko
+
+
+
+root@beaglebone-yocto:~# insmod /lib/modules/5.15.150-yocto-standard/extra/logger.ko
+root@beaglebone-yocto:~# dmesg | grep logger
+[ 2781.147363] logger: loading out-of-tree module taints kernel.
+root@beaglebone-yocto:~# lsmod
+Module                  Size  Used by
+logger                 16384  0
+
+
+root@beaglebone-yocto:~# ls /dev/
+autofs		 disk	    gpiochip3  logger	     mmcblk1boot1  ram0   ram15  ram8	 stderr  tty11	tty18  tty24  tty30  tty37  tty43  tty5   tty56  tty62	ttyS2	  vcsa1
+block		 dri	    hwrng      mem	     mmcblk1p1	   ram1   ram2	 ram9	 stdin	 tty12	tty19  tty25  tty31  tty38  tty44  tty50  tty57  tty63	ttyS3	  vcsu
+btrfs-control	 fd	    i2c-0      mmcblk0	     mmcblk1rpmb   ram10  ram3	 random  stdout  tty13	tty2   tty26  tty32  tty39  tty45  tty51  tty58  tty7	ubi_ctrl  vcsu1
+bus		 full	    i2c-2      mmcblk0p1     mtab	   ram11  ram4	 rfkill  tty	 tty14	tty20  tty27  tty33  tty4   tty46  tty52  tty59  tty8	urandom   vsock
+char		 gpiochip0  initctl    mmcblk0p2     null	   ram12  ram5	 rtc	 tty0	 tty15	tty21  tty28  tty34  tty40  tty47  tty53  tty6	 tty9	vcs	  watchdog
+console		 gpiochip1  kmsg       mmcblk1	     ptmx	   ram13  ram6	 rtc0	 tty1	 tty16	tty22  tty29  tty35  tty41  tty48  tty54  tty60  ttyS0	vcs1	  watchdog0
+cpu_dma_latency  gpiochip2  log        mmcblk1boot0  pts	   ram14  ram7	 shm	 tty10	 tty17	tty23  tty3   tty36  tty42  tty49  tty55  tty61  ttyS1	vcsa	  zero
+root@beaglebone-yocto:~# echo "THIS IS A TEST FOR KERNEL-SYSLOGGER" 1> /dev/logger 
+root@beaglebone-yocto:~# dmesg | tail
+[    4.861496] FAT-fs (mmcblk0p1): Volume was not properly unmounted. Some data may be corrupt. Please run fsck.
+[    5.182663] udevd[128]: starting version 3.2.10
+[    5.244804] udevd[129]: starting eudev-3.2.10
+[    6.495204] EXT4-fs (mmcblk0p2): re-mounted. Opts: (null). Quota mode: disabled.
+[    9.300427] cpsw-switch 4a100000.switch: starting ndev. mode: dual_mac
+[    9.398229] SMSC LAN8710/LAN8720 4a101000.mdio:00: attached PHY driver (mii_bus:phy_addr=4a101000.mdio:00, irq=POLL)
+[   11.528212] cpsw-switch 4a100000.switch eth0: Link is Up - 100Mbps/Full - flow control off
+[   11.535532] IPv6: ADDRCONF(NETDEV_CHANGE): eth0: link becomes ready
+[ 2781.147363] logger: loading out-of-tree module taints kernel.
+[ 3446.327036] sh[301]: THIS IS A TEST FOR KERNEL-SYSLOGGER <<<<<<<
+root@beaglebone-yocto:~# echo "this is another test for syslog-logger" 1> /dev/logger 
+root@beaglebone-yocto:~# dmesg | tail
+[    5.182663] udevd[128]: starting version 3.2.10
+[    5.244804] udevd[129]: starting eudev-3.2.10
+[    6.495204] EXT4-fs (mmcblk0p2): re-mounted. Opts: (null). Quota mode: disabled.
+[    9.300427] cpsw-switch 4a100000.switch: starting ndev. mode: dual_mac
+[    9.398229] SMSC LAN8710/LAN8720 4a101000.mdio:00: attached PHY driver (mii_bus:phy_addr=4a101000.mdio:00, irq=POLL)
+[   11.528212] cpsw-switch 4a100000.switch eth0: Link is Up - 100Mbps/Full - flow control off
+[   11.535532] IPv6: ADDRCONF(NETDEV_CHANGE): eth0: link becomes ready
+[ 2781.147363] logger: loading out-of-tree module taints kernel.
+[ 3446.327036] sh[301]: THIS IS A TEST FOR KERNEL-SYSLOGGER  <<<<<<<
+[ 3495.747018] sh[301]: this is another test for syslog-logger <<<<<
+
+root@beaglebone-yocto:~# find / -iname "logger.ko"
+/lib/modules/5.15.150-yocto-standard/extra/logger.ko
+root@beaglebone-yocto:~# find / -iname "logger.ko"
+
+root@beaglebone-yocto:~# dmesg | tail
+[    5.182663] udevd[128]: starting version 3.2.10
+[    5.244804] udevd[129]: starting eudev-3.2.10
+[    6.495204] EXT4-fs (mmcblk0p2): re-mounted. Opts: (null). Quota mode: disabled.
+[    9.300427] cpsw-switch 4a100000.switch: starting ndev. mode: dual_mac
+[    9.398229] SMSC LAN8710/LAN8720 4a101000.mdio:00: attached PHY driver (mii_bus:phy_addr=4a101000.mdio:00, irq=POLL)
+[   11.528212] cpsw-switch 4a100000.switch eth0: Link is Up - 100Mbps/Full - flow control off
+[   11.535532] IPv6: ADDRCONF(NETDEV_CHANGE): eth0: link becomes ready
+[ 2781.147363] logger: loading out-of-tree module taints kernel.
+[ 3446.327036] sh[301]: THIS IS A TEST FOR KERNEL-SYSLOGGER
+[ 3495.747018] sh[301]: this is another test for syslog-logger
+

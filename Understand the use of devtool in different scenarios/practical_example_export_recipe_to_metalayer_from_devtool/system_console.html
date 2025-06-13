@@ -1,0 +1,443 @@
+<pre><font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ source ../poky/oe-init-build-env .
+
+### Shell environment set up for builds. ###
+
+You can now run &apos;bitbake &lt;target&gt;&apos;
+
+Common targets are:
+    core-image-minimal
+    core-image-full-cmdline
+    core-image-sato
+    core-image-weston
+    meta-toolchain
+    meta-ide-support
+
+You can also run generated qemu images with a command like &apos;runqemu qemux86&apos;
+
+Other commonly useful commands are:
+ - &apos;devtool&apos; and &apos;recipetool&apos; handle common recipe tasks
+ - &apos;bitbake-layers&apos; handles common layer tasks
+ - &apos;oe-pkgdata-util&apos; handles common target package tasks
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ ls -lh
+total 1,7M
+drwxrwxr-x 3 georgeca georgeca 4,0K mai 24 09:01 <font color="#12488B"><b>&apos;~&apos;</b></font>
+-rw-rw-r-- 1 georgeca georgeca 1,6M iun 11 14:27  bitbake-cookerdaemon.log
+drwxrwxr-x 2 georgeca georgeca 4,0K iun 11 14:27  <font color="#12488B"><b>cache</b></font>
+drwxrwxr-x 3 georgeca georgeca 4,0K iun 11 12:20  <font color="#12488B"><b>conf</b></font>
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 10 16:20  <font color="#12488B"><b>meta-advanced-calculator</b></font>
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 11 09:36  <font color="#12488B"><b>meta_advanced-calculator-makefile</b></font>
+drwxrwxr-x 4 georgeca georgeca 4,0K mai 27 16:10  <font color="#12488B"><b>meta-assignment-vars</b></font>
+drwxrwxr-x 7 georgeca georgeca 4,0K iun 11 13:39  <font color="#12488B"><b>workspace</b></font>
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake-layers show-layers
+<b>NOTE</b>: Starting bitbake server...
+layer                 path                                      priority
+==========================================================================
+meta                  /home/georgeca/yocto_tutorial/poky/meta   5
+meta-poky             /home/georgeca/yocto_tutorial/poky/meta-poky  5
+meta-yocto-bsp        /home/georgeca/yocto_tutorial/poky/meta-yocto-bsp  5
+meta-oe               /home/georgeca/yocto_tutorial/poky/meta-openembedded/meta-oe  5
+meta_advanced-calculator-makefile  /home/georgeca/yocto_tutorial/my_builds/meta_advanced-calculator-makefile  6
+workspace             /home/georgeca/yocto_tutorial/my_builds/workspace  99
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake-layers remove-layer meta_advanced-calculator-makefile/
+<b>NOTE</b>: Starting bitbake server...
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake-layers show-layers
+<b>NOTE</b>: Starting bitbake server...
+layer                 path                                      priority
+==========================================================================
+meta                  /home/georgeca/yocto_tutorial/poky/meta   5
+meta-poky             /home/georgeca/yocto_tutorial/poky/meta-poky  5
+meta-yocto-bsp        /home/georgeca/yocto_tutorial/poky/meta-yocto-bsp  5
+meta-oe               /home/georgeca/yocto_tutorial/poky/meta-openembedded/meta-oe  5
+workspace             /home/georgeca/yocto_tutorial/my_builds/workspace  99
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ devtool finish --help
+<b>NOTE</b>: Starting bitbake server...
+usage: devtool finish [-h] [--mode MODE] [--initial-rev INITIAL_REV] [--force] [--remove-work] [--no-clean] [--no-overrides] [--dry-run] [--force-patch-refresh] recipename destination
+
+Pushes any committed changes to the specified recipe to the specified layer and removes it from your workspace. Roughly equivalent to an update-recipe followed by reset, except the
+update-recipe step will do the &quot;right thing&quot; depending on the recipe and the destination layer specified. Note that your changes must have been committed to the git repository in
+order to be recognised.
+
+arguments:
+  recipename            Recipe to finish
+  destination           Layer/path to put recipe into. Can be the name of a layer configured in your bblayers.conf, the path to the base of a layer, or a partial path inside a layer.
+                        devtool finish will attempt to complete the path based on the layer&apos;s structure.
+
+options:
+  -h, --help            show this help message and exit
+  --mode MODE, -m MODE  Update mode (where MODE is patch, srcrev, auto; default is auto)
+  --initial-rev INITIAL_REV
+                        Override starting revision for patches
+  --force, -f           Force continuing even if there are uncommitted changes in the source tree repository
+  --remove-work, -r     Clean the sources directory under workspace
+  --no-clean, -n        Don&apos;t clean the sysroot to remove recipe output
+  --no-overrides, -O    Do not handle other override branches (if they exist)
+  --dry-run, -N         Dry-run (just report changes instead of writing them)
+  --force-patch-refresh
+                        Update patches in the layer even if they have not been modified (useful for refreshing patch context)
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ devtool finish factorial ../poky/meta-george/recipes-example
+<b>NOTE</b>: Starting bitbake server...
+ERROR: Source tree is not clean:
+
+ M Makefile
+?? factorial
+
+Ensure you have committed your changes or use -f/--force if you are sure there&apos;s nothing that needs to be committed
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ devtool finish -f factorial ../poky/meta-george/recipes-example
+<b>NOTE</b>: Starting bitbake server...
+WARNING: Source tree is not clean, continuing as requested by -f/--force
+NOTE: Reconnecting to bitbake server...
+NOTE: Retrying server connection (#1)...
+Loading cache: 100% |                                                                                                                                                    | ETA:  --:--:--
+Loaded 0 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:30
+Parsing of 1746 .bb files complete (0 cached, 1746 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+Removing 1 recipes from the beaglebone_yocto sysroot: 100% |##############################################################################################################| Time: 0:00:00
+Removing 1 recipes from the cortexa8hf-neon sysroot: 100% |###############################################################################################################| Time: 0:00:00
+ERROR: Unable to find layer or directory matching &quot;../poky/meta-george/recipes-example&quot;
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake-layes show-layers
+bitbake-layes: command not found
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake-layers show-layers
+<b>NOTE</b>: Starting bitbake server...
+layer                 path                                      priority
+==========================================================================
+meta                  /home/georgeca/yocto_tutorial/poky/meta   5
+meta-poky             /home/georgeca/yocto_tutorial/poky/meta-poky  5
+meta-yocto-bsp        /home/georgeca/yocto_tutorial/poky/meta-yocto-bsp  5
+meta-oe               /home/georgeca/yocto_tutorial/poky/meta-openembedded/meta-oe  5
+workspace             /home/georgeca/yocto_tutorial/my_builds/workspace  99
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake-layers remove-layer workspace/
+<b>NOTE</b>: Starting bitbake server...
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake-layers show-layers
+<b>NOTE</b>: Starting bitbake server...
+layer                 path                                      priority
+==========================================================================
+meta                  /home/georgeca/yocto_tutorial/poky/meta   5
+meta-poky             /home/georgeca/yocto_tutorial/poky/meta-poky  5
+meta-yocto-bsp        /home/georgeca/yocto_tutorial/poky/meta-yocto-bsp  5
+meta-oe               /home/georgeca/yocto_tutorial/poky/meta-openembedded/meta-oe  5
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ rm -rf workspace/
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ ls -lh
+total 1,7M
+drwxrwxr-x 3 georgeca georgeca 4,0K mai 24 09:01 <font color="#12488B"><b>&apos;~&apos;</b></font>
+-rw-rw-r-- 1 georgeca georgeca 1,7M iun 11 15:27  bitbake-cookerdaemon.log
+drwxrwxr-x 2 georgeca georgeca 4,0K iun 11 15:27  <font color="#12488B"><b>cache</b></font>
+drwxrwxr-x 3 georgeca georgeca 4,0K iun 11 12:20  <font color="#12488B"><b>conf</b></font>
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 10 16:20  <font color="#12488B"><b>meta-advanced-calculator</b></font>
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 11 09:36  <font color="#12488B"><b>meta_advanced-calculator-makefile</b></font>
+drwxrwxr-x 4 georgeca georgeca 4,0K mai 27 16:10  <font color="#12488B"><b>meta-assignment-vars</b></font>
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ ls ../poky/
+<font color="#12488B"><b>bitbake</b></font>        LICENSE               MAINTAINERS.md  <font color="#12488B"><b>meta</b></font>               <font color="#12488B"><b>meta-poky</b></font>      <font color="#12488B"><b>meta-yocto-bsp</b></font>      <font color="#2AA1B3"><b>README.md</b></font>          README.qemu.md
+<font color="#12488B"><b>contrib</b></font>        LICENSE.GPL-2.0-only  Makefile        <font color="#12488B"><b>meta-my-builder</b></font>    <font color="#12488B"><b>meta-selftest</b></font>  <font color="#26A269"><b>oe-init-build-env</b></font>   README.OE-Core.md  <font color="#12488B"><b>scripts</b></font>
+<font color="#12488B"><b>documentation</b></font>  LICENSE.MIT           MEMORIAM        <font color="#12488B"><b>meta-openembedded</b></font>  <font color="#12488B"><b>meta-skeleton</b></font>  <font color="#2AA1B3"><b>README.hardware.md</b></font>  <font color="#2AA1B3"><b>README.poky.md</b></font>     SECURITY.md
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ mkdir ../poky/meta-george
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ mkdir ../poky/meta-george/recipe-examples
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ ls ../poky/meta-george/
+<font color="#12488B"><b>recipe-examples</b></font>
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ devtool add --help
+<b>NOTE</b>: Starting bitbake server...
+usage: devtool add [-h] [--same-dir | --no-same-dir] [--fetch URI] [--npm-dev] [--version VERSION] [--no-git] [--srcrev SRCREV | --autorev] [--srcbranch SRCBRANCH] [--binary]
+                   [--also-native] [--src-subdir SUBDIR] [--mirrors] [--provides PROVIDES]
+                   [recipename] [srctree] [fetchuri]
+
+Adds a new recipe to the workspace to build a specified source tree. Can optionally fetch a remote URI and unpack it to create the source tree.
+
+arguments:
+  recipename            Name for new recipe to add (just name - no version, path or extension). If not specified, will attempt to auto-detect it.
+  srctree               Path to external source tree. If not specified, a subdirectory of /home/georgeca/yocto_tutorial/my_builds/workspace/sources will be used.
+  fetchuri              Fetch the specified URI and extract it to create the source tree
+
+options:
+  -h, --help            show this help message and exit
+  --same-dir, -s        Build in same directory as source
+  --no-same-dir         Force build in a separate build directory
+  --fetch URI, -f URI   Fetch the specified URI and extract it to create the source tree (deprecated - pass as positional argument instead)
+  --npm-dev             For npm, also fetch devDependencies
+  --version VERSION, -V VERSION
+                        Version to use within recipe (PV)
+  --no-git, -g          If fetching source, do not set up source tree as a git repository
+  --srcrev SRCREV, -S SRCREV
+                        Source revision to fetch if fetching from an SCM such as git (default latest)
+  --autorev, -a         When fetching from a git repository, set SRCREV in the recipe to a floating revision instead of fixed
+  --srcbranch SRCBRANCH, -B SRCBRANCH
+                        Branch in source repository if fetching from an SCM such as git (default master)
+  --binary, -b          Treat the source tree as something that should be installed verbatim (no compilation, same directory structure). Useful with binary packages e.g. RPMs.
+  --also-native         Also add native variant (i.e. support building recipe for the build host as well as the target machine)
+  --src-subdir SUBDIR   Specify subdirectory within source tree to use
+  --mirrors             Enable PREMIRRORS and MIRRORS for source tree fetching (disable by default).
+  --provides PROVIDES, -p PROVIDES
+                        Specify an alias for the item provided by the recipe. E.g. virtual/libgl
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ devtool add factorial https://github.com/Munawar-git/factorial.git --srcbranch=main
+<b>NOTE</b>: Starting bitbake server...
+INFO: Creating workspace layer in /home/georgeca/yocto_tutorial/my_builds/workspace
+<b>NOTE</b>: Starting bitbake server...
+INFO: Fetching git://github.com/Munawar-git/factorial.git;protocol=https;branch=main...
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:01
+Loaded 2784 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+Removing 1 recipes from the beaglebone_yocto sysroot: 100% |##############################################################################################################| Time: 0:00:00
+Removing 1 recipes from the cortexa8hf-neon sysroot: 100% |###############################################################################################################| Time: 0:00:00
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+workspace            = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 0 Local 0 Mirrors 0 Missed 0 Current 0 (0% match, 0% complete)
+<b>NOTE</b>: No setscene tasks
+<b>NOTE</b>: Executing Tasks
+<b>NOTE</b>: Tasks Summary: Attempted 2 tasks of which 0 didn&apos;t need to be rerun and all succeeded.
+INFO: Using default source tree path /home/georgeca/yocto_tutorial/my_builds/workspace/sources/factorial
+<b>NOTE</b>: Reconnecting to bitbake server...
+<b>NOTE</b>: Retrying server connection (#1)...
+<b>NOTE</b>: Reconnecting to bitbake server...
+NOTE: Reconnecting to bitbake server...
+<b>NOTE</b>: Retrying server connection (#1)...
+NOTE: Retrying server connection (#1)...
+<b>NOTE</b>: Starting bitbake server...
+INFO: Using source tree as build directory since that would be the default for this recipe
+INFO: Recipe /home/georgeca/yocto_tutorial/my_builds/workspace/recipes/factorial/factorial_git.bb has been automatically created; further editing may be required to make it fully functional
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ devtool build factorial
+<b>NOTE</b>: Starting bitbake server...
+NOTE: Reconnecting to bitbake server...
+NOTE: Retrying server connection (#1)...
+NOTE: Reconnecting to bitbake server...
+NOTE: Previous bitbake instance shutting down?, waiting to retry...
+NOTE: Retrying server connection (#2)...
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2784 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:01
+Loaded 2784 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+workspace            = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:01
+Sstate summary: Wanted 8 Local 4 Mirrors 0 Missed 4 Current 143 (50% match, 97% complete)
+<b>NOTE</b>: Executing Tasks
+NOTE: factorial: compiling from external source tree /home/georgeca/yocto_tutorial/my_builds/workspace/sources/factorial
+<b>NOTE</b>: Tasks Summary: Attempted 631 tasks of which 623 didn&apos;t need to be rerun and all succeeded.
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ devtool finish factorial ../poky/meta-george/recipe-examples/
+<b>NOTE</b>: Starting bitbake server...
+ERROR: Source tree is not clean:
+
+ M Makefile
+?? factorial
+
+Ensure you have committed your changes or use -f/--force if you are sure there&apos;s nothing that needs to be committed
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ devtool finish -f factorial ../poky/meta-george/recipe-examples/
+<b>NOTE</b>: Starting bitbake server...
+WARNING: Source tree is not clean, continuing as requested by -f/--force
+NOTE: Reconnecting to bitbake server...
+NOTE: Retrying server connection (#1)...
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2784 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+Traceback (most recent call last):
+  File &quot;/home/georgeca/yocto_tutorial/poky/scripts/devtool&quot;, line 338, in &lt;module&gt;
+    ret = main()
+  File &quot;/home/georgeca/yocto_tutorial/poky/scripts/devtool&quot;, line 325, in main
+    ret = args.func(args, config, basepath, workspace)
+  File &quot;/home/georgeca/yocto_tutorial/poky/scripts/lib/devtool/standard.py&quot;, line 2108, in finish
+    destpath = oe.recipeutils.get_bbfile_path(rd, destlayerdir, origrelpath)
+  File &quot;/home/georgeca/yocto_tutorial/poky/meta/lib/oe/recipeutils.py&quot;, line 562, in get_bbfile_path
+    destlayerconf = os.path.join(destlayerdir, &quot;conf&quot;, &quot;layer.conf&quot;)
+  File &quot;/usr/lib/python3.10/posixpath.py&quot;, line 76, in join
+    a = os.fspath(a)
+TypeError: expected str, bytes or os.PathLike object, not NoneType
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ rm -rf ../poky/meta-george/
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake-layers create-layer ../poky/meta-george
+<b>NOTE</b>: Starting bitbake server...
+Add your new layer with &apos;bitbake-layers add-layer ../poky/meta-george&apos;
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ devtool finish -f factorial ../poky/meta-george/
+<b>NOTE</b>: Starting bitbake server...
+WARNING: Source tree is not clean, continuing as requested by -f/--force
+NOTE: Reconnecting to bitbake server...
+NOTE: Retrying server connection (#1)...
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2784 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+<font color="#A2734C"><b>WARNING</b></font>: <font color="#A2734C">Specified destination layer is not currently enabled in bblayers.conf, so the factorial recipe will now be unavailable in your current configuration until you add the layer there</font>
+INFO: Updating SRCREV in recipe factorial_git.bb
+INFO: Moving recipe file to /home/georgeca/yocto_tutorial/poky/meta-george/recipes-factorial/factorial
+INFO: Leaving source tree /home/georgeca/yocto_tutorial/my_builds/workspace/sources/factorial as-is; if you no longer need it then please delete it manually
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake-layers show-layers
+<b>NOTE</b>: Starting bitbake server...
+layer                 path                                      priority
+==========================================================================
+meta                  /home/georgeca/yocto_tutorial/poky/meta   5
+meta-poky             /home/georgeca/yocto_tutorial/poky/meta-poky  5
+meta-yocto-bsp        /home/georgeca/yocto_tutorial/poky/meta-yocto-bsp  5
+meta-oe               /home/georgeca/yocto_tutorial/poky/meta-openembedded/meta-oe  5
+workspace             /home/georgeca/yocto_tutorial/my_builds/workspace  99
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake-layers add-layer ../poky/meta-george
+<b>NOTE</b>: Starting bitbake server...
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake-layers remove-layer workspace/
+<b>NOTE</b>: Starting bitbake server...
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake-layers show-layes
+<b>NOTE</b>: Starting bitbake server...
+usage: bitbake-layers [-d] [-q] [-F] [--color COLOR] [-h] &lt;subcommand&gt; ...
+bitbake-layers: error: argument &lt;subcommand&gt;: invalid choice: &apos;show-layes&apos; (choose from &apos;add-layer&apos;, &apos;remove-layer&apos;, &apos;flatten&apos;, &apos;layerindex-fetch&apos;, &apos;layerindex-show-depends&apos;, &apos;show-layers&apos;, &apos;show-overlayed&apos;, &apos;show-recipes&apos;, &apos;show-appends&apos;, &apos;show-cross-depends&apos;, &apos;create-layer&apos;)
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake-layers show-layers
+<b>NOTE</b>: Starting bitbake server...
+layer                 path                                      priority
+==========================================================================
+meta                  /home/georgeca/yocto_tutorial/poky/meta   5
+meta-poky             /home/georgeca/yocto_tutorial/poky/meta-poky  5
+meta-yocto-bsp        /home/georgeca/yocto_tutorial/poky/meta-yocto-bsp  5
+meta-oe               /home/georgeca/yocto_tutorial/poky/meta-openembedded/meta-oe  5
+meta-george           /home/georgeca/yocto_tutorial/poky/meta-george  6
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake factorial
+Loading cache: 100% |                                                                                                                                                    | ETA:  --:--:--
+Loaded 0 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:30
+Parsing of 1747 .bb files complete (0 cached, 1747 parsed). 2786 targets, 115 skipped, 0 masked, 0 errors.
+Removing 1 recipes from the beaglebone_yocto sysroot: 100% |##############################################################################################################| Time: 0:00:00
+Removing 1 recipes from the cortexa8hf-neon sysroot: 100% |###############################################################################################################| Time: 0:00:00
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+meta-george          = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 11 Local 4 Mirrors 0 Missed 7 Current 219 (36% match, 96% complete)
+<b>NOTE</b>: Executing Tasks
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">factorial-1.0+gitAUTOINC+27134a05d6-r0 do_package_qa: QA Issue: File /usr/bin/factorial in package factorial doesn&apos;t have GNU_HASH (didn&apos;t pass LDFLAGS?) [ldflags]</font>
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">factorial-1.0+gitAUTOINC+27134a05d6-r0 do_package_qa: Fatal QA errors were found, failing task.</font>
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Logfile of failure stored in: /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+gitAUTOINC+27134a05d6-r0/temp/log.do_package_qa.35727</font>
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Task (/home/georgeca/yocto_tutorial/poky/meta-george/recipes-factorial/factorial/factorial_git.bb:do_package_qa) failed with exit code &apos;1&apos;</font>
+<b>NOTE</b>: Tasks Summary: Attempted 782 tasks of which 768 didn&apos;t need to be rerun and 1 failed.
+
+Summary: 1 task failed:
+  /home/georgeca/yocto_tutorial/poky/meta-george/recipes-factorial/factorial/factorial_git.bb:do_package_qa
+Summary: There were 2 ERROR messages, returning a non-zero exit code.
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ ls ../meta-george
+ls: cannot access &apos;../meta-george&apos;: No such file or directory
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ ls ../poky/meta-george/
+<font color="#12488B"><b>conf</b></font>  COPYING.MIT  README  <font color="#12488B"><b>recipes-example</b></font>  <font color="#12488B"><b>recipes-factorial</b></font>
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ ls ../poky/meta-george/recipes-example/
+<font color="#12488B"><b>example</b></font>
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ ls ../poky/meta-george/recipes-factorial/
+<font color="#12488B"><b>factorial</b></font>
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ code ../poky/meta-george/recipes-factorial/factorial/factorial_git.bb 
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake factorial
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2786 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1747 .bb files complete (1746 cached, 1 parsed). 2786 targets, 115 skipped, 0 masked, 0 errors.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+meta-george          = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 9 Local 4 Mirrors 0 Missed 5 Current 221 (44% match, 97% complete)
+Removing 1 stale sstate objects for arch beaglebone_yocto: 100% |#########################################################################################################| Time: 0:00:00
+Removing 3 stale sstate objects for arch cortexa8hf-neon: 100% |##########################################################################################################| Time: 0:00:00
+<b>NOTE</b>: Executing Tasks
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">factorial-1.0+gitAUTOINC+27134a05d6-r0 do_compile: oe_runmake failed</font>
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">factorial-1.0+gitAUTOINC+27134a05d6-r0 do_compile: ExecutionError(&apos;/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+gitAUTOINC+27134a05d6-r0/temp/run.do_compile.36246&apos;, 1, None, None)</font>
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Logfile of failure stored in: /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+gitAUTOINC+27134a05d6-r0/temp/log.do_compile.36246</font>
+Log data follows:
+| DEBUG: Executing shell function do_compile
+| NOTE: make -j 4 PREFIX=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+gitAUTOINC+27134a05d6-r0/image/usr/bin CC=arm-poky-linux-gnueabi-gcc  -mfpu=neon -mfloat-abi=hard -mcpu=cortex-a8 -fstack-protector-strong  -O2 -D_FORTIFY_SOURCE=2 -Wformat -Wformat-security -Werror=format-security --sysroot=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+gitAUTOINC+27134a05d6-r0/recipe-sysroot CFLAGS= -O2 -pipe -g -feliminate-unused-debug-types -fmacro-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+gitAUTOINC+27134a05d6-r0=/usr/src/debug/factorial/1.0+gitAUTOINC+27134a05d6-r0                      -fdebug-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+gitAUTOINC+27134a05d6-r0=/usr/src/debug/factorial/1.0+gitAUTOINC+27134a05d6-r0                      -fdebug-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+gitAUTOINC+27134a05d6-r0/recipe-sysroot=                      -fdebug-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+gitAUTOINC+27134a05d6-r0/recipe-sysroot-native=  -Wl,--has-style=gnu
+| arm-poky-linux-gnueabi-gcc  -mfpu=neon -mfloat-abi=hard -mcpu=cortex-a8 -fstack-protector-strong  -O2 -D_FORTIFY_SOURCE=2 -Wformat -Wformat-security -Werror=format-security --sysroot=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+gitAUTOINC+27134a05d6-r0/recipe-sysroot -O2 -pipe -g -feliminate-unused-debug-types -fmacro-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+gitAUTOINC+27134a05d6-r0=/usr/src/debug/factorial/1.0+gitAUTOINC+27134a05d6-r0                      -fdebug-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+gitAUTOINC+27134a05d6-r0=/usr/src/debug/factorial/1.0+gitAUTOINC+27134a05d6-r0                      -fdebug-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+gitAUTOINC+27134a05d6-r0/recipe-sysroot=                      -fdebug-prefix-map=/home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+gitAUTOINC+27134a05d6-r0/recipe-sysroot-native=  -Wl,--has-style=gnu -o factorial factorial.c
+| /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+gitAUTOINC+27134a05d6-r0/recipe-sysroot-native/usr/bin/arm-poky-linux-gnueabi/../../libexec/arm-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/11.5.0/ld: unrecognized option &apos;--has-style=gnu&apos;
+| /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/factorial/1.0+gitAUTOINC+27134a05d6-r0/recipe-sysroot-native/usr/bin/arm-poky-linux-gnueabi/../../libexec/arm-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/11.5.0/ld: use the --help option for usage information
+| collect2: error: ld returned 1 exit status
+| make: *** [Makefile:10: factorial] Error 1
+| ERROR: oe_runmake failed
+| WARNING: exit code 1 from a shell command.
+<font color="#C01C28"><b>ERROR</b></font>: <font color="#C01C28">Task (/home/georgeca/yocto_tutorial/poky/meta-george/recipes-factorial/factorial/factorial_git.bb:do_compile) failed with exit code &apos;1&apos;</font>
+<b>NOTE</b>: Tasks Summary: Attempted 776 tasks of which 774 didn&apos;t need to be rerun and 1 failed.
+
+Summary: 1 task failed:
+  /home/georgeca/yocto_tutorial/poky/meta-george/recipes-factorial/factorial/factorial_git.bb:do_compile
+Summary: There were 2 ERROR messages, returning a non-zero exit code.
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ bitbake factorial
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2786 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1747 .bb files complete (1746 cached, 1 parsed). 2786 targets, 115 skipped, 0 masked, 0 errors.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+meta-george          = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 9 Local 4 Mirrors 0 Missed 5 Current 221 (44% match, 97% complete)
+<b>NOTE</b>: Executing Tasks
+<b>NOTE</b>: Tasks Summary: Attempted 785 tasks of which 774 didn&apos;t need to be rerun and all succeeded.
+</pre>

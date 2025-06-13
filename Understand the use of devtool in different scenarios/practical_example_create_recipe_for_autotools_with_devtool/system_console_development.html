@@ -1,0 +1,263 @@
+<pre><font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ source ../poky/oe-init-build-env .
+
+### Shell environment set up for builds. ###
+
+You can now run &apos;bitbake &lt;target&gt;&apos;
+
+Common targets are:
+    core-image-minimal
+    core-image-full-cmdline
+    core-image-sato
+    core-image-weston
+    meta-toolchain
+    meta-ide-support
+
+You can also run generated qemu images with a command like &apos;runqemu qemux86&apos;
+
+Other commonly useful commands are:
+ - &apos;devtool&apos; and &apos;recipetool&apos; handle common recipe tasks
+ - &apos;bitbake-layers&apos; handles common layer tasks
+ - &apos;oe-pkgdata-util&apos; handles common target package tasks
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ devtool add --help
+<b>NOTE</b>: Starting bitbake server...
+usage: devtool add [-h] [--same-dir | --no-same-dir] [--fetch URI] [--npm-dev] [--version VERSION] [--no-git] [--srcrev SRCREV | --autorev] [--srcbranch SRCBRANCH] [--binary]
+                   [--also-native] [--src-subdir SUBDIR] [--mirrors] [--provides PROVIDES]
+                   [recipename] [srctree] [fetchuri]
+
+Adds a new recipe to the workspace to build a specified source tree. Can optionally fetch a remote URI and unpack it to create the source tree.
+
+arguments:
+  recipename            Name for new recipe to add (just name - no version, path or extension). If not specified, will attempt to auto-detect it.
+  srctree               Path to external source tree. If not specified, a subdirectory of /home/georgeca/yocto_tutorial/my_builds/workspace/sources will be used.
+  fetchuri              Fetch the specified URI and extract it to create the source tree
+
+options:
+  -h, --help            show this help message and exit
+  --same-dir, -s        Build in same directory as source
+  --no-same-dir         Force build in a separate build directory
+  --fetch URI, -f URI   Fetch the specified URI and extract it to create the source tree (deprecated - pass as positional argument instead)
+  --npm-dev             For npm, also fetch devDependencies
+  --version VERSION, -V VERSION
+                        Version to use within recipe (PV)
+  --no-git, -g          If fetching source, do not set up source tree as a git repository
+  --srcrev SRCREV, -S SRCREV
+                        Source revision to fetch if fetching from an SCM such as git (default latest)
+  --autorev, -a         When fetching from a git repository, set SRCREV in the recipe to a floating revision instead of fixed
+  --srcbranch SRCBRANCH, -B SRCBRANCH
+                        Branch in source repository if fetching from an SCM such as git (default master)
+  --binary, -b          Treat the source tree as something that should be installed verbatim (no compilation, same directory structure). Useful with binary packages e.g. RPMs.
+  --also-native         Also add native variant (i.e. support building recipe for the build host as well as the target machine)
+  --src-subdir SUBDIR   Specify subdirectory within source tree to use
+  --mirrors             Enable PREMIRRORS and MIRRORS for source tree fetching (disable by default).
+  --provides PROVIDES, -p PROVIDES
+                        Specify an alias for the item provided by the recipe. E.g. virtual/libgl
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ devtool add autool-sample-recipe https://github.com/byuksel/Automake-Autoconf-Template-Project.git --version=1.0.0
+<b>NOTE</b>: Starting bitbake server...
+<b>NOTE</b>: Starting bitbake server...
+INFO: Fetching git://github.com/byuksel/Automake-Autoconf-Template-Project.git;protocol=https;branch=master...
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:01
+Loaded 2784 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+Removing 1 recipes from the beaglebone_yocto sysroot: 100% |##############################################################################################################| Time: 0:00:00
+Removing 1 recipes from the cortexa8hf-neon sysroot: 100% |###############################################################################################################| Time: 0:00:00
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+workspace            = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 0 Local 0 Mirrors 0 Missed 0 Current 0 (0% match, 0% complete)
+<b>NOTE</b>: No setscene tasks
+<b>NOTE</b>: Executing Tasks
+<b>NOTE</b>: Tasks Summary: Attempted 2 tasks of which 0 didn&apos;t need to be rerun and all succeeded.
+INFO: Using default source tree path /home/georgeca/yocto_tutorial/my_builds/workspace/sources/autool-sample-recipe
+<b>NOTE</b>: Reconnecting to bitbake server...
+<b>NOTE</b>: Retrying server connection (#1)...
+<b>NOTE</b>: Reconnecting to bitbake server...
+NOTE: Reconnecting to bitbake server...
+<b>NOTE</b>: Retrying server connection (#1)...
+NOTE: Retrying server connection (#1)...
+<b>NOTE</b>: Starting bitbake server...
+INFO: Recipe /home/georgeca/yocto_tutorial/my_builds/workspace/recipes/autool-sample-recipe/autool-sample-recipe_git.bb has been automatically created; further editing may be required to make it fully functional
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ tree workspace/
+<font color="#12488B"><b>workspace/</b></font>
+├── <font color="#12488B"><b>appends</b></font>
+│   └── autool-sample-recipe_git.bbappend
+├── <font color="#12488B"><b>conf</b></font>
+│   └── layer.conf
+├── README
+├── <font color="#12488B"><b>recipes</b></font>
+│   └── <font color="#12488B"><b>autool-sample-recipe</b></font>
+│       └── autool-sample-recipe_git.bb
+└── <font color="#12488B"><b>sources</b></font>
+    ├── <font color="#12488B"><b>autool-sample-recipe</b></font>
+    │   ├── configure.ac
+    │   ├── LICENSE.md
+    │   ├── Makefile.am
+    │   ├── <font color="#12488B"><b>my_inc</b></font>
+    │   │   ├── Makefile.am
+    │   │   ├── myadd.cpp
+    │   │   └── myadd.h
+    │   ├── README.md
+    │   └── <font color="#12488B"><b>src</b></font>
+    │       ├── helper.cc
+    │       ├── helper.cpp
+    │       ├── helper.h
+    │       ├── main.cpp
+    │       └── Makefile.am
+    └── <font color="#12488B"><b>simple-c-make</b></font>
+        ├── <font color="#12488B"><b>build</b></font>
+        ├── CMakeLists.txt
+        ├── <font color="#12488B"><b>include</b></font>
+        │   └── main.h
+        ├── <font color="#12488B"><b>lib</b></font>
+        │   ├── <font color="#12488B"><b>linkedList</b></font>
+        │   │   ├── linkedList.c
+        │   │   └── linkedList.h
+        │   └── <font color="#12488B"><b>wrapper</b></font>
+        │       ├── wrapper.c
+        │       └── wrapper.h
+        ├── main.c
+        ├── <span style="background-color:#171421"><font color="#C01C28"><b>oe-logs</b></font></span> -&gt; /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/simple-c-make/1.0.0-r0/temp
+        ├── <span style="background-color:#171421"><font color="#C01C28"><b>oe-workdir</b></font></span> -&gt; /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/simple-c-make/1.0.0-r0
+        ├── README.md
+        └── <font color="#26A269"><b>run</b></font>
+
+14 directories, 27 files
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ devtool build autotool-sample-recipe
+<b>NOTE</b>: Starting bitbake server...
+ERROR: No recipe named &apos;autotool-sample-recipe&apos; in your workspace
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ devtool build autool-sample-recipe
+<b>NOTE</b>: Starting bitbake server...
+NOTE: Reconnecting to bitbake server...
+NOTE: Retrying server connection (#1)...
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2784 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:01
+Loaded 2784 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+<b>NOTE</b>: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = &quot;2.0.0&quot;
+BUILD_SYS            = &quot;x86_64-linux&quot;
+NATIVELSBSTRING      = &quot;universal&quot;
+TARGET_SYS           = &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              = &quot;beaglebone-yocto&quot;
+DISTRO               = &quot;poky&quot;
+DISTRO_VERSION       = &quot;4.0.27&quot;
+TUNE_FEATURES        = &quot;arm vfp cortexa8 neon callconvention-hard&quot;
+TARGET_FPU           = &quot;hard&quot;
+meta                 
+meta-poky            
+meta-yocto-bsp       = &quot;kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7&quot;
+meta-oe              = &quot;kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0&quot;
+workspace            = &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:00
+Sstate summary: Wanted 8 Local 4 Mirrors 0 Missed 4 Current 145 (50% match, 97% complete)
+<b>NOTE</b>: Executing Tasks
+NOTE: autool-sample-recipe: compiling from external source tree /home/georgeca/yocto_tutorial/my_builds/workspace/sources/autool-sample-recipe
+<b>NOTE</b>: Tasks Summary: Attempted 640 tasks of which 632 didn&apos;t need to be rerun and all succeeded.
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ devtool deploy-target autools-sample-recipe root@192.168.55.86
+<b>NOTE</b>: Starting bitbake server...
+ERROR: No recipe named &apos;autools-sample-recipe&apos; in your workspace
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ devtool deploy-target autool-sample-recipe root@192.168.55.86
+<b>NOTE</b>: Starting bitbake server...
+NOTE: Reconnecting to bitbake server...
+NOTE: Retrying server connection (#1)...
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2784 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+tar: ./usr/bin/main: time stamp 2025-06-12 13:56:04 is 229118833.935588514 s in the future
+tar: ./usr/bin: time stamp 2025-06-12 13:56:04 is 229118833.933637473 s in the future
+tar: ./usr: time stamp 2025-06-12 13:56:04 is 229118833.931451889 s in the future
+tar: .: time stamp 2025-06-12 13:56:04 is 229118833.929842473 s in the future
+INFO: Successfully deployed /home/georgeca/yocto_tutorial/sources/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/autool-sample-recipe/1.0.0+git999-r0/image
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ devtool undeploy-target autool-sample-recipe root@192.168.55.86
+<b>NOTE</b>: Starting bitbake server...
+INFO: Successfully undeployed autool-sample-recipe
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ tree ../poky/meta-george
+<font color="#12488B"><b>../poky/meta-george</b></font>
+├── <font color="#12488B"><b>conf</b></font>
+│   └── layer.conf
+├── COPYING.MIT
+├── <font color="#12488B"><b>kernel-recipes</b></font>
+├── README
+├── <font color="#12488B"><b>recipes-example</b></font>
+│   └── <font color="#12488B"><b>example</b></font>
+│       └── example_0.1.bb
+├── <font color="#12488B"><b>recipes-factorial</b></font>
+│   └── <font color="#12488B"><b>factorial</b></font>
+│       └── factorial_2.0.0.bb
+├── <font color="#12488B"><b>recipes-klogger</b></font>
+│   └── <font color="#12488B"><b>klogger</b></font>
+│       ├── <font color="#12488B"><b>klogger</b></font>
+│       │   ├── 0001-modified-the-Makefile.patch
+│       │   ├── 0002-modified-Makefile.patch
+│       │   └── 0003-modified-Makefile.patch
+│       └── klogger_git.bb
+└── <font color="#12488B"><b>recipes-simple-c-make</b></font>
+    └── <font color="#12488B"><b>simple-c-make</b></font>
+        └── simple-c-make_git.bb
+
+11 directories, 10 files
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ devtool finish -f autool-sample-recipe ../poky/meta-george/recipes-example/
+<b>NOTE</b>: Starting bitbake server...
+WARNING: Source tree is not clean, continuing as requested by -f/--force
+NOTE: Reconnecting to bitbake server...
+NOTE: Retrying server connection (#1)...
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2784 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+<font color="#A2734C"><b>WARNING</b></font>: <font color="#A2734C">Specified destination layer is not currently enabled in bblayers.conf, so the autool-sample-recipe recipe will now be unavailable in your current configuration until you add the layer there</font>
+INFO: Updating SRCREV in recipe autool-sample-recipe_git.bb
+INFO: Moving recipe file to /home/georgeca/yocto_tutorial/poky/meta-george/recipes-example/autool-sample-recipe
+INFO: Leaving source tree /home/georgeca/yocto_tutorial/my_builds/workspace/sources/autool-sample-recipe as-is; if you no longer need it then please delete it manually
+<font color="#26A269"><b>georgeca@georgeca-VirtualBox</b></font>:<font color="#12488B"><b>~/yocto_tutorial/my_builds</b></font>$ tree ../poky/meta-george
+<font color="#12488B"><b>../poky/meta-george</b></font>
+├── <font color="#12488B"><b>conf</b></font>
+│   └── layer.conf
+├── COPYING.MIT
+├── <font color="#12488B"><b>kernel-recipes</b></font>
+├── README
+├── <font color="#12488B"><b>recipes-example</b></font>
+│   ├── <font color="#12488B"><b>autool-sample-recipe</b></font>
+│   │   └── autool-sample-recipe_git.bb
+│   └── <font color="#12488B"><b>example</b></font>
+│       └── example_0.1.bb
+├── <font color="#12488B"><b>recipes-factorial</b></font>
+│   └── <font color="#12488B"><b>factorial</b></font>
+│       └── factorial_2.0.0.bb
+├── <font color="#12488B"><b>recipes-klogger</b></font>
+│   └── <font color="#12488B"><b>klogger</b></font>
+│       ├── <font color="#12488B"><b>klogger</b></font>
+│       │   ├── 0001-modified-the-Makefile.patch
+│       │   ├── 0002-modified-Makefile.patch
+│       │   └── 0003-modified-Makefile.patch
+│       └── klogger_git.bb
+└── <font color="#12488B"><b>recipes-simple-c-make</b></font>
+    └── <font color="#12488B"><b>simple-c-make</b></font>
+        └── simple-c-make_git.bb
+
+12 directories, 11 files
+</pre>
