@@ -1,0 +1,216 @@
+georgeca@georgeca-VirtualBox:~$ cd ~/yocto_tutorial/my_builds/
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ ls -lh
+total 3,7M
+drwxrwxr-x 3 georgeca georgeca 4,0K mai 24 09:01 '~'
+-rw-rw-r-- 1 georgeca georgeca    0 iun 12 13:59  ⚠️
+-rw-rw-r-- 1 georgeca georgeca 3,6M iun 18 12:01  bitbake-cookerdaemon.log
+drwxrwxr-x 2 georgeca georgeca 4,0K iun 18 12:01  cache
+drwxrwxr-x 3 georgeca georgeca 4,0K iun 18 12:01  conf
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 10 16:20  meta-advanced-calculator
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 11 09:36  meta_advanced-calculator-makefile
+drwxrwxr-x 4 georgeca georgeca 4,0K mai 27 16:10  meta-assignment-vars
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 13 14:00  meta-custom
+drwxrwxr-x 5 georgeca georgeca 4,0K iun 13 13:25  meta-example
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 18 12:00  meta-georgeca
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ bitbake-layers show-layers
+bitbake-layers: command not found
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ source ../poky/oe-init-build-env .
+
+### Shell environment set up for builds. ###
+
+You can now run 'bitbake <target>'
+
+Common targets are:
+    core-image-minimal
+    core-image-full-cmdline
+    core-image-sato
+    core-image-weston
+    meta-toolchain
+    meta-ide-support
+
+You can also run generated qemu images with a command like 'runqemu qemux86'
+
+Other commonly useful commands are:
+ - 'devtool' and 'recipetool' handle common recipe tasks
+ - 'bitbake-layers' handles common layer tasks
+ - 'oe-pkgdata-util' handles common target package tasks
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ bitbake-layers show-layers
+NOTE: Starting bitbake server...
+layer                 path                                      priority
+==========================================================================
+meta                  /home/georgeca/yocto_tutorial/poky/meta   5
+meta-poky             /home/georgeca/yocto_tutorial/poky/meta-poky  5
+meta-yocto-bsp        /home/georgeca/yocto_tutorial/poky/meta-yocto-bsp  5
+meta-oe               /home/georgeca/yocto_tutorial/poky/meta-openembedded/meta-oe  5
+meta-georgeca         /home/georgeca/yocto_tutorial/my_builds/meta-georgeca  6
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ pwd
+/home/georgeca/yocto_tutorial/my_builds
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ tree meta-georgeca
+meta-georgeca
+├── conf
+│   └── layer.conf
+├── COPYING.MIT
+├── README
+└── recipes-kernel
+    └── linux
+        ├── linux-yocto
+        │   └── defconfig
+        └── linux-yocto_5.15.bbappend
+
+4 directories, 5 files
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ code meta-georgeca/recipes-kernel/linux/linux-yocto_5.15.bbappend 
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ bitbake -c cleansstate virtual/kernel
+Loading cache: 100% |                                                                                                                                                    | ETA:  --:--:--
+Loaded 0 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:01:09
+Parsing of 1745 .bb files complete (0 cached, 1745 parsed). 2784 targets, 115 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "beaglebone-yocto"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.27"
+TUNE_FEATURES        = "arm vfp cortexa8 neon callconvention-hard"
+TARGET_FPU           = "hard"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7"
+meta-oe              = "kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0"
+meta-georgeca        = "<unknown>:<unknown>"
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:02
+Sstate summary: Wanted 0 Local 0 Mirrors 0 Missed 0 Current 0 (0% match, 0% complete)
+NOTE: No setscene tasks
+NOTE: Executing Tasks
+NOTE: Tasks Summary: Attempted 3 tasks of which 0 didn't need to be rerun and all succeeded.
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ bitbake -c menuconfig virtual/kernel
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2784 entries from dependency cache.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "beaglebone-yocto"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.27"
+TUNE_FEATURES        = "arm vfp cortexa8 neon callconvention-hard"
+TARGET_FPU           = "hard"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7"
+meta-oe              = "kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0"
+meta-georgeca        = "<unknown>:<unknown>"
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:02
+Sstate summary: Wanted 1 Local 0 Mirrors 0 Missed 1 Current 100 (0% match, 99% complete)
+NOTE: Executing Tasks
+Setscene tasks: 101 of 101
+NOTE: Tasks Summary: Attempted 457 tasks of which 445 didn't need to be rerun and all succeeded.
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ bitbake -c --help
+Nothing to do.  Use 'bitbake world' to build everything, or run 'bitbake --help' for usage information.
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ bitbake -c diffconfig virtual/kernel
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2784 entries from dependency cache.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "beaglebone-yocto"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.27"
+TUNE_FEATURES        = "arm vfp cortexa8 neon callconvention-hard"
+TARGET_FPU           = "hard"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7"
+meta-oe              = "kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0"
+meta-georgeca        = "<unknown>:<unknown>"
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:02
+Sstate summary: Wanted 0 Local 0 Mirrors 0 Missed 0 Current 68 (0% match, 100% complete)
+NOTE: Executing Tasks
+Config fragment has been dumped into:
+ /home/georgeca/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/linux-yocto/5.15.150+gitAUTOINC+896128cbf5_4fca0c4373-r0/fragment.cfg
+NOTE: Tasks Summary: Attempted 310 tasks of which 309 didn't need to be rerun and all succeeded.
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ cp /home/georgeca/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/linux-yocto/5.15.150+gitAUTOINC+896128cbf5_4fca0c4373-r0/fragment.cfg meta-georgeca/recipes-kernel/linux/linux-yocto/gpio-sysfs.cfg
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ tree meta-georgeca/
+meta-georgeca/
+├── conf
+│   └── layer.conf
+├── COPYING.MIT
+├── README
+└── recipes-kernel
+    └── linux
+        ├── linux-yocto
+        │   ├── defconfig
+        │   └── gpio-sysfs.cfg
+        └── linux-yocto_5.15.bbappend
+
+4 directories, 6 files
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ time bitbake -c cleansstate virtual/kernel
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2784 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1745 .bb files complete (1744 cached, 1 parsed). 2784 targets, 115 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "beaglebone-yocto"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.27"
+TUNE_FEATURES        = "arm vfp cortexa8 neon callconvention-hard"
+TARGET_FPU           = "hard"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7"
+meta-oe              = "kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0"
+meta-georgeca        = "<unknown>:<unknown>"
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:01
+Sstate summary: Wanted 0 Local 0 Mirrors 0 Missed 0 Current 0 (0% match, 0% complete)
+NOTE: No setscene tasks
+NOTE: Executing Tasks
+NOTE: Tasks Summary: Attempted 3 tasks of which 0 didn't need to be rerun and all succeeded.
+
+real	0m15,290s
+user	0m0,773s
+sys	0m0,343s
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ bitbake -c menuconfig virtual/kernel
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2784 entries from dependency cache.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "beaglebone-yocto"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.27"
+TUNE_FEATURES        = "arm vfp cortexa8 neon callconvention-hard"
+TARGET_FPU           = "hard"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7"
+meta-oe              = "kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0"
+meta-georgeca        = "<unknown>:<unknown>"
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:01
+Sstate summary: Wanted 1 Local 0 Mirrors 0 Missed 1 Current 100 (0% match, 99% complete)
+NOTE: Executing Tasks
+NOTE: Tasks Summary: Attempted 457 tasks of which 445 didn't need to be rerun and all succeeded.
