@@ -1,0 +1,1303 @@
+georgeca@georgeca-VirtualBox:~$ cd ~/yocto_tutorial/my_builds/
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ source ../poky/oe-init-build-env .
+
+### Shell environment set up for builds. ###
+
+You can now run 'bitbake <target>'
+
+Common targets are:
+    core-image-minimal
+    core-image-full-cmdline
+    core-image-sato
+    core-image-weston
+    meta-toolchain
+    meta-ide-support
+
+You can also run generated qemu images with a command like 'runqemu qemux86'
+
+Other commonly useful commands are:
+ - 'devtool' and 'recipetool' handle common recipe tasks
+ - 'bitbake-layers' handles common layer tasks
+ - 'oe-pkgdata-util' handles common target package tasks
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ ls -lh
+total 3,4M
+drwxrwxr-x 3 georgeca georgeca 4,0K mai 24 09:01 '~'
+-rw-rw-r-- 1 georgeca georgeca    0 iun 12 13:59  ⚠️
+-rw-rw-r-- 1 georgeca georgeca 3,4M iun 13 16:52  bitbake-cookerdaemon.log
+drwxrwxr-x 2 georgeca georgeca 4,0K iun 13 16:52  cache
+drwxrwxr-x 3 georgeca georgeca 4,0K iun 13 16:50  conf
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 10 16:20  meta-advanced-calculator
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 11 09:36  meta_advanced-calculator-makefile
+drwxrwxr-x 4 georgeca georgeca 4,0K mai 27 16:10  meta-assignment-vars
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 13 14:00  meta-custom
+drwxrwxr-x 5 georgeca georgeca 4,0K iun 13 13:25  meta-example
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ bitbake-layers show-layers
+NOTE: Starting bitbake server...
+layer                 path                                      priority
+==========================================================================
+meta                  /home/georgeca/yocto_tutorial/poky/meta   5
+meta-poky             /home/georgeca/yocto_tutorial/poky/meta-poky  5
+meta-yocto-bsp        /home/georgeca/yocto_tutorial/poky/meta-yocto-bsp  5
+meta-oe               /home/georgeca/yocto_tutorial/poky/meta-openembedded/meta-oe  5
+meta-example          /home/georgeca/yocto_tutorial/my_builds/meta-example  6
+meta-custom           /home/georgeca/yocto_tutorial/my_builds/meta-custom  6
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ bitbake-layers remove-layer meta-example/ meta-custom/
+NOTE: Starting bitbake server...
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ bitbake-layers show-layers
+NOTE: Starting bitbake server...
+layer                 path                                      priority
+==========================================================================
+meta                  /home/georgeca/yocto_tutorial/poky/meta   5
+meta-poky             /home/georgeca/yocto_tutorial/poky/meta-poky  5
+meta-yocto-bsp        /home/georgeca/yocto_tutorial/poky/meta-yocto-bsp  5
+meta-oe               /home/georgeca/yocto_tutorial/poky/meta-openembedded/meta-oe  5
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ bitbake-layers create-layer meta-kernel
+NOTE: Starting bitbake server...
+Add your new layer with 'bitbake-layers add-layer meta-kernel'
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ bitbake-layers add-layer meta-kernel/
+NOTE: Starting bitbake server...
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ tree meta-kernel/
+meta-kernel/
+├── conf
+│   └── layer.conf
+├── COPYING.MIT
+├── README
+└── recipes-example
+    └── example
+        └── example_0.1.bb
+
+3 directories, 4 files
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ cp meta-kernel/recipes-example/ meta-kernel/recipes-kernel
+cp: -r not specified; omitting directory 'meta-kernel/recipes-example/'
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ cp -r  meta-kernel/recipes-example/ meta-kernel/recipes-kernel
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ tree meta-kernel
+meta-kernel
+├── conf
+│   └── layer.conf
+├── COPYING.MIT
+├── README
+├── recipes-example
+│   └── example
+│       └── example_0.1.bb
+└── recipes-kernel
+    └── example
+        └── example_0.1.bb
+
+5 directories, 5 files
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ mv meta-kernel/recipes-kernel/example/ meta-kernel/recipes-kernel/linux-kernel
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ mv meta-kernel/recipes-kernel/linux-kernel/example_0.1.bb  meta-kernel/recipes-kernel/linux-kernel/linux-kernel_0.1.bb
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ tree meta-kernel
+meta-kernel
+├── conf
+│   └── layer.conf
+├── COPYING.MIT
+├── README
+├── recipes-example
+│   └── example
+│       └── example_0.1.bb
+└── recipes-kernel
+    └── linux-kernel
+        └── linux-kernel_0.1.bb
+
+5 directories, 5 files
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ code meta-kernel/recipes-kernel/linux-kernel_0.1.bbappend
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ mkdir meta-kernel/recipes-kernel/linux-kernel/linux-kernel
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ tree meta-kernel/
+meta-kernel/
+├── conf
+│   └── layer.conf
+├── COPYING.MIT
+├── README
+├── recipes-example
+│   └── example
+│       └── example_0.1.bb
+└── recipes-kernel
+    └── linux-kernel
+        ├── linux-kernel
+        └── linux-kernel_0.1.bb
+
+6 directories, 5 files
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ mv meta-kernel/recipes-kernel/linux-kernel/linux-kernel_0.1.bb meta-kernel/recipes-kernel/linux-kernel/linux-kernel_0.1.bbappend
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ tree meta-kernel
+meta-kernel
+├── conf
+│   └── layer.conf
+├── COPYING.MIT
+├── README
+├── recipes-example
+│   └── example
+│       └── example_0.1.bb
+└── recipes-kernel
+    └── linux-kernel
+        ├── linux-kernel
+        └── linux-kernel_0.1.bbappend
+
+6 directories, 5 files
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ cd meta-kernel/recipes-kernel/linux-kernel/
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-kernel/recipes-kernel/linux-kernel$ ls 
+linux-kernel  linux-kernel_0.1.bbappend
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-kernel/recipes-kernel/linux-kernel$ code linux-kernel_0.1.bbappend 
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-kernel/recipes-kernel/linux-kernel$ cd ../../..
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ bitbake -c menuconfig virtual/kernel
+Loading cache: 100% |                                                                                                                                                    | ETA:  --:--:--
+Loaded 0 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:01:27
+Parsing of 1746 .bb files complete (0 cached, 1746 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+ERROR: No recipes in default available for:
+  /home/georgeca/yocto_tutorial/my_builds/meta-kernel/recipes-kernel/linux-kernel/linux-kernel_0.1.bbappend
+
+Summary: There was 1 ERROR message, returning a non-zero exit code.
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ bitbake -c menuconfig virtual/kernel
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+ERROR: No recipes in default available for:
+  /home/georgeca/yocto_tutorial/my_builds/meta-kernel/recipes-kernel/linux-kernel/linux-kernel_0.1.bbappend
+
+Summary: There was 1 ERROR message, returning a non-zero exit code.
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ cp meta-kernel/recipes-example/example/example_0.1.bb meta-
+meta-advanced-calculator/ meta-assignment-vars/     meta-custom/              meta-example/             meta-kernel/              
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ cp meta-kernel/recipes-example/example/example_0.1.bb meta-kernel/recipes-kernel/linux-kernel/linux-kernel_0.1.bb
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ tree meta-kernel/
+meta-kernel/
+├── conf
+│   └── layer.conf
+├── COPYING.MIT
+├── README
+├── recipes-example
+│   └── example
+│       └── example_0.1.bb
+└── recipes-kernel
+    └── linux-kernel
+        ├── linux-kernel
+        ├── linux-kernel_0.1.bb
+        └── linux-kernel_0.1.bbappend
+
+6 directories, 6 files
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ bitbake -c menuconfig virtual/kernel
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1747 .bb files complete (1746 cached, 1 parsed). 2786 targets, 115 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "beaglebone-yocto"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.27"
+TUNE_FEATURES        = "arm vfp cortexa8 neon callconvention-hard"
+TARGET_FPU           = "hard"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7"
+meta-oe              = "kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0"
+meta-kernel          = "<unknown>:<unknown>"
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:02
+Sstate summary: Wanted 0 Local 0 Mirrors 0 Missed 0 Current 101 (0% match, 100% complete)
+NOTE: Executing Tasks
+NOTE: Tasks Summary: Attempted 457 tasks of which 456 didn't need to be rerun and all succeeded.
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ bitbake -e virtual/kernel | grep ^WORKDIR=
+WORKDIR="/home/georgeca/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/linux-yocto/5.15.150+gitAUTOINC+896128cbf5_4fca0c4373-r0"
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ ls -lh /home/georgeca/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/linux-yocto/5.15.150+gitAUTOINC+896128cbf5_4fca0c4373-r0
+total 928K
+-rw-r--r--   1 georgeca georgeca 250K iun 13 16:48 debugsources.list
+drwxr-xr-x   2 georgeca georgeca 4,0K iun 13 16:48 deploy-linux-yocto
+drwxr-xr-x   3 georgeca georgeca 4,0K iun 13 16:48 deploy-rpms
+drwxr-xr-x   2 georgeca georgeca 4,0K iun  9 07:05 deploy-source-date-epoch
+drwxr-xr-x   5 georgeca georgeca 4,0K iun 13 16:47 image
+drwxr-xr-x  14 georgeca georgeca 4,0K iun  9 07:03 kernel-meta
+drwxr-xr-x   3 georgeca georgeca 4,0K iun  9 07:05 license-destdir
+drwxr-xr-x  21 georgeca georgeca 4,0K iun 18 09:49 linux-beaglebone_yocto-standard-build
+-rw-r--r--   1 georgeca georgeca 556K iun 13 16:48 linux-yocto.spec
+drwxr-xr-x   5 georgeca georgeca 4,0K iun 13 16:48 package
+drwxr-xr-x 293 georgeca georgeca  28K iun 13 16:48 packages-split
+drwxr-xr-x   8 georgeca georgeca 4,0K iun 13 16:48 pkgdata
+drwxr-xr-x   8 georgeca georgeca 4,0K iun 13 16:48 pkgdata-pdata-input
+drwxr-xr-x   2 georgeca georgeca 4,0K iun 13 16:48 pkgdata-sysroot
+drwxrwxr-x   2 georgeca georgeca 4,0K iun 13 16:47 pseudo
+drwxr-xr-x   4 georgeca georgeca 4,0K iun 18 09:48 recipe-sysroot
+drwxr-xr-x   9 georgeca georgeca 4,0K iun  9 07:22 recipe-sysroot-native
+drwxr-xr-x   2 georgeca georgeca 4,0K iun  9 07:03 source-date-epoch
+drwxr-xr-x   3 georgeca georgeca 4,0K iun 13 16:47 sysroot-destdir
+drwxr-xr-x   2 georgeca georgeca  20K iun 18 09:48 temp
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ ls -lh /home/georgeca/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/linux-yocto/5.15.150+gitAUTOINC+896128cbf5_4fca0c4373-r0/kernel-meta/
+total 100K
+-rw-r--r--   1 georgeca georgeca  11K iun  9 07:03 00-README
+drwxr-xr-x  10 georgeca georgeca 4,0K iun  9 07:03 arch
+drwxr-xr-x   2 georgeca georgeca 4,0K iun  9 07:03 backports
+drwxr-xr-x  50 georgeca georgeca 4,0K iun  9 07:03 bsp
+drwxr-xr-x   6 georgeca georgeca 4,0K iun  9 07:03 cfg
+drwxr-xr-x   4 georgeca georgeca 4,0K iun  9 07:03 cgl
+-rw-r--r--   1 georgeca georgeca  18K iun  9 07:03 COPYING.GPLv2
+-rw-r--r--   1 georgeca georgeca 1,1K iun  9 07:03 COPYING.MIT
+drwxr-xr-x 173 georgeca georgeca 4,0K iun  9 07:03 features
+-rw-r--r--   1 georgeca georgeca  118 iun  9 07:03 intel-x86-64-preempt-rt.cfg
+-rw-r--r--   1 georgeca georgeca 8,7K iun  9 07:03 kern-features.rc
+drwxr-xr-x   7 georgeca georgeca 4,0K iun  9 07:03 ktypes
+-rw-r--r--   1 georgeca georgeca   10 iun  9 07:03 kver
+drwxr-xr-x   9 georgeca georgeca 4,0K iun  9 07:03 patches
+drwxr-xr-x   2 georgeca georgeca 4,0K iun  9 07:03 scripts
+drwxr-xr-x   2 georgeca georgeca 4,0K iun  9 07:03 small
+drwxr-xr-x   2 georgeca georgeca 4,0K iun  9 07:03 staging
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ ls -lh /home/georgeca/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/linux-yocto/5.15.150+gitAUTOINC+896128cbf5_4fca0c4373-r0/image/
+total 12K
+drwxr-xr-x 2 georgeca georgeca 4,0K iun 13 16:47 boot
+drwxr-xr-x 4 georgeca georgeca 4,0K iun 13 16:47 etc
+drwxr-xr-x 3 georgeca georgeca 4,0K iun 13 16:47 lib
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ ls -lh /home/georgeca/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/linux-yocto/5.15.150+gitAUTOINC+896128cbf5_4fca0c4373-r0/deploy-linux-yocto/
+total 55M
+-rw-r--r-- 2 georgeca georgeca  63K iun 13 16:48 am335x-bone--5.15.150+git0+896128cbf5_4fca0c4373-r0-beaglebone-yocto-20250613134625.dtb
+lrwxrwxrwx 2 georgeca georgeca   87 iun 13 16:48 am335x-bone-beaglebone-yocto.dtb -> am335x-bone--5.15.150+git0+896128cbf5_4fca0c4373-r0-beaglebone-yocto-20250613134625.dtb
+-rw-r--r-- 2 georgeca georgeca  66K iun 13 16:48 am335x-boneblack--5.15.150+git0+896128cbf5_4fca0c4373-r0-beaglebone-yocto-20250613134625.dtb
+lrwxrwxrwx 2 georgeca georgeca   92 iun 13 16:48 am335x-boneblack-beaglebone-yocto.dtb -> am335x-boneblack--5.15.150+git0+896128cbf5_4fca0c4373-r0-beaglebone-yocto-20250613134625.dtb
+lrwxrwxrwx 2 georgeca georgeca   92 iun 13 16:48 am335x-boneblack.dtb -> am335x-boneblack--5.15.150+git0+896128cbf5_4fca0c4373-r0-beaglebone-yocto-20250613134625.dtb
+lrwxrwxrwx 2 georgeca georgeca   87 iun 13 16:48 am335x-bone.dtb -> am335x-bone--5.15.150+git0+896128cbf5_4fca0c4373-r0-beaglebone-yocto-20250613134625.dtb
+-rw-r--r-- 2 georgeca georgeca  63K iun 13 16:48 am335x-bonegreen--5.15.150+git0+896128cbf5_4fca0c4373-r0-beaglebone-yocto-20250613134625.dtb
+lrwxrwxrwx 2 georgeca georgeca   92 iun 13 16:48 am335x-bonegreen-beaglebone-yocto.dtb -> am335x-bonegreen--5.15.150+git0+896128cbf5_4fca0c4373-r0-beaglebone-yocto-20250613134625.dtb
+lrwxrwxrwx 2 georgeca georgeca   92 iun 13 16:48 am335x-bonegreen.dtb -> am335x-bonegreen--5.15.150+git0+896128cbf5_4fca0c4373-r0-beaglebone-yocto-20250613134625.dtb
+-rw-r--r-- 2 georgeca georgeca  47M iun 13 16:48 modules--5.15.150+git0+896128cbf5_4fca0c4373-r0-beaglebone-yocto-20250613134625.tgz
+lrwxrwxrwx 2 georgeca georgeca   83 iun 13 16:48 modules-beaglebone-yocto.tgz -> modules--5.15.150+git0+896128cbf5_4fca0c4373-r0-beaglebone-yocto-20250613134625.tgz
+lrwxrwxrwx 2 georgeca georgeca   82 iun 13 16:48 zImage -> zImage--5.15.150+git0+896128cbf5_4fca0c4373-r0-beaglebone-yocto-20250613134625.bin
+-rw-r--r-- 2 georgeca georgeca 7,6M iun 13 16:48 zImage--5.15.150+git0+896128cbf5_4fca0c4373-r0-beaglebone-yocto-20250613134625.bin
+lrwxrwxrwx 2 georgeca georgeca   82 iun 13 16:48 zImage-beaglebone-yocto.bin -> zImage--5.15.150+git0+896128cbf5_4fca0c4373-r0-beaglebone-yocto-20250613134625.bin
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ ls -lh /home/georgeca/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/linux-yocto/5.15.150+gitAUTOINC+896128cbf5_4fca0c4373-r0/
+total 928K
+-rw-r--r--   1 georgeca georgeca 250K iun 13 16:48 debugsources.list
+drwxr-xr-x   2 georgeca georgeca 4,0K iun 13 16:48 deploy-linux-yocto
+drwxr-xr-x   3 georgeca georgeca 4,0K iun 13 16:48 deploy-rpms
+drwxr-xr-x   2 georgeca georgeca 4,0K iun  9 07:05 deploy-source-date-epoch
+drwxr-xr-x   5 georgeca georgeca 4,0K iun 13 16:47 image
+drwxr-xr-x  14 georgeca georgeca 4,0K iun  9 07:03 kernel-meta
+drwxr-xr-x   3 georgeca georgeca 4,0K iun  9 07:05 license-destdir
+drwxr-xr-x  21 georgeca georgeca 4,0K iun 18 09:49 linux-beaglebone_yocto-standard-build
+-rw-r--r--   1 georgeca georgeca 556K iun 13 16:48 linux-yocto.spec
+drwxr-xr-x   5 georgeca georgeca 4,0K iun 13 16:48 package
+drwxr-xr-x 293 georgeca georgeca  28K iun 13 16:48 packages-split
+drwxr-xr-x   8 georgeca georgeca 4,0K iun 13 16:48 pkgdata
+drwxr-xr-x   8 georgeca georgeca 4,0K iun 13 16:48 pkgdata-pdata-input
+drwxr-xr-x   2 georgeca georgeca 4,0K iun 13 16:48 pkgdata-sysroot
+drwxrwxr-x   2 georgeca georgeca 4,0K iun 13 16:47 pseudo
+drwxr-xr-x   4 georgeca georgeca 4,0K iun 18 09:48 recipe-sysroot
+drwxr-xr-x   9 georgeca georgeca 4,0K iun  9 07:22 recipe-sysroot-native
+drwxr-xr-x   2 georgeca georgeca 4,0K iun  9 07:03 source-date-epoch
+drwxr-xr-x   3 georgeca georgeca 4,0K iun 13 16:47 sysroot-destdir
+drwxr-xr-x   2 georgeca georgeca  20K iun 18 09:48 temp
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ ls -lh /home/georgeca/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/linux-yocto/5.15.150+gitAUTOINC+896128cbf5_4fca0c4373-r0/temp/
+total 9,0M
+lrwxrwxrwx 1 georgeca georgeca   22 iun 13 16:48 depsig.do_deploy -> depsig.do_deploy.64276
+-rw-rw-r-- 1 georgeca georgeca 3,4K iun  9 07:51 depsig.do_deploy.490175
+-rw-rw-r-- 1 georgeca georgeca 3,4K iun 13 16:48 depsig.do_deploy.64276
+lrwxrwxrwx 1 georgeca georgeca   40 iun  9 07:05 depsig.do_deploy_source_date_epoch -> depsig.do_deploy_source_date_epoch.89957
+-rw-rw-r-- 1 georgeca georgeca  537 iun  9 07:05 depsig.do_deploy_source_date_epoch.89957
+lrwxrwxrwx 1 georgeca georgeca   23 iun 13 16:48 depsig.do_package -> depsig.do_package.58846
+-rw-r--r-- 1 georgeca georgeca 1,4M iun  9 07:50 depsig.do_package.451085
+-rw-r--r-- 1 georgeca georgeca 1,4M iun 13 16:48 depsig.do_package.58846
+lrwxrwxrwx 1 georgeca georgeca   27 iun 13 16:48 depsig.do_packagedata -> depsig.do_packagedata.64144
+-rw-rw-r-- 1 georgeca georgeca 338K iun  9 07:50 depsig.do_packagedata.484427
+-rw-rw-r-- 1 georgeca georgeca 338K iun 13 16:48 depsig.do_packagedata.64144
+lrwxrwxrwx 1 georgeca georgeca   26 iun 13 16:49 depsig.do_package_qa -> depsig.do_package_qa.64195
+-rw-r--r-- 1 georgeca georgeca  263 iun  9 07:51 depsig.do_package_qa.484909
+-rw-r--r-- 1 georgeca georgeca  263 iun 13 16:49 depsig.do_package_qa.64195
+lrwxrwxrwx 1 georgeca georgeca   33 iun 13 16:49 depsig.do_package_write_rpm -> depsig.do_package_write_rpm.64197
+-rw-r--r-- 1 georgeca georgeca  66K iun  9 07:51 depsig.do_package_write_rpm.487021
+-rw-r--r-- 1 georgeca georgeca  66K iun 13 16:49 depsig.do_package_write_rpm.64197
+lrwxrwxrwx 1 georgeca georgeca   28 iun  9 07:05 depsig.do_populate_lic -> depsig.do_populate_lic.89803
+-rw-rw-r-- 1 georgeca georgeca  847 iun  9 07:05 depsig.do_populate_lic.89803
+lrwxrwxrwx 1 georgeca georgeca   32 iun 13 16:47 depsig.do_populate_sysroot -> depsig.do_populate_sysroot.58847
+-rw-rw-r-- 1 georgeca georgeca  871 iun  9 07:48 depsig.do_populate_sysroot.451086
+-rw-rw-r-- 1 georgeca georgeca  871 iun 13 16:47 depsig.do_populate_sysroot.58847
+lrwxrwxrwx 1 georgeca georgeca   29 iun 13 16:47 log.do_bundle_initramfs -> log.do_bundle_initramfs.58845
+-rw-r--r-- 1 georgeca georgeca  103 iun  9 07:48 log.do_bundle_initramfs.450862
+-rw-r--r-- 1 georgeca georgeca  103 iun 13 16:47 log.do_bundle_initramfs.58845
+lrwxrwxrwx 1 georgeca georgeca   20 iun 13 16:46 log.do_compile -> log.do_compile.46942
+-rw-r--r-- 1 georgeca georgeca 117K iun  9 07:43 log.do_compile.283371
+-rw-r--r-- 1 georgeca georgeca  25K iun 13 16:47 log.do_compile.46942
+lrwxrwxrwx 1 georgeca georgeca   34 iun 13 16:47 log.do_compile_kernelmodules -> log.do_compile_kernelmodules.54653
+-rw-r--r-- 1 georgeca georgeca  42K iun  9 07:48 log.do_compile_kernelmodules.411698
+-rw-r--r-- 1 georgeca georgeca 5,1K iun 13 16:47 log.do_compile_kernelmodules.54653
+lrwxrwxrwx 1 georgeca georgeca   23 iun  9 07:23 log.do_configure -> log.do_configure.278949
+-rw-r--r-- 1 georgeca georgeca 7,3K iun  9 07:23 log.do_configure.278949
+lrwxrwxrwx 1 georgeca georgeca   19 iun 13 16:48 log.do_deploy -> log.do_deploy.64276
+-rw-r--r-- 1 georgeca georgeca  29K iun  9 07:51 log.do_deploy.490175
+-rw-r--r-- 1 georgeca georgeca  29K iun 13 16:48 log.do_deploy.64276
+lrwxrwxrwx 1 georgeca georgeca   37 iun  9 07:05 log.do_deploy_source_date_epoch -> log.do_deploy_source_date_epoch.89957
+-rw-r--r-- 1 georgeca georgeca 3,0K iun  9 07:05 log.do_deploy_source_date_epoch.89957
+lrwxrwxrwx 1 georgeca georgeca   18 iun  9 07:02 log.do_fetch -> log.do_fetch.60221
+-rw-r--r-- 1 georgeca georgeca  11K iun  9 07:03 log.do_fetch.60221
+lrwxrwxrwx 1 georgeca georgeca   20 iun 13 16:47 log.do_install -> log.do_install.57321
+-rw-r--r-- 1 georgeca georgeca  70K iun  9 07:48 log.do_install.448947
+-rw-r--r-- 1 georgeca georgeca  71K iun 13 16:47 log.do_install.57321
+lrwxrwxrwx 1 georgeca georgeca   28 iun  9 07:03 log.do_kernel_checkout -> log.do_kernel_checkout.69952
+-rw-r--r-- 1 georgeca georgeca  288 iun  9 07:05 log.do_kernel_checkout.69952
+lrwxrwxrwx 1 georgeca georgeca   32 iun  9 07:23 log.do_kernel_configcheck -> log.do_kernel_configcheck.280263
+-rw-r--r-- 1 georgeca georgeca  109 iun  9 07:23 log.do_kernel_configcheck.280263
+lrwxrwxrwx 1 georgeca georgeca   29 iun  9 07:22 log.do_kernel_configme -> log.do_kernel_configme.266551
+-rw-r--r-- 1 georgeca georgeca 4,1K iun  9 07:23 log.do_kernel_configme.266551
+lrwxrwxrwx 1 georgeca georgeca   31 iun 13 16:47 log.do_kernel_link_images -> log.do_kernel_link_images.54615
+-rw-r--r-- 1 georgeca georgeca  107 iun  9 07:43 log.do_kernel_link_images.411628
+-rw-r--r-- 1 georgeca georgeca  107 iun 13 16:47 log.do_kernel_link_images.54615
+lrwxrwxrwx 1 georgeca georgeca   28 iun  9 07:05 log.do_kernel_metadata -> log.do_kernel_metadata.86734
+-rw-r--r-- 1 georgeca georgeca 1,5K iun  9 07:05 log.do_kernel_metadata.86734
+lrwxrwxrwx 1 georgeca georgeca   40 iun  9 07:05 log.do_kernel_version_sanity_check -> log.do_kernel_version_sanity_check.89054
+-rw-r--r-- 1 georgeca georgeca  125 iun  9 07:05 log.do_kernel_version_sanity_check.89054
+lrwxrwxrwx 1 georgeca georgeca   22 iun 18 09:48 log.do_menuconfig -> log.do_menuconfig.4339
+-rw-r--r-- 1 georgeca georgeca 3,3K iun 18 09:50 log.do_menuconfig.4339
+-rw-r--r-- 1 georgeca georgeca 3,3K iun 13 16:46 log.do_menuconfig.46218
+lrwxrwxrwx 1 georgeca georgeca   20 iun 13 16:47 log.do_package -> log.do_package.58846
+-rw-r--r-- 1 georgeca georgeca 211K iun  9 07:50 log.do_package.451085
+-rw-r--r-- 1 georgeca georgeca 210K iun 13 16:48 log.do_package.58846
+lrwxrwxrwx 1 georgeca georgeca   24 iun 13 16:48 log.do_packagedata -> log.do_packagedata.64144
+-rw-r--r-- 1 georgeca georgeca 3,5K iun  9 07:50 log.do_packagedata.484427
+-rw-r--r-- 1 georgeca georgeca 3,5K iun 13 16:48 log.do_packagedata.64144
+lrwxrwxrwx 1 georgeca georgeca   23 iun 13 16:48 log.do_package_qa -> log.do_package_qa.64195
+-rw-r--r-- 1 georgeca georgeca 190K iun  9 07:51 log.do_package_qa.484909
+-rw-r--r-- 1 georgeca georgeca 190K iun 13 16:49 log.do_package_qa.64195
+lrwxrwxrwx 1 georgeca georgeca   30 iun 13 16:48 log.do_package_write_rpm -> log.do_package_write_rpm.64197
+-rw-r--r-- 1 georgeca georgeca 452K iun  9 07:51 log.do_package_write_rpm.487021
+-rw-r--r-- 1 georgeca georgeca 451K iun 13 16:49 log.do_package_write_rpm.64197
+lrwxrwxrwx 1 georgeca georgeca   18 iun  9 07:05 log.do_patch -> log.do_patch.89465
+-rw-r--r-- 1 georgeca georgeca 2,3K iun  9 07:05 log.do_patch.89465
+lrwxrwxrwx 1 georgeca georgeca   25 iun  9 07:05 log.do_populate_lic -> log.do_populate_lic.89803
+-rw-r--r-- 1 georgeca georgeca 3,4K iun  9 07:05 log.do_populate_lic.89803
+lrwxrwxrwx 1 georgeca georgeca   29 iun 13 16:47 log.do_populate_sysroot -> log.do_populate_sysroot.58847
+-rw-r--r-- 1 georgeca georgeca 6,2K iun  9 07:48 log.do_populate_sysroot.451086
+-rw-r--r-- 1 georgeca georgeca 6,2K iun 13 16:47 log.do_populate_sysroot.58847
+lrwxrwxrwx 1 georgeca georgeca   36 iun  9 07:22 log.do_prepare_recipe_sysroot -> log.do_prepare_recipe_sysroot.266550
+-rw-r--r-- 1 georgeca georgeca 4,0K iun  9 07:22 log.do_prepare_recipe_sysroot.266550
+lrwxrwxrwx 1 georgeca georgeca   19 iun  9 07:00 log.do_rm_work -> log.do_rm_work.2514
+-rw-r--r-- 1 georgeca georgeca  152 iun  9 07:00 log.do_rm_work.2514
+lrwxrwxrwx 1 georgeca georgeca   27 iun 13 16:47 log.do_shared_workdir -> log.do_shared_workdir.54617
+-rw-r--r-- 1 georgeca georgeca   99 iun  9 07:43 log.do_shared_workdir.411630
+-rw-r--r-- 1 georgeca georgeca   99 iun 13 16:47 log.do_shared_workdir.54617
+lrwxrwxrwx 1 georgeca georgeca   22 iun 13 16:47 log.do_sizecheck -> log.do_sizecheck.57315
+-rw-r--r-- 1 georgeca georgeca   89 iun  9 07:48 log.do_sizecheck.448813
+-rw-r--r-- 1 georgeca georgeca   89 iun 13 16:47 log.do_sizecheck.57315
+lrwxrwxrwx 1 georgeca georgeca   18 iun 13 16:47 log.do_strip -> log.do_strip.57310
+-rw-r--r-- 1 georgeca georgeca   83 iun  9 07:48 log.do_strip.448527
+-rw-r--r-- 1 georgeca georgeca   83 iun 13 16:47 log.do_strip.57310
+lrwxrwxrwx 1 georgeca georgeca   28 iun  9 07:03 log.do_symlink_kernsrc -> log.do_symlink_kernsrc.69674
+-rw-r--r-- 1 georgeca georgeca  103 iun  9 07:03 log.do_symlink_kernsrc.69674
+lrwxrwxrwx 1 georgeca georgeca   29 iun 13 16:47 log.do_transform_kernel -> log.do_transform_kernel.54614
+-rw-r--r-- 1 georgeca georgeca  103 iun  9 07:43 log.do_transform_kernel.411627
+-rw-r--r-- 1 georgeca georgeca  103 iun 13 16:47 log.do_transform_kernel.54614
+lrwxrwxrwx 1 georgeca georgeca   19 iun  9 07:03 log.do_unpack -> log.do_unpack.61940
+-rw-r--r-- 1 georgeca georgeca  22K iun  9 07:03 log.do_unpack.61940
+lrwxrwxrwx 1 georgeca georgeca   30 iun  9 07:05 log.do_validate_branches -> log.do_validate_branches.86598
+-rw-r--r-- 1 georgeca georgeca  459 iun  9 07:05 log.do_validate_branches.86598
+-rw-r--r-- 1 georgeca georgeca 2,5K iun 18 09:48 log.task_order
+-rw-r--r-- 1 georgeca georgeca  308 iun  9 07:02 run.base_do_fetch.60221
+-rw-r--r-- 1 georgeca georgeca  326 iun  9 07:03 run.base_do_unpack.61940
+-rwxrwxr-x 1 georgeca georgeca  18K iun  9 07:50 run.BUILDSPEC.487021
+-rwxrwxr-x 1 georgeca georgeca  18K iun 13 16:48 run.BUILDSPEC.64197
+-rw-r--r-- 1 georgeca georgeca  682 iun  9 07:23 run.check_oldest_kernel.278949
+-rw-r--r-- 1 georgeca georgeca  252 iun  9 07:03 run.create_source_date_epoch_stamp.61940
+-rw-r--r-- 1 georgeca georgeca 5,1K iun  9 07:49 run.debian_package_name_hook.451085
+-rw-r--r-- 1 georgeca georgeca 5,1K iun 13 16:48 run.debian_package_name_hook.58846
+lrwxrwxrwx 1 georgeca georgeca   29 iun 13 16:47 run.do_bundle_initramfs -> run.do_bundle_initramfs.58845
+-rwxrwxr-x 1 georgeca georgeca  28K iun  9 07:48 run.do_bundle_initramfs.450862
+-rwxrwxr-x 1 georgeca georgeca  28K iun 13 16:47 run.do_bundle_initramfs.58845
+lrwxrwxrwx 1 georgeca georgeca   20 iun 13 16:46 run.do_compile -> run.do_compile.46942
+-rwxrwxr-x 1 georgeca georgeca  29K iun  9 07:23 run.do_compile.283371
+-rwxrwxr-x 1 georgeca georgeca  29K iun 13 16:46 run.do_compile.46942
+lrwxrwxrwx 1 georgeca georgeca   34 iun 13 16:47 run.do_compile_kernelmodules -> run.do_compile_kernelmodules.54653
+-rwxrwxr-x 1 georgeca georgeca  24K iun  9 07:43 run.do_compile_kernelmodules.411698
+-rwxrwxr-x 1 georgeca georgeca  24K iun 13 16:47 run.do_compile_kernelmodules.54653
+lrwxrwxrwx 1 georgeca georgeca   23 iun  9 07:23 run.do_configure -> run.do_configure.278949
+-rwxrwxr-x 1 georgeca georgeca  26K iun  9 07:23 run.do_configure.278949
+lrwxrwxrwx 1 georgeca georgeca   19 iun 13 16:48 run.do_deploy -> run.do_deploy.64276
+-rwxrwxr-x 1 georgeca georgeca  19K iun  9 07:51 run.do_deploy.490175
+-rwxrwxr-x 1 georgeca georgeca  19K iun 13 16:48 run.do_deploy.64276
+lrwxrwxrwx 1 georgeca georgeca   37 iun  9 07:05 run.do_deploy_source_date_epoch -> run.do_deploy_source_date_epoch.89957
+-rwxrwxr-x 1 georgeca georgeca  15K iun  9 07:05 run.do_deploy_source_date_epoch.89957
+lrwxrwxrwx 1 georgeca georgeca   18 iun  9 07:02 run.do_fetch -> run.do_fetch.60221
+-rw-r--r-- 1 georgeca georgeca  364 iun  9 07:02 run.do_fetch.60221
+lrwxrwxrwx 1 georgeca georgeca   20 iun 13 16:47 run.do_install -> run.do_install.57321
+-rwxrwxr-x 1 georgeca georgeca  30K iun  9 07:48 run.do_install.448947
+-rwxrwxr-x 1 georgeca georgeca  30K iun 13 16:47 run.do_install.57321
+lrwxrwxrwx 1 georgeca georgeca   28 iun  9 07:03 run.do_kernel_checkout -> run.do_kernel_checkout.69952
+-rwxrwxr-x 1 georgeca georgeca  18K iun  9 07:03 run.do_kernel_checkout.69952
+lrwxrwxrwx 1 georgeca georgeca   32 iun  9 07:23 run.do_kernel_configcheck -> run.do_kernel_configcheck.280263
+-rw-r--r-- 1 georgeca georgeca 4,8K iun  9 07:23 run.do_kernel_configcheck.280263
+lrwxrwxrwx 1 georgeca georgeca   29 iun  9 07:22 run.do_kernel_configme -> run.do_kernel_configme.266551
+-rwxrwxr-x 1 georgeca georgeca  35K iun  9 07:22 run.do_kernel_configme.266551
+lrwxrwxrwx 1 georgeca georgeca   31 iun 13 16:47 run.do_kernel_link_images -> run.do_kernel_link_images.54615
+-rwxrwxr-x 1 georgeca georgeca  14K iun  9 07:43 run.do_kernel_link_images.411628
+-rwxrwxr-x 1 georgeca georgeca  14K iun 13 16:47 run.do_kernel_link_images.54615
+lrwxrwxrwx 1 georgeca georgeca   28 iun  9 07:05 run.do_kernel_metadata -> run.do_kernel_metadata.86734
+-rwxrwxr-x 1 georgeca georgeca  28K iun  9 07:05 run.do_kernel_metadata.86734
+lrwxrwxrwx 1 georgeca georgeca   40 iun  9 07:05 run.do_kernel_version_sanity_check -> run.do_kernel_version_sanity_check.89054
+-rwxrwxr-x 1 georgeca georgeca  16K iun  9 07:05 run.do_kernel_version_sanity_check.89054
+lrwxrwxrwx 1 georgeca georgeca   22 iun 18 09:48 run.do_menuconfig -> run.do_menuconfig.4339
+-rw-r--r-- 1 georgeca georgeca 5,0K iun 18 09:48 run.do_menuconfig.4339
+-rw-r--r-- 1 georgeca georgeca 5,0K iun 13 16:38 run.do_menuconfig.46218
+lrwxrwxrwx 1 georgeca georgeca   20 iun 13 16:48 run.do_package -> run.do_package.58846
+-rw-r--r-- 1 georgeca georgeca 111K iun  9 07:48 run.do_package.451085
+-rw-r--r-- 1 georgeca georgeca 111K iun 13 16:48 run.do_package.58846
+lrwxrwxrwx 1 georgeca georgeca   24 iun 13 16:48 run.do_packagedata -> run.do_packagedata.64144
+-rw-r--r-- 1 georgeca georgeca 2,5K iun  9 07:50 run.do_packagedata.484427
+-rw-r--r-- 1 georgeca georgeca 2,5K iun 13 16:48 run.do_packagedata.64144
+lrwxrwxrwx 1 georgeca georgeca   23 iun 13 16:48 run.do_package_qa -> run.do_package_qa.64195
+-rw-r--r-- 1 georgeca georgeca  17K iun  9 07:50 run.do_package_qa.484909
+-rw-r--r-- 1 georgeca georgeca  17K iun 13 16:48 run.do_package_qa.64195
+-rw-r--r-- 1 georgeca georgeca  34K iun  9 07:50 run.do_package_rpm.487021
+-rw-r--r-- 1 georgeca georgeca  34K iun 13 16:48 run.do_package_rpm.64197
+lrwxrwxrwx 1 georgeca georgeca   30 iun 13 16:48 run.do_package_write_rpm -> run.do_package_write_rpm.64197
+-rw-r--r-- 1 georgeca georgeca  36K iun  9 07:50 run.do_package_write_rpm.487021
+-rw-r--r-- 1 georgeca georgeca  36K iun 13 16:48 run.do_package_write_rpm.64197
+lrwxrwxrwx 1 georgeca georgeca   18 iun  9 07:05 run.do_patch -> run.do_patch.89465
+-rwxrwxr-x 1 georgeca georgeca  17K iun  9 07:05 run.do_patch.89465
+lrwxrwxrwx 1 georgeca georgeca   25 iun  9 07:05 run.do_populate_lic -> run.do_populate_lic.89803
+-rw-r--r-- 1 georgeca georgeca 8,7K iun  9 07:05 run.do_populate_lic.89803
+lrwxrwxrwx 1 georgeca georgeca   29 iun 13 16:47 run.do_populate_sysroot -> run.do_populate_sysroot.58847
+-rw-r--r-- 1 georgeca georgeca 1,2K iun  9 07:48 run.do_populate_sysroot.451086
+-rw-r--r-- 1 georgeca georgeca 1,2K iun 13 16:47 run.do_populate_sysroot.58847
+lrwxrwxrwx 1 georgeca georgeca   36 iun  9 07:22 run.do_prepare_recipe_sysroot -> run.do_prepare_recipe_sysroot.266550
+-rw-r--r-- 1 georgeca georgeca  28K iun  9 07:22 run.do_prepare_recipe_sysroot.266550
+-rw-r--r-- 1 georgeca georgeca 4,3K iun  9 07:23 run.do_qa_configure.278949
+-rw-r--r-- 1 georgeca georgeca 3,4K iun  9 07:05 run.do_qa_patch.89465
+-rw-r--r-- 1 georgeca georgeca 2,3K iun  9 07:48 run.do_qa_staging.451086
+-rw-r--r-- 1 georgeca georgeca 2,3K iun 13 16:47 run.do_qa_staging.58847
+-rw-r--r-- 1 georgeca georgeca 1015 iun  9 07:03 run.do_qa_unpack.61940
+lrwxrwxrwx 1 georgeca georgeca   19 iun  9 07:00 run.do_rm_work -> run.do_rm_work.2514
+-rwxrwxr-x 1 georgeca georgeca  19K iun  9 07:00 run.do_rm_work.2514
+lrwxrwxrwx 1 georgeca georgeca   27 iun 13 16:47 run.do_shared_workdir -> run.do_shared_workdir.54617
+-rwxrwxr-x 1 georgeca georgeca  16K iun  9 07:43 run.do_shared_workdir.411630
+-rwxrwxr-x 1 georgeca georgeca  16K iun 13 16:47 run.do_shared_workdir.54617
+lrwxrwxrwx 1 georgeca georgeca   22 iun 13 16:47 run.do_sizecheck -> run.do_sizecheck.57315
+-rwxrwxr-x 1 georgeca georgeca  16K iun  9 07:48 run.do_sizecheck.448813
+-rwxrwxr-x 1 georgeca georgeca  16K iun 13 16:47 run.do_sizecheck.57315
+lrwxrwxrwx 1 georgeca georgeca   18 iun 13 16:47 run.do_strip -> run.do_strip.57310
+-rw-r--r-- 1 georgeca georgeca  641 iun  9 07:48 run.do_strip.448527
+-rw-r--r-- 1 georgeca georgeca  641 iun 13 16:47 run.do_strip.57310
+lrwxrwxrwx 1 georgeca georgeca   28 iun  9 07:03 run.do_symlink_kernsrc -> run.do_symlink_kernsrc.69674
+-rw-r--r-- 1 georgeca georgeca  648 iun  9 07:03 run.do_symlink_kernsrc.69674
+-rwxr-xr-x 1 georgeca georgeca  27K iun 18 09:48 run.do_terminal.4339
+-rwxr-xr-x 1 georgeca georgeca  27K iun 13 16:38 run.do_terminal.46218
+lrwxrwxrwx 1 georgeca georgeca   29 iun 13 16:47 run.do_transform_kernel -> run.do_transform_kernel.54614
+-rwxrwxr-x 1 georgeca georgeca  14K iun  9 07:43 run.do_transform_kernel.411627
+-rwxrwxr-x 1 georgeca georgeca  14K iun 13 16:47 run.do_transform_kernel.54614
+lrwxrwxrwx 1 georgeca georgeca   19 iun  9 07:03 run.do_unpack -> run.do_unpack.61940
+-rw-r--r-- 1 georgeca georgeca  384 iun  9 07:03 run.do_unpack.61940
+lrwxrwxrwx 1 georgeca georgeca   30 iun  9 07:05 run.do_validate_branches -> run.do_validate_branches.86598
+-rwxrwxr-x 1 georgeca georgeca  18K iun  9 07:05 run.do_validate_branches.86598
+-rwxrwxr-x 1 georgeca georgeca  17K iun  9 07:50 run.emit_depmod_pkgdata.451085
+-rwxrwxr-x 1 georgeca georgeca  17K iun 13 16:48 run.emit_depmod_pkgdata.58846
+-rw-r--r-- 1 georgeca georgeca 6,9K iun  9 07:49 run.emit_pkgdata.451085
+-rw-r--r-- 1 georgeca georgeca 6,9K iun 13 16:48 run.emit_pkgdata.58846
+-rw-r--r-- 1 georgeca georgeca  28K iun  9 07:22 run.extend_recipe_sysroot.266550
+-rw-r--r-- 1 georgeca georgeca  28K iun  9 07:22 run.extend_recipe_sysroot.266551
+-rw-r--r-- 1 georgeca georgeca  28K iun  9 07:23 run.extend_recipe_sysroot.278949
+-rw-r--r-- 1 georgeca georgeca  28K iun 18 09:48 run.extend_recipe_sysroot.4339
+-rw-r--r-- 1 georgeca georgeca  28K iun  9 07:48 run.extend_recipe_sysroot.448947
+-rw-r--r-- 1 georgeca georgeca  28K iun  9 07:48 run.extend_recipe_sysroot.451085
+-rw-r--r-- 1 georgeca georgeca  28K iun  9 07:48 run.extend_recipe_sysroot.451086
+-rw-r--r-- 1 georgeca georgeca  28K iun 13 16:38 run.extend_recipe_sysroot.46218
+-rw-r--r-- 1 georgeca georgeca  28K iun  9 07:50 run.extend_recipe_sysroot.484909
+-rw-r--r-- 1 georgeca georgeca  28K iun  9 07:50 run.extend_recipe_sysroot.487021
+-rw-r--r-- 1 georgeca georgeca  28K iun  9 07:51 run.extend_recipe_sysroot.490175
+-rw-r--r-- 1 georgeca georgeca  28K iun 13 16:47 run.extend_recipe_sysroot.57321
+-rw-r--r-- 1 georgeca georgeca  28K iun 13 16:47 run.extend_recipe_sysroot.58846
+-rw-r--r-- 1 georgeca georgeca  28K iun 13 16:47 run.extend_recipe_sysroot.58847
+-rw-r--r-- 1 georgeca georgeca  28K iun  9 07:02 run.extend_recipe_sysroot.60221
+-rw-r--r-- 1 georgeca georgeca  28K iun 13 16:48 run.extend_recipe_sysroot.64195
+-rw-r--r-- 1 georgeca georgeca  28K iun 13 16:48 run.extend_recipe_sysroot.64197
+-rw-r--r-- 1 georgeca georgeca  28K iun 13 16:48 run.extend_recipe_sysroot.64276
+-rw-r--r-- 1 georgeca georgeca  28K iun  9 07:05 run.extend_recipe_sysroot.86598
+-rw-r--r-- 1 georgeca georgeca  28K iun  9 07:05 run.extend_recipe_sysroot.86734
+-rw-r--r-- 1 georgeca georgeca  28K iun  9 07:05 run.extend_recipe_sysroot.89465
+-rw-r--r-- 1 georgeca georgeca 9,1K iun  9 07:49 run.fixup_perms.451085
+-rw-r--r-- 1 georgeca georgeca 9,1K iun 13 16:48 run.fixup_perms.58846
+-rw-r--r-- 1 georgeca georgeca  407 iun  9 07:48 run.package_convert_pr_autoinc.451085
+-rw-r--r-- 1 georgeca georgeca  407 iun 13 16:48 run.package_convert_pr_autoinc.58846
+-rwxrwxr-x 1 georgeca georgeca  14K iun  9 07:50 run.packagedata_translate_pr_autoinc.484427
+-rwxrwxr-x 1 georgeca georgeca  14K iun 13 16:48 run.packagedata_translate_pr_autoinc.64144
+-rw-r--r-- 1 georgeca georgeca 5,4K iun  9 07:49 run.package_depchains.451085
+-rw-r--r-- 1 georgeca georgeca 5,4K iun 13 16:48 run.package_depchains.58846
+-rw-r--r-- 1 georgeca georgeca 1,8K iun  9 07:49 run.package_do_filedeps.451085
+-rw-r--r-- 1 georgeca georgeca 1,8K iun 13 16:48 run.package_do_filedeps.58846
+-rw-r--r-- 1 georgeca georgeca 3,1K iun  9 07:49 run.package_do_pkgconfig.451085
+-rw-r--r-- 1 georgeca georgeca 3,1K iun 13 16:48 run.package_do_pkgconfig.58846
+-rw-r--r-- 1 georgeca georgeca  12K iun  9 07:49 run.package_do_shlibs.451085
+-rw-r--r-- 1 georgeca georgeca  12K iun 13 16:48 run.package_do_shlibs.58846
+-rw-r--r-- 1 georgeca georgeca 2,5K iun  9 07:49 run.package_do_split_locales.451085
+-rw-r--r-- 1 georgeca georgeca 2,5K iun 13 16:48 run.package_do_split_locales.58846
+-rw-r--r-- 1 georgeca georgeca 1,7K iun  9 07:49 run.package_fixsymlinks.451085
+-rw-r--r-- 1 georgeca georgeca 1,7K iun 13 16:48 run.package_fixsymlinks.58846
+-rw-r--r-- 1 georgeca georgeca 2,3K iun  9 07:50 run.package_get_auto_pr.484427
+-rw-r--r-- 1 georgeca georgeca 2,3K iun 13 16:48 run.package_get_auto_pr.64144
+-rw-r--r-- 1 georgeca georgeca 5,2K iun  9 07:49 run.package_name_hook.451085
+-rw-r--r-- 1 georgeca georgeca 5,2K iun 13 16:48 run.package_name_hook.58846
+-rw-r--r-- 1 georgeca georgeca  12K iun  9 07:48 run.package_prepare_pkgdata.451085
+-rw-r--r-- 1 georgeca georgeca  12K iun 13 16:48 run.package_prepare_pkgdata.58846
+-rw-r--r-- 1 georgeca georgeca  12K iun  9 07:48 run.perform_packagecopy.451085
+-rw-r--r-- 1 georgeca georgeca  12K iun 13 16:48 run.perform_packagecopy.58846
+-rw-r--r-- 1 georgeca georgeca 4,5K iun  9 07:05 run.populate_lic_qa_checksum.89803
+-rw-r--r-- 1 georgeca georgeca 7,7K iun  9 07:49 run.populate_packages.451085
+-rw-r--r-- 1 georgeca georgeca 7,7K iun 13 16:48 run.populate_packages.58846
+-rw-r--r-- 1 georgeca georgeca 1,4K iun  9 07:49 run.read_shlibdeps.451085
+-rw-r--r-- 1 georgeca georgeca 1,4K iun 13 16:48 run.read_shlibdeps.58846
+-rw-r--r-- 1 georgeca georgeca 1,6K iun  9 07:50 run.read_subpackage_metadata.484909
+-rw-r--r-- 1 georgeca georgeca 1,6K iun  9 07:50 run.read_subpackage_metadata.487021
+-rw-r--r-- 1 georgeca georgeca 1,6K iun  9 07:51 run.read_subpackage_metadata.490175
+-rw-r--r-- 1 georgeca georgeca 1,6K iun 13 16:48 run.read_subpackage_metadata.64195
+-rw-r--r-- 1 georgeca georgeca 1,6K iun 13 16:48 run.read_subpackage_metadata.64197
+-rw-r--r-- 1 georgeca georgeca 1,6K iun 13 16:48 run.read_subpackage_metadata.64276
+-rwxrwxr-x 1 georgeca georgeca  16K iun  9 07:48 run.remove_libtool_la.448947
+-rwxrwxr-x 1 georgeca georgeca  16K iun 13 16:47 run.remove_libtool_la.57321
+-rw-r--r-- 1 georgeca georgeca  16K iun  9 07:48 run.split_and_strip_files.451085
+-rw-r--r-- 1 georgeca georgeca  16K iun 13 16:48 run.split_and_strip_files.58846
+-rw-r--r-- 1 georgeca georgeca  15K iun  9 07:49 run.split_kernel_module_packages.451085
+-rw-r--r-- 1 georgeca georgeca  15K iun 13 16:48 run.split_kernel_module_packages.58846
+-rw-r--r-- 1 georgeca georgeca 7,6K iun  9 07:49 run.split_kernel_packages.451085
+-rw-r--r-- 1 georgeca georgeca 7,6K iun 13 16:48 run.split_kernel_packages.58846
+-rwxrwxr-x 1 georgeca georgeca  20K iun  9 07:50 run.sstate_create_package.451085
+-rwxrwxr-x 1 georgeca georgeca  17K iun  9 07:48 run.sstate_create_package.451086
+-rwxrwxr-x 1 georgeca georgeca  17K iun  9 07:50 run.sstate_create_package.484427
+-rwxrwxr-x 1 georgeca georgeca  20K iun  9 07:51 run.sstate_create_package.484909
+-rwxrwxr-x 1 georgeca georgeca  20K iun  9 07:51 run.sstate_create_package.487021
+-rwxrwxr-x 1 georgeca georgeca  17K iun  9 07:51 run.sstate_create_package.490175
+-rwxrwxr-x 1 georgeca georgeca  20K iun 13 16:48 run.sstate_create_package.58846
+-rwxrwxr-x 1 georgeca georgeca  17K iun 13 16:47 run.sstate_create_package.58847
+-rwxrwxr-x 1 georgeca georgeca  17K iun 13 16:48 run.sstate_create_package.64144
+-rwxrwxr-x 1 georgeca georgeca  20K iun 13 16:49 run.sstate_create_package.64195
+-rwxrwxr-x 1 georgeca georgeca  20K iun 13 16:49 run.sstate_create_package.64197
+-rwxrwxr-x 1 georgeca georgeca  17K iun 13 16:48 run.sstate_create_package.64276
+-rwxrwxr-x 1 georgeca georgeca  17K iun  9 07:05 run.sstate_create_package.89803
+-rwxrwxr-x 1 georgeca georgeca  17K iun  9 07:05 run.sstate_create_package.89957
+-rw-r--r-- 1 georgeca georgeca 2,6K iun  9 07:50 run.sstate_hardcode_path.451085
+-rw-rw-r-- 1 georgeca georgeca 2,6K iun  9 07:48 run.sstate_hardcode_path.451086
+-rw-rw-r-- 1 georgeca georgeca 2,6K iun  9 07:50 run.sstate_hardcode_path.484427
+-rw-r--r-- 1 georgeca georgeca 2,6K iun  9 07:51 run.sstate_hardcode_path.484909
+-rw-r--r-- 1 georgeca georgeca 2,6K iun  9 07:51 run.sstate_hardcode_path.487021
+-rw-rw-r-- 1 georgeca georgeca 2,6K iun  9 07:51 run.sstate_hardcode_path.490175
+-rw-r--r-- 1 georgeca georgeca 2,6K iun 13 16:48 run.sstate_hardcode_path.58846
+-rw-rw-r-- 1 georgeca georgeca 2,6K iun 13 16:47 run.sstate_hardcode_path.58847
+-rw-rw-r-- 1 georgeca georgeca 2,6K iun 13 16:48 run.sstate_hardcode_path.64144
+-rw-r--r-- 1 georgeca georgeca 2,6K iun 13 16:49 run.sstate_hardcode_path.64195
+-rw-r--r-- 1 georgeca georgeca 2,6K iun 13 16:49 run.sstate_hardcode_path.64197
+-rw-rw-r-- 1 georgeca georgeca 2,6K iun 13 16:48 run.sstate_hardcode_path.64276
+-rw-rw-r-- 1 georgeca georgeca 2,6K iun  9 07:05 run.sstate_hardcode_path.89803
+-rw-rw-r-- 1 georgeca georgeca 2,6K iun  9 07:05 run.sstate_hardcode_path.89957
+-rw-r--r-- 1 georgeca georgeca 2,5K iun  9 07:50 run.sstate_hardcode_path_unpack.451085
+-rw-r--r-- 1 georgeca georgeca 2,5K iun  9 07:48 run.sstate_hardcode_path_unpack.451086
+-rw-r--r-- 1 georgeca georgeca 2,5K iun  9 07:50 run.sstate_hardcode_path_unpack.484427
+-rw-r--r-- 1 georgeca georgeca 2,5K iun  9 07:51 run.sstate_hardcode_path_unpack.484909
+-rw-r--r-- 1 georgeca georgeca 2,5K iun  9 07:51 run.sstate_hardcode_path_unpack.487021
+-rw-r--r-- 1 georgeca georgeca 2,5K iun  9 07:51 run.sstate_hardcode_path_unpack.490175
+-rw-r--r-- 1 georgeca georgeca 2,5K iun 13 16:48 run.sstate_hardcode_path_unpack.58846
+-rw-r--r-- 1 georgeca georgeca 2,5K iun 13 16:47 run.sstate_hardcode_path_unpack.58847
+-rw-r--r-- 1 georgeca georgeca 2,5K iun 13 16:48 run.sstate_hardcode_path_unpack.64144
+-rw-r--r-- 1 georgeca georgeca 2,5K iun 13 16:49 run.sstate_hardcode_path_unpack.64195
+-rw-r--r-- 1 georgeca georgeca 2,5K iun 13 16:49 run.sstate_hardcode_path_unpack.64197
+-rw-r--r-- 1 georgeca georgeca 2,5K iun 13 16:48 run.sstate_hardcode_path_unpack.64276
+-rw-r--r-- 1 georgeca georgeca 2,5K iun  9 07:05 run.sstate_hardcode_path_unpack.89803
+-rw-r--r-- 1 georgeca georgeca 2,5K iun  9 07:05 run.sstate_hardcode_path_unpack.89957
+-rw-r--r-- 1 georgeca georgeca 2,2K iun  9 07:50 run.sstate_report_unihash.451085
+-rw-rw-r-- 1 georgeca georgeca 2,2K iun  9 07:48 run.sstate_report_unihash.451086
+-rw-rw-r-- 1 georgeca georgeca 2,2K iun  9 07:50 run.sstate_report_unihash.484427
+-rw-r--r-- 1 georgeca georgeca 2,2K iun  9 07:51 run.sstate_report_unihash.484909
+-rw-r--r-- 1 georgeca georgeca 2,2K iun  9 07:51 run.sstate_report_unihash.487021
+-rw-rw-r-- 1 georgeca georgeca 2,2K iun  9 07:51 run.sstate_report_unihash.490175
+-rw-r--r-- 1 georgeca georgeca 2,2K iun 13 16:48 run.sstate_report_unihash.58846
+-rw-rw-r-- 1 georgeca georgeca 2,2K iun 13 16:47 run.sstate_report_unihash.58847
+-rw-rw-r-- 1 georgeca georgeca 2,2K iun 13 16:48 run.sstate_report_unihash.64144
+-rw-r--r-- 1 georgeca georgeca 2,2K iun 13 16:49 run.sstate_report_unihash.64195
+-rw-r--r-- 1 georgeca georgeca 2,2K iun 13 16:49 run.sstate_report_unihash.64197
+-rw-rw-r-- 1 georgeca georgeca 2,2K iun 13 16:48 run.sstate_report_unihash.64276
+-rw-rw-r-- 1 georgeca georgeca 2,2K iun  9 07:05 run.sstate_report_unihash.89803
+-rw-rw-r-- 1 georgeca georgeca 2,2K iun  9 07:05 run.sstate_report_unihash.89957
+-rw-r--r-- 1 georgeca georgeca  13K iun  9 07:50 run.sstate_task_postfunc.451085
+-rw-r--r-- 1 georgeca georgeca  13K iun  9 07:48 run.sstate_task_postfunc.451086
+-rw-r--r-- 1 georgeca georgeca  13K iun  9 07:50 run.sstate_task_postfunc.484427
+-rw-r--r-- 1 georgeca georgeca  13K iun  9 07:51 run.sstate_task_postfunc.484909
+-rw-r--r-- 1 georgeca georgeca  13K iun  9 07:51 run.sstate_task_postfunc.487021
+-rw-r--r-- 1 georgeca georgeca  13K iun  9 07:51 run.sstate_task_postfunc.490175
+-rw-r--r-- 1 georgeca georgeca  13K iun 13 16:48 run.sstate_task_postfunc.58846
+-rw-r--r-- 1 georgeca georgeca  13K iun 13 16:47 run.sstate_task_postfunc.58847
+-rw-r--r-- 1 georgeca georgeca  13K iun 13 16:48 run.sstate_task_postfunc.64144
+-rw-r--r-- 1 georgeca georgeca  13K iun 13 16:49 run.sstate_task_postfunc.64195
+-rw-r--r-- 1 georgeca georgeca  13K iun 13 16:49 run.sstate_task_postfunc.64197
+-rw-r--r-- 1 georgeca georgeca  13K iun 13 16:48 run.sstate_task_postfunc.64276
+-rw-r--r-- 1 georgeca georgeca  13K iun  9 07:05 run.sstate_task_postfunc.89803
+-rw-r--r-- 1 georgeca georgeca  13K iun  9 07:05 run.sstate_task_postfunc.89957
+-rw-r--r-- 1 georgeca georgeca 5,0K iun  9 07:48 run.sstate_task_prefunc.451085
+-rw-r--r-- 1 georgeca georgeca 5,0K iun  9 07:48 run.sstate_task_prefunc.451086
+-rw-r--r-- 1 georgeca georgeca 5,0K iun  9 07:50 run.sstate_task_prefunc.484427
+-rw-r--r-- 1 georgeca georgeca 5,0K iun  9 07:50 run.sstate_task_prefunc.484909
+-rw-r--r-- 1 georgeca georgeca 5,0K iun  9 07:50 run.sstate_task_prefunc.487021
+-rw-r--r-- 1 georgeca georgeca 5,0K iun  9 07:51 run.sstate_task_prefunc.490175
+-rw-r--r-- 1 georgeca georgeca 5,0K iun 13 16:47 run.sstate_task_prefunc.58846
+-rw-r--r-- 1 georgeca georgeca 5,0K iun 13 16:47 run.sstate_task_prefunc.58847
+-rw-r--r-- 1 georgeca georgeca 5,0K iun 13 16:48 run.sstate_task_prefunc.64144
+-rw-r--r-- 1 georgeca georgeca 5,0K iun 13 16:48 run.sstate_task_prefunc.64195
+-rw-r--r-- 1 georgeca georgeca 5,0K iun 13 16:48 run.sstate_task_prefunc.64197
+-rw-r--r-- 1 georgeca georgeca 5,0K iun 13 16:48 run.sstate_task_prefunc.64276
+-rw-r--r-- 1 georgeca georgeca 5,0K iun  9 07:05 run.sstate_task_prefunc.89803
+-rw-r--r-- 1 georgeca georgeca 5,0K iun  9 07:05 run.sstate_task_prefunc.89957
+-rwxrwxr-x 1 georgeca georgeca  15K iun  9 07:48 run.sysroot_stage_all.451086
+-rwxrwxr-x 1 georgeca georgeca  15K iun 13 16:47 run.sysroot_stage_all.58847
+-rw-r--r-- 1 georgeca georgeca  585 iun  9 07:48 run.sysroot_strip.451086
+-rw-r--r-- 1 georgeca georgeca  585 iun 13 16:47 run.sysroot_strip.58847
+-rw-r--r-- 1 georgeca georgeca  649 iun  9 07:50 run.target_add_sysroot_deps.451085
+-rw-rw-r-- 1 georgeca georgeca  649 iun  9 07:48 run.target_add_sysroot_deps.451086
+-rw-rw-r-- 1 georgeca georgeca  649 iun  9 07:50 run.target_add_sysroot_deps.484427
+-rw-r--r-- 1 georgeca georgeca  649 iun  9 07:51 run.target_add_sysroot_deps.484909
+-rw-r--r-- 1 georgeca georgeca  649 iun  9 07:51 run.target_add_sysroot_deps.487021
+-rw-rw-r-- 1 georgeca georgeca  649 iun  9 07:51 run.target_add_sysroot_deps.490175
+-rw-r--r-- 1 georgeca georgeca  649 iun 13 16:48 run.target_add_sysroot_deps.58846
+-rw-rw-r-- 1 georgeca georgeca  649 iun 13 16:47 run.target_add_sysroot_deps.58847
+-rw-rw-r-- 1 georgeca georgeca  649 iun 13 16:48 run.target_add_sysroot_deps.64144
+-rw-r--r-- 1 georgeca georgeca  649 iun 13 16:49 run.target_add_sysroot_deps.64195
+-rw-r--r-- 1 georgeca georgeca  649 iun 13 16:49 run.target_add_sysroot_deps.64197
+-rw-rw-r-- 1 georgeca georgeca  649 iun 13 16:48 run.target_add_sysroot_deps.64276
+-rw-rw-r-- 1 georgeca georgeca  649 iun  9 07:05 run.target_add_sysroot_deps.89803
+-rw-rw-r-- 1 georgeca georgeca  649 iun  9 07:05 run.target_add_sysroot_deps.89957
+-rw-r--r-- 1 georgeca georgeca 1,2K iun  9 07:50 run.uninative_changeinterp.451085
+-rw-r--r-- 1 georgeca georgeca 1,2K iun  9 07:48 run.uninative_changeinterp.451086
+-rw-r--r-- 1 georgeca georgeca 1,2K iun  9 07:50 run.uninative_changeinterp.484427
+-rw-r--r-- 1 georgeca georgeca 1,2K iun  9 07:51 run.uninative_changeinterp.484909
+-rw-r--r-- 1 georgeca georgeca 1,2K iun  9 07:51 run.uninative_changeinterp.487021
+-rw-r--r-- 1 georgeca georgeca 1,2K iun  9 07:51 run.uninative_changeinterp.490175
+-rw-r--r-- 1 georgeca georgeca 1,2K iun 13 16:48 run.uninative_changeinterp.58846
+-rw-r--r-- 1 georgeca georgeca 1,2K iun 13 16:47 run.uninative_changeinterp.58847
+-rw-r--r-- 1 georgeca georgeca 1,2K iun 13 16:48 run.uninative_changeinterp.64144
+-rw-r--r-- 1 georgeca georgeca 1,2K iun 13 16:49 run.uninative_changeinterp.64195
+-rw-r--r-- 1 georgeca georgeca 1,2K iun 13 16:49 run.uninative_changeinterp.64197
+-rw-r--r-- 1 georgeca georgeca 1,2K iun 13 16:48 run.uninative_changeinterp.64276
+-rw-r--r-- 1 georgeca georgeca 1,2K iun  9 07:05 run.uninative_changeinterp.89803
+-rw-r--r-- 1 georgeca georgeca 1,2K iun  9 07:05 run.uninative_changeinterp.89957
+-rw-r--r-- 1 georgeca georgeca  28K iun  9 07:50 run.write_specfile.487021
+-rw-r--r-- 1 georgeca georgeca  28K iun 13 16:48 run.write_specfile.64197
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ ls -lh /home/georgeca/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/linux-yocto/5.15.150+gitAUTOINC+896128cbf5_4fca0c4373-r0/
+total 928K
+-rw-r--r--   1 georgeca georgeca 250K iun 13 16:48 debugsources.list
+drwxr-xr-x   2 georgeca georgeca 4,0K iun 13 16:48 deploy-linux-yocto
+drwxr-xr-x   3 georgeca georgeca 4,0K iun 13 16:48 deploy-rpms
+drwxr-xr-x   2 georgeca georgeca 4,0K iun  9 07:05 deploy-source-date-epoch
+drwxr-xr-x   5 georgeca georgeca 4,0K iun 13 16:47 image
+drwxr-xr-x  14 georgeca georgeca 4,0K iun  9 07:03 kernel-meta
+drwxr-xr-x   3 georgeca georgeca 4,0K iun  9 07:05 license-destdir
+drwxr-xr-x  21 georgeca georgeca 4,0K iun 18 09:49 linux-beaglebone_yocto-standard-build
+-rw-r--r--   1 georgeca georgeca 556K iun 13 16:48 linux-yocto.spec
+drwxr-xr-x   5 georgeca georgeca 4,0K iun 13 16:48 package
+drwxr-xr-x 293 georgeca georgeca  28K iun 13 16:48 packages-split
+drwxr-xr-x   8 georgeca georgeca 4,0K iun 13 16:48 pkgdata
+drwxr-xr-x   8 georgeca georgeca 4,0K iun 13 16:48 pkgdata-pdata-input
+drwxr-xr-x   2 georgeca georgeca 4,0K iun 13 16:48 pkgdata-sysroot
+drwxrwxr-x   2 georgeca georgeca 4,0K iun 13 16:47 pseudo
+drwxr-xr-x   4 georgeca georgeca 4,0K iun 18 09:48 recipe-sysroot
+drwxr-xr-x   9 georgeca georgeca 4,0K iun  9 07:22 recipe-sysroot-native
+drwxr-xr-x   2 georgeca georgeca 4,0K iun  9 07:03 source-date-epoch
+drwxr-xr-x   3 georgeca georgeca 4,0K iun 13 16:47 sysroot-destdir
+drwxr-xr-x   2 georgeca georgeca  20K iun 18 09:48 temp
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ bitbake -c savedefconfig
+Nothing to do.  Use 'bitbake world' to build everything, or run 'bitbake --help' for usage information.
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ bitbake -c savedefconfig virtual/kernel
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2786 entries from dependency cache.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "beaglebone-yocto"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.27"
+TUNE_FEATURES        = "arm vfp cortexa8 neon callconvention-hard"
+TARGET_FPU           = "hard"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7"
+meta-oe              = "kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0"
+meta-kernel          = "<unknown>:<unknown>"
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:02
+Sstate summary: Wanted 0 Local 0 Mirrors 0 Missed 0 Current 101 (0% match, 100% complete)
+NOTE: Executing Tasks
+Saving defconfig to:
+/home/georgeca/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/linux-yocto/5.15.150+gitAUTOINC+896128cbf5_4fca0c4373-r0/linux-beaglebone_yocto-standard-build/defconfig
+NOTE: Tasks Summary: Attempted 457 tasks of which 456 didn't need to be rerun and all succeeded.
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ ls -lh /home/georgeca/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/linux-yocto/5.15.150+gitAUTOINC+896128cbf5_4fca0c4373-r0/
+total 928K
+-rw-r--r--   1 georgeca georgeca 250K iun 13 16:48 debugsources.list
+drwxr-xr-x   2 georgeca georgeca 4,0K iun 13 16:48 deploy-linux-yocto
+drwxr-xr-x   3 georgeca georgeca 4,0K iun 13 16:48 deploy-rpms
+drwxr-xr-x   2 georgeca georgeca 4,0K iun  9 07:05 deploy-source-date-epoch
+drwxr-xr-x   5 georgeca georgeca 4,0K iun 13 16:47 image
+drwxr-xr-x  14 georgeca georgeca 4,0K iun  9 07:03 kernel-meta
+drwxr-xr-x   3 georgeca georgeca 4,0K iun  9 07:05 license-destdir
+drwxr-xr-x  21 georgeca georgeca 4,0K iun 18 09:56 linux-beaglebone_yocto-standard-build
+-rw-r--r--   1 georgeca georgeca 556K iun 13 16:48 linux-yocto.spec
+drwxr-xr-x   5 georgeca georgeca 4,0K iun 13 16:48 package
+drwxr-xr-x 293 georgeca georgeca  28K iun 13 16:48 packages-split
+drwxr-xr-x   8 georgeca georgeca 4,0K iun 13 16:48 pkgdata
+drwxr-xr-x   8 georgeca georgeca 4,0K iun 13 16:48 pkgdata-pdata-input
+drwxr-xr-x   2 georgeca georgeca 4,0K iun 13 16:48 pkgdata-sysroot
+drwxrwxr-x   2 georgeca georgeca 4,0K iun 13 16:47 pseudo
+drwxr-xr-x   4 georgeca georgeca 4,0K iun 18 09:48 recipe-sysroot
+drwxr-xr-x   9 georgeca georgeca 4,0K iun  9 07:22 recipe-sysroot-native
+drwxr-xr-x   2 georgeca georgeca 4,0K iun  9 07:03 source-date-epoch
+drwxr-xr-x   3 georgeca georgeca 4,0K iun 13 16:47 sysroot-destdir
+drwxr-xr-x   2 georgeca georgeca  20K iun 18 09:56 temp
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ cd meta-kernel/recipes-kernel/linux-kernel/
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-kernel/recipes-kernel/linux-kernel$ ls -lh
+total 12K
+drwxrwxr-x 2 georgeca georgeca 4,0K iun 18 09:28 linux-kernel
+-rw-rw-r-- 1 georgeca georgeca  496 iun 18 09:47 linux-kernel_0.1.bb
+-rw-rw-r-- 1 georgeca georgeca  102 iun 18 09:44 linux-kernel_0.1.bbappend
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-kernel/recipes-kernel/linux-kernel$ cp /home/georgeca/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/linux-yocto/5.15.150+gitAUTOINC+896128cbf5_4fca0c4373-r0/linux-beaglebone_yocto-standard-build/defconfig linux-kernel/
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-kernel/recipes-kernel/linux-kernel$ tree .
+.
+├── linux-kernel
+│   └── defconfig
+├── linux-kernel_0.1.bb
+└── linux-kernel_0.1.bbappend
+
+1 directory, 3 files
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-kernel/recipes-kernel/linux-kernel$ bitbake -c cleansstate virtual/kernel
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2786 entries from dependency cache.
+ERROR: ExpansionError during parsing /home/georgeca/yocto_tutorial/my_builds/meta-kernel/recipes-kernel/linux-kernel/linux-kernel_0.1.bb                                 | ETA:  --:--:--
+Traceback (most recent call last):
+  File "Var <do_fetch[file-checksums]>", line 1, in <module>
+  File "/home/georgeca/yocto_tutorial/poky/bitbake/lib/bb/fetch2/__init__.py", line 1224, in get_checksum_file_list(d=<bb.data_smart.DataSmart object at 0x79a70c77f670>):
+         """
+    >    fetch = Fetch([], d, cache = False, localonly = True)
+     
+  File "/home/georgeca/yocto_tutorial/poky/bitbake/lib/bb/fetch2/__init__.py", line 1682, in Fetch.__init__(urls=['files://defconfig'], d=<bb.data_smart.DataSmart object at 0x79a70c77f670>, cache=False, localonly=True, connection_cache=None):
+                     try:
+    >                    self.ud[url] = FetchData(url, d, localonly)
+                     except NonLocalMethod:
+  File "/home/georgeca/yocto_tutorial/poky/bitbake/lib/bb/fetch2/__init__.py", line 1309, in FetchData.__init__(url='files://defconfig', d=<bb.data_smart.DataSmart object at 0x79a70c77f670>, localonly=True):
+             if not self.method:
+    >            raise NoMethodError(url)
+     
+bb.data_smart.ExpansionError: Failure expanding variable do_fetch[file-checksums], expression was ${@bb.fetch.get_checksum_file_list(d)}  ${@get_lic_checksum_file_list(d)} which triggered exception NoMethodError: Could not find a fetcher which supports the URL: 'files://defconfig'
+The variable dependency chain for the failure is: do_fetch[file-checksums]
+
+ERROR: Parsing halted due to errors, see error messages above
+
+Summary: There were 2 ERROR messages, returning a non-zero exit code.
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-kernel/recipes-kernel/linux-kernel$ tree
+.
+├── linux-kernel
+│   └── defconfig
+├── linux-kernel_0.1.bb
+└── linux-kernel_0.1.bbappend
+
+1 directory, 3 files
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-kernel/recipes-kernel/linux-kernel$ nano linux-kernel_0.1.bb
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-kernel/recipes-kernel/linux-kernel$ bitbake -c cleansstate virtual/kernel
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2786 entries from dependency cache.
+ERROR: ExpansionError during parsing /home/georgeca/yocto_tutorial/my_builds/meta-kernel/recipes-kernel/linux-kernel/linux-kernel_0.1.bb                                 | ETA:  --:--:--
+Traceback (most recent call last):
+  File "Var <do_fetch[file-checksums]>", line 1, in <module>
+  File "/home/georgeca/yocto_tutorial/poky/bitbake/lib/bb/fetch2/__init__.py", line 1224, in get_checksum_file_list(d=<bb.data_smart.DataSmart object at 0x7abe97b0f310>):
+         """
+    >    fetch = Fetch([], d, cache = False, localonly = True)
+     
+  File "/home/georgeca/yocto_tutorial/poky/bitbake/lib/bb/fetch2/__init__.py", line 1682, in Fetch.__init__(urls=['files://defconfig'], d=<bb.data_smart.DataSmart object at 0x7abe97b0f310>, cache=False, localonly=True, connection_cache=None):
+                     try:
+    >                    self.ud[url] = FetchData(url, d, localonly)
+                     except NonLocalMethod:
+  File "/home/georgeca/yocto_tutorial/poky/bitbake/lib/bb/fetch2/__init__.py", line 1309, in FetchData.__init__(url='files://defconfig', d=<bb.data_smart.DataSmart object at 0x7abe97b0f310>, localonly=True):
+             if not self.method:
+    >            raise NoMethodError(url)
+     
+bb.data_smart.ExpansionError: Failure expanding variable do_fetch[file-checksums], expression was ${@bb.fetch.get_checksum_file_list(d)}  ${@get_lic_checksum_file_list(d)} which triggered exception NoMethodError: Could not find a fetcher which supports the URL: 'files://defconfig'
+The variable dependency chain for the failure is: do_fetch[file-checksums]
+
+ERROR: Parsing halted due to errors, see error messages above
+
+Summary: There were 2 ERROR messages, returning a non-zero exit code.
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-kernel/recipes-kernel/linux-kernel$ ls
+linux-kernel  linux-kernel_0.1.bb  linux-kernel_0.1.bbappend
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-kernel/recipes-kernel/linux-kernel$ nano linux-kernel/defconfig 
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-kernel/recipes-kernel/linux-kernel$ bitbake -c cleansstate virtual/kernel
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2786 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1747 .bb files complete (1746 cached, 1 parsed). 2786 targets, 115 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "beaglebone-yocto"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.27"
+TUNE_FEATURES        = "arm vfp cortexa8 neon callconvention-hard"
+TARGET_FPU           = "hard"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7"
+meta-oe              = "kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0"
+meta-kernel          = "<unknown>:<unknown>"
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:02
+Sstate summary: Wanted 0 Local 0 Mirrors 0 Missed 0 Current 0 (0% match, 0% complete)
+NOTE: No setscene tasks
+NOTE: Executing Tasks
+NOTE: Tasks Summary: Attempted 3 tasks of which 0 didn't need to be rerun and all succeeded.
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-kernel/recipes-kernel/linux-kernel$ # I am building again the Linux Kernel to prove that now it is taking the GPIO sysfs setup by default
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-kernel/recipes-kernel/linux-kernel$ bitbake -c menuconfig virtual/kernel
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2786 entries from dependency cache.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "beaglebone-yocto"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.27"
+TUNE_FEATURES        = "arm vfp cortexa8 neon callconvention-hard"
+TARGET_FPU           = "hard"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7"
+meta-oe              = "kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0"
+meta-kernel          = "<unknown>:<unknown>"
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:01
+Sstate summary: Wanted 1 Local 0 Mirrors 0 Missed 1 Current 100 (0% match, 99% complete)
+NOTE: Executing Tasks
+NOTE: Tasks Summary: Attempted 457 tasks of which 445 didn't need to be rerun and all succeeded.
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-kernel/recipes-kernel/linux-kernel$ bitbake -c menuconfig virtual/kernel
+
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2786 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1747 .bb files complete (1746 cached, 1 parsed). 2786 targets, 115 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "beaglebone-yocto"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.27"
+TUNE_FEATURES        = "arm vfp cortexa8 neon callconvention-hard"
+TARGET_FPU           = "hard"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7"
+meta-oe              = "kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0"
+meta-kernel          = "<unknown>:<unknown>"
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:02
+Sstate summary: Wanted 0 Local 0 Mirrors 0 Missed 0 Current 101 (0% match, 100% complete)
+NOTE: Executing Tasks
+NOTE: Tasks Summary: Attempted 457 tasks of which 456 didn't need to be rerun and all succeeded.
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-kernel/recipes-kernel/linux-kernel$ 
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-kernel/recipes-kernel/linux-kernel$ # I am deleting the cleansstate again, to build again the linux kernel because i had an issue in the .bbappend file, i used in FILEXTRASPATHS:append instead of prepend
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-kernel/recipes-kernel/linux-kernel$ bitbake -c cleansstate virtual/kernel
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2786 entries from dependency cache.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "beaglebone-yocto"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.27"
+TUNE_FEATURES        = "arm vfp cortexa8 neon callconvention-hard"
+TARGET_FPU           = "hard"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7"
+meta-oe              = "kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0"
+meta-kernel          = "<unknown>:<unknown>"
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:01
+Sstate summary: Wanted 0 Local 0 Mirrors 0 Missed 0 Current 0 (0% match, 0% complete)
+NOTE: No setscene tasks
+NOTE: Executing Tasks
+NOTE: Tasks Summary: Attempted 3 tasks of which 0 didn't need to be rerun and all succeeded.
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-kernel/recipes-kernel/linux-kernel$ # building again the menuconfig to see if it takes new defaults
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-kernel/recipes-kernel/linux-kernel$ bitbake -c menuconfig virtual/kernel
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2786 entries from dependency cache.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "beaglebone-yocto"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.27"
+TUNE_FEATURES        = "arm vfp cortexa8 neon callconvention-hard"
+TARGET_FPU           = "hard"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7"
+meta-oe              = "kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0"
+meta-kernel          = "<unknown>:<unknown>"
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:02
+Sstate summary: Wanted 1 Local 0 Mirrors 0 Missed 1 Current 100 (0% match, 99% complete)
+NOTE: Executing Tasks
+NOTE: Tasks Summary: Attempted 457 tasks of which 445 didn't need to be rerun and all succeeded.
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-kernel/recipes-kernel/linux-kernel$ tree .
+.
+├── linux-kernel
+│   └── defconfig
+├── linux-kernel_0.1.bb
+└── linux-kernel_0.1.bbappend
+
+1 directory, 3 files
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-kernel/recipes-kernel/linux-kernel$ nano linux-kernel/defconfig 
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-kernel/recipes-kernel/linux-kernel$ mv linux-kernel_0.1.bb linux-kernel_0.1.nothing
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-kernel/recipes-kernel/linux-kernel$ tree .
+.
+├── linux-kernel
+│   └── defconfig
+├── linux-kernel_0.1.bbappend
+└── linux-kernel_0.1.nothing
+
+1 directory, 3 files
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-kernel/recipes-kernel/linux-kernel$ bitbake -c cleansstate virtual/kernel
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2786 entries from dependency cache.
+ERROR: No recipes in default available for:
+  /home/georgeca/yocto_tutorial/my_builds/meta-kernel/recipes-kernel/linux-kernel/linux-kernel_0.1.bbappend
+
+Summary: There was 1 ERROR message, returning a non-zero exit code.
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-kernel/recipes-kernel/linux-kernel$ mv  linux-kernel_0.1.nothing linux-kernel_0.1.bb
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-kernel/recipes-kernel/linux-kernel$ bitbake -c cleansstate virtual/kernel
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2786 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1747 .bb files complete (1746 cached, 1 parsed). 2786 targets, 115 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "beaglebone-yocto"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.27"
+TUNE_FEATURES        = "arm vfp cortexa8 neon callconvention-hard"
+TARGET_FPU           = "hard"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7"
+meta-oe              = "kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0"
+meta-kernel          = "<unknown>:<unknown>"
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:02
+Sstate summary: Wanted 0 Local 0 Mirrors 0 Missed 0 Current 0 (0% match, 0% complete)
+NOTE: No setscene tasks
+NOTE: Executing Tasks
+NOTE: Tasks Summary: Attempted 3 tasks of which 0 didn't need to be rerun and all succeeded.
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-kernel/recipes-kernel/linux-kernel$ bitbake -c menuconfig virtual/kernel
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2786 entries from dependency cache.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "beaglebone-yocto"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.27"
+TUNE_FEATURES        = "arm vfp cortexa8 neon callconvention-hard"
+TARGET_FPU           = "hard"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7"
+meta-oe              = "kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0"
+meta-kernel          = "<unknown>:<unknown>"
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:02
+Sstate summary: Wanted 1 Local 0 Mirrors 0 Missed 1 Current 100 (0% match, 99% complete)
+NOTE: Executing Tasks
+NOTE: Tasks Summary: Attempted 457 tasks of which 445 didn't need to be rerun and all succeeded.
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-kernel/recipes-kernel/linux-kernel$ bitbake -e virtual/kernel | grep ^SRC_URI
+SRC_URI="git://git.yoctoproject.org/linux-yocto.git;name=machine;branch=v5.15/standard/beaglebone;            git://git.yoctoproject.org/yocto-kernel-cache;type=kmeta;name=meta;branch=yocto-5.15;destsuffix=kernel-meta"
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-kernel/recipes-kernel/linux-kernel$ bitbake -c cleansstate virtual/kernel
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2786 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1747 .bb files complete (1746 cached, 1 parsed). 2786 targets, 115 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "beaglebone-yocto"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.27"
+TUNE_FEATURES        = "arm vfp cortexa8 neon callconvention-hard"
+TARGET_FPU           = "hard"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7"
+meta-oe              = "kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0"
+meta-kernel          = "<unknown>:<unknown>"
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:02
+Sstate summary: Wanted 0 Local 0 Mirrors 0 Missed 0 Current 0 (0% match, 0% complete)
+NOTE: No setscene tasks
+NOTE: Executing Tasks
+NOTE: Tasks Summary: Attempted 3 tasks of which 0 didn't need to be rerun and all succeeded.
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-kernel/recipes-kernel/linux-kernel$ bitbake -c menuconfig virtual/kernel
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:01
+Loaded 2786 entries from dependency cache.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "beaglebone-yocto"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.27"
+TUNE_FEATURES        = "arm vfp cortexa8 neon callconvention-hard"
+TARGET_FPU           = "hard"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7"
+meta-oe              = "kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0"
+meta-kernel          = "<unknown>:<unknown>"
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:03
+Sstate summary: Wanted 1 Local 0 Mirrors 0 Missed 1 Current 100 (0% match, 99% complete)
+NOTE: Executing Tasks
+NOTE: Tasks Summary: Attempted 457 tasks of which 445 didn't need to be rerun and all succeeded.
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-kernel/recipes-kernel/linux-kernel$ cd ../../..
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ tree meta-kernel/
+meta-kernel/
+├── conf
+│   └── layer.conf
+├── COPYING.MIT
+├── README
+├── recipes-example
+│   └── example
+│       └── example_0.1.bb
+└── recipes-kernel
+    └── linux-kernel
+        ├── linux-kernel
+        │   └── defconfig
+        ├── linux-kernel_0.1.bb
+        └── linux-kernel_0.1.bbappend
+
+6 directories, 7 files
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ mv meta-kernel/recipes-kernel/linux-kernel/ meta-kernel/recipes-kernel/linux
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ tree meta-kernel/
+meta-kernel/
+├── conf
+│   └── layer.conf
+├── COPYING.MIT
+├── README
+├── recipes-example
+│   └── example
+│       └── example_0.1.bb
+└── recipes-kernel
+    └── linux
+        ├── linux-kernel
+        │   └── defconfig
+        ├── linux-kernel_0.1.bb
+        └── linux-kernel_0.1.bbappend
+
+6 directories, 7 files
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ rm meta-kernel/recipes-kernel/linux/linux-kernel_0.1.bb
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ tree meta-kernel
+meta-kernel
+├── conf
+│   └── layer.conf
+├── COPYING.MIT
+├── README
+├── recipes-example
+│   └── example
+│       └── example_0.1.bb
+└── recipes-kernel
+    └── linux
+        ├── linux-kernel
+        │   └── defconfig
+        └── linux-kernel_0.1.bbappend
+
+6 directories, 6 files
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ mv meta-kernel/recipes-kernel/linux/linux-kernel meta-kernel/recipes-kernel/linux/linux-yocto
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ tree meta-kernel/
+meta-kernel/
+├── conf
+│   └── layer.conf
+├── COPYING.MIT
+├── README
+├── recipes-example
+│   └── example
+│       └── example_0.1.bb
+└── recipes-kernel
+    └── linux
+        ├── linux-kernel_0.1.bbappend
+        └── linux-yocto
+            └── defconfig
+
+6 directories, 6 files
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ mv meta-kernel/recipes-kernel/linux/linux-kernel_0.1.bbappend meta-kernel/recipes-kernel/linux/linux-yocto_0.1.bbappend
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ tree meta-kernel
+meta-kernel
+├── conf
+│   └── layer.conf
+├── COPYING.MIT
+├── README
+├── recipes-example
+│   └── example
+│       └── example_0.1.bb
+└── recipes-kernel
+    └── linux
+        ├── linux-yocto
+        │   └── defconfig
+        └── linux-yocto_0.1.bbappend
+
+6 directories, 6 files
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ bitbake -c cleansstate virtual/kernel
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2786 entries from dependency cache.
+ERROR: No recipes in default available for:
+  /home/georgeca/yocto_tutorial/my_builds/meta-kernel/recipes-kernel/linux/linux-yocto_0.1.bbappend
+
+Summary: There was 1 ERROR message, returning a non-zero exit code.
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ bitbake-layers show-recipes linux-yocto
+NOTE: Starting bitbake server...
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2786 entries from dependency cache.
+ERROR: No recipes in default available for:
+  /home/georgeca/yocto_tutorial/my_builds/meta-kernel/recipes-kernel/linux/linux-yocto_0.1.bbappend
+
+Summary: There was 1 ERROR message, returning a non-zero exit code.
+Traceback (most recent call last):
+  File "/home/georgeca/yocto_tutorial/poky/bitbake/bin/bitbake-layers", line 95, in <module>
+    ret = main()
+  File "/home/georgeca/yocto_tutorial/poky/bitbake/bin/bitbake-layers", line 85, in main
+    tinfoil.parse_recipes()
+  File "/home/georgeca/yocto_tutorial/poky/bitbake/lib/bb/tinfoil.py", line 448, in parse_recipes
+    self.run_actions(config_params)
+  File "/home/georgeca/yocto_tutorial/poky/bitbake/lib/bb/tinfoil.py", line 431, in run_actions
+    raise TinfoilUIException(ret)
+bb.tinfoil.TinfoilUIException: 1
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ bitbake-layers remove-layer meta-kernel/
+NOTE: Starting bitbake server...
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ bitbake-layers show-layers
+NOTE: Starting bitbake server...
+layer                 path                                      priority
+==========================================================================
+meta                  /home/georgeca/yocto_tutorial/poky/meta   5
+meta-poky             /home/georgeca/yocto_tutorial/poky/meta-poky  5
+meta-yocto-bsp        /home/georgeca/yocto_tutorial/poky/meta-yocto-bsp  5
+meta-oe               /home/georgeca/yocto_tutorial/poky/meta-openembedded/meta-oe  5
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ bitbake-layers show-recipes linux-yocto
+NOTE: Starting bitbake server...
+Loading cache: 100% |                                                                                                                                                    | ETA:  --:--:--
+Loaded 0 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:01:05
+Parsing of 1745 .bb files complete (0 cached, 1745 parsed). 2784 targets, 115 skipped, 0 masked, 0 errors.
+Removing 1 recipes from the beaglebone_yocto sysroot: 100% |##############################################################################################################| Time: 0:00:00
+Removing 1 recipes from the cortexa8hf-neon sysroot: 100% |###############################################################################################################| Time: 0:00:00
+=== Matching recipes: ===
+linux-yocto:
+  meta                 5.15.150+gitAUTOINC+896128cbf5_4fca0c4373
+  meta                 5.10.130+gitAUTOINC+876ae2ac4c_3c44f12b9d
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ mv meta-kernel/recipes-kernel/linux/linux-yocto_0.1.bbappend meta-kernel/recipes-kernel/linux/linux-yocto_5.15.bbappend 
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ tree meta-kernel
+meta-kernel
+├── conf
+│   └── layer.conf
+├── COPYING.MIT
+├── README
+├── recipes-example
+│   └── example
+│       └── example_0.1.bb
+└── recipes-kernel
+    └── linux
+        ├── linux-yocto
+        │   └── defconfig
+        └── linux-yocto_5.15.bbappend
+
+6 directories, 6 files
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ bitbake-layer add-layer meta-kernel/
+bitbake-layer: command not found
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ bitbake-layers add-layer meta-kernel/
+NOTE: Starting bitbake server...
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ bitbake -c cleansstate virtual/kernel
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2786 entries from dependency cache.
+Parsing recipes: 100% |###################################################################################################################################################| Time: 0:00:00
+Parsing of 1746 .bb files complete (1745 cached, 1 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "beaglebone-yocto"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.27"
+TUNE_FEATURES        = "arm vfp cortexa8 neon callconvention-hard"
+TARGET_FPU           = "hard"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7"
+meta-oe              = "kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0"
+meta-kernel          = "<unknown>:<unknown>"
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:02
+Sstate summary: Wanted 0 Local 0 Mirrors 0 Missed 0 Current 0 (0% match, 0% complete)
+NOTE: No setscene tasks
+NOTE: Executing Tasks
+NOTE: Tasks Summary: Attempted 3 tasks of which 0 didn't need to be rerun and all succeeded.
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ bitbake -c menuconfig virtual/kernel
+Loading cache: 100% |#####################################################################################################################################################| Time: 0:00:00
+Loaded 2786 entries from dependency cache.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "beaglebone-yocto"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.27"
+TUNE_FEATURES        = "arm vfp cortexa8 neon callconvention-hard"
+TARGET_FPU           = "hard"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7"
+meta-oe              = "kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0"
+meta-kernel          = "<unknown>:<unknown>"
+
+Initialising tasks: 100% |################################################################################################################################################| Time: 0:00:02
+Sstate summary: Wanted 1 Local 0 Mirrors 0 Missed 1 Current 100 (0% match, 99% complete)
+NOTE: Executing Tasks
+NOTE: Tasks Summary: Attempted 457 tasks of which 445 didn't need to be rerun and all succeeded.
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ # Notes: mind the name of the dirs and files in the recipes-kernel directory, also the PV and PR of the .bbappend file must match the PV and PR of the linux-yocto recipes in your system
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ 
+
