@@ -15,9 +15,9 @@ The listings of the command line carry also also errors, and the steps taken for
 3. https://www.youtube.com/watch?v=9gPAGly0epU (The Challenges of Embedded Linux - Chris Simmonds - NDC TechTown 2023)
 4. https://www.youtube.com/watch?v=6_pugJ0H50U (The Embedded Linux Quick Start Guide / Tutorial - Part 1/3 - Chris Simmons)
 ### Applied and hands-on
-1. https://www.youtube.com/watch?v=5fj05BWryhM&list=PLwqS94HTEwpQmgL1UsSwNk_2tQdzq3eVJ (Yocto Kernel from beginner to advanced concept builders)
-2. https://www.youtube.com/watch?v=HfbwRfurNfM&list=PLwqS94HTEwpQkHWbPQWBBXg4ZU5qO1ypB (Yocto Kernel Usage of DevTool for diverse operations)
-3. https://www.youtube.com/playlist?list=PLwqS94HTEwpRrHZLlqtbRlmNWxGO6No2j (Yocto Kernel Development)
+1. https://www.youtube.com/watch?v=5fj05BWryhM&list=PLwqS94HTEwpQmgL1UsSwNk_2tQdzq3eVJ (Yocto Kernel from beginner to advanced concept builders - great learning resources)
+2. https://www.youtube.com/watch?v=HfbwRfurNfM&list=PLwqS94HTEwpQkHWbPQWBBXg4ZU5qO1ypB (Yocto Kernel Usage of DevTool for diverse operations - great learning resources)
+3. https://www.youtube.com/playlist?list=PLwqS94HTEwpRrHZLlqtbRlmNWxGO6No2j (Yocto Kernel Development - great learning resources)
 
 
 
