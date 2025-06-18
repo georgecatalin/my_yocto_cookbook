@@ -1,0 +1,205 @@
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ source ../poky/oe-init-build-env .
+
+### Shell environment set up for builds. ###
+
+You can now run 'bitbake <target>'
+
+Common targets are:
+    core-image-minimal
+    core-image-full-cmdline
+    core-image-sato
+    core-image-weston
+    meta-toolchain
+    meta-ide-support
+
+You can also run generated qemu images with a command like 'runqemu qemux86'
+
+Other commonly useful commands are:
+ - 'devtool' and 'recipetool' handle common recipe tasks
+ - 'bitbake-layers' handles common layer tasks
+ - 'oe-pkgdata-util' handles common target package tasks
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ bitbake-layers show-layers
+NOTE: Starting bitbake server...
+layer                 path                                      priority
+==========================================================================
+meta                  /home/georgeca/yocto_tutorial/poky/meta   5
+meta-poky             /home/georgeca/yocto_tutorial/poky/meta-poky  5
+meta-yocto-bsp        /home/georgeca/yocto_tutorial/poky/meta-yocto-bsp  5
+meta-oe               /home/georgeca/yocto_tutorial/poky/meta-openembedded/meta-oe  5
+meta-georgeca         /home/georgeca/yocto_tutorial/my_builds/meta-georgeca  6
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ uname -r
+6.8.0-60-generic
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ bitbake-layers show-recipes linux-yocto
+NOTE: Starting bitbake server...
+Loading cache: 100% |#########################################################################################################################################################################| Time: 0:00:00
+Loaded 2785 entries from dependency cache.
+=== Matching recipes: ===
+linux-yocto:
+  meta                 5.15.150+gitAUTOINC+896128cbf5_4fca0c4373
+  meta                 5.10.130+gitAUTOINC+876ae2ac4c_3c44f12b9d
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ ls -lh
+total 3,8M
+drwxrwxr-x 3 georgeca georgeca 4,0K mai 24 09:01 '~'
+-rw-rw-r-- 1 georgeca georgeca    0 iun 12 13:59  ⚠️
+-rw-rw-r-- 1 georgeca georgeca 3,7M iun 18 14:58  bitbake-cookerdaemon.log
+drwxrwxr-x 2 georgeca georgeca 4,0K iun 18 14:58  cache
+drwxrwxr-x 2 georgeca georgeca 4,0K iun 18 13:01  conf
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 10 16:20  meta-advanced-calculator
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 11 09:36  meta_advanced-calculator-makefile
+drwxrwxr-x 4 georgeca georgeca 4,0K mai 27 16:10  meta-assignment-vars
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 13 14:00  meta-custom
+drwxrwxr-x 5 georgeca georgeca 4,0K iun 13 13:25  meta-example
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 18 12:00  meta-georgeca
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ tree meta-georgeca/
+meta-georgeca/
+├── conf
+│   └── layer.conf
+├── COPYING.MIT
+├── README
+└── recipes-kernel
+    ├── hello-mod
+    │   ├── files
+    │   │   ├── COPYING
+    │   │   ├── hello.c
+    │   │   └── Makefile
+    │   └── hello-mod_0.1.bb
+    └── linux
+        ├── linux-yocto
+        │   ├── defconfig
+        │   └── gpio-sysfs.cfg
+        └── linux-yocto_5.15.bbappend
+
+6 directories, 10 files
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ ls ../poky/meta-skeleton/
+conf  README.skeleton  recipes-baremetal  recipes-core  recipes-kernel  recipes-multilib  recipes-skeleton
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ ls ../poky/meta-skeleton/recipes-kernel/
+hello-mod  linux
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ ls -lh
+total 3,8M
+drwxrwxr-x 3 georgeca georgeca 4,0K mai 24 09:01 '~'
+-rw-rw-r-- 1 georgeca georgeca    0 iun 12 13:59  ⚠️
+-rw-rw-r-- 1 georgeca georgeca 3,7M iun 18 14:58  bitbake-cookerdaemon.log
+drwxrwxr-x 2 georgeca georgeca 4,0K iun 18 14:58  cache
+drwxrwxr-x 2 georgeca georgeca 4,0K iun 18 13:01  conf
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 10 16:20  meta-advanced-calculator
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 11 09:36  meta_advanced-calculator-makefile
+drwxrwxr-x 4 georgeca georgeca 4,0K mai 27 16:10  meta-assignment-vars
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 13 14:00  meta-custom
+drwxrwxr-x 5 georgeca georgeca 4,0K iun 13 13:25  meta-example
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 18 12:00  meta-georgeca
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ cp -r ../poky/meta-skeleton/recipes-kernel/hello-mod  meta-georgeca/recipes-kernel/tab-module
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ tree meta-georgeca
+meta-georgeca
+├── conf
+│   └── layer.conf
+├── COPYING.MIT
+├── README
+└── recipes-kernel
+    ├── hello-mod
+    │   ├── files
+    │   │   ├── COPYING
+    │   │   ├── hello.c
+    │   │   └── Makefile
+    │   └── hello-mod_0.1.bb
+    ├── linux
+    │   ├── linux-yocto
+    │   │   ├── defconfig
+    │   │   └── gpio-sysfs.cfg
+    │   └── linux-yocto_5.15.bbappend
+    └── tab-module
+        ├── files
+        │   ├── COPYING
+        │   ├── hello.c
+        │   └── Makefile
+        └── hello-mod_0.1.bb
+
+8 directories, 14 files
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ mv meta-georgeca/recipes-kernel/tab-module/hello-mod_0.1.bb meta-georgeca/recipes-kernel/tab-module/tab-module_0.1.bb
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ tree meta-georgeca/
+meta-georgeca/
+├── conf
+│   └── layer.conf
+├── COPYING.MIT
+├── README
+└── recipes-kernel
+    ├── hello-mod
+    │   ├── files
+    │   │   ├── COPYING
+    │   │   ├── hello.c
+    │   │   └── Makefile
+    │   └── hello-mod_0.1.bb
+    ├── linux
+    │   ├── linux-yocto
+    │   │   ├── defconfig
+    │   │   └── gpio-sysfs.cfg
+    │   └── linux-yocto_5.15.bbappend
+    └── tab-module
+        ├── files
+        │   ├── COPYING
+        │   ├── hello.c
+        │   └── Makefile
+        └── tab-module_0.1.bb
+
+8 directories, 14 files
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ code meta-georgeca/recipes-kernel/tab-module/tab-module_0.1.bb 
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ code meta-georgeca/recipes-kernel/tab-module/tab-module_0.1.bb 
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ code meta-georgeca/recipes-kernel/tab-module/files/hello.c 
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ cd meta-georgeca/recipes-kernel/tab-module/
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-georgeca/recipes-kernel/tab-module$ ls -lh
+total 8,0K
+drwxrwxr-x 2 georgeca georgeca 4,0K iun 18 14:59 files
+-rw-rw-r-- 1 georgeca georgeca  526 iun 18 15:02 tab-module_0.1.bb
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-georgeca/recipes-kernel/tab-module$ cd files/
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-georgeca/recipes-kernel/tab-module/files$ ls -lh
+total 28K
+-rw-rw-r-- 1 georgeca georgeca  18K iun 18 14:59 COPYING
+-rw-rw-r-- 1 georgeca georgeca 1,2K iun 18 14:59 hello.c
+-rw-rw-r-- 1 georgeca georgeca  292 iun 18 14:59 Makefile
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-georgeca/recipes-kernel/tab-module/files$ cp ~/Downloads/tab-module.c .
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-georgeca/recipes-kernel/tab-module/files$ ls -lh
+total 36K
+-rw-rw-r-- 1 georgeca georgeca  18K iun 18 14:59 COPYING
+-rw-rw-r-- 1 georgeca georgeca 1,2K iun 18 14:59 hello.c
+-rw-rw-r-- 1 georgeca georgeca  292 iun 18 14:59 Makefile
+-rw-rw-r-- 1 georgeca georgeca 4,3K iun 18 15:06 tab-module.c
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-georgeca/recipes-kernel/tab-module/files$ rm hello.c 
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-georgeca/recipes-kernel/tab-module/files$ ls -lh
+total 32K
+-rw-rw-r-- 1 georgeca georgeca  18K iun 18 14:59 COPYING
+-rw-rw-r-- 1 georgeca georgeca  292 iun 18 14:59 Makefile
+-rw-rw-r-- 1 georgeca georgeca 4,3K iun 18 15:06 tab-module.c
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-georgeca/recipes-kernel/tab-module/files$ code Makefile 
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-georgeca/recipes-kernel/tab-module/files$  cd ../../../..
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ code conf/local.conf 
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ time bitbake core-image-full-cmdline
+Loading cache: 100% |                                                                                                                                                                        | ETA:  --:--:--
+Loaded 0 entries from dependency cache.
+Parsing recipes: 100% |#######################################################################################################################################################################| Time: 0:00:30
+Parsing of 1747 .bb files complete (0 cached, 1747 parsed). 2786 targets, 115 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "beaglebone-yocto"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.27"
+TUNE_FEATURES        = "arm vfp cortexa8 neon callconvention-hard"
+TARGET_FPU           = "hard"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7"
+meta-oe              = "kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0"
+meta-georgeca        = "<unknown>:<unknown>"
+
+Initialising tasks: 100% |####################################################################################################################################################################| Time: 0:00:02
+Sstate summary: Wanted 181 Local 172 Mirrors 0 Missed 9 Current 1544 (95% match, 99% complete)
+Removing 2 stale sstate objects for arch beaglebone_yocto: 100% |#############################################################################################################################| Time: 0:00:00
+NOTE: Executing Tasks
+NOTE: Tasks Summary: Attempted 4643 tasks of which 4606 didn't need to be rerun and all succeeded.
+
+real	2m5,223s
+user	0m0,479s
+sys	0m0,162s
