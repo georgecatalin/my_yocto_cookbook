@@ -1,6 +1,7 @@
 # A Yocto Cookbook
 This repository contains a curated collection of Yocto Project resources, including custom recipes, configuration snippets, layer examples, build tips, and troubleshooting notes for learning Yocto. 
 
+The repository holds the necessary directories and files as meta-layers, recipes, .bbappend files etc, and also listings from the commands run 'console-line terminals' of the development machine and, the target machine, upon deployment.
 
 <img src="yocto_project.png" alt="Yocto-Project Logo" width="300">
 
