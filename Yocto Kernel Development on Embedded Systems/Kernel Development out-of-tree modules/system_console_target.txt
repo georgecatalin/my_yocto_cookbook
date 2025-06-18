@@ -1,0 +1,44 @@
+root@beaglebone-yocto:~# find / -iname "hello.ko"
+/lib/modules/5.15.150-yocto-standard/extra/hello.ko
+root@beaglebone-yocto:~# modprobe /lib/modules/5.15.150-yocto-standard/extra/hello.ko
+modprobe: FATAL: Module /lib/modules/5.15.150-yocto-standard/extra/hello.ko not found in directory /lib/modules/5.15.150-yocto-standard
+root@beaglebone-yocto:~# cd  /lib/modules/5.15.150-yocto-standard/extra/        
+root@beaglebone-yocto:/lib/modules/5.15.150-yocto-standard/extra# ls
+hello.ko
+root@beaglebone-yocto:/lib/modules/5.15.150-yocto-standard/extra# modprobe hello.ko 
+modprobe: FATAL: Module hello.ko not found in directory /lib/modules/5.15.150-yocto-standard
+root@beaglebone-yocto:/lib/modules/5.15.150-yocto-standard/extra# ls -lh
+total 4.0K
+-rw-r--r-- 1 root root 3.3K Mar  9 12:34 hello.ko
+root@beaglebone-yocto:/lib/modules/5.15.150-yocto-standard/extra# insmod hello.ko 
+root@beaglebone-yocto:/lib/modules/5.15.150-yocto-standard/extra# dmesg | tail
+[    4.397145]     HOME=/
+[    4.397151]     TERM=linux
+[    5.127675] FAT-fs (mmcblk0p1): Volume was not properly unmounted. Some data may be corrupt. Please run fsck.
+[    5.450224] udevd[128]: starting version 3.2.10
+[    5.512613] udevd[129]: starting eudev-3.2.10
+[    6.763928] EXT4-fs (mmcblk0p2): re-mounted. Opts: (null). Quota mode: disabled.
+[    8.832772] cpsw-switch 4a100000.switch: starting ndev. mode: dual_mac
+[    8.928204] SMSC LAN8710/LAN8720 4a101000.mdio:00: attached PHY driver (mii_bus:phy_addr=4a101000.mdio:00, irq=POLL)
+[  162.249417] hello: loading out-of-tree module taints kernel.
+[  162.250001] Hello World!
+root@beaglebone-yocto:/lib/modules/5.15.150-yocto-standard/extra# lsmod
+Module                  Size  Used by
+hello                  16384  0
+root@beaglebone-yocto:/lib/modules/5.15.150-yocto-standard/extra# rmmod hello.ko 
+root@beaglebone-yocto:/lib/modules/5.15.150-yocto-standard/extra# dmesg | tail
+[    4.397151]     TERM=linux
+[    5.127675] FAT-fs (mmcblk0p1): Volume was not properly unmounted. Some data may be corrupt. Please run fsck.
+[    5.450224] udevd[128]: starting version 3.2.10
+[    5.512613] udevd[129]: starting eudev-3.2.10
+[    6.763928] EXT4-fs (mmcblk0p2): re-mounted. Opts: (null). Quota mode: disabled.
+[    8.832772] cpsw-switch 4a100000.switch: starting ndev. mode: dual_mac
+[    8.928204] SMSC LAN8710/LAN8720 4a101000.mdio:00: attached PHY driver (mii_bus:phy_addr=4a101000.mdio:00, irq=POLL)
+[  162.249417] hello: loading out-of-tree module taints kernel.
+[  162.250001] Hello World!
+[  195.637006] Goodbye Cruel World!
+root@beaglebone-yocto:/lib/modules/5.15.150-yocto-standard/extra# uname -r
+5.15.150-yocto-standard
+root@beaglebone-yocto:/lib/modules/5.15.150-yocto-standard/extra# lsmod
+Module                  Size  Used by
+

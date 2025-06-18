@@ -1,0 +1,172 @@
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$   source ../poky/oe-init-build-env .
+
+### Shell environment set up for builds. ###
+
+You can now run 'bitbake <target>'
+
+Common targets are:
+    core-image-minimal
+    core-image-full-cmdline
+    core-image-sato
+    core-image-weston
+    meta-toolchain
+    meta-ide-support
+
+You can also run generated qemu images with a command like 'runqemu qemux86'
+
+Other commonly useful commands are:
+ - 'devtool' and 'recipetool' handle common recipe tasks
+ - 'bitbake-layers' handles common layer tasks
+ - 'oe-pkgdata-util' handles common target package tasks
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ ls -lh ../poky/meta-skeleton/
+total 28K
+drwxrwxr-x 2 georgeca georgeca 4,0K mai 24 08:38 conf
+-rw-rw-r-- 1 georgeca georgeca  103 mai 24 08:38 README.skeleton
+drwxrwxr-x 3 georgeca georgeca 4,0K mai 24 08:38 recipes-baremetal
+drwxrwxr-x 3 georgeca georgeca 4,0K mai 24 08:38 recipes-core
+drwxrwxr-x 4 georgeca georgeca 4,0K mai 24 08:38 recipes-kernel
+drwxrwxr-x 3 georgeca georgeca 4,0K mai 24 08:38 recipes-multilib
+drwxrwxr-x 7 georgeca georgeca 4,0K mai 24 08:38 recipes-skeleton
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ ls -lh ../poky/meta-skeleton/recipes-kernel/
+total 8,0K
+drwxrwxr-x 3 georgeca georgeca 4,0K mai 24 08:38 hello-mod
+drwxrwxr-x 3 georgeca georgeca 4,0K mai 24 08:38 linux
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ cp -r ../poky/meta-skeleton/recipes-kernel/hello-mod/ meta-georgeca/recipes-kernel/
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ tree meta-georgeca/
+meta-georgeca/
+├── conf
+│   └── layer.conf
+├── COPYING.MIT
+├── README
+└── recipes-kernel
+    ├── hello-mod
+    │   ├── files
+    │   │   ├── COPYING
+    │   │   ├── hello.c
+    │   │   └── Makefile
+    │   └── hello-mod_0.1.bb
+    └── linux
+        ├── linux-yocto
+        │   ├── defconfig
+        │   └── gpio-sysfs.cfg
+        └── linux-yocto_5.15.bbappend
+
+6 directories, 10 files
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ code meta-georgeca/recipes-kernel/hello-mod/hello-mod_0.1.bb 
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ code conf/local.conf 
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ time bitbake core-image-full-cmdline
+Loading cache: 100% |                                                                                                                                                                        | ETA:  --:--:--
+Loaded 0 entries from dependency cache.
+Parsing recipes: 100% |#######################################################################################################################################################################| Time: 0:00:30
+Parsing of 1746 .bb files complete (0 cached, 1746 parsed). 2785 targets, 115 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "beaglebone-yocto"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.27"
+TUNE_FEATURES        = "arm vfp cortexa8 neon callconvention-hard"
+TARGET_FPU           = "hard"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7"
+meta-oe              = "kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0"
+meta-georgeca        = "<unknown>:<unknown>"
+
+Initialising tasks: 100% |####################################################################################################################################################################| Time: 0:00:03
+Sstate summary: Wanted 195 Local 170 Mirrors 0 Missed 25 Current 1530 (87% match, 98% complete)
+Removing 4 stale sstate objects for arch beaglebone_yocto: 100% |#############################################################################################################################| Time: 0:00:00
+NOTE: Executing Tasks
+NOTE: Tasks Summary: Attempted 4643 tasks of which 4576 didn't need to be rerun and all succeeded.
+
+real	13m13,530s
+user	0m1,982s
+sys	0m0,658s
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ bitbake -e core-image-full-cmdline | grep ^D=
+D="/home/georgeca/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/core-image-full-cmdline/1.0-r0/image"
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ ls /home/georgeca/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/core-image-full-cmdline/1.0-r0/image
+ls: cannot access '/home/georgeca/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/core-image-full-cmdline/1.0-r0/image': No such file or directory
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ cd ../sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/core-image-full-cmdline/1.0-r0/
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/core-image-full-cmdline/1.0-r0$ ls
+temp
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/core-image-full-cmdline/1.0-r0$  cd ..
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/core-image-full-cmdline$ ls
+1.0-r0
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/core-image-full-cmdline$ cd  ..
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi$ ls
+base-files               core-image-minimal   hello-mod      klogger      make-mod-scripts        shadow-securetty  u-boot
+core-image-full-cmdline  depmodwrapper-cross  init-ifupdown  linux-yocto  packagegroup-core-boot  sysvinit-inittab
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi$ cd ../..
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp$ cd ..
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/sources$ ls
+downloads  sstate-cache  tmp
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/sources$ cd tmp
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp$ ls
+abi_version  buildstats  cache  deploy  hosttools  log  pkgdata  qa.log  saved_tmpdir  sstate-control  stamps  sysroots  sysroots-components  sysroots-uninative  work  work-shared
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp$ cd deploy/
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/deploy$ ls
+images  licenses  rpm
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/deploy$ cd images/
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/deploy/images$ ls
+beaglebone-yocto  qemux86-64
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/deploy/images$ cd beaglebone-yocto/
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/deploy/images/beaglebone-yocto$ ls -lh
+total 482M
+-rw-r--r-- 2 georgeca georgeca  63K iun 18 13:40 am335x-bone--5.15.150+git0+896128cbf5_4fca0c4373-r0-beaglebone-yocto-20250618103015.dtb
+lrwxrwxrwx 2 georgeca georgeca   87 iun 18 13:40 am335x-bone-beaglebone-yocto.dtb -> am335x-bone--5.15.150+git0+896128cbf5_4fca0c4373-r0-beaglebone-yocto-20250618103015.dtb
+-rw-r--r-- 2 georgeca georgeca  66K iun 18 13:40 am335x-boneblack--5.15.150+git0+896128cbf5_4fca0c4373-r0-beaglebone-yocto-20250618103015.dtb
+lrwxrwxrwx 2 georgeca georgeca   92 iun 18 13:40 am335x-boneblack-beaglebone-yocto.dtb -> am335x-boneblack--5.15.150+git0+896128cbf5_4fca0c4373-r0-beaglebone-yocto-20250618103015.dtb
+lrwxrwxrwx 2 georgeca georgeca   92 iun 18 13:40 am335x-boneblack.dtb -> am335x-boneblack--5.15.150+git0+896128cbf5_4fca0c4373-r0-beaglebone-yocto-20250618103015.dtb
+lrwxrwxrwx 2 georgeca georgeca   87 iun 18 13:40 am335x-bone.dtb -> am335x-bone--5.15.150+git0+896128cbf5_4fca0c4373-r0-beaglebone-yocto-20250618103015.dtb
+-rw-r--r-- 2 georgeca georgeca  63K iun 18 13:40 am335x-bonegreen--5.15.150+git0+896128cbf5_4fca0c4373-r0-beaglebone-yocto-20250618103015.dtb
+lrwxrwxrwx 2 georgeca georgeca   92 iun 18 13:40 am335x-bonegreen-beaglebone-yocto.dtb -> am335x-bonegreen--5.15.150+git0+896128cbf5_4fca0c4373-r0-beaglebone-yocto-20250618103015.dtb
+lrwxrwxrwx 2 georgeca georgeca   92 iun 18 13:40 am335x-bonegreen.dtb -> am335x-bonegreen--5.15.150+git0+896128cbf5_4fca0c4373-r0-beaglebone-yocto-20250618103015.dtb
+-rw-r--r-- 1 georgeca georgeca 2,0K iun 18 13:42 core-image-full-cmdline-beaglebone-yocto-20250618103015.qemuboot.conf
+-rw-r--r-- 1 georgeca georgeca  67M iun 18 13:42 core-image-full-cmdline-beaglebone-yocto-20250618103015.rootfs.jffs2
+-rw-r--r-- 1 georgeca georgeca  18K iun 18 13:42 core-image-full-cmdline-beaglebone-yocto-20250618103015.rootfs.manifest
+-rw-r--r-- 1 georgeca georgeca  49M iun 18 13:42 core-image-full-cmdline-beaglebone-yocto-20250618103015.rootfs.tar.bz2
+-rw-r--r-- 1 georgeca georgeca 275M iun 18 13:42 core-image-full-cmdline-beaglebone-yocto-20250618103015.rootfs.wic
+-rw-r--r-- 1 georgeca georgeca 3,7K iun 18 13:42 core-image-full-cmdline-beaglebone-yocto-20250618103015.rootfs.wic.bmap
+-rw-r--r-- 1 georgeca georgeca 254K iun 18 13:42 core-image-full-cmdline-beaglebone-yocto-20250618103015.testdata.json
+lrwxrwxrwx 1 georgeca georgeca   68 iun 18 13:42 core-image-full-cmdline-beaglebone-yocto.jffs2 -> core-image-full-cmdline-beaglebone-yocto-20250618103015.rootfs.jffs2
+lrwxrwxrwx 1 georgeca georgeca   71 iun 18 13:42 core-image-full-cmdline-beaglebone-yocto.manifest -> core-image-full-cmdline-beaglebone-yocto-20250618103015.rootfs.manifest
+lrwxrwxrwx 1 georgeca georgeca   69 iun 18 13:42 core-image-full-cmdline-beaglebone-yocto.qemuboot.conf -> core-image-full-cmdline-beaglebone-yocto-20250618103015.qemuboot.conf
+lrwxrwxrwx 1 georgeca georgeca   70 iun 18 13:42 core-image-full-cmdline-beaglebone-yocto.tar.bz2 -> core-image-full-cmdline-beaglebone-yocto-20250618103015.rootfs.tar.bz2
+lrwxrwxrwx 1 georgeca georgeca   69 iun 18 13:42 core-image-full-cmdline-beaglebone-yocto.testdata.json -> core-image-full-cmdline-beaglebone-yocto-20250618103015.testdata.json
+lrwxrwxrwx 1 georgeca georgeca   66 iun 18 13:42 core-image-full-cmdline-beaglebone-yocto.wic -> core-image-full-cmdline-beaglebone-yocto-20250618103015.rootfs.wic
+lrwxrwxrwx 1 georgeca georgeca   71 iun 18 13:42 core-image-full-cmdline-beaglebone-yocto.wic.bmap -> core-image-full-cmdline-beaglebone-yocto-20250618103015.rootfs.wic.bmap
+-rw-r--r-- 1 georgeca georgeca 5,0K iun 18 13:42 core-image-full-cmdline.env
+-rw-r--r-- 1 georgeca georgeca 2,0K iun 10 13:26 core-image-minimal-beaglebone-yocto-20250610102501.qemuboot.conf
+-rw-r--r-- 1 georgeca georgeca  43M iun 10 13:26 core-image-minimal-beaglebone-yocto-20250610102501.rootfs.jffs2
+-rw-r--r-- 1 georgeca georgeca 4,3K iun 10 13:26 core-image-minimal-beaglebone-yocto-20250610102501.rootfs.manifest
+-rw-r--r-- 1 georgeca georgeca  33M iun 10 13:26 core-image-minimal-beaglebone-yocto-20250610102501.rootfs.tar.bz2
+-rw-r--r-- 1 georgeca georgeca 176M iun 10 13:26 core-image-minimal-beaglebone-yocto-20250610102501.rootfs.wic
+-rw-r--r-- 1 georgeca georgeca 3,5K iun 10 13:26 core-image-minimal-beaglebone-yocto-20250610102501.rootfs.wic.bmap
+-rw-r--r-- 1 georgeca georgeca 258K iun 10 13:26 core-image-minimal-beaglebone-yocto-20250610102501.testdata.json
+lrwxrwxrwx 1 georgeca georgeca   63 iun 10 13:26 core-image-minimal-beaglebone-yocto.jffs2 -> core-image-minimal-beaglebone-yocto-20250610102501.rootfs.jffs2
+lrwxrwxrwx 1 georgeca georgeca   66 iun 10 13:26 core-image-minimal-beaglebone-yocto.manifest -> core-image-minimal-beaglebone-yocto-20250610102501.rootfs.manifest
+lrwxrwxrwx 1 georgeca georgeca   64 iun 10 13:26 core-image-minimal-beaglebone-yocto.qemuboot.conf -> core-image-minimal-beaglebone-yocto-20250610102501.qemuboot.conf
+lrwxrwxrwx 1 georgeca georgeca   65 iun 10 13:26 core-image-minimal-beaglebone-yocto.tar.bz2 -> core-image-minimal-beaglebone-yocto-20250610102501.rootfs.tar.bz2
+lrwxrwxrwx 1 georgeca georgeca   64 iun 10 13:26 core-image-minimal-beaglebone-yocto.testdata.json -> core-image-minimal-beaglebone-yocto-20250610102501.testdata.json
+lrwxrwxrwx 1 georgeca georgeca   61 iun 10 13:26 core-image-minimal-beaglebone-yocto.wic -> core-image-minimal-beaglebone-yocto-20250610102501.rootfs.wic
+lrwxrwxrwx 1 georgeca georgeca   66 iun 10 13:26 core-image-minimal-beaglebone-yocto.wic.bmap -> core-image-minimal-beaglebone-yocto-20250610102501.rootfs.wic.bmap
+-rw-r--r-- 1 georgeca georgeca 4,9K iun 10 13:26 core-image-minimal.env
+lrwxrwxrwx 1 georgeca georgeca   31 iun  9 09:38 MLO -> MLO-beaglebone-yocto-2022.01-r0
+lrwxrwxrwx 1 georgeca georgeca   31 iun  9 09:38 MLO-beaglebone-yocto -> MLO-beaglebone-yocto-2022.01-r0
+-rw-r--r-- 1 georgeca georgeca 106K iun  9 09:38 MLO-beaglebone-yocto-2022.01-r0
+-rw-r--r-- 2 georgeca georgeca  47M iun 18 13:40 modules--5.15.150+git0+896128cbf5_4fca0c4373-r0-beaglebone-yocto-20250618103015.tgz
+lrwxrwxrwx 2 georgeca georgeca   83 iun 18 13:40 modules-beaglebone-yocto.tgz -> modules--5.15.150+git0+896128cbf5_4fca0c4373-r0-beaglebone-yocto-20250618103015.tgz
+-rw-r--r-- 1 georgeca georgeca 1,2M iun  9 09:38 u-boot-beaglebone-yocto-2022.01-r0.img
+lrwxrwxrwx 1 georgeca georgeca   38 iun  9 09:38 u-boot-beaglebone-yocto.img -> u-boot-beaglebone-yocto-2022.01-r0.img
+lrwxrwxrwx 1 georgeca georgeca   38 iun  9 09:38 u-boot.img -> u-boot-beaglebone-yocto-2022.01-r0.img
+lrwxrwxrwx 1 georgeca georgeca   46 iun  9 09:38 u-boot-initial-env -> u-boot-initial-env-beaglebone-yocto-2022.01-r0
+lrwxrwxrwx 1 georgeca georgeca   46 iun  9 09:38 u-boot-initial-env-beaglebone-yocto -> u-boot-initial-env-beaglebone-yocto-2022.01-r0
+-rw-r--r-- 1 georgeca georgeca 7,6K iun  9 09:38 u-boot-initial-env-beaglebone-yocto-2022.01-r0
+lrwxrwxrwx 2 georgeca georgeca   82 iun 18 13:40 zImage -> zImage--5.15.150+git0+896128cbf5_4fca0c4373-r0-beaglebone-yocto-20250618103015.bin
+-rw-r--r-- 2 georgeca georgeca 7,6M iun 18 13:40 zImage--5.15.150+git0+896128cbf5_4fca0c4373-r0-beaglebone-yocto-20250618103015.bin
+lrwxrwxrwx 2 georgeca georgeca   82 iun 18 13:40 zImage-beaglebone-yocto.bin -> zImage--5.15.150+git0+896128cbf5_4fca0c4373-r0-beaglebone-yocto-20250618103015.bin
+
