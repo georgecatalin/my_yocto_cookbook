@@ -1,0 +1,447 @@
+oot@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source# ls -lh
+total 892K
+drwxr-xr-x  25 1000 1000 4.0K Jun 18 13:26 arch
+drwxr-xr-x   3 1000 1000 4.0K Jun 18 13:26 block
+drwxr-xr-x   2 1000 1000 4.0K Jun 18 13:26 certs
+-rw-r--r--   1 1000 1000  496 Jun 18 13:26 COPYING
+-rw-r--r--   1 1000 1000  99K Jun 18 13:26 CREDITS
+drwxr-xr-x   4 1000 1000 4.0K Jun 18 13:26 crypto
+drwxr-xr-x  82 1000 1000 4.0K Jun 18 13:26 Documentation
+drwxr-xr-x 138 1000 1000 4.0K Jun 18 13:26 drivers
+drwxr-xr-x  85 1000 1000 4.0K Jun 18 13:26 fs
+drwxr-xr-x  29 1000 1000 4.0K Jun 18 13:26 include
+drwxr-xr-x   2 1000 1000 4.0K Jun 18 13:26 init
+drwxr-xr-x   2 1000 1000 4.0K Jun 18 13:26 io_uring
+drwxr-xr-x   2 1000 1000 4.0K Jun 18 13:26 ipc
+-rw-r--r--   1 1000 1000 1.3K Jun 18 13:26 Kbuild
+-rw-r--r--   1 1000 1000  555 Jun 18 13:26 Kconfig
+drwxr-xr-x  21 1000 1000 4.0K Jun 18 13:26 kernel
+drwxr-xr-x  21 1000 1000  12K Jun 18 13:26 lib
+drwxr-xr-x   6 1000 1000 4.0K Jun 18 13:26 LICENSES
+-rw-r--r--   1 1000 1000 607K Jun 18 13:26 MAINTAINERS
+-rw-r--r--   1 1000 1000  66K Jun 18 13:26 Makefile
+drwxr-xr-x   5 1000 1000 4.0K Jun 18 13:26 mm
+drwxr-xr-x  71 1000 1000 4.0K Jun 18 13:26 net
+-rw-r--r--   1 1000 1000  727 Jun 18 13:26 README
+drwxr-xr-x  34 1000 1000 4.0K Jun 18 13:26 samples
+drwxr-xr-x  17 1000 1000 4.0K Jun 18 13:26 scripts
+drwxr-xr-x  14 1000 1000 4.0K Jun 18 13:26 security
+drwxr-xr-x  27 1000 1000 4.0K Jun 18 13:26 sound
+drwxr-xr-x  38 1000 1000 4.0K Jun 18 13:26 tools
+drwxr-xr-x   3 1000 1000 4.0K Jun 18 13:26 usr
+drwxr-xr-x   4 1000 1000 4.0K Jun 18 13:26 virt
+root@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source# git add *
+root@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source# git status
+On branch v5.15/standard/beaglebone
+Your branch is behind 'origin/v5.15/standard/beaglebone' by 6920 commits, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+
+nothing to commit, working tree clean
+root@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source# git init
+Reinitialized existing Git repository in /home/georgeca/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source/.git/
+root@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source# git add *
+root@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source# git status
+On branch v5.15/standard/beaglebone
+Your branch is behind 'origin/v5.15/standard/beaglebone' by 6920 commits, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+
+nothing to commit, working tree clean
+root@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source# git commit -m "initial commit"
+On branch v5.15/standard/beaglebone
+Your branch is behind 'origin/v5.15/standard/beaglebone' by 6920 commits, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+
+nothing to commit, working tree clean
+root@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source# cd ~
+root@georgeca-VirtualBox:~# cd ~/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/
+root@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto# ls
+kernel-build-artifacts  kernel-source
+root@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto# cd kernel-source/
+root@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source# ls
+arch   certs    CREDITS  Documentation  fs       init      ipc     Kconfig  lib       MAINTAINERS  mm   README   scripts   sound  usr
+block  COPYING  crypto   drivers        include  io_uring  Kbuild  kernel   LICENSES  Makefile     net  samples  security  tools  virt
+root@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source# git add *
+root@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source# git commit -m "initial commit"
+On branch v5.15/standard/beaglebone
+Your branch is behind 'origin/v5.15/standard/beaglebone' by 6920 commits, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+
+nothing to commit, working tree clean
+root@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source# cd drivers
+root@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source/drivers# ls
+accessibility  bcma         comedi     dca      firewire  hid         idle          isdn       media     mtd     nvmem    phy       ptp         rtc      soundwire  thermal      video     xen
+acpi           block        connector  devfreq  firmware  hsi         iio           Kconfig    memory    mux     of       pinctrl   pwm         s390     spi        thunderbolt  virt      zorro
+amba           bluetooth    counter    dio      fpga      hv          infiniband    leds       memstick  net     opp      platform  rapidio     sbus     spmi       tty          virtio
+android        bus          cpufreq    dma      fsi       hwmon       input         macintosh  message   nfc     parisc   pnp       ras         scsi     ssb        uio          visorbus
+ata            cdrom        cpuidle    dma-buf  gnss      hwspinlock  interconnect  mailbox    mfd       ntb     parport  power     regulator   sh       staging    usb          vlynq
+atm            char         crypto     edac     gpio      hwtracing   iommu         Makefile   misc      nubus   pci      powercap  remoteproc  siox     target     vdpa         vme
+auxdisplay     clk          cxl        eisa     gpu       i2c         ipack         mcb        mmc       nvdimm  pcmcia   pps       reset       slimbus  tc         vfio         w1
+base           clocksource  dax        extcon   greybus   i3c         irqchip       md         most      nvme    perf     ps3       rpmsg       soc      tee        vhost        watchdog
+root@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source/drivers# cd char
+root@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source/drivers/char# ls
+adi.c            applicom.c  ds1620.c  hangcheck-timer.c  ipmi     Makefile  mspec.c     nvram.c     nwflash.c       powernv-op-panel.c  random.c       tb0219.c   tpm           virtio_console.c
+agp              applicom.h  dsp56k.c  hpet.c             Kconfig  mem.c     mwave       nwbutton.c  pc8736x_gpio.c  ppdev.c             scx200_gpio.c  tlclk.c    ttyprintk.c   xilinx_hwicap
+apm-emulation.c  bsr.c       dtlk.c    hw_random          lp.c     misc.c    nsc_gpio.c  nwbutton.h  pcmcia          ps3flash.c          sonypi.c       toshiba.c  uv_mmtimer.c  xillybus
+root@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source/drivers/char# mkdir george_driver
+root@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source/drivers/char# cd george_driver/
+root@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source/drivers/char/george_driver# touch Kconfig
+root@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source/drivers/char/george_driver# touch Makefile
+root@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source/drivers/char/george_driver# ls
+Kconfig  Makefile
+root@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source/drivers/char/george_driver# cp ~/yocto_tutorial/my_builds/meta-georgeca/recipes-kernel/tab-module/files/tab-module.c george-module.c
+root@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source/drivers/char/george_driver# ls -lh
+total 8.0K
+-rw-r--r-- 1 1000 1000 4.3K Jun 18 14:09 george-module.c
+-rw-r--r-- 1 1000 1000    0 Jun 18 14:08 Kconfig
+-rw-r--r-- 1 1000 1000    0 Jun 18 14:09 Makefile
+root@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source/drivers/char/george_driver# code Kconfig 
+2025/06/18 14:10:04.596731 cmd_run.go:1276: WARNING: cannot create user data directory: cannot get the current user: user: unknown userid 1000
+2025/06/18 14:10:04.599128 cmd_run.go:1281: WARNING: cannot copy user Xauthority file: cannot get the current user: user: unknown userid 1000
+mkdir: cannot create directory ‘/.config’: Permission denied
+chmod: cannot access '/.config': No such file or directory
+mkdir: cannot create directory ‘/.local’: Permission denied
+mkdir: cannot create directory ‘/.cache’: Permission denied
+/snap/code/195/electron-launch: line 245: /.cache/gdk-pixbuf-loaders.cache: No such file or directory
+mkdir: cannot create directory ‘/.cache’: Permission denied
+mkdir: cannot create directory ‘/.cache’: Permission denied
+mkdir: cannot create directory ‘/.local’: Permission denied
+ln: target '/.cache/gio-modules': No such file or directory
+ln: target '/.cache/immodules': No such file or directory
+/snap/code/195/electron-launch: line 271: /.cache/immodules/immodules.cache: No such file or directory
+/snap/code/195/electron-launch: line 275: /.last_revision: Permission denied
+Unable to open directory /.cache/gio-modules: Error opening directory “/.cache/gio-modules”: No such file or directory
+ln: target '/.local/share/glib-2.0/schemas': No such file or directory
+ln: failed to create symbolic link '/.local/share/glib-2.0/schemas': No such file or directory
+You are trying to start Visual Studio Code as a super user which isn't recommended. If this was intended, please add the argument `--no-sandbox` and specify an alternate user data directory using the `--user-data-dir` argument.
+root@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source/drivers/char/george_driver# nano Kconfig
+Unable to create directory /home/root/.local/share/nano/: No such file or directory
+It is required for saving/loading search history or cursor positions.
+
+root@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source/drivers/char/george_driver# ls
+george-module.c  Kconfig  Makefile
+root@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source/drivers/char/george_driver# cat Kconfig 
+config GEORGE_DRIVER
+	tristate "A custom driver for learning Kernel Dev"
+	help
+		This is a driver utilized for learning the workflow of driver integration into the mainline Kernel with the power of Yocto Project
+root@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source/drivers/char/george_driver# nano Makefile 
+Unable to create directory /home/root/.local/share/nano/: No such file or directory
+It is required for saving/loading search history or cursor positions.
+
+root@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source/drivers/char/george_driver# nano Makefile 
+Unable to create directory /home/root/.local/share/nano/: No such file or directory
+It is required for saving/loading search history or cursor positions.
+
+root@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source/drivers/char/george_driver# md5sum Makefile 
+61c6c3469e38ccbb7fd47f163b1fbc4b  Makefile
+root@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source/drivers/char/george_driver# cd ..
+root@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source/drivers/char# ls 
+adi.c            applicom.c  ds1620.c  george_driver      hw_random  lp.c      misc.c   nsc_gpio.c  nwbutton.h      pcmcia              ps3flash.c     sonypi.c  toshiba.c    uv_mmtimer.c      xillybus
+agp              applicom.h  dsp56k.c  hangcheck-timer.c  ipmi       Makefile  mspec.c  nvram.c     nwflash.c       powernv-op-panel.c  random.c       tb0219.c  tpm          virtio_console.c
+apm-emulation.c  bsr.c       dtlk.c    hpet.c             Kconfig    mem.c     mwave    nwbutton.c  pc8736x_gpio.c  ppdev.c             scx200_gpio.c  tlclk.c   ttyprintk.c  xilinx_hwicap
+root@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source/drivers/char# nano Kconfig 
+Unable to create directory /home/root/.local/share/nano/: No such file or directory
+It is required for saving/loading search history or cursor positions.
+
+root@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source/drivers/char# nano Kconfig 
+Unable to create directory /home/root/.local/share/nano/: No such file or directory
+It is required for saving/loading search history or cursor positions.
+
+root@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source/drivers/char# ls george_driver/
+george-module.c  Kconfig  Makefile
+root@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source/drivers/char# nano Makefile 
+Unable to create directory /home/root/.local/share/nano/: No such file or directory
+It is required for saving/loading search history or cursor positions.
+
+root@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source/drivers/char# git status
+On branch v5.15/standard/beaglebone
+Your branch is behind 'origin/v5.15/standard/beaglebone' by 6920 commits, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   Kconfig
+	modified:   Makefile
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	george_driver/
+
+no changes added to commit (use "git add" and/or "git commit -a")
+root@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source/drivers/char# git add george_driver/
+root@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source/drivers/char# git add Kconfig 
+root@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source/drivers/char# git add Makefile 
+root@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source/drivers/char# git status
+On branch v5.15/standard/beaglebone
+Your branch is behind 'origin/v5.15/standard/beaglebone' by 6920 commits, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	modified:   Kconfig
+	modified:   Makefile
+	new file:   george_driver/Kconfig
+	new file:   george_driver/Makefile
+	new file:   george_driver/george-module.c
+
+root@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source/drivers/char# git commit -m "inserted custom char driver module"
+[v5.15/standard/beaglebone 94b53b3fa3ea] inserted custom char driver module
+ 5 files changed, 166 insertions(+)
+ create mode 100644 drivers/char/george_driver/Kconfig
+ create mode 100644 drivers/char/george_driver/Makefile
+ create mode 100644 drivers/char/george_driver/george-module.c
+root@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source/drivers/char# git format-patch HEAD~1
+0001-inserted-custom-char-driver-module.patch
+root@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source/drivers/char# ls
+0001-inserted-custom-char-driver-module.patch  applicom.c  dsp56k.c           hpet.c     lp.c      mspec.c     nwbutton.c      pcmcia              random.c       tlclk.c      uv_mmtimer.c
+adi.c                                          applicom.h  dtlk.c             hw_random  Makefile  mwave       nwbutton.h      powernv-op-panel.c  scx200_gpio.c  toshiba.c    virtio_console.c
+agp                                            bsr.c       george_driver      ipmi       mem.c     nsc_gpio.c  nwflash.c       ppdev.c             sonypi.c       tpm          xilinx_hwicap
+apm-emulation.c                                ds1620.c    hangcheck-timer.c  Kconfig    misc.c    nvram.c     pc8736x_gpio.c  ps3flash.c          tb0219.c       ttyprintk.c  xillybus
+root@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source/drivers/char# mv 0001-inserted-custom-char-driver-module.patch ~/yocto_tutorial/my_builds/meta-georgeca/recipes-kernel/linux/linux-yocto
+root@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source/drivers/char# ls
+adi.c            applicom.c  ds1620.c  george_driver      hw_random  lp.c      misc.c   nsc_gpio.c  nwbutton.h      pcmcia              ps3flash.c     sonypi.c  toshiba.c    uv_mmtimer.c      xillybus
+agp              applicom.h  dsp56k.c  hangcheck-timer.c  ipmi       Makefile  mspec.c  nvram.c     nwflash.c       powernv-op-panel.c  random.c       tb0219.c  tpm          virtio_console.c
+apm-emulation.c  bsr.c       dtlk.c    hpet.c             Kconfig    mem.c     mwave    nwbutton.c  pc8736x_gpio.c  ppdev.c             scx200_gpio.c  tlclk.c   ttyprintk.c  xilinx_hwicap
+root@georgeca-VirtualBox:~/yocto_tutorial/sources/tmp/work-shared/beaglebone-yocto/kernel-source/drivers/char# cd ~/yocto_tutorial/my_builds/meta-georgeca/recipes-kernel/
+root@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-georgeca/recipes-kernel# ls
+hello-mod  linux  tab-module
+root@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-georgeca/recipes-kernel# cd linux/
+root@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-georgeca/recipes-kernel/linux# ls
+linux-yocto  linux-yocto_5.15.bbappend
+root@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-georgeca/recipes-kernel/linux# cd linux-yocto/
+root@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-georgeca/recipes-kernel/linux/linux-yocto# ls
+0001-inserted-custom-char-driver-module.patch  defconfig  gpio-sysfs.cfg
+root@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-georgeca/recipes-kernel/linux/linux-yocto# cat 0001-inserted-custom-char-driver-module.patch 
+From 94b53b3fa3ead27a3b52f4fcd33bf416b220bc68 Mon Sep 17 00:00:00 2001
+From: George Calin <george.calin@gmail.com>
+Date: Wed, 18 Jun 2025 14:22:35 +0000
+Subject: [PATCH] inserted custom char driver module
+
+---
+ drivers/char/Kconfig                       |   1 +
+ drivers/char/Makefile                      |   2 +
+ drivers/char/george_driver/Kconfig         |   4 +
+ drivers/char/george_driver/Makefile        |   1 +
+ drivers/char/george_driver/george-module.c | 158 +++++++++++++++++++++
+ 5 files changed, 166 insertions(+)
+ create mode 100644 drivers/char/george_driver/Kconfig
+ create mode 100644 drivers/char/george_driver/Makefile
+ create mode 100644 drivers/char/george_driver/george-module.c
+
+diff --git a/drivers/char/Kconfig b/drivers/char/Kconfig
+index d454428f4981..c9640f74646b 100644
+--- a/drivers/char/Kconfig
++++ b/drivers/char/Kconfig
+@@ -6,6 +6,7 @@
+ menu "Character devices"
+ 
+ source "drivers/tty/Kconfig"
++source "drivers/char/george_driver/Kconfig"
+ 
+ config TTY_PRINTK
+ 	tristate "TTY driver to output user messages via printk"
+diff --git a/drivers/char/Makefile b/drivers/char/Makefile
+index 264eb398fdd4..f758bfc6f1da 100644
+--- a/drivers/char/Makefile
++++ b/drivers/char/Makefile
+@@ -46,3 +46,5 @@ obj-$(CONFIG_PS3_FLASH)		+= ps3flash.o
+ obj-$(CONFIG_XILLYBUS_CLASS)	+= xillybus/
+ obj-$(CONFIG_POWERNV_OP_PANEL)	+= powernv-op-panel.o
+ obj-$(CONFIG_ADI)		+= adi.o
++
++obj-$(CONFIG_GEORGE_DRIVER) 	+= george_driver/
+diff --git a/drivers/char/george_driver/Kconfig b/drivers/char/george_driver/Kconfig
+new file mode 100644
+index 000000000000..fc3157278d7e
+--- /dev/null
++++ b/drivers/char/george_driver/Kconfig
+@@ -0,0 +1,4 @@
++config GEORGE_DRIVER
++	tristate "A custom driver for learning Kernel Dev"
++	help
++		This is a driver utilized for learning the workflow of driver integration into the mainline Kernel with the power of Yocto Project
+diff --git a/drivers/char/george_driver/Makefile b/drivers/char/george_driver/Makefile
+new file mode 100644
+index 000000000000..801c0af717ba
+--- /dev/null
++++ b/drivers/char/george_driver/Makefile
+@@ -0,0 +1 @@
++obj-$(CONFIG_GEORGE_DRIVER) := george_module.o
+diff --git a/drivers/char/george_driver/george-module.c b/drivers/char/george_driver/george-module.c
+new file mode 100644
+index 000000000000..efbf91bdb8bc
+--- /dev/null
++++ b/drivers/char/george_driver/george-module.c
+@@ -0,0 +1,158 @@
++#include <linux/kernel.h>
++#include <linux/init.h>
++#include <linux/module.h>
++#include <linux/kdev_t.h>
++#include <linux/fs.h>
++#include <linux/cdev.h>
++#include <linux/device.h>
++#include<linux/slab.h>                 //kmalloc()
++#include<linux/uaccess.h>              //copy_to/from_user()
++#include <linux/err.h>
++ 
++
++#define mem_size        1024           //Memory Size
++ 
++dev_t dev = 0;
++static struct class *dev_class;
++static struct cdev tab_cdev;
++uint8_t *kernel_buffer;
++
++/*
++** Function Prototypes
++*/
++static int      __init tab_driver_init(void);
++static void     __exit tab_driver_exit(void);
++static int      tab_open(struct inode *inode, struct file *file);
++static int      tab_release(struct inode *inode, struct file *file);
++static ssize_t  tab_read(struct file *filp, char __user *buf, size_t len,loff_t * off);
++static ssize_t  tab_write(struct file *filp, const char *buf, size_t len, loff_t * off);
++
++
++/*
++** File Operations structure
++*/
++static struct file_operations fops =
++{
++        .owner          = THIS_MODULE,
++        .read           = tab_read,
++        .write          = tab_write,
++        .open           = tab_open,
++        .release        = tab_release,
++};
++ 
++/*
++** This function will be called when we open the Device file
++*/
++static int tab_open(struct inode *inode, struct file *file)
++{
++        pr_info("Device File Opened...!!!\n");
++        return 0;
++}
++
++/*
++** This function will be called when we close the Device file
++*/
++static int tab_release(struct inode *inode, struct file *file)
++{
++        pr_info("Device File Closed...!!!\n");
++        return 0;
++}
++
++/*
++** This function will be called when we read the Device file
++*/
++static ssize_t tab_read(struct file *filp, char __user *buf, size_t len, loff_t *off)
++{
++        //Copy the data from the kernel space to the user-space
++        if( copy_to_user(buf, kernel_buffer, mem_size) )
++        {
++                pr_err("Data Read : Err!\n");
++        }
++        pr_info("Data Read : Done!\n");
++        return mem_size;
++}
++
++/*
++** This function will be called when we write the Device file
++*/
++static ssize_t tab_write(struct file *filp, const char __user *buf, size_t len, loff_t *off)
++{
++        //Copy the data to kernel space from the user-space
++        if( copy_from_user(kernel_buffer, buf, len) )
++        {
++                pr_err("Data Write : Err!\n");
++        }
++        pr_info("Data Write : Done!\n");
++        return len;
++}
++
++/*
++** Module Init function
++*/
++static int __init tab_driver_init(void)
++{
++        /*Allocating Major number*/
++        if((alloc_chrdev_region(&dev, 0, 1, "tab_Dev")) <0){
++                pr_info("Cannot allocate major number\n");
++                return -1;
++        }
++        pr_info("Major = %d Minor = %d \n",MAJOR(dev), MINOR(dev));
++ 
++        /*Creating cdev structure*/
++        cdev_init(&tab_cdev,&fops);
++ 
++        /*Adding character device to the system*/
++        if((cdev_add(&tab_cdev,dev,1)) < 0){
++            pr_info("Cannot add the device to the system\n");
++            goto r_class;
++        }
++ 
++        /*Creating struct class*/
++        if(IS_ERR(dev_class = class_create(THIS_MODULE,"tab_class"))){
++            pr_info("Cannot create the struct class\n");
++            goto r_class;
++        }
++ 
++        /*Creating device*/
++        if(IS_ERR(device_create(dev_class,NULL,dev,NULL,"tab_device"))){
++            pr_info("Cannot create the Device 1\n");
++            goto r_device;
++        }
++        
++        /*Creating Physical memory*/
++        if((kernel_buffer = kmalloc(mem_size , GFP_KERNEL)) == 0){
++            pr_info("Cannot allocate memory in kernel\n");
++            goto r_device;
++        }
++        
++        strcpy(kernel_buffer, "Hello_World");
++        
++        pr_info("Device Driver Insert...Done!!!\n");
++        return 0;
++ 
++r_device:
++        class_destroy(dev_class);
++r_class:
++        unregister_chrdev_region(dev,1);
++        return -1;
++}
++
++/*
++** Module exit function
++*/
++static void __exit tab_driver_exit(void)
++{
++  kfree(kernel_buffer);
++        device_destroy(dev_class,dev);
++        class_destroy(dev_class);
++        cdev_del(&tab_cdev);
++        unregister_chrdev_region(dev, 1);
++        pr_info("Device Driver Remove...Done!!!\n");
++}
++ 
++module_init(tab_driver_init);
++module_exit(tab_driver_exit);
++ 
++MODULE_LICENSE("GPL");
++MODULE_DESCRIPTION("Simple Linux device driver (Real Linux Device Driver)");
++MODULE_VERSION("1.4");
+\ No newline at end of file
+-- 
+2.34.1
+
+root@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-georgeca/recipes-kernel/linux/linux-yocto# ls
+0001-inserted-custom-char-driver-module.patch  defconfig  gpio-sysfs.cfg
+root@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-georgeca/recipes-kernel/linux/linux-yocto# nano ../linux-yocto_5.15.bbappend 
+Unable to create directory /home/root/.local/share/nano/: No such file or directory
+It is required for saving/loading search history or cursor positions.
+
+root@georgeca-VirtualBox:~/yocto_tutorial/my_builds/meta-georgeca/recipes-kernel/linux/linux-yocto# md5sum ../linux-yocto_5.15.bbappend 
+4f8b67039a0b5fcdc969a021acad399d  ../linux-yocto_5.15.bbappend
+
