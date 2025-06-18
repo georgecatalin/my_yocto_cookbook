@@ -11,5 +11,5 @@ This repository contains a curated collection of Yocto Project resources, includ
 4. https://www.youtube.com/playlist?list=PLwqS94HTEwpRrHZLlqtbRlmNWxGO6No2j (Yocto Kernel Development)
 5. https://www.youtube.com/watch?v=8M8U1EgnUVw (Getting started with Yocto Project - Chris Simmons - NDC TechTown 2022) 
 6. https://www.youtube.com/watch?v=9gPAGly0epU (The Challenges of Embedded Linux - Chris Simmonds - NDC TechTown 2023)
-7. https://www.youtube.com/watch?v=6_pugJ0H50U
+7. https://www.youtube.com/watch?v=6_pugJ0H50U (The Embedded Linux Quick Start Guide / Tutorial - Part 1/3 - Chris Simmons)
 
