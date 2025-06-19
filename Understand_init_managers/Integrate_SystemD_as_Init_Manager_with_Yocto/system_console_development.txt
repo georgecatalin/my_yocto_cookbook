@@ -1,0 +1,1105 @@
+eorgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ source ../poky/oe-init-build-env .
+
+### Shell environment set up for builds. ###
+
+You can now run 'bitbake <target>'
+
+Common targets are:
+    core-image-minimal
+    core-image-full-cmdline
+    core-image-sato
+    core-image-weston
+    meta-toolchain
+    meta-ide-support
+
+You can also run generated qemu images with a command like 'runqemu qemux86'
+
+Other commonly useful commands are:
+ - 'devtool' and 'recipetool' handle common recipe tasks
+ - 'bitbake-layers' handles common layer tasks
+ - 'oe-pkgdata-util' handles common target package tasks
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ bitbake-layers show-layers
+NOTE: Starting bitbake server...
+ layer                 path                                      priority
+==========================================================================
+meta                  /home/georgeca/yocto_tutorial/poky/meta   5
+meta-poky             /home/georgeca/yocto_tutorial/poky/meta-poky  5
+meta-yocto-bsp        /home/georgeca/yocto_tutorial/poky/meta-yocto-bsp  5
+meta-oe               /home/georgeca/yocto_tutorial/poky/meta-openembedded/meta-oe  5
+meta-georgeca         /home/georgeca/yocto_tutorial/my_builds/meta-georgeca  6
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$  bitbake-layers remove-layer meta-georgeca/
+NOTE: Starting bitbake server...
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ bitbake-layers show-layers
+NOTE: Starting bitbake server...
+layer                 path                                      priority
+==========================================================================
+meta                  /home/georgeca/yocto_tutorial/poky/meta   5
+meta-poky             /home/georgeca/yocto_tutorial/poky/meta-poky  5
+meta-yocto-bsp        /home/georgeca/yocto_tutorial/poky/meta-yocto-bsp  5
+meta-oe               /home/georgeca/yocto_tutorial/poky/meta-openembedded/meta-oe  5
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ ls -lh
+total 4,2M
+drwxrwxr-x 3 georgeca georgeca 4,0K mai 24 09:01 '~'
+-rw-rw-r-- 1 georgeca georgeca    0 iun 12 13:59  ⚠️
+-rw-rw-r-- 1 georgeca georgeca 4,2M iun 19 15:43  bitbake-cookerdaemon.log
+drwxrwxr-x 2 georgeca georgeca 4,0K iun 19 15:43  cache
+drwxrwxr-x 2 georgeca georgeca 4,0K iun 18 17:47  conf
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 10 16:20  meta-advanced-calculator
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 11 09:36  meta_advanced-calculator-makefile
+drwxrwxr-x 4 georgeca georgeca 4,0K mai 27 16:10  meta-assignment-vars
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 13 14:00  meta-custom
+drwxrwxr-x 5 georgeca georgeca 4,0K iun 13 13:25  meta-example
+drwxrwxr-x 5 georgeca georgeca 4,0K iun 18 18:08  meta-georgeca
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ bitbake-layers show-recipes linux-yocto
+NOTE: Starting bitbake server...
+Loading cache: 100% |####################################################################################################################################################################################################################################| Time: 0:00:00
+Loaded 2784 entries from dependency cache.
+Removing 2 recipes from the beaglebone_yocto sysroot: 100% |#############################################################################################################################################################################################| Time: 0:00:00
+=== Matching recipes: ===
+linux-yocto:
+  meta                 5.15.150+gitAUTOINC+896128cbf5_4fca0c4373
+  meta                 5.10.130+gitAUTOINC+876ae2ac4c_3c44f12b9d
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ code conf/local.conf 
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ bitbake -c cleansstate virtual/kernel
+Loading cache: 100% |                                                                                                                                                                                                                                   | ETA:  --:--:--
+Loaded 0 entries from dependency cache.
+Parsing recipes: 100% |##################################################################################################################################################################################################################################| Time: 0:00:40
+Parsing of 1745 .bb files complete (0 cached, 1745 parsed). 2784 targets, 112 skipped, 0 masked, 0 errors.
+Removing 2 recipes from the beaglebone_yocto sysroot: 100% |#############################################################################################################################################################################################| Time: 0:00:00
+Removing 2 recipes from the cortexa8hf-neon sysroot: 100% |##############################################################################################################################################################################################| Time: 0:00:00
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "beaglebone-yocto"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.27"
+TUNE_FEATURES        = "arm vfp cortexa8 neon callconvention-hard"
+TARGET_FPU           = "hard"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7"
+meta-oe              = "kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0"
+
+Initialising tasks: 100% |###############################################################################################################################################################################################################################| Time: 0:00:01
+Sstate summary: Wanted 0 Local 0 Mirrors 0 Missed 0 Current 0 (0% match, 0% complete)
+NOTE: No setscene tasks
+NOTE: Executing Tasks
+NOTE: Tasks Summary: Attempted 3 tasks of which 0 didn't need to be rerun and all succeeded.
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ time bitbake core-image-full-cmdline
+Loading cache: 100% |####################################################################################################################################################################################################################################| Time: 0:00:00
+Loaded 2784 entries from dependency cache.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "beaglebone-yocto"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.27"
+TUNE_FEATURES        = "arm vfp cortexa8 neon callconvention-hard"
+TARGET_FPU           = "hard"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7"
+meta-oe              = "kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0"
+
+Initialising tasks: 100% |###############################################################################################################################################################################################################################| Time: 0:00:02
+Sstate summary: Wanted 855 Local 11 Mirrors 0 Missed 844 Current 885 (1% match, 51% complete)
+Removing 156 stale sstate objects for arch beaglebone_yocto: 100% |######################################################################################################################################################################################| Time: 0:00:01
+Removing 5 stale sstate objects for arch allarch: 100% |#################################################################################################################################################################################################| Time: 0:00:00
+Removing 448 stale sstate objects for arch cortexa8hf-neon: 100% |#######################################################################################################################################################################################| Time: 0:00:01
+NOTE: Executing Tasks
+ERROR: core-image-full-cmdline-1.0-r0 do_rootfs: Could not invoke dnf. Command '/home/georgeca/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/core-image-full-cmdline/1.0-r0/recipe-sysroot-native/usr/bin/dnf -v --rpmverbosity=info -y -c /home/georgeca/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/core-image-full-cmdline/1.0-r0/rootfs/etc/dnf/dnf.conf --setopt=reposdir=/home/georgeca/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/core-image-full-cmdline/1.0-r0/rootfs/etc/yum.repos.d --installroot=/home/georgeca/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/core-image-full-cmdline/1.0-r0/rootfs --setopt=logdir=/home/georgeca/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/core-image-full-cmdline/1.0-r0/temp --repofrompath=oe-repo,/home/georgeca/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/core-image-full-cmdline/1.0-r0/oe-rootfs-repo --nogpgcheck install git nano packagegroup-core-boot packagegroup-core-full-cmdline packagegroup-core-ssh-openssh python3 run-postinsts locale-base-en-us locale-base-en-gb' returned -6:
+DNF version: 4.11.1
+cachedir: /home/georgeca/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/core-image-full-cmdline/1.0-r0/rootfs/var/cache/dnf
+Added oe-repo repo from /home/georgeca/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/core-image-full-cmdline/1.0-r0/oe-rootfs-repo
+User-Agent: falling back to 'libdnf': could not detect OS or basearch
+repo: using cache for: oe-repo
+oe-repo: using metadata from Thu 19 Jun 2025 02:58:37 PM UTC.
+Last metadata expiration check: 0:00:01 ago on Thu 19 Jun 2025 02:58:38 PM UTC.
+--> Starting dependency resolution
+---> Package acl.cortexa8hf_neon 2.3.1-r0 will be installed
+---> Package at.cortexa8hf_neon 3.2.5-r0 will be installed
+---> Package attr.cortexa8hf_neon 2.5.1-r0 will be installed
+---> Package base-files.beaglebone_yocto 3.0.14-r89 will be installed
+---> Package base-passwd.cortexa8hf_neon 3.5.52-r0 will be installed
+---> Package bash.cortexa8hf_neon 5.1.16-r0 will be installed
+---> Package bc.cortexa8hf_neon 1.07.1-r0 will be installed
+---> Package busybox.cortexa8hf_neon 1.35.0-r0 will be installed
+---> Package busybox-udhcpc.cortexa8hf_neon 1.35.0-r0 will be installed
+---> Package bzip2.cortexa8hf_neon 1.0.8-r0 will be installed
+---> Package ca-certificates.noarch 20211016-r0 will be installed
+---> Package coreutils.cortexa8hf_neon 9.0-r0 will be installed
+---> Package coreutils-stdbuf.cortexa8hf_neon 9.0-r0 will be installed
+---> Package cpio.cortexa8hf_neon 2.14-r0 will be installed
+---> Package cracklib.cortexa8hf_neon 2.9.8-r0 will be installed
+---> Package cronie.cortexa8hf_neon 1.6.1-r0 will be installed
+---> Package dbus-1.cortexa8hf_neon 1.14.8-r0 will be installed
+---> Package dbus-common.cortexa8hf_neon 1.14.8-r0 will be installed
+---> Package dbus-tools.cortexa8hf_neon 1.14.8-r0 will be installed
+---> Package diffutils.cortexa8hf_neon 3.10-r0 will be installed
+---> Package e2fsprogs.cortexa8hf_neon 1.46.5-r0 will be installed
+---> Package e2fsprogs-badblocks.cortexa8hf_neon 1.46.5-r0 will be installed
+---> Package e2fsprogs-dumpe2fs.cortexa8hf_neon 1.46.5-r0 will be installed
+---> Package e2fsprogs-e2fsck.cortexa8hf_neon 1.46.5-r0 will be installed
+---> Package e2fsprogs-mke2fs.cortexa8hf_neon 1.46.5-r0 will be installed
+---> Package ed.cortexa8hf_neon 1.18-r0 will be installed
+---> Package ethtool.cortexa8hf_neon 5.16-r0 will be installed
+---> Package file.cortexa8hf_neon 5.41-r0 will be installed
+---> Package findutils.cortexa8hf_neon 4.9.0-r0 will be installed
+---> Package fuser.cortexa8hf_neon 23.4-r0 will be installed
+---> Package gawk.cortexa8hf_neon 5.1.1-r0 will be installed
+---> Package git.cortexa8hf_neon 2.35.7-r0 will be installed
+---> Package glibc-binary-localedata-en-gb.cortexa8hf_neon 2.35-r0 will be installed
+---> Package glibc-binary-localedata-en-us.cortexa8hf_neon 2.35-r0 will be installed
+---> Package grep.cortexa8hf_neon 3.7-r0 will be installed
+---> Package gzip.cortexa8hf_neon 1.12-r0 will be installed
+---> Package iproute2.cortexa8hf_neon 5.17.0-r0 will be installed
+---> Package iproute2-ip.cortexa8hf_neon 5.17.0-r0 will be installed
+---> Package iptables.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-ip6t-ah.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-ip6t-dnat.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-ip6t-dnpt.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-ip6t-dst.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-ip6t-eui64.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-ip6t-frag.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-ip6t-hbh.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-ip6t-hl.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-ip6t-icmp6.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-ip6t-ipv6header.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-ip6t-log.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-ip6t-masquerade.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-ip6t-mh.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-ip6t-netmap.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-ip6t-redirect.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-ip6t-reject.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-ip6t-rt.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-ip6t-snat.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-ip6t-snpt.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-ip6t-srh.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-ipt-ah.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-ipt-clusterip.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-ipt-dnat.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-ipt-ecn.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-ipt-icmp.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-ipt-log.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-ipt-masquerade.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-ipt-netmap.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-ipt-realm.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-ipt-redirect.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-ipt-reject.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-ipt-snat.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-ipt-ttl.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-ipt-ulog.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-addrtype.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-audit.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-bpf.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-cgroup.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-checksum.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-classify.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-cluster.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-comment.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-connbytes.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-connlimit.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-connmark.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-connsecmark.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-conntrack.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-cpu.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-ct.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-dccp.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-devgroup.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-dscp.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-ecn.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-esp.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-hashlimit.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-helper.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-hmark.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-idletimer.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-ipcomp.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-iprange.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-ipvs.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-led.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-length.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-limit.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-mac.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-mark.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-multiport.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-nfacct.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-nflog.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-nfqueue.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-osf.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-owner.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-physdev.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-pkttype.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-policy.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-quota.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-rateest.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-recent.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-rpfilter.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-sctp.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-secmark.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-set.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-socket.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-standard.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-statistic.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-string.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-synproxy.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-tcp.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-tcpmss.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-tcpoptstrip.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-tee.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-time.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-tos.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-tproxy.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-trace.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-u32.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-module-xt-udp.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iptables-modules.cortexa8hf_neon 1.8.7-r0 will be installed
+---> Package iputils.cortexa8hf_neon 20211215-r0 will be installed
+---> Package iputils-arping.cortexa8hf_neon 20211215-r0 will be installed
+---> Package iputils-clockdiff.cortexa8hf_neon 20211215-r0 will be installed
+---> Package iputils-ninfod.cortexa8hf_neon 20211215-r0 will be installed
+---> Package iputils-ping.cortexa8hf_neon 20211215-r0 will be installed
+---> Package iputils-rarpd.cortexa8hf_neon 20211215-r0 will be installed
+---> Package iputils-rdisc.cortexa8hf_neon 20211215-r0 will be installed
+---> Package iputils-tracepath.cortexa8hf_neon 20211215-r0 will be installed
+---> Package kbd.cortexa8hf_neon 2.4.0-r0 will be installed
+---> Package kbd-consolefonts.cortexa8hf_neon 2.4.0-r0 will be installed
+---> Package kbd-keymaps.cortexa8hf_neon 2.4.0-r0 will be installed
+---> Package kernel-5.15.150-yocto-standard.beaglebone_yocto 5.15.150+git0+896128cbf5_4fca0c4373-r0 will be installed
+---> Package kernel-devicetree.beaglebone_yocto 5.15.150+git0+896128cbf5_4fca0c4373-r0 will be installed
+---> Package kernel-image-5.15.150-yocto-standard.beaglebone_yocto 5.15.150+git0+896128cbf5_4fca0c4373-r0 will be installed
+---> Package kernel-image-zimage-5.15.150-yocto-standard.beaglebone_yocto 5.15.150+git0+896128cbf5_4fca0c4373-r0 will be installed
+---> Package kernel-module-ip-tables-5.15.150-yocto-standard.beaglebone_yocto 5.15.150+git0+896128cbf5_4fca0c4373-r0 will be installed
+---> Package kernel-module-ip6-tables-5.15.150-yocto-standard.beaglebone_yocto 5.15.150+git0+896128cbf5_4fca0c4373-r0 will be installed
+---> Package kernel-module-ip6table-filter-5.15.150-yocto-standard.beaglebone_yocto 5.15.150+git0+896128cbf5_4fca0c4373-r0 will be installed
+---> Package kernel-module-iptable-filter-5.15.150-yocto-standard.beaglebone_yocto 5.15.150+git0+896128cbf5_4fca0c4373-r0 will be installed
+---> Package kernel-module-iptable-nat-5.15.150-yocto-standard.beaglebone_yocto 5.15.150+git0+896128cbf5_4fca0c4373-r0 will be installed
+---> Package kernel-module-nf-conntrack-5.15.150-yocto-standard.beaglebone_yocto 5.15.150+git0+896128cbf5_4fca0c4373-r0 will be installed
+---> Package kernel-module-nf-defrag-ipv4-5.15.150-yocto-standard.beaglebone_yocto 5.15.150+git0+896128cbf5_4fca0c4373-r0 will be installed
+---> Package kernel-module-nf-defrag-ipv6-5.15.150-yocto-standard.beaglebone_yocto 5.15.150+git0+896128cbf5_4fca0c4373-r0 will be installed
+---> Package kernel-module-nf-nat-5.15.150-yocto-standard.beaglebone_yocto 5.15.150+git0+896128cbf5_4fca0c4373-r0 will be installed
+---> Package kernel-module-sch-fq-codel-5.15.150-yocto-standard.beaglebone_yocto 5.15.150+git0+896128cbf5_4fca0c4373-r0 will be installed
+---> Package kernel-module-x-tables-5.15.150-yocto-standard.beaglebone_yocto 5.15.150+git0+896128cbf5_4fca0c4373-r0 will be installed
+---> Package killall.cortexa8hf_neon 23.4-r0 will be installed
+---> Package kmod.cortexa8hf_neon 29-r0 will be installed
+---> Package ldconfig.cortexa8hf_neon 2.35-r0 will be installed
+---> Package less.cortexa8hf_neon 600-r0 will be installed
+---> Package libacl1.cortexa8hf_neon 2.3.1-r0 will be installed
+---> Package libattr1.cortexa8hf_neon 2.5.1-r0 will be installed
+---> Package libblkid1.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package libbz2-1.cortexa8hf_neon 1.0.8-r0 will be installed
+---> Package libc6.cortexa8hf_neon 2.35-r0 will be installed
+---> Package libcap.cortexa8hf_neon 2.66-r0 will be installed
+---> Package libcap-ng.cortexa8hf_neon 0.8.2-r0 will be installed
+---> Package libcom-err2.cortexa8hf_neon 1.46.5-r0 will be installed
+---> Package libcrypt2.cortexa8hf_neon 4.4.33-r0 will be installed
+---> Package libcrypto3.cortexa8hf_neon 3.0.16-r0 will be installed
+---> Package libcurl4.cortexa8hf_neon 7.82.0-r0 will be installed
+---> Package libdbus-1-3.cortexa8hf_neon 1.14.8-r0 will be installed
+---> Package libe2p2.cortexa8hf_neon 1.46.5-r0 will be installed
+---> Package libelf1.cortexa8hf_neon 0.186-r0 will be installed
+---> Package libexpat1.cortexa8hf_neon 2.5.0-r0 will be installed
+---> Package libext2fs2.cortexa8hf_neon 1.46.5-r0 will be installed
+---> Package libfdisk1.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package libffi8.cortexa8hf_neon 3.4.4-r0 will be installed
+---> Package libgcc1.cortexa8hf_neon 11.5.0-r0 will be installed
+---> Package libgdbm-compat4.cortexa8hf_neon 1.23-r0 will be installed
+---> Package libgdbm6.cortexa8hf_neon 1.23-r0 will be installed
+---> Package libglib-2.0-0.cortexa8hf_neon 1:2.72.3-r0 will be installed
+---> Package libgmp10.cortexa8hf_neon 6.2.1-r0 will be installed
+---> Package libidn2-0.cortexa8hf_neon 2.3.2-r0 will be installed
+---> Package libkmod2.cortexa8hf_neon 29-r0 will be installed
+---> Package liblzma5.cortexa8hf_neon 5.2.6-r0 will be installed
+---> Package libmnl0.cortexa8hf_neon 1.0.4-r0 will be installed
+---> Package libmount1.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package libncurses5.cortexa8hf_neon 6.3+20220423-r0 will be installed
+---> Package libncursesw5.cortexa8hf_neon 6.3+20220423-r0 will be installed
+---> Package libnsl3.cortexa8hf_neon 2.0.0-r0 will be installed
+---> Package libnss-myhostname2.cortexa8hf_neon 1:250.14-r0 will be installed
+---> Package libpanelw5.cortexa8hf_neon 6.3+20220423-r0 will be installed
+---> Package libpcre1.cortexa8hf_neon 8.45-r0 will be installed
+---> Package libpopt0.cortexa8hf_neon 1.18-r0 will be installed
+---> Package libprocps8.cortexa8hf_neon 3.3.17-r0 will be installed
+---> Package libpython3.10-1.0.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package libreadline8.cortexa8hf_neon 8.1.2-r0 will be installed
+---> Package libseccomp.cortexa8hf_neon 2.5.3-r0 will be installed
+---> Package libsmartcols1.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package libsqlite3-0.cortexa8hf_neon 3:3.38.5-r0 will be installed
+---> Package libss2.cortexa8hf_neon 1.46.5-r0 will be installed
+---> Package libssl3.cortexa8hf_neon 3.0.16-r0 will be installed
+---> Package libsystemd-shared.cortexa8hf_neon 1:250.14-r0 will be installed
+---> Package libsystemd0.cortexa8hf_neon 1:250.14-r0 will be installed
+---> Package libtinfo5.cortexa8hf_neon 6.3+20220423-r0 will be installed
+---> Package libtirpc3.cortexa8hf_neon 1.3.2-r0 will be installed
+---> Package libunistring2.cortexa8hf_neon 1.0-r0 will be installed
+---> Package libuuid1.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package libwrap0.cortexa8hf_neon 7.6-r10 will be installed
+---> Package libx11-6.cortexa8hf_neon 1:1.7.3.1-r0 will be installed
+---> Package libxau6.cortexa8hf_neon 1:1.0.9-r0 will be installed
+---> Package libxcb1.cortexa8hf_neon 1.14-r0 will be installed
+---> Package libxdmcp6.cortexa8hf_neon 1:1.1.3-r0 will be installed
+---> Package libxml2.cortexa8hf_neon 2.9.14-r0 will be installed
+---> Package libz1.cortexa8hf_neon 1.2.11-r0 will be installed
+---> Package libzstd1.cortexa8hf_neon 1.5.2-r0 will be installed
+---> Package locale-base-en-gb.cortexa8hf_neon 2.35-r0 will be installed
+---> Package locale-base-en-us.cortexa8hf_neon 2.35-r0 will be installed
+---> Package logrotate.cortexa8hf_neon 3.20.1-r0 will be installed
+---> Package m4.cortexa8hf_neon 1.4.19-r0 will be installed
+---> Package make.cortexa8hf_neon 4.3-r0 will be installed
+---> Package makedevs.cortexa8hf_neon 1.0.1-r0 will be installed
+---> Package mc.cortexa8hf_neon 4.8.27-r1 will be installed
+---> Package mc-fish.cortexa8hf_neon 4.8.27-r1 will be installed
+---> Package mc-helpers.cortexa8hf_neon 4.8.27-r1 will be installed
+---> Package mc-helpers-perl.cortexa8hf_neon 4.8.27-r1 will be installed
+---> Package nano.cortexa8hf_neon 6.2-r0 will be installed
+---> Package ncurses.cortexa8hf_neon 6.3+20220423-r0 will be installed
+---> Package ncurses-terminfo.cortexa8hf_neon 6.3+20220423-r0 will be installed
+---> Package ncurses-terminfo-base.cortexa8hf_neon 6.3+20220423-r0 will be installed
+---> Package net-tools.cortexa8hf_neon 2.10-r0 will be installed
+---> Package net-tools-mii-tool.cortexa8hf_neon 2.10-r0 will be installed
+---> Package netbase.noarch 1:6.3-r0 will be installed
+---> Package nfs-utils.cortexa8hf_neon 2.6.1-r0 will be installed
+---> Package nfs-utils-client.cortexa8hf_neon 2.6.1-r0 will be installed
+---> Package nfs-utils-mount.cortexa8hf_neon 2.6.1-r0 will be installed
+---> Package openssh.cortexa8hf_neon 8.9p1-r0 will be installed
+---> Package openssh-keygen.cortexa8hf_neon 8.9p1-r0 will be installed
+---> Package openssh-scp.cortexa8hf_neon 8.9p1-r0 will be installed
+---> Package openssh-sftp-server.cortexa8hf_neon 8.9p1-r0 will be installed
+---> Package openssh-ssh.cortexa8hf_neon 8.9p1-r0 will be installed
+---> Package openssh-sshd.cortexa8hf_neon 8.9p1-r0 will be installed
+---> Package openssl.cortexa8hf_neon 3.0.16-r0 will be installed
+---> Package openssl-bin.cortexa8hf_neon 3.0.16-r0 will be installed
+---> Package openssl-conf.cortexa8hf_neon 3.0.16-r0 will be installed
+---> Package openssl-ossl-module-legacy.cortexa8hf_neon 3.0.16-r0 will be installed
+---> Package os-release.noarch 1.0-r0 will be installed
+---> Package packagegroup-core-boot.beaglebone_yocto 1.0-r17 will be installed
+---> Package packagegroup-core-full-cmdline.noarch 1.0-r6 will be installed
+---> Package packagegroup-core-full-cmdline-dev-utils.noarch 1.0-r6 will be installed
+---> Package packagegroup-core-full-cmdline-extended.noarch 1.0-r6 will be installed
+---> Package packagegroup-core-full-cmdline-initscripts.noarch 1.0-r6 will be installed
+---> Package packagegroup-core-full-cmdline-multiuser.noarch 1.0-r6 will be installed
+---> Package packagegroup-core-full-cmdline-sys-services.noarch 1.0-r6 will be installed
+---> Package packagegroup-core-full-cmdline-utils.noarch 1.0-r6 will be installed
+---> Package packagegroup-core-ssh-openssh.noarch 1.0-r1 will be installed
+---> Package patch.cortexa8hf_neon 2.7.6-r0 will be installed
+---> Package perl.cortexa8hf_neon 5.34.3-r0 will be installed
+---> Package perl-module-config-heavy.cortexa8hf_neon 5.34.3-r0 will be installed
+---> Package procps.cortexa8hf_neon 3.3.17-r0 will be installed
+---> Package procps-ps.cortexa8hf_neon 3.3.17-r0 will be installed
+---> Package procps-sysctl.cortexa8hf_neon 3.3.17-r0 will be installed
+---> Package psmisc.cortexa8hf_neon 23.4-r0 will be installed
+---> Package pstree.cortexa8hf_neon 23.4-r0 will be installed
+---> Package python3-2to3.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-asyncio.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-audio.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-codecs.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-compile.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-compression.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-core.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-crypt.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-ctypes.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-curses.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-datetime.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-db.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-debugger.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-difflib.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-distutils.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-doctest.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-email.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-fcntl.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-html.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-idle.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-image.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-io.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-json.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-logging.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-mailbox.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-math.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-mime.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-misc.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-mmap.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-modules.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-multiprocessing.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-netclient.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-netserver.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-numbers.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-pickle.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-pkgutil.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-plistlib.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-pprint.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-profile.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-pydoc.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-resource.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-shell.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-smtpd.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-sqlite3.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-statistics.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-stringold.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-syslog.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-terminal.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-threading.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-tkinter.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-unittest.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-unixadmin.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-venv.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-xml.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package python3-xmlrpc.cortexa8hf_neon 3.10.16-r0 will be installed
+---> Package rpcbind.cortexa8hf_neon 1.2.6-r0 will be installed
+---> Package run-postinsts.noarch 1.0-r10 will be installed
+---> Package sed.cortexa8hf_neon 4.8-r0 will be installed
+---> Package shadow.cortexa8hf_neon 4.11.1-r0 will be installed
+---> Package shadow-base.cortexa8hf_neon 4.11.1-r0 will be installed
+---> Package shadow-securetty.beaglebone_yocto 4.6-r3 will be installed
+---> Package shared-mime-info.cortexa8hf_neon 2.1-r0 will be installed
+---> Package sudo.cortexa8hf_neon 1.9.15p2-r0 will be installed
+---> Package sudo-lib.cortexa8hf_neon 1.9.15p2-r0 will be installed
+---> Package sudo-sudo.cortexa8hf_neon 1.9.15p2-r0 will be installed
+---> Package sysklogd.cortexa8hf_neon 2.3.0-r0 will be installed
+---> Package systemd.cortexa8hf_neon 1:250.14-r0 will be installed
+---> Package systemd-compat-units.cortexa8hf_neon 1.0-r29 will be installed
+---> Package systemd-conf.beaglebone_yocto 1:1.0-r0 will be installed
+---> Package systemd-extra-utils.cortexa8hf_neon 1:250.14-r0 will be installed
+---> Package systemd-serialgetty.beaglebone_yocto 1.0-r5 will be installed
+---> Package systemd-udev-rules.cortexa8hf_neon 1:250.14-r0 will be installed
+---> Package systemd-vconsole-setup.cortexa8hf_neon 1:250.14-r0 will be installed
+---> Package tar.cortexa8hf_neon 1.35-r0 will be installed
+---> Package time.cortexa8hf_neon 1.9-r0 will be installed
+---> Package udev.cortexa8hf_neon 1:250.14-r0 will be installed
+---> Package udev-hwdb.cortexa8hf_neon 1:250.14-r0 will be installed
+---> Package update-alternatives-opkg.cortexa8hf_neon 0.5.0-r0 will be installed
+---> Package update-rc.d.noarch 0.8-r0 will be installed
+---> Package util-linux.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-addpart.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-agetty.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-blkdiscard.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-blkid.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-blkzone.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-blockdev.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-cal.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-cfdisk.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-chcpu.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-chmem.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-choom.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-chrt.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-col.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-colcrt.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-colrm.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-column.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-ctrlaltdel.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-delpart.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-dmesg.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-eject.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-fallocate.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-fdisk.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-fincore.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-findfs.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-findmnt.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-flock.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-fsck.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-fsck.cramfs.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-fsfreeze.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-fstrim.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-getopt.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-hardlink.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-hexdump.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-hwclock.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-ionice.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-ipcmk.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-ipcrm.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-ipcs.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-irqtop.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-isosize.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-kill.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-last.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-ldattach.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-logger.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-look.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-losetup.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-lsblk.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-lscpu.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-lsipc.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-lsirq.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-lslocks.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-lslogins.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-lsmem.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-lsns.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-mcookie.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-mesg.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-mkfs.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-mkfs.cramfs.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-mkswap.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-more.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-mount.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-mountpoint.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-namei.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-nologin.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-nsenter.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-partx.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-pivot-root.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-prlimit.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-readprofile.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-rename.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-renice.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-resizepart.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-rev.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-rfkill.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-rtcwake.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-script.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-scriptlive.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-scriptreplay.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-setarch.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-setpriv.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-setsid.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-setterm.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-sfdisk.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-sulogin.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-swaplabel.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-swapoff.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-swapon.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-switch-root.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-taskset.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-uclampset.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-ul.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-umount.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-unshare.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-utmpdump.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-uuidd.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-uuidgen.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-uuidparse.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-wall.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-wdctl.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-whereis.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-wipefs.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-write.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package util-linux-zramctl.cortexa8hf_neon 2.37.4-r0 will be installed
+---> Package volatile-binds.noarch 1.0-r0 will be installed
+--> Finished dependency resolution
+Dependencies resolved.
+================================================================================================================================
+ Package                                                 Architecture      Version                                Repo      Size
+================================================================================================================================
+Installing:
+ git                                                     cortexa8hf_neon   2.35.7-r0                              oe-repo  7.1 M
+ locale-base-en-gb                                       cortexa8hf_neon   2.35-r0                                oe-repo  5.8 k
+ locale-base-en-us                                       cortexa8hf_neon   2.35-r0                                oe-repo  5.8 k
+ nano                                                    cortexa8hf_neon   6.2-r0                                 oe-repo  210 k
+ packagegroup-core-boot                                  beaglebone_yocto  1.0-r17                                oe-repo  5.8 k
+ packagegroup-core-full-cmdline                          noarch            1.0-r6                                 oe-repo  5.9 k
+ packagegroup-core-ssh-openssh                           noarch            1.0-r1                                 oe-repo  5.6 k
+ python3-modules                                         cortexa8hf_neon   3.10.16-r0                             oe-repo  6.8 k
+ run-postinsts                                           noarch            1.0-r10                                oe-repo  8.9 k
+Installing dependencies:
+ acl                                                     cortexa8hf_neon   2.3.1-r0                               oe-repo   32 k
+ at                                                      cortexa8hf_neon   3.2.5-r0                               oe-repo   43 k
+ attr                                                    cortexa8hf_neon   2.5.1-r0                               oe-repo   25 k
+ base-files                                              beaglebone_yocto  3.0.14-r89                             oe-repo   13 k
+ base-passwd                                             cortexa8hf_neon   3.5.52-r0                              oe-repo  7.3 k
+ bash                                                    cortexa8hf_neon   5.1.16-r0                              oe-repo  570 k
+ bc                                                      cortexa8hf_neon   1.07.1-r0                              oe-repo   63 k
+ busybox                                                 cortexa8hf_neon   1.35.0-r0                              oe-repo  452 k
+ bzip2                                                   cortexa8hf_neon   1.0.8-r0                               oe-repo   30 k
+ coreutils                                               cortexa8hf_neon   9.0-r0                                 oe-repo  1.2 M
+ coreutils-stdbuf                                        cortexa8hf_neon   9.0-r0                                 oe-repo   33 k
+ cpio                                                    cortexa8hf_neon   2.14-r0                                oe-repo   89 k
+ cracklib                                                cortexa8hf_neon   2.9.8-r0                               oe-repo  313 k
+ cronie                                                  cortexa8hf_neon   1.6.1-r0                               oe-repo   63 k
+ dbus-1                                                  cortexa8hf_neon   1.14.8-r0                              oe-repo  125 k
+ dbus-common                                             cortexa8hf_neon   1.14.8-r0                              oe-repo   18 k
+ dbus-tools                                              cortexa8hf_neon   1.14.8-r0                              oe-repo   28 k
+ diffutils                                               cortexa8hf_neon   3.10-r0                                oe-repo  153 k
+ e2fsprogs                                               cortexa8hf_neon   1.46.5-r0                              oe-repo  181 k
+ e2fsprogs-badblocks                                     cortexa8hf_neon   1.46.5-r0                              oe-repo   20 k
+ e2fsprogs-dumpe2fs                                      cortexa8hf_neon   1.46.5-r0                              oe-repo   19 k
+ ed                                                      cortexa8hf_neon   1.18-r0                                oe-repo   31 k
+ ethtool                                                 cortexa8hf_neon   5.16-r0                                oe-repo  211 k
+ file                                                    cortexa8hf_neon   5.41-r0                                oe-repo  393 k
+ findutils                                               cortexa8hf_neon   4.9.0-r0                               oe-repo  198 k
+ fuser                                                   cortexa8hf_neon   23.4-r0                                oe-repo   24 k
+ gawk                                                    cortexa8hf_neon   5.1.1-r0                               oe-repo  378 k
+ glibc-binary-localedata-en-gb                           cortexa8hf_neon   2.35-r0                                oe-repo  786 k
+ glibc-binary-localedata-en-us                           cortexa8hf_neon   2.35-r0                                oe-repo  787 k
+ grep                                                    cortexa8hf_neon   3.7-r0                                 oe-repo  128 k
+ gzip                                                    cortexa8hf_neon   1.12-r0                                oe-repo   71 k
+ iproute2                                                cortexa8hf_neon   5.17.0-r0                              oe-repo   79 k
+ iproute2-ip                                             cortexa8hf_neon   5.17.0-r0                              oe-repo  313 k
+ iptables                                                cortexa8hf_neon   1.8.7-r0                               oe-repo   86 k
+ iptables-module-ip6t-ah                                 cortexa8hf_neon   1.8.7-r0                               oe-repo  9.1 k
+ iptables-module-ip6t-dnat                               cortexa8hf_neon   1.8.7-r0                               oe-repo   11 k
+ iptables-module-ip6t-dnpt                               cortexa8hf_neon   1.8.7-r0                               oe-repo  8.5 k
+ iptables-module-ip6t-dst                                cortexa8hf_neon   1.8.7-r0                               oe-repo  9.6 k
+ iptables-module-ip6t-eui64                              cortexa8hf_neon   1.8.7-r0                               oe-repo  7.8 k
+ iptables-module-ip6t-frag                               cortexa8hf_neon   1.8.7-r0                               oe-repo  9.3 k
+ iptables-module-ip6t-hbh                                cortexa8hf_neon   1.8.7-r0                               oe-repo  9.7 k
+ iptables-module-ip6t-hl                                 cortexa8hf_neon   1.8.7-r0                               oe-repo  9.7 k
+ iptables-module-ip6t-icmp6                              cortexa8hf_neon   1.8.7-r0                               oe-repo   10 k
+ iptables-module-ip6t-ipv6header                         cortexa8hf_neon   1.8.7-r0                               oe-repo  9.5 k
+ iptables-module-ip6t-log                                cortexa8hf_neon   1.8.7-r0                               oe-repo  9.6 k
+ iptables-module-ip6t-masquerade                         cortexa8hf_neon   1.8.7-r0                               oe-repo  9.3 k
+ iptables-module-ip6t-mh                                 cortexa8hf_neon   1.8.7-r0                               oe-repo  9.7 k
+ iptables-module-ip6t-netmap                             cortexa8hf_neon   1.8.7-r0                               oe-repo  8.7 k
+ iptables-module-ip6t-redirect                           cortexa8hf_neon   1.8.7-r0                               oe-repo  9.2 k
+ iptables-module-ip6t-reject                             cortexa8hf_neon   1.8.7-r0                               oe-repo  9.1 k
+ iptables-module-ip6t-rt                                 cortexa8hf_neon   1.8.7-r0                               oe-repo   10 k
+ iptables-module-ip6t-snat                               cortexa8hf_neon   1.8.7-r0                               oe-repo   10 k
+ iptables-module-ip6t-snpt                               cortexa8hf_neon   1.8.7-r0                               oe-repo  8.5 k
+ iptables-module-ip6t-srh                                cortexa8hf_neon   1.8.7-r0                               oe-repo   11 k
+ iptables-module-ipt-ah                                  cortexa8hf_neon   1.8.7-r0                               oe-repo  8.7 k
+ iptables-module-ipt-clusterip                           cortexa8hf_neon   1.8.7-r0                               oe-repo  9.2 k
+ iptables-module-ipt-dnat                                cortexa8hf_neon   1.8.7-r0                               oe-repo   11 k
+ iptables-module-ipt-ecn                                 cortexa8hf_neon   1.8.7-r0                               oe-repo  8.6 k
+ iptables-module-ipt-icmp                                cortexa8hf_neon   1.8.7-r0                               oe-repo   10 k
+ iptables-module-ipt-log                                 cortexa8hf_neon   1.8.7-r0                               oe-repo  9.6 k
+ iptables-module-ipt-masquerade                          cortexa8hf_neon   1.8.7-r0                               oe-repo  9.3 k
+ iptables-module-ipt-netmap                              cortexa8hf_neon   1.8.7-r0                               oe-repo  8.7 k
+ iptables-module-ipt-realm                               cortexa8hf_neon   1.8.7-r0                               oe-repo  9.1 k
+ iptables-module-ipt-redirect                            cortexa8hf_neon   1.8.7-r0                               oe-repo  9.2 k
+ iptables-module-ipt-reject                              cortexa8hf_neon   1.8.7-r0                               oe-repo  9.3 k
+ iptables-module-ipt-snat                                cortexa8hf_neon   1.8.7-r0                               oe-repo   10 k
+ iptables-module-ipt-ttl                                 cortexa8hf_neon   1.8.7-r0                               oe-repo  9.8 k
+ iptables-module-ipt-ulog                                cortexa8hf_neon   1.8.7-r0                               oe-repo  8.9 k
+ iptables-module-xt-addrtype                             cortexa8hf_neon   1.8.7-r0                               oe-repo   10 k
+ iptables-module-xt-audit                                cortexa8hf_neon   1.8.7-r0                               oe-repo  8.5 k
+ iptables-module-xt-bpf                                  cortexa8hf_neon   1.8.7-r0                               oe-repo   10 k
+ iptables-module-xt-cgroup                               cortexa8hf_neon   1.8.7-r0                               oe-repo  9.0 k
+ iptables-module-xt-checksum                             cortexa8hf_neon   1.8.7-r0                               oe-repo  8.3 k
+ iptables-module-xt-classify                             cortexa8hf_neon   1.8.7-r0                               oe-repo  8.9 k
+ iptables-module-xt-cluster                              cortexa8hf_neon   1.8.7-r0                               oe-repo  9.2 k
+ iptables-module-xt-comment                              cortexa8hf_neon   1.8.7-r0                               oe-repo  8.6 k
+ iptables-module-xt-connbytes                            cortexa8hf_neon   1.8.7-r0                               oe-repo  9.5 k
+ iptables-module-xt-connlimit                            cortexa8hf_neon   1.8.7-r0                               oe-repo  9.3 k
+ iptables-module-xt-connmark                             cortexa8hf_neon   1.8.7-r0                               oe-repo   12 k
+ iptables-module-xt-connsecmark                          cortexa8hf_neon   1.8.7-r0                               oe-repo  8.5 k
+ iptables-module-xt-conntrack                            cortexa8hf_neon   1.8.7-r0                               oe-repo   16 k
+ iptables-module-xt-cpu                                  cortexa8hf_neon   1.8.7-r0                               oe-repo  8.3 k
+ iptables-module-xt-ct                                   cortexa8hf_neon   1.8.7-r0                               oe-repo   11 k
+ iptables-module-xt-dccp                                 cortexa8hf_neon   1.8.7-r0                               oe-repo   10 k
+ iptables-module-xt-devgroup                             cortexa8hf_neon   1.8.7-r0                               oe-repo  9.5 k
+ iptables-module-xt-dscp                                 cortexa8hf_neon   1.8.7-r0                               oe-repo   10 k
+ iptables-module-xt-ecn                                  cortexa8hf_neon   1.8.7-r0                               oe-repo  8.9 k
+ iptables-module-xt-esp                                  cortexa8hf_neon   1.8.7-r0                               oe-repo  8.6 k
+ iptables-module-xt-hashlimit                            cortexa8hf_neon   1.8.7-r0                               oe-repo   17 k
+ iptables-module-xt-helper                               cortexa8hf_neon   1.8.7-r0                               oe-repo  8.5 k
+ iptables-module-xt-hmark                                cortexa8hf_neon   1.8.7-r0                               oe-repo   11 k
+ iptables-module-xt-idletimer                            cortexa8hf_neon   1.8.7-r0                               oe-repo  8.6 k
+ iptables-module-xt-ipcomp                               cortexa8hf_neon   1.8.7-r0                               oe-repo  8.7 k
+ iptables-module-xt-iprange                              cortexa8hf_neon   1.8.7-r0                               oe-repo   11 k
+ iptables-module-xt-ipvs                                 cortexa8hf_neon   1.8.7-r0                               oe-repo  9.9 k
+ iptables-module-xt-led                                  cortexa8hf_neon   1.8.7-r0                               oe-repo  8.8 k
+ iptables-module-xt-length                               cortexa8hf_neon   1.8.7-r0                               oe-repo  8.5 k
+ iptables-module-xt-limit                                cortexa8hf_neon   1.8.7-r0                               oe-repo   10 k
+ iptables-module-xt-mac                                  cortexa8hf_neon   1.8.7-r0                               oe-repo  8.5 k
+ iptables-module-xt-mark                                 cortexa8hf_neon   1.8.7-r0                               oe-repo   11 k
+ iptables-module-xt-multiport                            cortexa8hf_neon   1.8.7-r0                               oe-repo   11 k
+ iptables-module-xt-nfacct                               cortexa8hf_neon   1.8.7-r0                               oe-repo  8.4 k
+ iptables-module-xt-nflog                                cortexa8hf_neon   1.8.7-r0                               oe-repo  9.1 k
+ iptables-module-xt-nfqueue                              cortexa8hf_neon   1.8.7-r0                               oe-repo  9.5 k
+ iptables-module-xt-osf                                  cortexa8hf_neon   1.8.7-r0                               oe-repo  8.8 k
+ iptables-module-xt-owner                                cortexa8hf_neon   1.8.7-r0                               oe-repo   11 k
+ iptables-module-xt-physdev                              cortexa8hf_neon   1.8.7-r0                               oe-repo  8.9 k
+ iptables-module-xt-pkttype                              cortexa8hf_neon   1.8.7-r0                               oe-repo  8.9 k
+ iptables-module-xt-policy                               cortexa8hf_neon   1.8.7-r0                               oe-repo   11 k
+ iptables-module-xt-quota                                cortexa8hf_neon   1.8.7-r0                               oe-repo  8.4 k
+ iptables-module-xt-rateest                              cortexa8hf_neon   1.8.7-r0                               oe-repo   13 k
+ iptables-module-xt-recent                               cortexa8hf_neon   1.8.7-r0                               oe-repo   10 k
+ iptables-module-xt-rpfilter                             cortexa8hf_neon   1.8.7-r0                               oe-repo  8.8 k
+ iptables-module-xt-sctp                                 cortexa8hf_neon   1.8.7-r0                               oe-repo   12 k
+ iptables-module-xt-secmark                              cortexa8hf_neon   1.8.7-r0                               oe-repo  8.3 k
+ iptables-module-xt-set                                  cortexa8hf_neon   1.8.7-r0                               oe-repo   17 k
+ iptables-module-xt-socket                               cortexa8hf_neon   1.8.7-r0                               oe-repo  8.7 k
+ iptables-module-xt-standard                             cortexa8hf_neon   1.8.7-r0                               oe-repo  8.1 k
+ iptables-module-xt-statistic                            cortexa8hf_neon   1.8.7-r0                               oe-repo  9.2 k
+ iptables-module-xt-string                               cortexa8hf_neon   1.8.7-r0                               oe-repo   10 k
+ iptables-module-xt-synproxy                             cortexa8hf_neon   1.8.7-r0                               oe-repo  8.8 k
+ iptables-module-xt-tcp                                  cortexa8hf_neon   1.8.7-r0                               oe-repo   11 k
+ iptables-module-xt-tcpmss                               cortexa8hf_neon   1.8.7-r0                               oe-repo  9.7 k
+ iptables-module-xt-tcpoptstrip                          cortexa8hf_neon   1.8.7-r0                               oe-repo  9.4 k
+ iptables-module-xt-tee                                  cortexa8hf_neon   1.8.7-r0                               oe-repo  8.6 k
+ iptables-module-xt-time                                 cortexa8hf_neon   1.8.7-r0                               oe-repo   12 k
+ iptables-module-xt-tos                                  cortexa8hf_neon   1.8.7-r0                               oe-repo   11 k
+ iptables-module-xt-tproxy                               cortexa8hf_neon   1.8.7-r0                               oe-repo  8.8 k
+ iptables-module-xt-trace                                cortexa8hf_neon   1.8.7-r0                               oe-repo  7.9 k
+ iptables-module-xt-u32                                  cortexa8hf_neon   1.8.7-r0                               oe-repo   10 k
+ iptables-module-xt-udp                                  cortexa8hf_neon   1.8.7-r0                               oe-repo  9.2 k
+ iputils                                                 cortexa8hf_neon   20211215-r0                            oe-repo  5.8 k
+ iputils-arping                                          cortexa8hf_neon   20211215-r0                            oe-repo   16 k
+ iputils-clockdiff                                       cortexa8hf_neon   20211215-r0                            oe-repo   13 k
+ iputils-ninfod                                          cortexa8hf_neon   20211215-r0                            oe-repo   25 k
+ iputils-ping                                            cortexa8hf_neon   20211215-r0                            oe-repo   43 k
+ iputils-rarpd                                           cortexa8hf_neon   20211215-r0                            oe-repo   15 k
+ iputils-rdisc                                           cortexa8hf_neon   20211215-r0                            oe-repo   21 k
+ iputils-tracepath                                       cortexa8hf_neon   20211215-r0                            oe-repo   14 k
+ kernel-5.15.150-yocto-standard                          beaglebone_yocto  5.15.150+git0+896128cbf5_4fca0c4373-r0 oe-repo   33 k
+ kernel-devicetree                                       beaglebone_yocto  5.15.150+git0+896128cbf5_4fca0c4373-r0 oe-repo   22 k
+ kernel-image-5.15.150-yocto-standard                    beaglebone_yocto  5.15.150+git0+896128cbf5_4fca0c4373-r0 oe-repo  5.8 k
+ kernel-image-zimage-5.15.150-yocto-standard             beaglebone_yocto  5.15.150+git0+896128cbf5_4fca0c4373-r0 oe-repo  7.5 M
+ kernel-module-nf-conntrack-5.15.150-yocto-standard      beaglebone_yocto  5.15.150+git0+896128cbf5_4fca0c4373-r0 oe-repo   57 k
+ kernel-module-nf-defrag-ipv4-5.15.150-yocto-standard    beaglebone_yocto  5.15.150+git0+896128cbf5_4fca0c4373-r0 oe-repo  9.9 k
+ kernel-module-nf-defrag-ipv6-5.15.150-yocto-standard    beaglebone_yocto  5.15.150+git0+896128cbf5_4fca0c4373-r0 oe-repo   14 k
+ kernel-module-nf-nat-5.15.150-yocto-standard            beaglebone_yocto  5.15.150+git0+896128cbf5_4fca0c4373-r0 oe-repo   25 k
+ kernel-module-x-tables-5.15.150-yocto-standard          beaglebone_yocto  5.15.150+git0+896128cbf5_4fca0c4373-r0 oe-repo   20 k
+ killall                                                 cortexa8hf_neon   23.4-r0                                oe-repo   19 k
+ kmod                                                    cortexa8hf_neon   29-r0                                  oe-repo   76 k
+ ldconfig                                                cortexa8hf_neon   2.35-r0                                oe-repo  354 k
+ less                                                    cortexa8hf_neon   600-r0                                 oe-repo  111 k
+ libacl1                                                 cortexa8hf_neon   2.3.1-r0                               oe-repo   20 k
+ libattr1                                                cortexa8hf_neon   2.5.1-r0                               oe-repo   14 k
+ libblkid1                                               cortexa8hf_neon   2.37.4-r0                              oe-repo  153 k
+ libbz2-1                                                cortexa8hf_neon   1.0.8-r0                               oe-repo   38 k
+ libc6                                                   cortexa8hf_neon   2.35-r0                                oe-repo  1.0 M
+ libcap                                                  cortexa8hf_neon   2.66-r0                                oe-repo   30 k
+ libcap-ng                                               cortexa8hf_neon   0.8.2-r0                               oe-repo   18 k
+ libcom-err2                                             cortexa8hf_neon   1.46.5-r0                              oe-repo   12 k
+ libcrypt2                                               cortexa8hf_neon   4.4.33-r0                              oe-repo  108 k
+ libcrypto3                                              cortexa8hf_neon   3.0.16-r0                              oe-repo  1.5 M
+ libcurl4                                                cortexa8hf_neon   7.82.0-r0                              oe-repo  219 k
+ libdbus-1-3                                             cortexa8hf_neon   1.14.8-r0                              oe-repo  139 k
+ libe2p2                                                 cortexa8hf_neon   1.46.5-r0                              oe-repo   22 k
+ libelf1                                                 cortexa8hf_neon   0.186-r0                               oe-repo   53 k
+ libexpat1                                               cortexa8hf_neon   2.5.0-r0                               oe-repo   71 k
+ libext2fs2                                              cortexa8hf_neon   1.46.5-r0                              oe-repo  210 k
+ libfdisk1                                               cortexa8hf_neon   2.37.4-r0                              oe-repo  209 k
+ libffi8                                                 cortexa8hf_neon   3.4.4-r0                               oe-repo   24 k
+ libgcc1                                                 cortexa8hf_neon   11.5.0-r0                              oe-repo   51 k
+ libgdbm-compat4                                         cortexa8hf_neon   1.23-r0                                oe-repo   11 k
+ libgdbm6                                                cortexa8hf_neon   1.23-r0                                oe-repo   38 k
+ libglib-2.0-0                                           cortexa8hf_neon   1:2.72.3-r0                            oe-repo  1.3 M
+ libgmp10                                                cortexa8hf_neon   6.2.1-r0                               oe-repo  223 k
+ libidn2-0                                               cortexa8hf_neon   2.3.2-r0                               oe-repo   79 k
+ libkmod2                                                cortexa8hf_neon   29-r0                                  oe-repo   43 k
+ liblzma5                                                cortexa8hf_neon   5.2.6-r0                               oe-repo   85 k
+ libmnl0                                                 cortexa8hf_neon   1.0.4-r0                               oe-repo   14 k
+ libmount1                                               cortexa8hf_neon   2.37.4-r0                              oe-repo  171 k
+ libncurses5                                             cortexa8hf_neon   6.3+20220423-r0                        oe-repo   69 k
+ libncursesw5                                            cortexa8hf_neon   6.3+20220423-r0                        oe-repo   92 k
+ libnsl3                                                 cortexa8hf_neon   2.0.0-r0                               oe-repo   17 k
+ libnss-myhostname2                                      cortexa8hf_neon   1:250.14-r0                            oe-repo   80 k
+ libpanelw5                                              cortexa8hf_neon   6.3+20220423-r0                        oe-repo   11 k
+ libpcre1                                                cortexa8hf_neon   8.45-r0                                oe-repo  183 k
+ libpopt0                                                cortexa8hf_neon   1.18-r0                                oe-repo   30 k
+ libprocps8                                              cortexa8hf_neon   3.3.17-r0                              oe-repo   41 k
+ libpython3.10-1.0                                       cortexa8hf_neon   3.10.16-r0                             oe-repo  1.2 M
+ libreadline8                                            cortexa8hf_neon   8.1.2-r0                               oe-repo  149 k
+ libseccomp                                              cortexa8hf_neon   2.5.3-r0                               oe-repo   68 k
+ libsmartcols1                                           cortexa8hf_neon   2.37.4-r0                              oe-repo  105 k
+ libsqlite3-0                                            cortexa8hf_neon   3:3.38.5-r0                            oe-repo  666 k
+ libss2                                                  cortexa8hf_neon   1.46.5-r0                              oe-repo   16 k
+ libssl3                                                 cortexa8hf_neon   3.0.16-r0                              oe-repo  255 k
+ libsystemd-shared                                       cortexa8hf_neon   1:250.14-r0                            oe-repo  1.1 M
+ libsystemd0                                             cortexa8hf_neon   1:250.14-r0                            oe-repo  386 k
+ libtinfo5                                               cortexa8hf_neon   6.3+20220423-r0                        oe-repo   70 k
+ libtirpc3                                               cortexa8hf_neon   1.3.2-r0                               oe-repo   74 k
+ libunistring2                                           cortexa8hf_neon   1.0-r0                                 oe-repo  648 k
+ libuuid1                                                cortexa8hf_neon   2.37.4-r0                              oe-repo   21 k
+ libwrap0                                                cortexa8hf_neon   7.6-r10                                oe-repo   22 k
+ libx11-6                                                cortexa8hf_neon   1:1.7.3.1-r0                           oe-repo  691 k
+ libxau6                                                 cortexa8hf_neon   1:1.0.9-r0                             oe-repo   11 k
+ libxcb1                                                 cortexa8hf_neon   1.14-r0                                oe-repo   54 k
+ libxdmcp6                                               cortexa8hf_neon   1:1.1.3-r0                             oe-repo   15 k
+ libxml2                                                 cortexa8hf_neon   2.9.14-r0                              oe-repo  584 k
+ libz1                                                   cortexa8hf_neon   1.2.11-r0                              oe-repo   56 k
+ libzstd1                                                cortexa8hf_neon   1.5.2-r0                               oe-repo  285 k
+ logrotate                                               cortexa8hf_neon   3.20.1-r0                              oe-repo   53 k
+ m4                                                      cortexa8hf_neon   1.4.19-r0                              oe-repo  133 k
+ make                                                    cortexa8hf_neon   4.3-r0                                 oe-repo  121 k
+ makedevs                                                cortexa8hf_neon   1.0.1-r0                               oe-repo   13 k
+ mc                                                      cortexa8hf_neon   4.8.27-r1                              oe-repo  997 k
+ mc-fish                                                 cortexa8hf_neon   4.8.27-r1                              oe-repo   14 k
+ mc-helpers                                              cortexa8hf_neon   4.8.27-r1                              oe-repo   39 k
+ mc-helpers-perl                                         cortexa8hf_neon   4.8.27-r1                              oe-repo   28 k
+ ncurses                                                 cortexa8hf_neon   6.3+20220423-r0                        oe-repo   22 k
+ ncurses-terminfo-base                                   cortexa8hf_neon   6.3+20220423-r0                        oe-repo   16 k
+ net-tools                                               cortexa8hf_neon   2.10-r0                                oe-repo  123 k
+ net-tools-mii-tool                                      cortexa8hf_neon   2.10-r0                                oe-repo   15 k
+ netbase                                                 noarch            1:6.3-r0                               oe-repo   15 k
+ nfs-utils                                               cortexa8hf_neon   2.6.1-r0                               oe-repo  102 k
+ nfs-utils-client                                        cortexa8hf_neon   2.6.1-r0                               oe-repo   89 k
+ nfs-utils-mount                                         cortexa8hf_neon   2.6.1-r0                               oe-repo   63 k
+ openssh                                                 cortexa8hf_neon   8.9p1-r0                               oe-repo  6.0 k
+ openssh-keygen                                          cortexa8hf_neon   8.9p1-r0                               oe-repo  225 k
+ openssh-scp                                             cortexa8hf_neon   8.9p1-r0                               oe-repo  105 k
+ openssh-sftp-server                                     cortexa8hf_neon   8.9p1-r0                               oe-repo   73 k
+ openssh-ssh                                             cortexa8hf_neon   8.9p1-r0                               oe-repo  396 k
+ openssh-sshd                                            cortexa8hf_neon   8.9p1-r0                               oe-repo  435 k
+ openssl                                                 cortexa8hf_neon   3.0.16-r0                              oe-repo  7.4 k
+ openssl-bin                                             cortexa8hf_neon   3.0.16-r0                              oe-repo  367 k
+ openssl-conf                                            cortexa8hf_neon   3.0.16-r0                              oe-repo   11 k
+ packagegroup-core-full-cmdline-dev-utils                noarch            1.0-r6                                 oe-repo  5.7 k
+ packagegroup-core-full-cmdline-extended                 noarch            1.0-r6                                 oe-repo  5.7 k
+ packagegroup-core-full-cmdline-initscripts              noarch            1.0-r6                                 oe-repo  5.8 k
+ packagegroup-core-full-cmdline-multiuser                noarch            1.0-r6                                 oe-repo  5.7 k
+ packagegroup-core-full-cmdline-sys-services             noarch            1.0-r6                                 oe-repo  5.7 k
+ packagegroup-core-full-cmdline-utils                    noarch            1.0-r6                                 oe-repo  6.0 k
+ patch                                                   cortexa8hf_neon   2.7.6-r0                               oe-repo  118 k
+ perl                                                    cortexa8hf_neon   5.34.3-r0                              oe-repo  1.0 M
+ perl-module-config-heavy                                cortexa8hf_neon   5.34.3-r0                              oe-repo   20 k
+ procps                                                  cortexa8hf_neon   3.3.17-r0                              oe-repo  155 k
+ procps-ps                                               cortexa8hf_neon   3.3.17-r0                              oe-repo   53 k
+ procps-sysctl                                           cortexa8hf_neon   3.3.17-r0                              oe-repo   20 k
+ psmisc                                                  cortexa8hf_neon   23.4-r0                                oe-repo  6.0 k
+ pstree                                                  cortexa8hf_neon   23.4-r0                                oe-repo   22 k
+ python3-2to3                                            cortexa8hf_neon   3.10.16-r0                             oe-repo  192 k
+ python3-asyncio                                         cortexa8hf_neon   3.10.16-r0                             oe-repo  287 k
+ python3-audio                                           cortexa8hf_neon   3.10.16-r0                             oe-repo   59 k
+ python3-codecs                                          cortexa8hf_neon   3.10.16-r0                             oe-repo   25 k
+ python3-compile                                         cortexa8hf_neon   3.10.16-r0                             oe-repo   28 k
+ python3-compression                                     cortexa8hf_neon   3.10.16-r0                             oe-repo  120 k
+ python3-core                                            cortexa8hf_neon   3.10.16-r0                             oe-repo  2.0 M
+ python3-crypt                                           cortexa8hf_neon   3.10.16-r0                             oe-repo   94 k
+ python3-ctypes                                          cortexa8hf_neon   3.10.16-r0                             oe-repo  100 k
+ python3-curses                                          cortexa8hf_neon   3.10.16-r0                             oe-repo   67 k
+ python3-datetime                                        cortexa8hf_neon   3.10.16-r0                             oe-repo  117 k
+ python3-db                                              cortexa8hf_neon   3.10.16-r0                             oe-repo   25 k
+ python3-debugger                                        cortexa8hf_neon   3.10.16-r0                             oe-repo   58 k
+ python3-difflib                                         cortexa8hf_neon   3.10.16-r0                             oe-repo   44 k
+ python3-distutils                                       cortexa8hf_neon   3.10.16-r0                             oe-repo  313 k
+ python3-doctest                                         cortexa8hf_neon   3.10.16-r0                             oe-repo   55 k
+ python3-email                                           cortexa8hf_neon   3.10.16-r0                             oe-repo  228 k
+ python3-fcntl                                           cortexa8hf_neon   3.10.16-r0                             oe-repo   14 k
+ python3-html                                            cortexa8hf_neon   3.10.16-r0                             oe-repo   80 k
+ python3-idle                                            cortexa8hf_neon   3.10.16-r0                             oe-repo  625 k
+ python3-image                                           cortexa8hf_neon   3.10.16-r0                             oe-repo   13 k
+ python3-io                                              cortexa8hf_neon   3.10.16-r0                             oe-repo  263 k
+ python3-json                                            cortexa8hf_neon   3.10.16-r0                             oe-repo   47 k
+ python3-logging                                         cortexa8hf_neon   3.10.16-r0                             oe-repo   94 k
+ python3-mailbox                                         cortexa8hf_neon   3.10.16-r0                             oe-repo   46 k
+ python3-math                                            cortexa8hf_neon   3.10.16-r0                             oe-repo   46 k
+ python3-mime                                            cortexa8hf_neon   3.10.16-r0                             oe-repo   17 k
+ python3-misc                                            cortexa8hf_neon   3.10.16-r0                             oe-repo  3.7 M
+ python3-mmap                                            cortexa8hf_neon   3.10.16-r0                             oe-repo   17 k
+ python3-multiprocessing                                 cortexa8hf_neon   3.10.16-r0                             oe-repo  175 k
+ python3-netclient                                       cortexa8hf_neon   3.10.16-r0                             oe-repo  246 k
+ python3-netserver                                       cortexa8hf_neon   3.10.16-r0                             oe-repo   40 k
+ python3-numbers                                         cortexa8hf_neon   3.10.16-r0                             oe-repo  217 k
+ python3-pickle                                          cortexa8hf_neon   3.10.16-r0                             oe-repo  126 k
+ python3-pkgutil                                         cortexa8hf_neon   3.10.16-r0                             oe-repo  5.7 k
+ python3-plistlib                                        cortexa8hf_neon   3.10.16-r0                             oe-repo   25 k
+ python3-pprint                                          cortexa8hf_neon   3.10.16-r0                             oe-repo   20 k
+ python3-profile                                         cortexa8hf_neon   3.10.16-r0                             oe-repo   74 k
+ python3-pydoc                                           cortexa8hf_neon   3.10.16-r0                             oe-repo  286 k
+ python3-resource                                        cortexa8hf_neon   3.10.16-r0                             oe-repo   12 k
+ python3-shell                                           cortexa8hf_neon   3.10.16-r0                             oe-repo   28 k
+ python3-smtpd                                           cortexa8hf_neon   3.10.16-r0                             oe-repo   44 k
+ python3-sqlite3                                         cortexa8hf_neon   3.10.16-r0                             oe-repo   46 k
+ python3-statistics                                      cortexa8hf_neon   3.10.16-r0                             oe-repo   30 k
+ python3-stringold                                       cortexa8hf_neon   3.10.16-r0                             oe-repo   13 k
+ python3-syslog                                          cortexa8hf_neon   3.10.16-r0                             oe-repo   11 k
+ python3-terminal                                        cortexa8hf_neon   3.10.16-r0                             oe-repo   12 k
+ python3-threading                                       cortexa8hf_neon   3.10.16-r0                             oe-repo   23 k
+ python3-tkinter                                         cortexa8hf_neon   3.10.16-r0                             oe-repo  186 k
+ python3-unittest                                        cortexa8hf_neon   3.10.16-r0                             oe-repo  134 k
+ python3-unixadmin                                       cortexa8hf_neon   3.10.16-r0                             oe-repo   16 k
+ python3-venv                                            cortexa8hf_neon   3.10.16-r0                             oe-repo   26 k
+ python3-xml                                             cortexa8hf_neon   3.10.16-r0                             oe-repo  265 k
+ python3-xmlrpc                                          cortexa8hf_neon   3.10.16-r0                             oe-repo   53 k
+ rpcbind                                                 cortexa8hf_neon   1.2.6-r0                               oe-repo   50 k
+ sed                                                     cortexa8hf_neon   4.8-r0                                 oe-repo   99 k
+ shadow                                                  cortexa8hf_neon   4.11.1-r0                              oe-repo  327 k
+ shadow-base                                             cortexa8hf_neon   4.11.1-r0                              oe-repo   67 k
+ shadow-securetty                                        beaglebone_yocto  4.6-r3                                 oe-repo  6.9 k
+ sudo                                                    cortexa8hf_neon   1.9.15p2-r0                            oe-repo  396 k
+ sudo-lib                                                cortexa8hf_neon   1.9.15p2-r0                            oe-repo  404 k
+ sudo-sudo                                               cortexa8hf_neon   1.9.15p2-r0                            oe-repo  144 k
+ sysklogd                                                cortexa8hf_neon   2.3.0-r0                               oe-repo   42 k
+ systemd                                                 cortexa8hf_neon   1:250.14-r0                            oe-repo  2.2 M
+ systemd-compat-units                                    cortexa8hf_neon   1.0-r29                                oe-repo  6.2 k
+ systemd-serialgetty                                     beaglebone_yocto  1.0-r5                                 oe-repo  8.0 k
+ systemd-udev-rules                                      cortexa8hf_neon   1:250.14-r0                            oe-repo   11 k
+ systemd-vconsole-setup                                  cortexa8hf_neon   1:250.14-r0                            oe-repo   15 k
+ tar                                                     cortexa8hf_neon   1.35-r0                                oe-repo  258 k
+ time                                                    cortexa8hf_neon   1.9-r0                                 oe-repo   19 k
+ udev                                                    cortexa8hf_neon   1:250.14-r0                            oe-repo  245 k
+ update-alternatives-opkg                                cortexa8hf_neon   0.5.0-r0                               oe-repo  8.6 k
+ update-rc.d                                             noarch            0.8-r0                                 oe-repo  8.8 k
+ util-linux                                              cortexa8hf_neon   2.37.4-r0                              oe-repo  8.3 k
+ util-linux-agetty                                       cortexa8hf_neon   2.37.4-r0                              oe-repo   35 k
+ util-linux-fsck                                         cortexa8hf_neon   2.37.4-r0                              oe-repo   31 k
+ util-linux-mount                                        cortexa8hf_neon   2.37.4-r0                              oe-repo   29 k
+ util-linux-sulogin                                      cortexa8hf_neon   2.37.4-r0                              oe-repo   29 k
+ util-linux-umount                                       cortexa8hf_neon   2.37.4-r0                              oe-repo   20 k
+ volatile-binds                                          noarch            1.0-r0                                 oe-repo   10 k
+Installing weak dependencies:
+ busybox-udhcpc                                          cortexa8hf_neon   1.35.0-r0                              oe-repo  8.1 k
+ ca-certificates                                         noarch            20211016-r0                            oe-repo  141 k
+ e2fsprogs-e2fsck                                        cortexa8hf_neon   1.46.5-r0                              oe-repo  164 k
+ e2fsprogs-mke2fs                                        cortexa8hf_neon   1.46.5-r0                              oe-repo   78 k
+ iptables-modules                                        cortexa8hf_neon   1.8.7-r0                               oe-repo  8.7 k
+ kbd                                                     cortexa8hf_neon   2.4.0-r0                               oe-repo  156 k
+ kbd-consolefonts                                        cortexa8hf_neon   2.4.0-r0                               oe-repo  442 k
+ kbd-keymaps                                             cortexa8hf_neon   2.4.0-r0                               oe-repo  511 k
+ kernel-module-ip-tables-5.15.150-yocto-standard         beaglebone_yocto  5.15.150+git0+896128cbf5_4fca0c4373-r0 oe-repo   18 k
+ kernel-module-ip6-tables-5.15.150-yocto-standard        beaglebone_yocto  5.15.150+git0+896128cbf5_4fca0c4373-r0 oe-repo   18 k
+ kernel-module-ip6table-filter-5.15.150-yocto-standard   beaglebone_yocto  5.15.150+git0+896128cbf5_4fca0c4373-r0 oe-repo   10 k
+ kernel-module-iptable-filter-5.15.150-yocto-standard    beaglebone_yocto  5.15.150+git0+896128cbf5_4fca0c4373-r0 oe-repo   10 k
+ kernel-module-iptable-nat-5.15.150-yocto-standard       beaglebone_yocto  5.15.150+git0+896128cbf5_4fca0c4373-r0 oe-repo   11 k
+ kernel-module-sch-fq-codel-5.15.150-yocto-standard      beaglebone_yocto  5.15.150+git0+896128cbf5_4fca0c4373-r0 oe-repo   15 k
+ ncurses-terminfo                                        cortexa8hf_neon   6.3+20220423-r0                        oe-repo  640 k
+ openssl-ossl-module-legacy                              cortexa8hf_neon   3.0.16-r0                              oe-repo   39 k
+ os-release                                              noarch            1.0-r0                                 oe-repo  6.5 k
+ shared-mime-info                                        cortexa8hf_neon   2.1-r0                                 oe-repo  527 k
+ systemd-conf                                            beaglebone_yocto  1:1.0-r0                               oe-repo  7.4 k
+ systemd-extra-utils                                     cortexa8hf_neon   1:250.14-r0                            oe-repo  147 k
+ udev-hwdb                                               cortexa8hf_neon   1:250.14-r0                            oe-repo  1.2 M
+ util-linux-addpart                                      cortexa8hf_neon   2.37.4-r0                              oe-repo   16 k
+ util-linux-blkdiscard                                   cortexa8hf_neon   2.37.4-r0                              oe-repo   19 k
+ util-linux-blkid                                        cortexa8hf_neon   2.37.4-r0                              oe-repo   59 k
+ util-linux-blkzone                                      cortexa8hf_neon   2.37.4-r0                              oe-repo   37 k
+ util-linux-blockdev                                     cortexa8hf_neon   2.37.4-r0                              oe-repo   37 k
+ util-linux-cal                                          cortexa8hf_neon   2.37.4-r0                              oe-repo   38 k
+ util-linux-cfdisk                                       cortexa8hf_neon   2.37.4-r0                              oe-repo   53 k
+ util-linux-chcpu                                        cortexa8hf_neon   2.37.4-r0                              oe-repo   23 k
+ util-linux-chmem                                        cortexa8hf_neon   2.37.4-r0                              oe-repo   31 k
+ util-linux-choom                                        cortexa8hf_neon   2.37.4-r0                              oe-repo   27 k
+ util-linux-chrt                                         cortexa8hf_neon   2.37.4-r0                              oe-repo   22 k
+ util-linux-col                                          cortexa8hf_neon   2.37.4-r0                              oe-repo   19 k
+ util-linux-colcrt                                       cortexa8hf_neon   2.37.4-r0                              oe-repo   11 k
+ util-linux-colrm                                        cortexa8hf_neon   2.37.4-r0                              oe-repo   16 k
+ util-linux-column                                       cortexa8hf_neon   2.37.4-r0                              oe-repo   27 k
+ util-linux-ctrlaltdel                                   cortexa8hf_neon   2.37.4-r0                              oe-repo   20 k
+ util-linux-delpart                                      cortexa8hf_neon   2.37.4-r0                              oe-repo   16 k
+ util-linux-dmesg                                        cortexa8hf_neon   2.37.4-r0                              oe-repo   38 k
+ util-linux-eject                                        cortexa8hf_neon   2.37.4-r0                              oe-repo   40 k
+ util-linux-fallocate                                    cortexa8hf_neon   2.37.4-r0                              oe-repo   20 k
+ util-linux-fdisk                                        cortexa8hf_neon   2.37.4-r0                              oe-repo   72 k
+ util-linux-fincore                                      cortexa8hf_neon   2.37.4-r0                              oe-repo   19 k
+ util-linux-findfs                                       cortexa8hf_neon   2.37.4-r0                              oe-repo   10 k
+ util-linux-findmnt                                      cortexa8hf_neon   2.37.4-r0                              oe-repo   35 k
+ util-linux-flock                                        cortexa8hf_neon   2.37.4-r0                              oe-repo   20 k
+ util-linux-fsck.cramfs                                  cortexa8hf_neon   2.37.4-r0                              oe-repo   24 k
+ util-linux-fsfreeze                                     cortexa8hf_neon   2.37.4-r0                              oe-repo   11 k
+ util-linux-fstrim                                       cortexa8hf_neon   2.37.4-r0                              oe-repo   37 k
+ util-linux-getopt                                       cortexa8hf_neon   2.37.4-r0                              oe-repo   20 k
+ util-linux-hardlink                                     cortexa8hf_neon   2.37.4-r0                              oe-repo   24 k
+ util-linux-hexdump                                      cortexa8hf_neon   2.37.4-r0                              oe-repo   33 k
+ util-linux-hwclock                                      cortexa8hf_neon   2.37.4-r0                              oe-repo   40 k
+ util-linux-ionice                                       cortexa8hf_neon   2.37.4-r0                              oe-repo   19 k
+ util-linux-ipcmk                                        cortexa8hf_neon   2.37.4-r0                              oe-repo   19 k
+ util-linux-ipcrm                                        cortexa8hf_neon   2.37.4-r0                              oe-repo   19 k
+ util-linux-ipcs                                         cortexa8hf_neon   2.37.4-r0                              oe-repo   37 k
+ util-linux-irqtop                                       cortexa8hf_neon   2.37.4-r0                              oe-repo   26 k
+ util-linux-isosize                                      cortexa8hf_neon   2.37.4-r0                              oe-repo   17 k
+ util-linux-kill                                         cortexa8hf_neon   2.37.4-r0                              oe-repo   23 k
+ util-linux-last                                         cortexa8hf_neon   2.37.4-r0                              oe-repo   28 k
+ util-linux-ldattach                                     cortexa8hf_neon   2.37.4-r0                              oe-repo   19 k
+ util-linux-logger                                       cortexa8hf_neon   2.37.4-r0                              oe-repo   28 k
+ util-linux-look                                         cortexa8hf_neon   2.37.4-r0                              oe-repo   11 k
+ util-linux-losetup                                      cortexa8hf_neon   2.37.4-r0                              oe-repo   56 k
+ util-linux-lsblk                                        cortexa8hf_neon   2.37.4-r0                              oe-repo   81 k
+ util-linux-lscpu                                        cortexa8hf_neon   2.37.4-r0                              oe-repo   58 k
+ util-linux-lsipc                                        cortexa8hf_neon   2.37.4-r0                              oe-repo   44 k
+ util-linux-lsirq                                        cortexa8hf_neon   2.37.4-r0                              oe-repo   21 k
+ util-linux-lslocks                                      cortexa8hf_neon   2.37.4-r0                              oe-repo   23 k
+ util-linux-lslogins                                     cortexa8hf_neon   2.37.4-r0                              oe-repo   33 k
+ util-linux-lsmem                                        cortexa8hf_neon   2.37.4-r0                              oe-repo   32 k
+ util-linux-lsns                                         cortexa8hf_neon   2.37.4-r0                              oe-repo   27 k
+ util-linux-mcookie                                      cortexa8hf_neon   2.37.4-r0                              oe-repo   22 k
+ util-linux-mesg                                         cortexa8hf_neon   2.37.4-r0                              oe-repo   12 k
+ util-linux-mkfs                                         cortexa8hf_neon   2.37.4-r0                              oe-repo   10 k
+ util-linux-mkfs.cramfs                                  cortexa8hf_neon   2.37.4-r0                              oe-repo   25 k
+ util-linux-mkswap                                       cortexa8hf_neon   2.37.4-r0                              oe-repo   55 k
+ util-linux-more                                         cortexa8hf_neon   2.37.4-r0                              oe-repo   32 k
+ util-linux-mountpoint                                   cortexa8hf_neon   2.37.4-r0                              oe-repo   12 k
+ util-linux-namei                                        cortexa8hf_neon   2.37.4-r0                              oe-repo   19 k
+ util-linux-nologin                                      cortexa8hf_neon   2.37.4-r0                              oe-repo   13 k
+ util-linux-nsenter                                      cortexa8hf_neon   2.37.4-r0                              oe-repo   21 k
+ util-linux-partx                                        cortexa8hf_neon   2.37.4-r0                              oe-repo   56 k
+ util-linux-pivot-root                                   cortexa8hf_neon   2.37.4-r0                              oe-repo   10 k
+ util-linux-prlimit                                      cortexa8hf_neon   2.37.4-r0                              oe-repo   22 k
+ util-linux-readprofile                                  cortexa8hf_neon   2.37.4-r0                              oe-repo   21 k
+ util-linux-rename                                       cortexa8hf_neon   2.37.4-r0                              oe-repo   12 k
+ util-linux-renice                                       cortexa8hf_neon   2.37.4-r0                              oe-repo   11 k
+ util-linux-resizepart                                   cortexa8hf_neon   2.37.4-r0                              oe-repo   32 k
+ util-linux-rev                                          cortexa8hf_neon   2.37.4-r0                              oe-repo   11 k
+ util-linux-rfkill                                       cortexa8hf_neon   2.37.4-r0                              oe-repo   26 k
+ util-linux-rtcwake                                      cortexa8hf_neon   2.37.4-r0                              oe-repo   27 k
+ util-linux-script                                       cortexa8hf_neon   2.37.4-r0                              oe-repo   36 k
+ util-linux-scriptlive                                   cortexa8hf_neon   2.37.4-r0                              oe-repo   31 k
+ util-linux-scriptreplay                                 cortexa8hf_neon   2.37.4-r0                              oe-repo   25 k
+ util-linux-setarch                                      cortexa8hf_neon   2.37.4-r0                              oe-repo   13 k
+ util-linux-setpriv                                      cortexa8hf_neon   2.37.4-r0                              oe-repo   28 k
+ util-linux-setsid                                       cortexa8hf_neon   2.37.4-r0                              oe-repo   11 k
+ util-linux-setterm                                      cortexa8hf_neon   2.37.4-r0                              oe-repo   26 k
+ util-linux-sfdisk                                       cortexa8hf_neon   2.37.4-r0                              oe-repo   68 k
+ util-linux-swaplabel                                    cortexa8hf_neon   2.37.4-r0                              oe-repo   12 k
+ util-linux-swapoff                                      cortexa8hf_neon   2.37.4-r0                              oe-repo   15 k
+ util-linux-swapon                                       cortexa8hf_neon   2.37.4-r0                              oe-repo   29 k
+ util-linux-switch-root                                  cortexa8hf_neon   2.37.4-r0                              oe-repo   12 k
+ util-linux-taskset                                      cortexa8hf_neon   2.37.4-r0                              oe-repo   22 k
+ util-linux-uclampset                                    cortexa8hf_neon   2.37.4-r0                              oe-repo   29 k
+ util-linux-ul                                           cortexa8hf_neon   2.37.4-r0                              oe-repo   13 k
+ util-linux-unshare                                      cortexa8hf_neon   2.37.4-r0                              oe-repo   26 k
+ util-linux-utmpdump                                     cortexa8hf_neon   2.37.4-r0                              oe-repo   17 k
+ util-linux-uuidd                                        cortexa8hf_neon   2.37.4-r0                              oe-repo   23 k
+ util-linux-uuidgen                                      cortexa8hf_neon   2.37.4-r0                              oe-repo   12 k
+ util-linux-uuidparse                                    cortexa8hf_neon   2.37.4-r0                              oe-repo   22 k
+ util-linux-wall                                         cortexa8hf_neon   2.37.4-r0                              oe-repo   21 k
+ util-linux-wdctl                                        cortexa8hf_neon   2.37.4-r0                              oe-repo   31 k
+ util-linux-whereis                                      cortexa8hf_neon   2.37.4-r0                              oe-repo   18 k
+ util-linux-wipefs                                       cortexa8hf_neon   2.37.4-r0                              oe-repo   25 k
+ util-linux-write                                        cortexa8hf_neon   2.37.4-r0                              oe-repo   13 k
+ util-linux-zramctl                                      cortexa8hf_neon   2.37.4-r0                              oe-repo   56 k
+
+Transaction Summary
+================================================================================================================================
+Install  456 Packages
+
+Total size: 63 M
+Installed size: 148 M
+Downloading Packages:
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+abort()ing pseudo client by server request. See https://wiki.yoctoproject.org/wiki/Pseudo_Abort for more details on this.
+Check logfile: /home/georgeca/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/core-image-full-cmdline/1.0-r0/pseudo//pseudo.log
+
+ERROR: Logfile of failure stored in: /home/georgeca/yocto_tutorial/sources/tmp/work/beaglebone_yocto-poky-linux-gnueabi/core-image-full-cmdline/1.0-r0/temp/log.do_rootfs.1583105
+ERROR: Task (/home/georgeca/yocto_tutorial/poky/meta/recipes-extended/images/core-image-full-cmdline.bb:do_rootfs) failed with exit code '1' 
+Pseudo log:
+path mismatch [1 link]: ino 1703999 db '/tmp/tmp33akvu2s' req '/tmp/2ypuiwgb'.
+Setup complete, sending SIGUSR1 to pid 1583106.
+
+NOTE: Tasks Summary: Attempted 4689 tasks of which 2384 didn't need to be rerun and 1 failed.
+
+Summary: 1 task failed:
+  /home/georgeca/yocto_tutorial/poky/meta/recipes-extended/images/core-image-full-cmdline.bb:do_rootfs
+Summary: There was 1 ERROR message, returning a non-zero exit code.
+
+real	119m50,832s
+user	0m23,692s
+sys	0m8,779s
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ ^C
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ time bitbake core-image-full-cmdline
+Loading cache: 100% |####################################################################################################################################################################################################################################| Time: 0:00:00
+Loaded 2784 entries from dependency cache.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "beaglebone-yocto"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.27"
+TUNE_FEATURES        = "arm vfp cortexa8 neon callconvention-hard"
+TARGET_FPU           = "hard"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7"
+meta-oe              = "kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0"
+
+Initialising tasks: 100% |###############################################################################################################################################################################################################################| Time: 0:00:02
+Sstate summary: Wanted 333 Local 331 Mirrors 0 Missed 2 Current 1407 (99% match, 99% complete)
+NOTE: Executing Tasks
+NOTE: Tasks Summary: Attempted 4702 tasks of which 4688 didn't need to be rerun and all succeeded.
+
+real	1m43,558s
+user	0m0,794s
+sys	0m0,369s
+
