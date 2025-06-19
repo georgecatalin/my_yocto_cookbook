@@ -1,0 +1,19 @@
+From 02901126b6b1c6cccb7f60c89fc4a7cb934286be Mon Sep 17 00:00:00 2001
+From: George Calin <george.calin@gmail.com>
+Date: Thu, 19 Jun 2025 09:57:57 +0000
+Subject: [PATCH] supplementary commit
+
+---
+ drivers/char/georgedriver/Makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/char/georgedriver/Makefile b/drivers/char/georgedriver/Makefile
+index 801c0af717ba..8c6de9c62814 100644
+--- a/drivers/char/georgedriver/Makefile
++++ b/drivers/char/georgedriver/Makefile
+@@ -1 +1 @@
+-obj-$(CONFIG_GEORGE_DRIVER) := george_module.o
++obj-$(CONFIG_GEORGE_DRIVER) += george_module.o
+-- 
+2.34.1
+

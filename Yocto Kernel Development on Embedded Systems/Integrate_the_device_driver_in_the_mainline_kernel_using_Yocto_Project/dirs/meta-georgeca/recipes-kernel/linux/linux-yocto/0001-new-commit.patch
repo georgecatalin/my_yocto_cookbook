@@ -1,0 +1,54 @@
+From 1efdcb8d8fcd96c6f1ed93a6915a673f75d72567 Mon Sep 17 00:00:00 2001
+From: George Calin <george.calin@gmail.com>
+Date: Thu, 19 Jun 2025 09:42:32 +0000
+Subject: [PATCH] new commit
+
+---
+ drivers/char/Kconfig                                         | 2 +-
+ drivers/char/Makefile                                        | 2 +-
+ drivers/char/{george_driver => georgedriver}/Kconfig         | 0
+ drivers/char/{george_driver => georgedriver}/Makefile        | 0
+ drivers/char/{george_driver => georgedriver}/george-module.c | 0
+ 5 files changed, 2 insertions(+), 2 deletions(-)
+ rename drivers/char/{george_driver => georgedriver}/Kconfig (100%)
+ rename drivers/char/{george_driver => georgedriver}/Makefile (100%)
+ rename drivers/char/{george_driver => georgedriver}/george-module.c (100%)
+
+diff --git a/drivers/char/Kconfig b/drivers/char/Kconfig
+index c9640f74646b..998d1e7d48a5 100644
+--- a/drivers/char/Kconfig
++++ b/drivers/char/Kconfig
+@@ -6,7 +6,7 @@
+ menu "Character devices"
+ 
+ source "drivers/tty/Kconfig"
+-source "drivers/char/george_driver/Kconfig"
++source "drivers/char/georgedriver/Kconfig"
+ 
+ config TTY_PRINTK
+ 	tristate "TTY driver to output user messages via printk"
+diff --git a/drivers/char/Makefile b/drivers/char/Makefile
+index f758bfc6f1da..35eb8d26d1eb 100644
+--- a/drivers/char/Makefile
++++ b/drivers/char/Makefile
+@@ -47,4 +47,4 @@ obj-$(CONFIG_XILLYBUS_CLASS)	+= xillybus/
+ obj-$(CONFIG_POWERNV_OP_PANEL)	+= powernv-op-panel.o
+ obj-$(CONFIG_ADI)		+= adi.o
+ 
+-obj-$(CONFIG_GEORGE_DRIVER) 	+= george_driver/
++obj-$(CONFIG_GEORGE_DRIVER) 	+= georgedriver/
+diff --git a/drivers/char/george_driver/Kconfig b/drivers/char/georgedriver/Kconfig
+similarity index 100%
+rename from drivers/char/george_driver/Kconfig
+rename to drivers/char/georgedriver/Kconfig
+diff --git a/drivers/char/george_driver/Makefile b/drivers/char/georgedriver/Makefile
+similarity index 100%
+rename from drivers/char/george_driver/Makefile
+rename to drivers/char/georgedriver/Makefile
+diff --git a/drivers/char/george_driver/george-module.c b/drivers/char/georgedriver/george-module.c
+similarity index 100%
+rename from drivers/char/george_driver/george-module.c
+rename to drivers/char/georgedriver/george-module.c
+-- 
+2.34.1
+
