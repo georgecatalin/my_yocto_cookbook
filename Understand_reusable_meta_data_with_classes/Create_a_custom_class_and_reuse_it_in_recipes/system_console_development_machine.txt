@@ -1,0 +1,124 @@
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ source ../poky/oe-init-build-env .
+
+### Shell environment set up for builds. ###
+
+You can now run 'bitbake <target>'
+
+Common targets are:
+    core-image-minimal
+    core-image-full-cmdline
+    core-image-sato
+    core-image-weston
+    meta-toolchain
+    meta-ide-support
+
+You can also run generated qemu images with a command like 'runqemu qemux86'
+
+Other commonly useful commands are:
+ - 'devtool' and 'recipetool' handle common recipe tasks
+ - 'bitbake-layers' handles common layer tasks
+ - 'oe-pkgdata-util' handles common target package tasks
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ ls -lh
+total 4,4M
+drwxrwxr-x 3 georgeca georgeca 4,0K mai 24 09:01 '~'
+-rw-rw-r-- 1 georgeca georgeca    0 iun 12 13:59  ⚠️
+-rw-rw-r-- 1 georgeca georgeca 4,4M iun 20 10:50  bitbake-cookerdaemon.log
+drwxrwxr-x 2 georgeca georgeca 4,0K iun 20 10:50  cache
+drwxrwxr-x 2 georgeca georgeca 4,0K iun 20 10:44  conf
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 10 16:20  meta-advanced-calculator
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 11 09:36  meta_advanced-calculator-makefile
+drwxrwxr-x 4 georgeca georgeca 4,0K mai 27 16:10  meta-assignment-vars
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 13 14:00  meta-custom
+drwxrwxr-x 5 georgeca georgeca 4,0K iun 13 13:25  meta-example
+drwxrwxr-x 5 georgeca georgeca 4,0K iun 18 18:08  meta-georgeca
+drwxrwxr-x 6 georgeca georgeca 4,0K iun 20 10:39  meta-tutorial
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ tree meta-tutorial/
+meta-tutorial/
+├── conf
+│   └── layer.conf
+├── COPYING.MIT
+├── README
+├── recipes-example
+│   └── example
+│       └── example_0.1.bb
+└── recipes-init-managers
+    └── systemd-example
+        ├── files
+        │   ├── mydaemon.sh
+        │   └── mysysd.service
+        └── systemd-example_0.1.bb
+
+6 directories, 7 files
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ mkdir meta-tutorial/classes
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ touch task-info.bbclass
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ mv task-info.bbclass meta-tutorial/classes/
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ tree meta-tutorial/
+meta-tutorial/
+├── classes
+│   └── task-info.bbclass
+├── conf
+│   └── layer.conf
+├── COPYING.MIT
+├── README
+├── recipes-example
+│   └── example
+│       └── example_0.1.bb
+└── recipes-init-managers
+    └── systemd-example
+        ├── files
+        │   ├── mydaemon.sh
+        │   └── mysysd.service
+        └── systemd-example_0.1.bb
+
+7 directories, 8 files
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ md5sum meta-tutorial/classes/task-info.bbclass 
+66eb5146affa1c95f84f91eb40388d23  meta-tutorial/classes/task-info.bbclass
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ nano meta-tutorial/recipes-init-managers/systemd-example/systemd-example_0.1.bb 
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ bitbake systemd-example
+Loading cache: 100% |####################################################################################################################################################################################################################################| Time: 0:00:01
+Loaded 2787 entries from dependency cache.
+Parsing recipes: 100% |##################################################################################################################################################################################################################################| Time: 0:00:00
+Parsing of 1747 .bb files complete (1746 cached, 1 parsed). 2786 targets, 112 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "beaglebone-yocto"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.27"
+TUNE_FEATURES        = "arm vfp cortexa8 neon callconvention-hard"
+TARGET_FPU           = "hard"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7"
+meta-oe              = "kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0"
+meta-tutorial        = "<unknown>:<unknown>"
+
+Initialising tasks: 100% |###############################################################################################################################################################################################################################| Time: 0:00:05
+Sstate summary: Wanted 140 Local 133 Mirrors 0 Missed 7 Current 1141 (95% match, 99% complete)
+Removing 5 stale sstate objects for arch cortexa8hf-neon: 100% |#########################################################################################################################################################################################| Time: 0:00:00
+Removing 1 stale sstate objects for arch beaglebone_yocto: 100% |########################################################################################################################################################################################| Time: 0:00:00
+NOTE: Executing Tasks
+********************************************************
+Fetching task for systemd-example version 0.1...
+**************************
+********************************************************
+Unpacking task for systemd-example version 0.1...
+*********************************************************
+********************************************************
+Patching task for systemd-example version 0.1...
+*********************************************************
+********************************************************
+Configuring task for systemd-example version 0.1...
+*********************************************************
+********************************************************
+Compiling task for systemd-example version 0.1...
+*********************************************************
+********************************************************
+Installing task for systemd-example version 0.1...
+*********************************************************
+NOTE: Tasks Summary: Attempted 3393 tasks of which 3373 didn't need to be rerun and all succeeded.
+
