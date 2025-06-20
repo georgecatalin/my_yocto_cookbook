@@ -1,0 +1,287 @@
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ cd ../poky/
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/poky$ ls -lh
+total 108K
+drwxrwxr-x  6 georgeca georgeca 4,0K mai 24 08:38 bitbake
+drwxrwxr-x  4 georgeca georgeca 4,0K mai 24 08:38 contrib
+drwxrwxr-x 21 georgeca georgeca 4,0K mai 24 08:38 documentation
+-rw-rw-r--  1 georgeca georgeca  834 mai 24 08:38 LICENSE
+-rw-rw-r--  1 georgeca georgeca  16K mai 24 08:38 LICENSE.GPL-2.0-only
+-rw-rw-r--  1 georgeca georgeca 1,3K mai 24 08:38 LICENSE.MIT
+-rw-rw-r--  1 georgeca georgeca 2,2K mai 24 08:38 MAINTAINERS.md
+-rw-rw-r--  1 georgeca georgeca 1,2K mai 24 08:38 Makefile
+-rw-rw-r--  1 georgeca georgeca  244 mai 24 08:38 MEMORIAM
+drwxrwxr-x 20 georgeca georgeca 4,0K mai 24 08:38 meta
+drwxrwxr-x  8 georgeca georgeca 4,0K iun 12 16:22 meta-george
+drwxrwxr-x  5 georgeca georgeca 4,0K iun 11 16:30 meta-george-append-layer
+drwxrwxr-x  4 georgeca georgeca 4,0K mai 26 22:22 meta-my-builder
+drwxrwxr-x  4 georgeca georgeca 4,0K iun 13 12:43 meta-my-builder-modify
+drwxrwxr-x 14 georgeca georgeca 4,0K mai 26 17:54 meta-openembedded
+drwxrwxr-x  5 georgeca georgeca 4,0K mai 24 08:38 meta-poky
+drwxrwxr-x  9 georgeca georgeca 4,0K mai 24 08:38 meta-selftest
+drwxrwxr-x  8 georgeca georgeca 4,0K mai 24 08:38 meta-skeleton
+drwxrwxr-x  8 georgeca georgeca 4,0K mai 24 08:38 meta-yocto-bsp
+-rwxrwxr-x  1 georgeca georgeca 1,3K mai 24 08:38 oe-init-build-env
+lrwxrwxrwx  1 georgeca georgeca   33 mai 24 08:38 README.hardware.md -> meta-yocto-bsp/README.hardware.md
+lrwxrwxrwx  1 georgeca georgeca   14 mai 24 08:38 README.md -> README.poky.md
+-rw-rw-r--  1 georgeca georgeca  791 mai 24 08:38 README.OE-Core.md
+lrwxrwxrwx  1 georgeca georgeca   24 mai 24 08:38 README.poky.md -> meta-poky/README.poky.md
+-rw-rw-r--  1 georgeca georgeca  529 mai 24 08:38 README.qemu.md
+drwxrwxr-x 10 georgeca georgeca 4,0K mai 24 08:38 scripts
+-rw-rw-r--  1 georgeca georgeca 1,2K mai 24 08:38 SECURITY.md
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/poky$ cd meta
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/poky/meta$ ls -lh
+total 88K
+drwxrwxr-x  2 georgeca georgeca  12K mai 24 08:38 classes
+drwxrwxr-x  6 georgeca georgeca 4,0K mai 24 08:38 conf
+-rw-rw-r-- 12 georgeca georgeca 1,1K mai 24 08:38 COPYING.MIT
+drwxrwxr-x  4 georgeca georgeca 4,0K mai 24 08:38 files
+drwxrwxr-x  6 georgeca georgeca 4,0K mai 24 09:01 lib
+drwxrwxr-x 21 georgeca georgeca 4,0K mai 24 08:38 recipes-bsp
+drwxrwxr-x 26 georgeca georgeca 4,0K mai 24 08:38 recipes-connectivity
+drwxrwxr-x 44 georgeca georgeca 4,0K mai 24 08:38 recipes-core
+drwxrwxr-x 97 georgeca georgeca 4,0K mai 24 08:38 recipes-devtools
+drwxrwxr-x  3 georgeca georgeca 4,0K mai 24 08:38 recipes-example
+drwxrwxr-x 88 georgeca georgeca 4,0K mai 24 08:38 recipes-extended
+drwxrwxr-x 19 georgeca georgeca 4,0K mai 24 08:38 recipes-gnome
+drwxrwxr-x 49 georgeca georgeca 4,0K mai 24 08:38 recipes-graphics
+drwxrwxr-x 18 georgeca georgeca 4,0K mai 24 08:38 recipes-kernel
+drwxrwxr-x 23 georgeca georgeca 4,0K mai 24 08:38 recipes-multimedia
+drwxrwxr-x  4 georgeca georgeca 4,0K mai 24 08:38 recipes-rt
+drwxrwxr-x 21 georgeca georgeca 4,0K mai 24 08:38 recipes-sato
+drwxrwxr-x 86 georgeca georgeca 4,0K mai 24 08:38 recipes-support
+-rw-rw-r--  1 georgeca georgeca 1,2K mai 24 08:38 recipes.txt
+drwxrwxr-x  2 georgeca georgeca 4,0K mai 24 08:38 site
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/poky/meta$ cd classes/
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/poky/meta/classes$ ls -lh
+total 1,9M
+-rw-rw-r-- 1 georgeca georgeca 2,7K mai 24 08:38 allarch.bbclass
+-rw-rw-r-- 1 georgeca georgeca  26K mai 24 08:38 archiver.bbclass
+-rw-rw-r-- 1 georgeca georgeca 8,6K mai 24 08:38 autotools.bbclass
+-rw-rw-r-- 1 georgeca georgeca  183 mai 24 08:38 autotools-brokensep.bbclass
+-rw-rw-r-- 1 georgeca georgeca 4,7K mai 24 08:38 baremetal-image.bbclass
+-rw-rw-r-- 1 georgeca georgeca  31K mai 24 08:38 base.bbclass
+-rw-rw-r-- 1 georgeca georgeca  230 mai 24 08:38 bash-completion.bbclass
+-rw-rw-r-- 1 georgeca georgeca 2,3K mai 24 08:38 binconfig.bbclass
+-rw-rw-r-- 1 georgeca georgeca  873 mai 24 08:38 binconfig-disabled.bbclass
+-rw-rw-r-- 1 georgeca georgeca 1,2K mai 24 08:38 bin_package.bbclass
+-rw-rw-r-- 1 georgeca georgeca  41K mai 24 08:38 buildhistory.bbclass
+-rw-rw-r-- 1 georgeca georgeca  13K mai 24 08:38 buildstats.bbclass
+-rw-rw-r-- 1 georgeca georgeca 1,4K mai 24 08:38 buildstats-summary.bbclass
+-rw-rw-r-- 1 georgeca georgeca 2,5K mai 24 08:38 cargo.bbclass
+-rw-rw-r-- 1 georgeca georgeca 3,3K mai 24 08:38 cargo_common.bbclass
+-rw-rw-r-- 1 georgeca georgeca 2,2K mai 24 08:38 ccache.bbclass
+-rw-rw-r-- 1 georgeca georgeca 3,8K mai 24 08:38 ccmake.bbclass
+-rw-rw-r-- 1 georgeca georgeca 5,0K mai 24 08:38 chrpath.bbclass
+-rw-rw-r-- 1 georgeca georgeca 8,8K mai 24 08:38 cmake.bbclass
+-rw-rw-r-- 1 georgeca georgeca 3,7K mai 24 08:38 cml1.bbclass
+-rw-rw-r-- 1 georgeca georgeca  11K mai 24 08:38 compress_doc.bbclass
+-rw-rw-r-- 1 georgeca georgeca 2,1K mai 24 08:38 copyleft_compliance.bbclass
+-rw-rw-r-- 1 georgeca georgeca 3,2K mai 24 08:38 copyleft_filter.bbclass
+-rw-rw-r-- 1 georgeca georgeca 4,0K mai 24 08:38 core-image.bbclass
+-rw-rw-r-- 1 georgeca georgeca  840 mai 24 08:38 cpan-base.bbclass
+-rw-rw-r-- 1 georgeca georgeca 2,4K mai 24 08:38 cpan.bbclass
+-rw-rw-r-- 1 georgeca georgeca 1,4K mai 24 08:38 cpan_build.bbclass
+-rw-rw-r-- 1 georgeca georgeca  38K mai 24 08:38 create-spdx.bbclass
+-rw-rw-r-- 1 georgeca georgeca 2,9K mai 24 08:38 cross.bbclass
+-rw-rw-r-- 1 georgeca georgeca 6,9K mai 24 08:38 cross-canadian.bbclass
+-rw-rw-r-- 1 georgeca georgeca 1,7K mai 24 08:38 crosssdk.bbclass
+-rw-rw-r-- 1 georgeca georgeca  22K mai 24 08:38 cve-check.bbclass
+-rw-rw-r-- 1 georgeca georgeca 6,1K mai 24 08:38 debian.bbclass
+-rw-rw-r-- 1 georgeca georgeca  358 mai 24 08:38 deploy.bbclass
+-rw-rw-r-- 1 georgeca georgeca 5,6K mai 24 08:38 devicetree.bbclass
+-rw-rw-r-- 1 georgeca georgeca 4,5K mai 24 08:38 devshell.bbclass
+-rw-rw-r-- 1 georgeca georgeca  11K mai 24 08:38 devtool-source.bbclass
+-rw-rw-r-- 1 georgeca georgeca 2,1K mai 24 08:38 devupstream.bbclass
+-rw-rw-r-- 1 georgeca georgeca  212 mai 24 08:38 distro_features_check.bbclass
+-rw-rw-r-- 1 georgeca georgeca 1,6K mai 24 08:38 distrooverrides.bbclass
+-rw-rw-r-- 1 georgeca georgeca  518 mai 24 08:38 dos2unix.bbclass
+-rw-rw-r-- 1 georgeca georgeca  13K mai 24 08:38 externalsrc.bbclass
+-rw-rw-r-- 1 georgeca georgeca 2,2K mai 24 08:38 extrausers.bbclass
+-rw-rw-r-- 1 georgeca georgeca 2,4K mai 24 08:38 features_check.bbclass
+-rw-rw-r-- 1 georgeca georgeca 2,0K mai 24 08:38 fontcache.bbclass
+-rw-rw-r-- 1 georgeca georgeca 1022 mai 24 08:38 fs-uuid.bbclass
+-rw-rw-r-- 1 georgeca georgeca 2,7K mai 24 08:38 gconf.bbclass
+-rw-rw-r-- 1 georgeca georgeca  864 mai 24 08:38 gettext.bbclass
+-rw-rw-r-- 1 georgeca georgeca 1,2K mai 24 08:38 gi-docgen.bbclass
+-rw-rw-r-- 1 georgeca georgeca 1,2K mai 24 08:38 gio-module-cache.bbclass
+-rw-rw-r-- 1 georgeca georgeca  206 mai 24 08:38 glide.bbclass
+-rw-rw-r-- 1 georgeca georgeca  950 mai 24 08:38 gnomebase.bbclass
+-rw-rw-r-- 1 georgeca georgeca 3,1K mai 24 08:38 goarch.bbclass
+-rw-rw-r-- 1 georgeca georgeca 5,6K mai 24 08:38 go.bbclass
+-rw-rw-r-- 1 georgeca georgeca 3,0K mai 24 08:38 gobject-introspection.bbclass
+-rw-rw-r-- 1 georgeca georgeca  622 mai 24 08:38 gobject-introspection-data.bbclass
+-rw-rw-r-- 1 georgeca georgeca  825 mai 24 08:38 go-mod.bbclass
+-rw-rw-r-- 1 georgeca georgeca 1,4K mai 24 08:38 go-ptest.bbclass
+-rw-rw-r-- 1 georgeca georgeca  161 mai 24 08:38 grub-efi.bbclass
+-rw-rw-r-- 1 georgeca georgeca 3,6K mai 24 08:38 grub-efi-cfg.bbclass
+-rw-rw-r-- 1 georgeca georgeca 1,5K mai 24 08:38 gsettings.bbclass
+-rw-rw-r-- 1 georgeca georgeca 3,9K mai 24 08:38 gtk-doc.bbclass
+-rw-rw-r-- 1 georgeca georgeca 2,9K mai 24 08:38 gtk-icon-cache.bbclass
+-rw-rw-r-- 1 georgeca georgeca 2,6K mai 24 08:38 gtk-immodules-cache.bbclass
+-rw-rw-r-- 1 georgeca georgeca  16K mai 24 08:38 icecc.bbclass
+-rw-rw-r-- 1 georgeca georgeca 1,1K mai 24 08:38 image-artifact-names.bbclass
+-rw-rw-r-- 1 georgeca georgeca  27K mai 24 08:38 image.bbclass
+-rw-rw-r-- 1 georgeca georgeca 2,8K mai 24 08:38 image-buildinfo.bbclass
+-rw-rw-r-- 1 georgeca georgeca  370 mai 24 08:38 image-combined-dbg.bbclass
+-rw-rw-r-- 1 georgeca georgeca 1006 mai 24 08:38 image-container.bbclass
+-rw-rw-r-- 1 georgeca georgeca 8,9K mai 24 08:38 image-live.bbclass
+-rw-rw-r-- 1 georgeca georgeca 1,1K mai 24 08:38 image-postinst-intercepts.bbclass
+-rw-rw-r-- 1 georgeca georgeca  18K mai 24 08:38 image_types.bbclass
+-rw-rw-r-- 1 georgeca georgeca 7,0K mai 24 08:38 image_types_wic.bbclass
+-rw-rw-r-- 1 georgeca georgeca  61K mai 24 08:38 insane.bbclass
+-rw-rw-r-- 1 georgeca georgeca 2,8K mai 24 08:38 kernel-arch.bbclass
+-rw-rw-r-- 1 georgeca georgeca 1,2K mai 24 08:38 kernel-artifact-names.bbclass
+-rw-rw-r-- 1 georgeca georgeca  35K mai 24 08:38 kernel.bbclass
+-rw-rw-r-- 1 georgeca georgeca 4,4K mai 24 08:38 kernel-devicetree.bbclass
+-rw-rw-r-- 1 georgeca georgeca  26K mai 24 08:38 kernel-fitimage.bbclass
+-rw-rw-r-- 1 georgeca georgeca 3,6K mai 24 08:38 kernel-grub.bbclass
+-rw-rw-r-- 1 georgeca georgeca 7,8K mai 24 08:38 kernel-module-split.bbclass
+-rw-rw-r-- 1 georgeca georgeca  386 mai 24 08:38 kernelsrc.bbclass
+-rw-rw-r-- 1 georgeca georgeca 1,3K mai 24 08:38 kernel-uboot.bbclass
+-rw-rw-r-- 1 georgeca georgeca 1,4K mai 24 08:38 kernel-uimage.bbclass
+-rw-rw-r-- 1 georgeca georgeca  27K mai 24 08:38 kernel-yocto.bbclass
+-rw-rw-r-- 1 georgeca georgeca  17K mai 24 08:38 libc-package.bbclass
+-rw-rw-r-- 1 georgeca georgeca  211 mai 24 08:38 lib_package.bbclass
+-rw-rw-r-- 1 georgeca georgeca  18K mai 24 08:38 license.bbclass
+-rw-rw-r-- 1 georgeca georgeca  13K mai 24 08:38 license_image.bbclass
+-rw-rw-r-- 1 georgeca georgeca 1,1K mai 24 08:38 linux-dummy.bbclass
+-rw-rw-r-- 1 georgeca georgeca 1,3K mai 24 08:38 linux-kernel-base.bbclass
+-rw-rw-r-- 1 georgeca georgeca 3,3K mai 24 08:38 linuxloader.bbclass
+-rw-rw-r-- 1 georgeca georgeca 3,0K mai 24 08:38 live-vm-common.bbclass
+-rw-rw-r-- 1 georgeca georgeca 2,4K mai 24 08:38 logging.bbclass
+-rw-rw-r-- 1 georgeca georgeca 1,8K mai 24 08:38 manpages.bbclass
+-rw-rw-r-- 1 georgeca georgeca  525 mai 24 08:38 mcextend.bbclass
+-rw-rw-r-- 1 georgeca georgeca 6,9K mai 24 08:38 meson.bbclass
+-rw-rw-r-- 1 georgeca georgeca 1,5K mai 24 08:38 meson-routines.bbclass
+-rw-rw-r-- 1 georgeca georgeca 1,4K mai 24 08:38 metadata_scm.bbclass
+-rw-rw-r-- 1 georgeca georgeca 1,5K mai 24 08:38 migrate_localcount.bbclass
+-rw-rw-r-- 1 georgeca georgeca 2,5K mai 24 08:38 mime.bbclass
+-rw-rw-r-- 1 georgeca georgeca 2,9K mai 24 08:38 mime-xdg.bbclass
+-rw-rw-r-- 1 georgeca georgeca 5,3K mai 24 08:38 mirrors.bbclass
+-rw-rw-r-- 1 georgeca georgeca  822 mai 24 08:38 module-base.bbclass
+-rw-rw-r-- 1 georgeca georgeca 2,8K mai 24 08:38 module.bbclass
+-rw-rw-r-- 1 georgeca georgeca 9,8K mai 24 08:38 multilib.bbclass
+-rw-rw-r-- 1 georgeca georgeca 9,4K mai 24 08:38 multilib_global.bbclass
+-rw-rw-r-- 1 georgeca georgeca 1,6K mai 24 08:38 multilib_header.bbclass
+-rw-rw-r-- 1 georgeca georgeca 1,3K mai 24 08:38 multilib_script.bbclass
+-rw-rw-r-- 1 georgeca georgeca 7,6K mai 24 08:38 native.bbclass
+-rw-rw-r-- 1 georgeca georgeca 3,7K mai 24 08:38 nativesdk.bbclass
+-rw-rw-r-- 1 georgeca georgeca  385 mai 24 08:38 nopackages.bbclass
+-rw-rw-r-- 1 georgeca georgeca  12K mai 24 08:38 npm.bbclass
+-rw-rw-r-- 1 georgeca georgeca 2,7K mai 24 08:38 oelint.bbclass
+-rw-rw-r-- 1 georgeca georgeca 5,8K mai 24 08:38 overlayfs.bbclass
+-rw-rw-r-- 1 georgeca georgeca 4,1K mai 24 08:38 overlayfs-etc.bbclass
+-rw-rw-r-- 1 georgeca georgeca  534 mai 24 08:38 own-mirrors.bbclass
+-rw-rw-r-- 1 georgeca georgeca  98K mai 24 08:38 package.bbclass
+-rw-rw-r-- 1 georgeca georgeca 1,6K mai 24 08:38 packagedata.bbclass
+-rw-rw-r-- 1 georgeca georgeca  13K mai 24 08:38 package_deb.bbclass
+-rw-rw-r-- 1 georgeca georgeca 2,2K mai 24 08:38 packagegroup.bbclass
+-rw-rw-r-- 1 georgeca georgeca  12K mai 24 08:38 package_ipk.bbclass
+-rw-rw-r-- 1 georgeca georgeca 6,1K mai 24 08:38 package_pkgdata.bbclass
+-rw-rw-r-- 1 georgeca georgeca  32K mai 24 08:38 package_rpm.bbclass
+-rw-rw-r-- 1 georgeca georgeca 2,1K mai 24 08:38 package_tar.bbclass
+-rw-rw-r-- 1 georgeca georgeca 6,1K mai 24 08:38 patch.bbclass
+-rw-rw-r-- 1 georgeca georgeca  122 mai 24 08:38 perlnative.bbclass
+-rw-rw-r-- 1 georgeca georgeca 1,9K mai 24 08:38 perl-version.bbclass
+-rw-rw-r-- 1 georgeca georgeca 2,0K mai 24 08:38 pixbufcache.bbclass
+-rw-rw-r-- 1 georgeca georgeca   39 mai 24 08:38 pkgconfig.bbclass
+-rw-rw-r-- 1 georgeca georgeca  15K mai 24 08:38 populate_sdk_base.bbclass
+-rw-rw-r-- 1 georgeca georgeca  215 mai 24 08:38 populate_sdk.bbclass
+-rw-rw-r-- 1 georgeca georgeca  40K mai 24 08:38 populate_sdk_ext.bbclass
+-rw-rw-r-- 1 georgeca georgeca 2,3K mai 24 08:38 prexport.bbclass
+-rw-rw-r-- 1 georgeca georgeca  705 mai 24 08:38 primport.bbclass
+-rw-rw-r-- 1 georgeca georgeca 4,9K mai 24 08:38 ptest.bbclass
+-rw-rw-r-- 1 georgeca georgeca  300 mai 24 08:38 ptest-gnome.bbclass
+-rw-rw-r-- 1 georgeca georgeca  904 mai 24 08:38 ptest-perl.bbclass
+-rw-rw-r-- 1 georgeca georgeca  907 mai 24 08:38 pypi.bbclass
+-rw-rw-r-- 1 georgeca georgeca  175 mai 24 08:38 python3-dir.bbclass
+-rw-rw-r-- 1 georgeca georgeca  787 mai 24 08:38 python3native.bbclass
+-rw-rw-r-- 1 georgeca georgeca  741 mai 24 08:38 python3targetconfig.bbclass
+-rw-rw-r-- 1 georgeca georgeca  153 mai 24 08:38 python_flit_core.bbclass
+-rw-rw-r-- 1 georgeca georgeca 2,0K mai 24 08:38 python_pep517.bbclass
+-rw-rw-r-- 1 georgeca georgeca  140 mai 24 08:38 python_poetry_core.bbclass
+-rw-rw-r-- 1 georgeca georgeca  774 mai 24 08:38 python_pyo3.bbclass
+-rw-rw-r-- 1 georgeca georgeca  240 mai 24 08:38 python_setuptools3_rust.bbclass
+-rw-rw-r-- 1 georgeca georgeca  144 mai 24 08:38 python_setuptools_build_meta.bbclass
+-rw-rw-r-- 1 georgeca georgeca 2,7K mai 24 08:38 qemu.bbclass
+-rw-rw-r-- 1 georgeca georgeca 7,8K mai 24 08:38 qemuboot.bbclass
+-rw-rw-r-- 1 georgeca georgeca 5,3K mai 24 08:38 recipe_sanity.bbclass
+-rw-rw-r-- 1 georgeca georgeca  150 mai 24 08:38 relative_symlinks.bbclass
+-rw-rw-r-- 1 georgeca georgeca  661 mai 24 08:38 relocatable.bbclass
+-rw-rw-r-- 1 georgeca georgeca  257 mai 24 08:38 remove-libtool.bbclass
+-rw-rw-r-- 1 georgeca georgeca 5,2K mai 24 08:38 report-error.bbclass
+-rw-rw-r-- 1 georgeca georgeca 1,3K mai 24 08:38 rm_work_and_downloads.bbclass
+-rw-rw-r-- 1 georgeca georgeca 7,0K mai 24 08:38 rm_work.bbclass
+-rw-rw-r-- 1 georgeca georgeca 1,4K mai 24 08:38 rootfs_deb.bbclass
+-rw-rw-r-- 1 georgeca georgeca 1,8K mai 24 08:38 rootfsdebugfiles.bbclass
+-rw-rw-r-- 1 georgeca georgeca 1,4K mai 24 08:38 rootfs_ipk.bbclass
+-rw-rw-r-- 1 georgeca georgeca  18K mai 24 08:38 rootfs-postcommands.bbclass
+-rw-rw-r-- 1 georgeca georgeca 1,4K mai 24 08:38 rootfs_rpm.bbclass
+-rw-rw-r-- 1 georgeca georgeca 1,4K mai 24 08:38 rust.bbclass
+-rw-rw-r-- 1 georgeca georgeca 4,4K mai 24 08:38 rust-bin.bbclass
+-rw-rw-r-- 1 georgeca georgeca 6,8K mai 24 08:38 rust-common.bbclass
+-rw-rw-r-- 1 georgeca georgeca  47K mai 24 08:38 sanity.bbclass
+-rw-rw-r-- 1 georgeca georgeca 1,2K mai 24 08:38 scons.bbclass
+-rw-rw-r-- 1 georgeca georgeca 1016 mai 24 08:38 setuptools3-base.bbclass
+-rw-rw-r-- 1 georgeca georgeca  954 mai 24 08:38 setuptools3.bbclass
+-rw-rw-r-- 1 georgeca georgeca 2,9K mai 24 08:38 setuptools3_legacy.bbclass
+-rw-rw-r-- 1 georgeca georgeca 1,9K mai 24 08:38 sign_ipk.bbclass
+-rw-rw-r-- 1 georgeca georgeca 2,0K mai 24 08:38 sign_package_feed.bbclass
+-rw-rw-r-- 1 georgeca georgeca 2,5K mai 24 08:38 sign_rpm.bbclass
+-rw-rw-r-- 1 georgeca georgeca 1,2K mai 24 08:38 siteconfig.bbclass
+-rw-rw-r-- 1 georgeca georgeca  11K mai 24 08:38 siteinfo.bbclass
+-rw-rw-r-- 1 georgeca georgeca  55K mai 24 08:38 sstate.bbclass
+-rw-rw-r-- 1 georgeca georgeca  27K mai 24 08:38 staging.bbclass
+-rw-rw-r-- 1 georgeca georgeca 6,3K mai 24 08:38 syslinux.bbclass
+-rw-rw-r-- 1 georgeca georgeca 9,6K mai 24 08:38 systemd.bbclass
+-rw-rw-r-- 1 georgeca georgeca 1,2K mai 24 08:38 systemd-boot.bbclass
+-rw-rw-r-- 1 georgeca georgeca 2,0K mai 24 08:38 systemd-boot-cfg.bbclass
+-rw-rw-r-- 1 georgeca georgeca 3,9K mai 24 08:38 terminal.bbclass
+-rw-rw-r-- 1 georgeca georgeca 6,9K mai 24 08:38 testexport.bbclass
+-rw-rw-r-- 1 georgeca georgeca  20K mai 24 08:38 testimage.bbclass
+-rw-rw-r-- 1 georgeca georgeca 1,5K mai 24 08:38 testsdk.bbclass
+-rw-rw-r-- 1 georgeca georgeca  936 mai 24 08:38 texinfo.bbclass
+-rw-rw-r-- 1 georgeca georgeca  15K mai 24 08:38 toaster.bbclass
+-rw-rw-r-- 1 georgeca georgeca  416 mai 24 08:38 toolchain-scripts-base.bbclass
+-rw-rw-r-- 1 georgeca georgeca 9,0K mai 24 08:38 toolchain-scripts.bbclass
+-rw-rw-r-- 1 georgeca georgeca  315 mai 24 08:38 typecheck.bbclass
+-rw-rw-r-- 1 georgeca georgeca 5,3K mai 24 08:38 uboot-config.bbclass
+-rw-rw-r-- 1 georgeca georgeca 6,4K mai 24 08:38 uboot-extlinux-config.bbclass
+-rw-rw-r-- 1 georgeca georgeca  17K mai 24 08:38 uboot-sign.bbclass
+-rw-rw-r-- 1 georgeca georgeca 8,1K mai 24 08:38 uninative.bbclass
+-rw-rw-r-- 1 georgeca georgeca  15K mai 24 08:38 update-alternatives.bbclass
+-rw-rw-r-- 1 georgeca georgeca 4,2K mai 24 08:38 update-rc.d.bbclass
+-rw-rw-r-- 1 georgeca georgeca  311 mai 24 08:38 upstream-version-is-even.bbclass
+-rw-rw-r-- 1 georgeca georgeca 6,1K mai 24 08:38 useradd_base.bbclass
+-rw-rw-r-- 1 georgeca georgeca  11K mai 24 08:38 useradd.bbclass
+-rw-rw-r-- 1 georgeca georgeca  16K mai 24 08:38 useradd-staticids.bbclass
+-rw-rw-r-- 1 georgeca georgeca 1,4K mai 24 08:38 utility-tasks.bbclass
+-rw-rw-r-- 1 georgeca georgeca 8,6K mai 24 08:38 utils.bbclass
+-rw-rw-r-- 1 georgeca georgeca  748 mai 24 08:38 vala.bbclass
+-rw-rw-r-- 1 georgeca georgeca 2,8K mai 24 08:38 waf.bbclass
+-rw-rw-r-- 1 georgeca georgeca  758 mai 24 08:38 xmlcatalog.bbclass
+-rw-rw-r-- 1 georgeca georgeca  667 mai 24 08:38 yocto-check-layer.bbclass
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/poky/meta/classes$ cd ../..
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/poky$ cd meta-yocto-bsp/
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/poky/meta-yocto-bsp$ ls -lh
+total 36K
+drwxrwxr-x 3 georgeca georgeca 4,0K mai 24 08:38 conf
+drwxrwxr-x 3 georgeca georgeca 4,0K mai 24 08:38 lib
+-rw-rw-r-- 1 georgeca georgeca 9,7K mai 24 08:38 README.hardware.md
+drwxrwxr-x 4 georgeca georgeca 4,0K mai 24 08:38 recipes-bsp
+drwxrwxr-x 3 georgeca georgeca 4,0K mai 24 08:38 recipes-graphics
+drwxrwxr-x 3 georgeca georgeca 4,0K mai 24 08:38 recipes-kernel
+drwxrwxr-x 2 georgeca georgeca 4,0K mai 24 08:38 wic
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/poky/meta-yocto-bsp$ cd ..
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/poky$ ls 
+bitbake  documentation  LICENSE.GPL-2.0-only  MAINTAINERS.md  MEMORIAM  meta-george               meta-my-builder         meta-openembedded  meta-selftest  meta-yocto-bsp     README.hardware.md  README.OE-Core.md  README.qemu.md  SECURITY.md
+contrib  LICENSE        LICENSE.MIT           Makefile        meta      meta-george-append-layer  meta-my-builder-modify  meta-poky          meta-skeleton  oe-init-build-env  README.md           README.poky.md     scripts
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/poky$ rmdir meta-george
+rmdir: failed to remove 'meta-george': Directory not empty
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/poky$ rm -rf meta-george
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/poky$ rm -rf meta-my-builder meta-my-builder-modify/
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/poky$ rm -rf meta-george-append-layer/
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/poky$ ls
+bitbake  documentation  LICENSE.GPL-2.0-only  MAINTAINERS.md  MEMORIAM  meta-openembedded  meta-selftest  meta-yocto-bsp     README.hardware.md  README.OE-Core.md  README.qemu.md  SECURITY.md
+contrib  LICENSE        LICENSE.MIT           Makefile        meta      meta-poky          meta-skeleton  oe-init-build-env  README.md           README.poky.md     scripts
+
