@@ -1,0 +1,4 @@
+# Objective
+* Demonstrate the workflow to create a recipe that holds the service with is managed by the SystemD init manager.
+* Buid the 'core-image-full-cmdline' image for the BeableBone Black that includes the above recipe
+* Deploy the image on a target BeagleBone Black device and test the status, start, stop, restart, daemon-reload and enable/disable possibilities using systemctl utility provided by systemD.

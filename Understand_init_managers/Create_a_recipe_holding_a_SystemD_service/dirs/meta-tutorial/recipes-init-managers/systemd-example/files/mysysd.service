@@ -1,0 +1,9 @@
+[Unit]
+Description= A continuous systemd service to demonstrate how init managers work
+
+[Service]
+ExecStart=/bin/bash /usr/bin/mydaemon.sh
+
+[Install]
+WantedBy=multi-user.target
+
