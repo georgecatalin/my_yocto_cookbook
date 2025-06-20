@@ -1,0 +1,2 @@
+# Objective
+Demonstrate the use of nested classes in Yocto. Show how to inherit classes in conf/local.conf files to apply the meta-data existing in the class to all packages being built in the image build process
