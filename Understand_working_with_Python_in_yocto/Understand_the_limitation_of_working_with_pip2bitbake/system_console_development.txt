@@ -1,0 +1,87 @@
+georgeca@georgeca-VirtualBox:~/Documents/my_yocto_cookbook/Understand_working_with_Python_in_yocto/Add_a_python_package_that_does_not_exist_locally$ sudo picocom -b 115200 /dev/ttyUSB0 
+[sudo] password for georgeca: 
+picocom v3.1
+
+port is        : /dev/ttyUSB0
+flowcontrol    : none
+baudrate is    : 115200
+parity is      : none
+databits are   : 8
+stopbits are   : 1
+escape is      : C-a
+local echo is  : no
+noinit is      : no
+noreset is     : no
+hangup is      : no
+nolock is      : no
+send_cmd is    : sz -vv
+receive_cmd is : rz -vv -E
+imap is        : 
+omap is        : 
+emap is        : crcrlf,delbs,
+logfile is     : none
+initstring     : none
+exit_after is  : not set
+exit is        : no
+
+Type [C-a] [C-h] to see available commands
+Terminal ready
+
+FATAL: read zero bytes from port
+term_exitfunc: reset failed for dev UNKNOWN: Input/output error
+georgeca@georgeca-VirtualBox:~/Documents/my_yocto_cookbook/Understand_working_with_Python_in_yocto/Add_a_python_package_that_does_not_exist_locally$ cd ~/yocto_tutorial/my_builds/
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ cp -r conf/ meta-tutorial/ ~/Documents/my_yocto_cookbook/Understand_working_with_Python_in_yocto/Add_a_python_package_that_does_not_exist_locally/dirs/
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ ls
+'~'   ⚠️   bitbake-cookerdaemon.log   cache   conf   meta-advanced-calculator   meta_advanced-calculator-makefile   meta-assignment-vars   meta-custom   meta-example   meta-georgeca   meta-tutorial   PiP2Bitbake
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ python3 PiP2Bitbake/makePipRecipes.py 
+
+##############################################################################
+#                                                                            #
+#    ########   ######     ##    ##  #######   ######  ########  #######     #
+#    ##     ## ##    ##     ##  ##  ##     ## ##    ##    ##    ##     ##    #
+#    ##     ## ##            ####   ##     ## ##          ##    ##     ##    #
+#    ########   ######        ##    ##     ## ##          ##    ##     ##    #
+#    ##   ##         ##       ##    ##     ## ##          ##    ##     ##    #
+#    ##    ##  ##    ##       ##    ##     ## ##    ##    ##    ##     ##    #
+#    ##     ##  ######        ##     #######   ######     ##     #######     #
+#                                                                            #
+#            AUTOMATIC SCRIPT FOR GENERATING RECIPES TO INCLUDE              #
+#           PYTHON PIP-PACKAGES TO YOUR YOCTO-PROJECT LINUX DISTO            #
+#                                                                            #
+#               by Robin Sebastian (https://github.com/robseb)               #
+#                        Contact: git@robseb.de                              #
+#                            Vers.: 1.2                                      #
+#                                                                            #
+##############################################################################
+
+
+Type in the Name of the Python pip (PyPI) Package to include to your Yocto Project Linux Distro
+Note: Consider the exact writing! Case sensitive!
+You can find Python pip packages here: https://pypi.org/
+PiP-Package Name: tensorflow
+Choose the requiered Python Version:
+  Python 1-2: 1,2 
+  Python 3  : 3   
+Python Version:3
+Type in the used License name for the recipe (e.g.: MIT)
+License name: Apache Software License (Apache 2.0)
+Chosen License name: "Apache Software License (Apache 2.0)"
+Starting the generation...
+
+--> Download for testing the Python PiP package
+ERROR: Could not find a version that satisfies the requirement tensorflow (from versions: none)
+ERROR: No matching distribution found for tensorflow
+
+##############################################################################
+#       ERROR: Failed to download the chosen Python pip (PyPi) package!      #
+#                                                                            #
+#      Please read the error report of the executed "pip" command above!     #
+#                                                                            #
+# You can use the direct download URL (with ".tar.gz"- or ".zip"- suffix)    #
+#   as pip package name                                                      #
+#                                                                            #
+# Note: It is only enabled incase the universal source code is available     #
+#       as ".tar.gz" or ".zip" archive file (".whl"-files are not supported) #
+#                                                                            #
+##############################################################################
+
