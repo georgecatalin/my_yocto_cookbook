@@ -1,0 +1,149 @@
+georgeca@georgeca-VirtualBox:~$ cd ~/yocto_tutorial/my_builds/
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ source ../poky/oe-init-build-env .
+
+### Shell environment set up for builds. ###
+
+You can now run 'bitbake <target>'
+
+Common targets are:
+    core-image-minimal
+    core-image-full-cmdline
+    core-image-sato
+    core-image-weston
+    meta-toolchain
+    meta-ide-support
+
+You can also run generated qemu images with a command like 'runqemu qemux86'
+
+Other commonly useful commands are:
+ - 'devtool' and 'recipetool' handle common recipe tasks
+ - 'bitbake-layers' handles common layer tasks
+ - 'oe-pkgdata-util' handles common target package tasks
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ ls -lh
+total 5,6M
+drwxrwxr-x 3 georgeca georgeca 4,0K mai 24 09:01 '~'
+-rw-rw-r-- 1 georgeca georgeca    0 iun 12 13:59  ⚠️
+-rw-rw-r-- 1 georgeca georgeca 5,5M iun 20 15:26  bitbake-cookerdaemon.log
+drwxrwxr-x 2 georgeca georgeca 4,0K iun 20 15:26  cache
+drwxrwxr-x 2 georgeca georgeca 4,0K iun 20 14:57  conf
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 10 16:20  meta-advanced-calculator
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 11 09:36  meta_advanced-calculator-makefile
+drwxrwxr-x 4 georgeca georgeca 4,0K mai 27 16:10  meta-assignment-vars
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 13 14:00  meta-custom
+drwxrwxr-x 5 georgeca georgeca 4,0K iun 13 13:25  meta-example
+drwxrwxr-x 5 georgeca georgeca 4,0K iun 18 18:08  meta-georgeca
+drwxrwxr-x 7 georgeca georgeca 4,0K iun 20 12:30  meta-tutorial
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ bitbake-layers show-layers
+NOTE: Starting bitbake server...
+layer                 path                                      priority
+==========================================================================
+meta                  /home/georgeca/yocto_tutorial/poky/meta   5
+meta-poky             /home/georgeca/yocto_tutorial/poky/meta-poky  5
+meta-yocto-bsp        /home/georgeca/yocto_tutorial/poky/meta-yocto-bsp  5
+meta-oe               /home/georgeca/yocto_tutorial/poky/meta-openembedded/meta-oe  5
+meta-tutorial         /home/georgeca/yocto_tutorial/my_builds/meta-tutorial  6
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ bitbake-layers show-recipes linux-yocto
+NOTE: Starting bitbake server...
+Loading cache: 100% |####################################################################################################################################################################################################################################| Time: 0:00:00
+Loaded 2787 entries from dependency cache.
+=== Matching recipes: ===
+linux-yocto:
+  meta                 5.15.150+gitAUTOINC+896128cbf5_4fca0c4373
+  meta                 5.10.130+gitAUTOINC+876ae2ac4c_3c44f12b9d
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ code conf/
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ ls ../poky/meta/classes/
+allarch.bbclass              cpan_build.bbclass             goarch.bbclass                      kernel-devicetree.bbclass    module-base.bbclass      pkgconfig.bbclass                     rm_work_and_downloads.bbclass  terminal.bbclass
+archiver.bbclass             create-spdx.bbclass            go.bbclass                          kernel-fitimage.bbclass      module.bbclass           populate_sdk_base.bbclass             rm_work.bbclass                testexport.bbclass
+autotools.bbclass            cross.bbclass                  gobject-introspection.bbclass       kernel-grub.bbclass          multilib.bbclass         populate_sdk.bbclass                  rootfs_deb.bbclass             testimage.bbclass
+autotools-brokensep.bbclass  cross-canadian.bbclass         gobject-introspection-data.bbclass  kernel-module-split.bbclass  multilib_global.bbclass  populate_sdk_ext.bbclass              rootfsdebugfiles.bbclass       testsdk.bbclass
+baremetal-image.bbclass      crosssdk.bbclass               go-mod.bbclass                      kernelsrc.bbclass            multilib_header.bbclass  prexport.bbclass                      rootfs_ipk.bbclass             texinfo.bbclass
+base.bbclass                 cve-check.bbclass              go-ptest.bbclass                    kernel-uboot.bbclass         multilib_script.bbclass  primport.bbclass                      rootfs-postcommands.bbclass    toaster.bbclass
+bash-completion.bbclass      debian.bbclass                 grub-efi.bbclass                    kernel-uimage.bbclass        native.bbclass           ptest.bbclass                         rootfs_rpm.bbclass             toolchain-scripts-base.bbclass
+binconfig.bbclass            deploy.bbclass                 grub-efi-cfg.bbclass                kernel-yocto.bbclass         nativesdk.bbclass        ptest-gnome.bbclass                   rust.bbclass                   toolchain-scripts.bbclass
+binconfig-disabled.bbclass   devicetree.bbclass             gsettings.bbclass                   libc-package.bbclass         nopackages.bbclass       ptest-perl.bbclass                    rust-bin.bbclass               typecheck.bbclass
+bin_package.bbclass          devshell.bbclass               gtk-doc.bbclass                     lib_package.bbclass          npm.bbclass              pypi.bbclass                          rust-common.bbclass            uboot-config.bbclass
+buildhistory.bbclass         devtool-source.bbclass         gtk-icon-cache.bbclass              license.bbclass              oelint.bbclass           python3-dir.bbclass                   sanity.bbclass                 uboot-extlinux-config.bbclass
+buildstats.bbclass           devupstream.bbclass            gtk-immodules-cache.bbclass         license_image.bbclass        overlayfs.bbclass        python3native.bbclass                 scons.bbclass                  uboot-sign.bbclass
+buildstats-summary.bbclass   distro_features_check.bbclass  icecc.bbclass                       linux-dummy.bbclass          overlayfs-etc.bbclass    python3targetconfig.bbclass           setuptools3-base.bbclass       uninative.bbclass
+cargo.bbclass                distrooverrides.bbclass        image-artifact-names.bbclass        linux-kernel-base.bbclass    own-mirrors.bbclass      python_flit_core.bbclass              setuptools3.bbclass            update-alternatives.bbclass
+cargo_common.bbclass         dos2unix.bbclass               image.bbclass                       linuxloader.bbclass          package.bbclass          python_pep517.bbclass                 setuptools3_legacy.bbclass     update-rc.d.bbclass
+ccache.bbclass               externalsrc.bbclass            image-buildinfo.bbclass             live-vm-common.bbclass       packagedata.bbclass      python_poetry_core.bbclass            sign_ipk.bbclass               upstream-version-is-even.bbclass
+ccmake.bbclass               extrausers.bbclass             image-combined-dbg.bbclass          logging.bbclass              package_deb.bbclass      python_pyo3.bbclass                   sign_package_feed.bbclass      useradd_base.bbclass
+chrpath.bbclass              features_check.bbclass         image-container.bbclass             manpages.bbclass             packagegroup.bbclass     python_setuptools3_rust.bbclass       sign_rpm.bbclass               useradd.bbclass
+cmake.bbclass                fontcache.bbclass              image-live.bbclass                  mcextend.bbclass             package_ipk.bbclass      python_setuptools_build_meta.bbclass  siteconfig.bbclass             useradd-staticids.bbclass
+cml1.bbclass                 fs-uuid.bbclass                image-postinst-intercepts.bbclass   meson.bbclass                package_pkgdata.bbclass  qemu.bbclass                          siteinfo.bbclass               utility-tasks.bbclass
+compress_doc.bbclass         gconf.bbclass                  image_types.bbclass                 meson-routines.bbclass       package_rpm.bbclass      qemuboot.bbclass                      sstate.bbclass                 utils.bbclass
+copyleft_compliance.bbclass  gettext.bbclass                image_types_wic.bbclass             metadata_scm.bbclass         package_tar.bbclass      recipe_sanity.bbclass                 staging.bbclass                vala.bbclass
+copyleft_filter.bbclass      gi-docgen.bbclass              insane.bbclass                      migrate_localcount.bbclass   patch.bbclass            relative_symlinks.bbclass             syslinux.bbclass               waf.bbclass
+core-image.bbclass           gio-module-cache.bbclass       kernel-arch.bbclass                 mime.bbclass                 perlnative.bbclass       relocatable.bbclass                   systemd.bbclass                xmlcatalog.bbclass
+cpan-base.bbclass            glide.bbclass                  kernel-artifact-names.bbclass       mime-xdg.bbclass             perl-version.bbclass     remove-libtool.bbclass                systemd-boot.bbclass           yocto-check-layer.bbclass
+cpan.bbclass                 gnomebase.bbclass              kernel.bbclass                      mirrors.bbclass              pixbufcache.bbclass      report-error.bbclass                  systemd-boot-cfg.bbclass
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ code ../poky/meta/classes/core-image.bbclass 
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ printf "%q" $(openssl passwd george)
+\$1\$aGQMbYWF\$NzIwlBY.p3HDzQVynBCUc/georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ printf "%q" $(openssl passwd george)
+\$1\$GCuvnlwh\$h2QXaWHk1.ljqfOjsg0mR.georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ printf "%q" $(openssl passwd george)
+\$1\$KO2oF8KL\$PMMqZXOa/HQjSrfmajMfI0georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ time bitbake core-image-full-cmdline
+Loading cache: 100% |                                                                                                                                                                                                                                   | ETA:  --:--:--
+Loaded 0 entries from dependency cache.
+Parsing recipes: 100% |##################################################################################################################################################################################################################################| Time: 0:00:37
+Parsing of 1748 .bb files complete (0 cached, 1748 parsed). 2787 targets, 112 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "beaglebone-yocto"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.27"
+TUNE_FEATURES        = "arm vfp cortexa8 neon callconvention-hard"
+TARGET_FPU           = "hard"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7"
+meta-oe              = "kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0"
+meta-tutorial        = "<unknown>:<unknown>"
+
+Initialising tasks: 100% |###############################################################################################################################################################################################################################| Time: 0:00:03
+Sstate summary: Wanted 516 Local 513 Mirrors 0 Missed 3 Current 1231 (99% match, 99% complete)
+Removing 2 stale sstate objects for arch beaglebone_yocto: 100% |########################################################################################################################################################################################| Time: 0:00:00
+NOTE: Executing Tasks
+NOTE: Tasks Summary: Attempted 4717 tasks of which 4701 didn't need to be rerun and all succeeded.
+
+real	2m19,596s
+user	0m0,473s
+sys	0m0,144s
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ time bitbake core-image-full-cmdline
+Loading cache: 100% |                                                                                                                                                                                                                                   | ETA:  --:--:--
+Loaded 0 entries from dependency cache.
+Parsing recipes: 100% |##################################################################################################################################################################################################################################| Time: 0:00:37
+Parsing of 1748 .bb files complete (0 cached, 1748 parsed). 2787 targets, 112 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "beaglebone-yocto"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.27"
+TUNE_FEATURES        = "arm vfp cortexa8 neon callconvention-hard"
+TARGET_FPU           = "hard"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7"
+meta-oe              = "kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0"
+meta-tutorial        = "<unknown>:<unknown>"
+
+Initialising tasks: 100% |###############################################################################################################################################################################################################################| Time: 0:00:03
+Sstate summary: Wanted 515 Local 512 Mirrors 0 Missed 3 Current 1232 (99% match, 99% complete)
+Removing 2 stale sstate objects for arch beaglebone_yocto: 100% |########################################################################################################################################################################################| Time: 0:00:00
+NOTE: Executing Tasks
+NOTE: Tasks Summary: Attempted 4717 tasks of which 4701 didn't need to be rerun and all succeeded.
+
+real	2m13,619s
+user	0m0,524s
+sys	0m0,246s
+
