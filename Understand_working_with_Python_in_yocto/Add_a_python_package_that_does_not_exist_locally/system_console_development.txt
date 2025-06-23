@@ -1,0 +1,424 @@
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ source ../poky/oe-init-build-env .
+
+### Shell environment set up for builds. ###
+
+You can now run 'bitbake <target>'
+
+Common targets are:
+    core-image-minimal
+    core-image-full-cmdline
+    core-image-sato
+    core-image-weston
+    meta-toolchain
+    meta-ide-support
+
+You can also run generated qemu images with a command like 'runqemu qemux86'
+
+Other commonly useful commands are:
+ - 'devtool' and 'recipetool' handle common recipe tasks
+ - 'bitbake-layers' handles common layer tasks
+ - 'oe-pkgdata-util' handles common target package tasks
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ ls -lh
+total 6,8M
+drwxrwxr-x 3 georgeca georgeca 4,0K mai 24 09:01 '~'
+-rw-rw-r-- 1 georgeca georgeca    0 iun 12 13:59  ⚠️
+-rw-rw-r-- 1 georgeca georgeca 6,7M iun 23 12:06  bitbake-cookerdaemon.log
+drwxrwxr-x 2 georgeca georgeca 4,0K iun 23 12:06  cache
+drwxrwxr-x 3 georgeca georgeca 4,0K iun 23 12:04  conf
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 10 16:20  meta-advanced-calculator
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 11 09:36  meta_advanced-calculator-makefile
+drwxrwxr-x 4 georgeca georgeca 4,0K mai 27 16:10  meta-assignment-vars
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 13 14:00  meta-custom
+drwxrwxr-x 5 georgeca georgeca 4,0K iun 13 13:25  meta-example
+drwxrwxr-x 5 georgeca georgeca 4,0K iun 18 18:08  meta-georgeca
+drwxrwxr-x 7 georgeca georgeca 4,0K iun 20 12:30  meta-tutorial
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ git clone https://github.com/robseb/PiP2Bitbake.git
+Cloning into 'PiP2Bitbake'...
+remote: Enumerating objects: 62, done.
+remote: Counting objects: 100% (62/62), done.
+remote: Compressing objects: 100% (51/51), done.
+remote: Total 62 (delta 25), reused 20 (delta 8), pack-reused 0 (from 0)
+Receiving objects: 100% (62/62), 101.82 KiB | 1.08 MiB/s, done.
+Resolving deltas: 100% (25/25), done.
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ ls -lh
+total 6,8M
+drwxrwxr-x 3 georgeca georgeca 4,0K mai 24 09:01 '~'
+-rw-rw-r-- 1 georgeca georgeca    0 iun 12 13:59  ⚠️
+-rw-rw-r-- 1 georgeca georgeca 6,7M iun 23 12:06  bitbake-cookerdaemon.log
+drwxrwxr-x 2 georgeca georgeca 4,0K iun 23 12:06  cache
+drwxrwxr-x 3 georgeca georgeca 4,0K iun 23 12:04  conf
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 10 16:20  meta-advanced-calculator
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 11 09:36  meta_advanced-calculator-makefile
+drwxrwxr-x 4 georgeca georgeca 4,0K mai 27 16:10  meta-assignment-vars
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 13 14:00  meta-custom
+drwxrwxr-x 5 georgeca georgeca 4,0K iun 13 13:25  meta-example
+drwxrwxr-x 5 georgeca georgeca 4,0K iun 18 18:08  meta-georgeca
+drwxrwxr-x 7 georgeca georgeca 4,0K iun 20 12:30  meta-tutorial
+drwxrwxr-x 5 georgeca georgeca 4,0K iun 23 13:13  PiP2Bitbake
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ cd PiP2Bitbake/
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/PiP2Bitbake$ ls -lh
+total 48K
+drwxrwxr-x 2 georgeca georgeca 4,0K iun 23 13:13 doc
+-rw-rw-r-- 1 georgeca georgeca 1,1K iun 23 13:13 LICENSE
+-rw-rw-r-- 1 georgeca georgeca  22K iun 23 13:13 makePipRecipes.py
+-rw-rw-r-- 1 georgeca georgeca  13K iun 23 13:13 README.md
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/PiP2Bitbake$ python3 makePipRecipes.py 
+
+##############################################################################
+#                                                                            #
+#    ########   ######     ##    ##  #######   ######  ########  #######     #
+#    ##     ## ##    ##     ##  ##  ##     ## ##    ##    ##    ##     ##    #
+#    ##     ## ##            ####   ##     ## ##          ##    ##     ##    #
+#    ########   ######        ##    ##     ## ##          ##    ##     ##    #
+#    ##   ##         ##       ##    ##     ## ##          ##    ##     ##    #
+#    ##    ##  ##    ##       ##    ##     ## ##    ##    ##    ##     ##    #
+#    ##     ##  ######        ##     #######   ######     ##     #######     #
+#                                                                            #
+#            AUTOMATIC SCRIPT FOR GENERATING RECIPES TO INCLUDE              #
+#           PYTHON PIP-PACKAGES TO YOUR YOCTO-PROJECT LINUX DISTO            #
+#                                                                            #
+#               by Robin Sebastian (https://github.com/robseb)               #
+#                        Contact: git@robseb.de                              #
+#                            Vers.: 1.2                                      #
+#                                                                            #
+##############################################################################
+
+
+Type in the Name of the Python pip (PyPI) Package to include to your Yocto Project Linux Distro
+Note: Consider the exact writing! Case sensitive!
+You can find Python pip packages here: https://pypi.org/
+PiP-Package Name: python3-gpio
+Choose the requiered Python Version:
+  Python 1-2: 1,2 
+  Python 3  : 3   
+Python Version:3
+Type in the used License name for the recipe (e.g.: MIT)
+License name: LGPLv3
+Chosen License name: "LGPLv3"
+Starting the generation...
+
+--> Download for testing the Python PiP package
+ERROR: Could not find a version that satisfies the requirement python3-gpio (from versions: none)
+ERROR: No matching distribution found for python3-gpio
+
+##############################################################################
+#       ERROR: Failed to download the chosen Python pip (PyPi) package!      #
+#                                                                            #
+#      Please read the error report of the executed "pip" command above!     #
+#                                                                            #
+# You can use the direct download URL (with ".tar.gz"- or ".zip"- suffix)    #
+#   as pip package name                                                      #
+#                                                                            #
+# Note: It is only enabled incase the universal source code is available     #
+#       as ".tar.gz" or ".zip" archive file (".whl"-files are not supported) #
+#                                                                            #
+##############################################################################
+
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/PiP2Bitbake$ python3 makePipRecipes.py 
+
+##############################################################################
+#                                                                            #
+#    ########   ######     ##    ##  #######   ######  ########  #######     #
+#    ##     ## ##    ##     ##  ##  ##     ## ##    ##    ##    ##     ##    #
+#    ##     ## ##            ####   ##     ## ##          ##    ##     ##    #
+#    ########   ######        ##    ##     ## ##          ##    ##     ##    #
+#    ##   ##         ##       ##    ##     ## ##          ##    ##     ##    #
+#    ##    ##  ##    ##       ##    ##     ## ##    ##    ##    ##     ##    #
+#    ##     ##  ######        ##     #######   ######     ##     #######     #
+#                                                                            #
+#            AUTOMATIC SCRIPT FOR GENERATING RECIPES TO INCLUDE              #
+#           PYTHON PIP-PACKAGES TO YOUR YOCTO-PROJECT LINUX DISTO            #
+#                                                                            #
+#               by Robin Sebastian (https://github.com/robseb)               #
+#                        Contact: git@robseb.de                              #
+#                            Vers.: 1.2                                      #
+#                                                                            #
+##############################################################################
+
+
+Type in the Name of the Python pip (PyPI) Package to include to your Yocto Project Linux Distro
+Note: Consider the exact writing! Case sensitive!
+You can find Python pip packages here: https://pypi.org/
+PiP-Package Name: gpio3 3.0.1
+Choose the requiered Python Version:
+  Python 1-2: 1,2 
+  Python 3  : 3   
+Python Version:3
+Type in the used License name for the recipe (e.g.: MIT)
+License name: LGPLv3
+Chosen License name: "LGPLv3"
+Starting the generation...
+
+[sudo] password for georgeca: 
+--> Download for testing the Python PiP package
+Collecting gpio3
+  Downloading gpio3-3.0.1.tar.gz (2.0 kB)
+  Preparing metadata (setup.py) ... done
+ERROR: Could not find a version that satisfies the requirement 3.0.1 (from versions: none)
+ERROR: No matching distribution found for 3.0.1
+
+##############################################################################
+#       ERROR: Failed to download the chosen Python pip (PyPi) package!      #
+#                                                                            #
+#      Please read the error report of the executed "pip" command above!     #
+#                                                                            #
+# You can use the direct download URL (with ".tar.gz"- or ".zip"- suffix)    #
+#   as pip package name                                                      #
+#                                                                            #
+# Note: It is only enabled incase the universal source code is available     #
+#       as ".tar.gz" or ".zip" archive file (".whl"-files are not supported) #
+#                                                                            #
+##############################################################################
+
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/PiP2Bitbake$ python3 makePipRecipes.py 
+
+##############################################################################
+#                                                                            #
+#    ########   ######     ##    ##  #######   ######  ########  #######     #
+#    ##     ## ##    ##     ##  ##  ##     ## ##    ##    ##    ##     ##    #
+#    ##     ## ##            ####   ##     ## ##          ##    ##     ##    #
+#    ########   ######        ##    ##     ## ##          ##    ##     ##    #
+#    ##   ##         ##       ##    ##     ## ##          ##    ##     ##    #
+#    ##    ##  ##    ##       ##    ##     ## ##    ##    ##    ##     ##    #
+#    ##     ##  ######        ##     #######   ######     ##     #######     #
+#                                                                            #
+#            AUTOMATIC SCRIPT FOR GENERATING RECIPES TO INCLUDE              #
+#           PYTHON PIP-PACKAGES TO YOUR YOCTO-PROJECT LINUX DISTO            #
+#                                                                            #
+#               by Robin Sebastian (https://github.com/robseb)               #
+#                        Contact: git@robseb.de                              #
+#                            Vers.: 1.2                                      #
+#                                                                            #
+##############################################################################
+
+
+Type in the Name of the Python pip (PyPI) Package to include to your Yocto Project Linux Distro
+Note: Consider the exact writing! Case sensitive!
+You can find Python pip packages here: https://pypi.org/
+PiP-Package Name: gpio3
+Choose the requiered Python Version:
+  Python 1-2: 1,2 
+  Python 3  : 3   
+Python Version:3
+Type in the used License name for the recipe (e.g.: MIT)
+License name: LGPLv3
+Chosen License name: "LGPLv3"
+Starting the generation...
+
+--> Download for testing the Python PiP package
+Collecting gpio3
+  Using cached gpio3-3.0.1.tar.gz (2.0 kB)
+  Preparing metadata (setup.py) ... done
+Saved ./makePipRec_workingFolder/gpio3-3.0.1.tar.gz
+Successfully downloaded gpio3
+
+   The Name of the downloaded file: "gpio3-3.0.1.tar.gz"
+--> Calculate md5 checksum of this file
+    md5sum = f9e0447de0876f37fb3a2e8bf521192e
+--> Calculate sha256sum checksum of this file
+    sha256sum = ecbeced6b855cde1442a620e29e42b8b67a44c7b390b55779edc619afd99af7a
+--> Decode the current Version Code of this PiP Package
+    Version: 3.0.1
+--> Unpackage the downloaded file to decode the included licence file
+    Unpackage the downloaded package
+     Unpackaging was successful
+    Try to find a Licence file
+NOTE: The LICENSE-File was not found inside the PiP-Package!
+     To avoid this problem the File:"setup.cfg" will be used instead
+--> Calculate the md5-checksum for the License file
+    md5sum = d86758afb08a60bc589dc67bfea670b2
+--> Create the Bitbake .bb-File with the name
+      pip-gpio_3.0.1.bb
+--> Generate the content of this file
+     Bitbake file generation was successfull
+--> Deleting the working Folder
+
+################################################################################
+#                                                                              #
+#                          GENERATION WAS SUCCESSFUL                           #
+#                                                                              #
+#---------------------------- Implementation Guide ----------------------------#
+# 1. Step: Copy the recipe file: "pip-gpio_3.0.1.bb"                            
+#          to your recipe folder inside a meta layer                           
+#          For example here:                                                   
+#          meta-example                                                        
+#          |- conf                                                             
+#          |- recipes-test                                                     
+#             |- test                                                          
+#                |- pip-gpio_3.0.1.bb <--
+                                       
+#          (this file is located here:/home/georgeca/yocto_tutorial/my_builds/PiP2Bitbake )          
+# 2. Step: Include the PiP-Package to your Yocto Project by                    
+#          by adding following line to the conf/local.conf file:               
+#            conf/local.conf:                                                  
+#             IMAGE_INSTALL_append = "pip-gpio"
+                
+# 3. Step: Build your Yocto Project normanly with bitbake
+                    
+#------------------------------------------------------------------------------#
+#                                                                              #
+#                           SUPPORT THE AUTHOR                                 #
+#                                                                              #
+#                            ROBIN SEBASTIAN                                   #
+#                     (https://github.com/robseb/)                             #
+#                             git@robseb.de                                    #
+#                                                                              #
+#    makePipRecipes and rsYocto are projects, that I have fully                #
+#        developed on my own. No companies are involved in this projects.      #
+#       I am recently graduated as Master of Since of electronic engineering   #
+#            Please support me for further development                         #
+#                                                                              #
+################################################################################
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/PiP2Bitbake$ ls -lh
+total 52K
+drwxrwxr-x 2 georgeca georgeca 4,0K iun 23 13:13 doc
+-rw-rw-r-- 1 georgeca georgeca 1,1K iun 23 13:13 LICENSE
+-rw-rw-r-- 1 georgeca georgeca  22K iun 23 13:13 makePipRecipes.py
+-rw-rw-r-- 1 georgeca georgeca  530 iun 23 13:18 pip-gpio_3.0.1.bb
+-rw-rw-r-- 1 georgeca georgeca  13K iun 23 13:13 README.md
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds/PiP2Bitbake$ cd ..
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ meta-tutorial/
+bash: meta-tutorial/: Is a directory
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ tree meta-tutorial/
+meta-tutorial/
+├── classes
+│   ├── task-info.bbclass
+│   └── task-info-global.bbclass
+├── conf
+│   └── layer.conf
+├── COPYING.MIT
+├── README
+├── recipes-example
+│   ├── add-new-user
+│   │   └── add-new-user_0.1.bb
+│   └── example
+│       └── example_0.1.bb
+└── recipes-init-managers
+    └── systemd-example
+        ├── files
+        │   ├── mydaemon.sh
+        │   └── mysysd.service
+        └── systemd-example_0.1.bb
+
+8 directories, 10 files
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ mkdir -p meta-tutorial/recipes-python/python-gpio
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ tree meta-tutorial/
+meta-tutorial/
+├── classes
+│   ├── task-info.bbclass
+│   └── task-info-global.bbclass
+├── conf
+│   └── layer.conf
+├── COPYING.MIT
+├── README
+├── recipes-example
+│   ├── add-new-user
+│   │   └── add-new-user_0.1.bb
+│   └── example
+│       └── example_0.1.bb
+├── recipes-init-managers
+│   └── systemd-example
+│       ├── files
+│       │   ├── mydaemon.sh
+│       │   └── mysysd.service
+│       └── systemd-example_0.1.bb
+└── recipes-python
+    └── python-gpio
+
+10 directories, 10 files
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ ls
+'~'   ⚠️   bitbake-cookerdaemon.log   cache   conf   meta-advanced-calculator   meta_advanced-calculator-makefile   meta-assignment-vars   meta-custom   meta-example   meta-georgeca   meta-tutorial   PiP2Bitbake
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ mv PiP2Bitbake/pip-gpio_3.0.1.bb meta-tutorial/recipes-python/python-gpio/
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ tree meta-tutorial/
+meta-tutorial/
+├── classes
+│   ├── task-info.bbclass
+│   └── task-info-global.bbclass
+├── conf
+│   └── layer.conf
+├── COPYING.MIT
+├── README
+├── recipes-example
+│   ├── add-new-user
+│   │   └── add-new-user_0.1.bb
+│   └── example
+│       └── example_0.1.bb
+├── recipes-init-managers
+│   └── systemd-example
+│       ├── files
+│       │   ├── mydaemon.sh
+│       │   └── mysysd.service
+│       └── systemd-example_0.1.bb
+└── recipes-python
+    └── python-gpio
+        └── pip-gpio_3.0.1.bb
+
+10 directories, 11 files
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ mv meta-tutorial/recipes-python/python-gpio/pip-gpio_3.0.1.bb  meta-tutorial/recipes-python/python-gpio/python-gpio_3.0.1.bb
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ tree meta-tutorial/
+meta-tutorial/
+├── classes
+│   ├── task-info.bbclass
+│   └── task-info-global.bbclass
+├── conf
+│   └── layer.conf
+├── COPYING.MIT
+├── README
+├── recipes-example
+│   ├── add-new-user
+│   │   └── add-new-user_0.1.bb
+│   └── example
+│       └── example_0.1.bb
+├── recipes-init-managers
+│   └── systemd-example
+│       ├── files
+│       │   ├── mydaemon.sh
+│       │   └── mysysd.service
+│       └── systemd-example_0.1.bb
+└── recipes-python
+    └── python-gpio
+        └── python-gpio_3.0.1.bb
+
+10 directories, 11 files
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ md5sum conf/local.conf 
+b0920aeb863bc8c75f063f7b558aacaf  conf/local.conf
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ nano conf/local.conf 
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ md5sum conf/local.conf 
+d39ac24f57d69cc013eb72f0cc68e4fb  conf/local.conf
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ time bitbake core-image-full-cmdline
+Loading cache: 100% |                                                                                                                                                                                                                                   | ETA:  --:--:--
+Loaded 0 entries from dependency cache.
+Parsing recipes: 100% |##################################################################################################################################################################################################################################| Time: 0:00:37
+Parsing of 2211 .bb files complete (0 cached, 2211 parsed). 3574 targets, 114 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "beaglebone-yocto"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.27"
+TUNE_FEATURES        = "arm vfp cortexa8 neon callconvention-hard"
+TARGET_FPU           = "hard"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7"
+meta-oe              = "kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0"
+meta-tutorial        = "<unknown>:<unknown>"
+meta-python          = "kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0"
+
+Initialising tasks: 100% |###############################################################################################################################################################################################################################| Time: 0:00:02
+Sstate summary: Wanted 522 Local 512 Mirrors 0 Missed 10 Current 1232 (98% match, 99% complete)
+Removing 2 stale sstate objects for arch beaglebone_yocto: 100% |########################################################################################################################################################################################| Time: 0:00:00
+NOTE: Executing Tasks
+WARNING: python-gpio-3.0.1-r0 do_package_qa: QA Issue: Recipe LICENSE includes obsolete licenses LGPLv3 [obsolete-license]
+NOTE: Tasks Summary: Attempted 4732 tasks of which 4701 didn't need to be rerun and all succeeded.
+
+Summary: There was 1 WARNING message.
+
+real	2m4,418s
+user	0m0,517s
+sys	0m0,147s
+

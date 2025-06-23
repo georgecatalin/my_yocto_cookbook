@@ -1,0 +1,602 @@
+georgeca@georgeca-VirtualBox:~/Documents/my_yocto_cookbook/Understand_working_with_Python_in_yocto/Add_a_python_package_that_does_not_exist_locally$ sudo picocom -b 115200 /dev/ttyUSB0 
+[sudo] password for georgeca: 
+picocom v3.1
+
+port is        : /dev/ttyUSB0
+flowcontrol    : none
+baudrate is    : 115200
+parity is      : none
+databits are   : 8
+stopbits are   : 1
+escape is      : C-a
+local echo is  : no
+noinit is      : no
+noreset is     : no
+hangup is      : no
+nolock is      : no
+send_cmd is    : sz -vv
+receive_cmd is : rz -vv -E
+imap is        : 
+omap is        : 
+emap is        : crcrlf,delbs,
+logfile is     : none
+initstring     : none
+exit_after is  : not set
+exit is        : no
+
+
+FATAL: cannot lock /dev/ttyUSB0: Resource temporarily unavailable
+georgeca@georgeca-VirtualBox:~/Documents/my_yocto_cookbook/Understand_working_with_Python_in_yocto/Add_a_python_package_that_does_not_exist_locally$ sudo picocom -b 115200 /dev/ttyUSB0 
+picocom v3.1
+
+port is        : /dev/ttyUSB0
+flowcontrol    : none
+baudrate is    : 115200
+parity is      : none
+databits are   : 8
+stopbits are   : 1
+escape is      : C-a
+local echo is  : no
+noinit is      : no
+noreset is     : no
+hangup is      : no
+nolock is      : no
+send_cmd is    : sz -vv
+receive_cmd is : rz -vv -E
+imap is        : 
+omap is        : 
+emap is        : crcrlf,delbs,
+logfile is     : none
+initstring     : none
+exit_after is  : not set
+exit is        : no
+
+Type [C-a] [C-h] to see available commands
+Terminal ready
+
+U-Boot SPL 2018.09-00002-g0b54a51eee (Sep 10 2018 - 19:41:39 -0500)
+Trying to boot from MMC2
+Loading Environment from EXT4... 
+** Unable to use mmc 0:1 for loading the env **
+
+
+U-Boot 2018.09-00002-g0b54a51eee (Sep 10 2018 - 19:41:39 -0500), Build: jenkins-github_Bootloader-Builder-65
+
+CPU  : AM335X-GP rev 2.1
+I2C:   ready
+DRAM:  512 MiB
+No match for driver 'omap_hsmmc'
+No match for driver 'omap_hsmmc'
+Some drivers were not found
+Reset Source: Power-on reset has occurred.
+RTC 32KCLK Source: External.
+MMC:   OMAP SD/MMC: 0, OMAP SD/MMC: 1
+Loading Environment from EXT4... 
+** Unable to use mmc 0:1 for loading the env **
+Board: BeagleBone Black
+<ethaddr> not set. Validating first E-fuse MAC
+BeagleBone Black:
+BeagleBone: cape eeprom: i2c_probe: 0x54:
+BeagleBone: cape eeprom: i2c_probe: 0x55:
+BeagleBone: cape eeprom: i2c_probe: 0x56:
+BeagleBone: cape eeprom: i2c_probe: 0x57:
+Net:   eth0: MII MODE
+cpsw, usb_ether
+Press SPACE to abort autoboot in 2 seconds
+board_name=[A335BNLT] ...
+board_rev=[00C0] ...
+switch to partitions #0, OK
+mmc0 is current device
+SD/MMC found on device 0
+switch to partitions #0, OK
+mmc0 is current device
+Scanning mmc 0:1...
+Found /extlinux/extlinux.conf
+Retrieving file: /extlinux/extlinux.conf
+119 bytes read in 2 ms (57.6 KiB/s)
+1:	Yocto
+Retrieving file: /zImage
+7884728 bytes read in 493 ms (15.3 MiB/s)
+append: root=PARTUUID=d298d20a-02 rootwait console=ttyS0,115200
+Retrieving file: /am335x-boneblack.dtb
+67160 bytes read in 5 ms (12.8 MiB/s)
+## Flattened Device Tree blob at 88000000
+   Booting using the fdt blob at 0x88000000
+   Loading Device Tree to 8ffec000, end 8ffff657 ... OK
+
+Starting kernel ...
+
+Booting Linux on physical CPU 0x0
+Linux version 5.15.150-yocto-standard (oe-user@oe-host) (arm-poky-linux-gnueabi-gcc (GCC) 11.5.0, GNU ld (GNU Binutils) 2.38.20220708) #1 PREEMPT Mon Mar 11 14:54:41 UTC 2024
+CPU: ARMv7 Processor [413fc082] revision 2 (ARMv7), cr=10c5387d
+CPU: PIPT / VIPT nonaliasing data cache, VIPT aliasing instruction cache
+OF: fdt: Machine model: TI AM335x BeagleBone Black
+Memory policy: Data cache writeback
+cma: Reserved 16 MiB at 0x9e800000
+Zone ranges:
+  Normal   [mem 0x0000000080000000-0x000000009fefffff]
+  HighMem  empty
+Movable zone start for each node
+Early memory node ranges
+  node   0: [mem 0x0000000080000000-0x000000009fefffff]
+Initmem setup node 0 [mem 0x0000000080000000-0x000000009fefffff]
+CPU: All CPU(s) started in SVC mode.
+AM335X ES2.1 (sgx neon)
+Built 1 zonelists, mobility grouping on.  Total pages: 129666
+Kernel command line: root=PARTUUID=d298d20a-02 rootwait console=ttyS0,115200
+Dentry cache hash table entries: 65536 (order: 6, 262144 bytes, linear)
+Inode-cache hash table entries: 32768 (order: 5, 131072 bytes, linear)
+mem auto-init: stack:off, heap alloc:off, heap free:off
+Memory: 482236K/523264K available (11264K kernel code, 1558K rwdata, 4100K rodata, 1024K init, 328K bss, 24644K reserved, 16384K cma-reserved, 0K highmem)
+SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+ftrace: allocating 42062 entries in 124 pages
+ftrace: allocated 124 pages with 5 groups
+trace event string verifier disabled
+rcu: Preemptible hierarchical RCU implementation.
+rcu: 	RCU event tracing is enabled.
+	Trampoline variant of Tasks RCU enabled.
+	Rude variant of Tasks RCU enabled.
+	Tracing variant of Tasks RCU enabled.
+rcu: RCU calculated value of scheduler-enlistment delay is 10 jiffies.
+NR_IRQS: 16, nr_irqs: 16, preallocated irqs: 16
+IRQ: Found an INTC at 0x(ptrval) (revision 5.0) with 128 interrupts
+TI gptimer clocksource: always-on /ocp/interconnect@44c00000/segment@200000/target-module@31000
+sched_clock: 32 bits at 24MHz, resolution 41ns, wraps every 89478484971ns
+clocksource: dmtimer: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 79635851949 ns
+TI gptimer clockevent: 24000000 Hz at /ocp/interconnect@48000000/segment@0/target-module@40000
+Console: colour dummy device 80x30
+Calibrating delay loop... 996.14 BogoMIPS (lpj=4980736)
+CPU: Testing write buffer coherency: ok
+CPU0: Spectre v2: using BPIALL workaround
+pid_max: default: 32768 minimum: 301
+LSM: Security Framework initializing
+landlock: Up and running.
+Mount-cache hash table entries: 1024 (order: 0, 4096 bytes, linear)
+Mountpoint-cache hash table entries: 1024 (order: 0, 4096 bytes, linear)
+Setting up static identity map for 0x80100000 - 0x80100060
+rcu: Hierarchical SRCU implementation.
+devtmpfs: initialized
+VFP support v0.3: implementor 41 architecture 3 part 30 variant c rev 3
+clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112604462750000 ns
+futex hash table entries: 256 (order: -1, 3072 bytes, linear)
+pinctrl core: initialized pinctrl subsystem
+NET: Registered PF_NETLINK/PF_ROUTE protocol family
+DMA: preallocated 256 KiB pool for atomic coherent allocations
+thermal_sys: Registered thermal governor 'step_wise'
+cpuidle: using governor ladder
+cpuidle: using governor menu
+hw-breakpoint: debug architecture 0x4 unsupported.
+Serial: AMBA PL011 UART driver
+kprobes: kprobe jump-optimization is enabled. All kprobes are optimized if possible.
+raid6: int32x8  gen()   170 MB/s
+raid6: int32x8  xor()   105 MB/s
+raid6: int32x4  gen()   199 MB/s
+raid6: int32x4  xor()   117 MB/s
+raid6: int32x2  gen()   367 MB/s
+raid6: int32x2  xor()   202 MB/s
+raid6: int32x1  gen()   367 MB/s
+raid6: int32x1  xor()   172 MB/s
+raid6: using algorithm int32x1 gen() 367 MB/s
+raid6: .... xor() 172 MB/s, rmw enabled
+raid6: using intx1 recovery algorithm
+SCSI subsystem initialized
+usbcore: registered new interface driver usbfs
+usbcore: registered new interface driver hub
+usbcore: registered new device driver usb
+pps_core: LinuxPPS API ver. 1 registered
+pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+PTP clock support registered
+clocksource: Switched to clocksource dmtimer
+NET: Registered PF_INET protocol family
+IP idents hash table entries: 8192 (order: 4, 65536 bytes, linear)
+tcp_listen_portaddr_hash hash table entries: 1024 (order: 0, 4096 bytes, linear)
+Table-perturb hash table entries: 65536 (order: 6, 262144 bytes, linear)
+TCP established hash table entries: 4096 (order: 2, 16384 bytes, linear)
+TCP bind hash table entries: 4096 (order: 2, 16384 bytes, linear)
+TCP: Hash tables configured (established 4096 bind 4096)
+UDP hash table entries: 256 (order: 0, 4096 bytes, linear)
+UDP-Lite hash table entries: 256 (order: 0, 4096 bytes, linear)
+NET: Registered PF_UNIX/PF_LOCAL protocol family
+RPC: Registered named UNIX socket transport module.
+RPC: Registered udp transport module.
+RPC: Registered tcp transport module.
+RPC: Registered tcp NFSv4.1 backchannel transport module.
+Initialise system trusted keyrings
+workingset: timestamp_bits=14 max_order=17 bucket_order=3
+NFS: Registering the id_resolver key type
+Key type id_resolver registered
+Key type id_legacy registered
+Key type cifs.idmap registered
+xor: measuring software checksum speed
+   arm4regs        :  1274 MB/sec
+   8regs           :   939 MB/sec
+   32regs          :  1273 MB/sec
+xor: using function: arm4regs (1274 MB/sec)
+Key type asymmetric registered
+Asymmetric key parser 'x509' registered
+Block layer SCSI generic (bsg) driver version 0.4 loaded (major 248)
+io scheduler mq-deadline registered
+io scheduler kyber registered
+Serial: 8250/16550 driver, 4 ports, IRQ sharing disabled
+brd: module loaded
+mtdoops: mtd device (mtddev=name/number) must be supplied
+ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
+ehci-omap: OMAP-EHCI Host Controller driver
+usbcore: registered new interface driver usb-storage
+SPI driver ads7846 has no spi_device_id for ti,tsc2046
+SPI driver ads7846 has no spi_device_id for ti,ads7843
+SPI driver ads7846 has no spi_device_id for ti,ads7845
+SPI driver ads7846 has no spi_device_id for ti,ads7873
+i2c_dev: i2c /dev entries driver
+sdhci: Secure Digital Host Controller Interface driver
+sdhci: Copyright(c) Pierre Ossman
+sdhci-pltfm: SDHCI platform and OF driver helper
+usbcore: registered new interface driver usbhid
+usbhid: USB HID core driver
+u32 classifier
+    input device check on
+    Actions configured
+NET: Registered PF_INET6 protocol family
+Segment Routing with IPv6
+In-situ OAM (IOAM) with IPv6
+sit: IPv6, IPv4 and MPLS over IPv4 tunneling driver
+NET: Registered PF_PACKET protocol family
+Bridge firewalling registered
+Key type dns_resolver registered
+NET: Registered PF_VSOCK protocol family
+ThumbEE CPU extension supported.
+omap_voltage_late_init: Voltage driver support not added
+Loading compiled-in X.509 certificates
+Key type .fscrypt registered
+Key type fscrypt-provisioning registered
+Btrfs loaded, crc32c=crc32c-generic, zoned=no, fsverity=no
+Key type encrypted registered
+pinctrl-single 44e10800.pinmux: 142 pins, size 568
+ti-sysc: probe of 44e31000.target-module failed with error -16
+omap_wdt: OMAP Watchdog Timer Rev 0x01: initial timeout 60 sec
+omap_rtc 44e3e000.rtc: registered as rtc0
+omap_rtc 44e3e000.rtc: setting system clock to 2000-01-01T00:00:00 UTC (946684800)
+ti-sysc: probe of 48040000.target-module failed with error -16
+OMAP GPIO hardware version 0.1
+omap_i2c 4819c000.i2c: bus 2 rev0.11 at 100 kHz
+sdhci-omap 481d8000.mmc: supply vqmmc not found, using dummy regulator
+omap_rng 48310000.rng: Random Number Generator ver. 20
+random: crng init done
+davinci_mdio 4a101000.mdio: davinci mdio revision 1.6, bus freq 1000000
+davinci_mdio 4a101000.mdio: phy[0]: device 4a101000.mdio:00, driver SMSC LAN8710/LAN8720
+cpsw-switch 4a100000.switch: initialized cpsw ale version 1.4
+cpsw-switch 4a100000.switch: ALE Table size 1024
+cpsw-switch 4a100000.switch: Detected MACID = 04:79:b7:ec:35:73
+cpsw-switch 4a100000.switch: initialized (regs 0x4a100000, pool size 256) hw_ver:0019010C 1.12 (0)
+debugfs: Directory '49000000.dma' with parent 'dmaengine' already present!
+edma 49000000.dma: TI EDMA DMA engine driver
+am335x-phy-driver 47401300.usb-phy: supply vcc not found, using dummy regulator
+am335x-phy-driver 47401300.usb-phy: dummy supplies not allowed for exclusive requests
+am335x-phy-driver 47401b00.usb-phy: supply vcc not found, using dummy regulator
+am335x-phy-driver 47401b00.usb-phy: dummy supplies not allowed for exclusive requests
+hw perfevents: enabled with armv7_cortex_a8 PMU driver, 5 counters available
+l3-aon-clkctrl:0000:0: failed to disable
+printk: console [ttyS0] disabled
+44e09000.serial: ttyS0 at MMIO 0x44e09000 (irq = 18, base_baud = 3000000) is a 8250
+printk: console [ttyS0] enabled
+tps65217-pmic: Failed to locate of_node [id: -1]
+tps65217-bl: Failed to locate of_node [id: -1]
+tps65217 0-0024: TPS65217 ID 0xe version 1.2
+i2c 0-0070: Fixing up cyclic dependency with 4830e000.lcdc
+tda998x 0-0070: found TDA19988
+omap_i2c 44e0b000.i2c: bus 0 rev0.11 at 400 kHz
+omap_gpio 44e07000.gpio: Could not set line 6 debounce to 200000 microseconds (-22)
+tilcdc 4830e000.lcdc: bound 0-0070 (ops tda998x_ops)
+sdhci-omap 48060000.mmc: Got CD GPIO
+[drm] Initialized tilcdc 1.0.0 20121205 for 4830e000.lcdc on minor 0
+sdhci-omap 48060000.mmc: supply vqmmc not found, using dummy regulator
+tilcdc 4830e000.lcdc: [drm] Cannot find any crtc or sizes
+sdhci-omap 481d8000.mmc: supply vqmmc not found, using dummy regulator
+musb-hdrc musb-hdrc.1: MUSB HDRC host driver
+musb-hdrc musb-hdrc.1: new USB bus registered, assigned bus number 1
+hub 1-0:1.0: USB hub found
+hub 1-0:1.0: 1 port detected
+printk: console [netcon0] enabled
+netconsole: network logging started
+cfg80211: Loading compiled-in X.509 certificates for regulatory database
+cfg80211: Loaded X.509 cert 'sforshee: 00b28ddf47aef9cea7'
+cfg80211: Loaded X.509 cert 'wens: 61c038651aabdcf94bd0ac7ff06c7248db18c600'
+platform regulatory.0: Direct firmware load for regulatory.db failed with error -2
+mmc0: SDHCI controller on 48060000.mmc [48060000.mmc] using External DMA
+cfg80211: failed to load regulatory.db
+mmc1: SDHCI controller on 481d8000.mmc [481d8000.mmc] using External DMA
+Waiting for root device PARTUUID=d298d20a-02...
+mmc1: new high speed MMC card at address 0001
+mmc0: new high speed SDHC card at address aaaa
+mmcblk1: mmc1:0001 M62704 3.56 GiB 
+mmcblk0: mmc0:aaaa SC32G 29.7 GiB 
+ mmcblk1: p1
+mmcblk1boot0: mmc1:0001 M62704 2.00 MiB 
+ mmcblk0: p1 p2
+mmcblk1boot1: mmc1:0001 M62704 2.00 MiB 
+mmcblk1rpmb: mmc1:0001 M62704 512 KiB, chardev (247:0)
+EXT4-fs (mmcblk0p2): mounted filesystem with ordered data mode. Opts: (null). Quota mode: disabled.
+VFS: Mounted root (ext4 filesystem) readonly on device 179:10.
+devtmpfs: mounted
+Freeing unused kernel image (initmem) memory: 1024K
+Run /sbin/init as init process
+systemd[1]: System time before build time, advancing clock.
+systemd[1]: systemd 250.14+ running in system mode (-PAM -AUDIT -SELINUX -APPARMOR +IMA -SMACK +SECCOMP -GCRYPT -GNUTLS -OPENSSL +ACL +BLKID -CURL -ELFUTILS -FIDO2 -IDN2 -IDN -IPTC +KMOD -LIBCRYPTSETUP +LIBFDISK -PCRE2 -PWQUALITY -P11KIT -QRENCODE -BZIP2 -LZ4 -XZ -ZLIB +ZSTD -BPF_FRAMEWORK +XKBCOMMON +UTMP +SYSVINIT default-hierarchy=hybrid)
+systemd[1]: Detected architecture arm.
+
+Welcome to Poky (Yocto Project Reference Distro) 4.0.27 (kirkstone)!
+
+systemd[1]: Hostname set to <beaglebone-yocto>.
+systemd[1]: Initializing machine ID from random generator.
+systemd[1]: Installed transient /etc/machine-id file.
+systemd[1]: Queued start job for default target Multi-User System.
+systemd[1]: Created slice Slice /system/getty.
+[  OK  ] Created slice Slice /system/getty.
+systemd[1]: Created slice Slice /system/modprobe.
+[  OK  ] Created slice Slice /system/modprobe.
+systemd[1]: Created slice Slice /system/serial-getty.
+[  OK  ] Created slice Slice /system/serial-getty.
+systemd[1]: Created slice User and Session Slice.
+[  OK  ] Created slice User and Session Slice.
+systemd[1]: Started Dispatch Password Requests to Console Directory Watch.
+[  OK  ] Started Dispatch Password …ts to Console Directory Watch.
+systemd[1]: Started Forward Password Requests to Wall Directory Watch.
+[  OK  ] Started Forward Password R…uests to Wall Directory Watch.
+systemd[1]: Reached target Path Units.
+[  OK  ] Reached target Path Units.
+systemd[1]: Reached target Remote File Systems.
+[  OK  ] Reached target Remote File Systems.
+systemd[1]: Reached target Slice Units.
+[  OK  ] Reached target Slice Units.
+systemd[1]: Reached target Swaps.
+[  OK  ] Reached target Swaps.
+systemd[1]: Listening on RPCbind Server Activation Socket.
+[  OK  ] Listening on RPCbind Server Activation Socket.
+systemd[1]: Reached target RPC Port Mapper.
+[  OK  ] Reached target RPC Port Mapper.
+systemd[1]: Listening on Syslog Socket.
+[  OK  ] Listening on Syslog Socket.
+systemd[1]: Listening on initctl Compatibility Named Pipe.
+[  OK  ] Listening on initctl Compatibility Named Pipe.
+systemd[1]: Journal Audit Socket was skipped because of a failed condition check (ConditionSecurity=audit).
+systemd[1]: Listening on Journal Socket (/dev/log).
+[  OK  ] Listening on Journal Socket (/dev/log).
+systemd[1]: Listening on Journal Socket.
+[  OK  ] Listening on Journal Socket.
+systemd[1]: Listening on Network Service Netlink Socket.
+[  OK  ] Listening on Network Service Netlink Socket.
+systemd[1]: Listening on udev Control Socket.
+[  OK  ] Listening on udev Control Socket.
+systemd[1]: Listening on udev Kernel Socket.
+[  OK  ] Listening on udev Kernel Socket.
+systemd[1]: Listening on User Database Manager Socket.
+[  OK  ] Listening on User Database Manager Socket.
+systemd[1]: Huge Pages File System was skipped because of a failed condition check (ConditionPathExists=/sys/kernel/mm/hugepages).
+systemd[1]: Mounting POSIX Message Queue File System...
+         Mounting POSIX Message Queue File System...
+systemd[1]: Mounting Kernel Debug File System...
+         Mounting Kernel Debug File System...
+systemd[1]: Mounting Kernel Trace File System...
+         Mounting Kernel Trace File System...
+systemd[1]: Mounting Temporary Directory /tmp...
+         Mounting Temporary Directory /tmp...
+systemd[1]: Create List of Static Device Nodes was skipped because of a failed condition check (ConditionFileNotEmpty=/lib/modules/5.15.150-yocto-standard/modules.devname).
+systemd[1]: Starting Load Kernel Module configfs...
+         Starting Load Kernel Module configfs...
+systemd[1]: Starting Load Kernel Module drm...
+         Starting Load Kernel Module drm...
+systemd[1]: Starting Load Kernel Module efi_pstore...
+         Starting Load Kernel Module efi_pstore...
+systemd[1]: Starting Load Kernel Module fuse...
+         Starting Load Kernel Module fuse...
+systemd[1]: Starting RPC Bind...
+         Starting RPC Bind...
+systemd[1]: Starting File System Check on Root Device...
+         Starting File System Check on Root Device...
+systemd[1]: Starting Journal Service...
+         Starting Journal Service...
+systemd[1]: Load Kernel Modules was skipped because all trigger condition checks failed.
+systemd[1]: Mounting NFSD configuration filesystem...
+         Mounting NFSD configuration filesystem...
+systemd[1]: Starting Generate network units from Kernel command line...
+         Starting Generate network …ts from Kernel command line...
+systemd[1]: Starting Apply Kernel Variables...
+         Starting Apply Kernel Variables...
+systemd[1]: Starting Coldplug All udev Devices...
+         Starting Coldplug All udev Devices...
+systemd[1]: Started RPC Bind.
+[  OK  ] Started RPC Bind.
+systemd[1]: Mounted POSIX Message Queue File System.
+[  OK  ] Mounted POSIX Message Queue File System.
+systemd[1]: Mounted Kernel Debug File System.
+[  OK  ] Mounted Kernel Debug File System.
+systemd[1]: Mounted Kernel Trace File System.
+[  OK  ] Mounted Kernel Trace File System.
+systemd[1]: Mounted Temporary Directory /tmp.
+[  OK  ] Mounted Temporary Directory /tmp.
+systemd[1]: Started Journal Service.
+[  OK  ] Started Journal Service.
+[  OK  ] Finished Load Kernel Module configfs.
+[  OK  ] Finished Load Kernel Module drm.
+[  OK  ] Finished Load Kernel Module efi_pstore.
+[  OK  ] Finished Load Kernel Module fuse.
+[  OK  ] Finished File System Check on Root Device.
+[FAILED] Failed to mount NFSD configuration filesystem.
+See 'systemctl status proc-fs-nfsd.mount' for details.
+[DEPEND] Dependency failed for NFS server and services.
+[DEPEND] Dependency failed for NFS Mount Daemon.
+[  OK  ] Finished Generate network units from Kernel command line.
+[  OK  ] Finished Apply Kernel Variables.
+         Starting Remount Root and Kernel File Systems...
+EXT4-fs (mmcblk0p2): re-mounted. Opts: (null). Quota mode: disabled.
+[  OK  ] Finished Remount Root and Kernel File Systems.
+         Starting Flush Journal to Persistent Storage...
+         Starting Create System Users...
+systemd-journald[129]: Received client request to flush runtime journal.
+[  OK  ] Finished Flush Journal to Persistent Storage.
+[  OK  ] Finished Create System Users.
+         Starting Create Static Device Nodes in /dev...
+[  OK  ] Finished Create Static Device Nodes in /dev.
+[  OK  ] Reached target Preparation for Local File Systems.
+         Mounting /var/volatile...
+         Starting Rule-based Manage…for Device Events and Files...
+[  OK  ] Mounted /var/volatile.
+         Starting Load/Save Random Seed...
+[  OK  ] Finished Load/Save Random Seed.
+[  OK  ] Started Rule-based Manager for Device Events and Files.
+[  OK  ] Finished Coldplug All udev Devices.
+[  OK  ] Reached target Hardware activated USB gadget.
+[  OK  ] Found device /dev/disk/by-uuid/E634-510C.
+[  OK  ] Listening on Load/Save RF …itch Status /dev/rfkill Watch.
+         Mounting /boot...
+[  OK  ] Mounted /boot.
+[  OK  ] Reached target Local File Systems.
+         Starting Rebuild Dynamic Linker Cache...
+         Starting Commit a transient machine-id on disk...
+         Starting Create Volatile Files and Directories...
+[  OK  ] Finished Commit a transient machine-id on disk.
+[  OK  ] Finished Create Volatile Files and Directories.
+         Starting Rebuild Journal Catalog...
+         Starting Network Time Synchronization...
+         Starting Record System Boot/Shutdown in UTMP...
+[  OK  ] Finished Rebuild Dynamic Linker Cache.
+[  OK  ] Finished Record System Boot/Shutdown in UTMP.
+[  OK  ] Finished Rebuild Journal Catalog.
+         Starting Update is Completed...
+[  OK  ] Finished Update is Completed.
+[  OK  ] Started Network Time Synchronization.
+[  OK  ] Reached target System Initialization.
+[  OK  ] Started Daily Cleanup of Temporary Directories.
+[  OK  ] Reached target System Time Set.
+[  OK  ] Started Daily rotation of log files.
+[  OK  ] Reached target Timer Units.
+[  OK  ] Listening on D-Bus System Message Bus Socket.
+         Starting sshd.socket...
+[  OK  ] Listening on sshd.socket.
+[  OK  ] Reached target Socket Units.
+[  OK  ] Reached target Basic System.
+[  OK  ] Started Job spooling tools.
+[  OK  ] Started Periodic Command Scheduler.
+         Starting D-Bus System Message Bus...
+[  OK  ] Started Getty on tty1.
+         Starting IPv6 Packet Filtering Framework...
+         Starting IPv4 Packet Filtering Framework...
+[  OK  ] Started Serial Getty on ttyS0.
+[  OK  ] Reached target Login Prompts.
+[  OK  ] Started System Logging Service.
+         Starting User Login Management...
+         Starting OpenSSH Key Generation...
+[  OK  ] Started D-Bus System Message Bus.
+[  OK  ] Finished IPv6 Packet Filtering Framework.
+[  OK  ] Finished IPv4 Packet Filtering Framework.
+[  OK  ] Reached target Preparation for Network.
+         Starting Network Configuration...
+[  OK  ] Started User Login Management.
+[  OK  ] Started Network Configuration.
+         Starting Network Name Resolution...
+[  OK  ] Started Network Name Resolution.
+[  OK  ] Reached target Network.
+[  OK  ] Reached target Host and Network Name Lookups.
+[  OK  ] Started NFS status monitor for NFSv2/3 locking..
+[  OK  ] Started Respond to IPv6 Node Information Queries.
+[  OK  ] Started Network Router Discovery Daemon.
+[  OK  ] Reached target Multi-User System.
+         Starting Record Runlevel Change in UTMP...
+[  OK  ] Finished Record Runlevel Change in UTMP.
+
+Poky (Yocto Project Reference Distro) 4.0.27 beaglebone-yocto ttyS0
+
+beaglebone-yocto login: root
+Password: 
+root@beaglebone-yocto:~# python3
+Python 3.10.16 (main, Dec  3 2024, 17:27:57) [GCC 11.5.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> help("modules")
+
+Please wait a moment while I gather a list of all available modules...
+
+__future__          _testinternalcapi   getopt              rlcompleter
+_abc                _testmultiphase     getpass             runpy
+_aix_support        _thread             gettext             sched
+_ast                _threading_local    glob                secrets
+_asyncio            _tracemalloc        gpio3               select
+_bisect             _uuid               graphlib            selectors
+_blake2             _warnings           grp                 shelve
+_bootsubprocess     _weakref            gzip                shlex
+_bz2                _weakrefset         hashlib             shutil
+_codecs             _xxsubinterpreters  heapq               signal
+_codecs_cn          _xxtestfuzz         hmac                site
+_codecs_hk          _zoneinfo           html                smtpd
+_codecs_iso2022     abc                 http                smtplib
+_codecs_jp          aifc                idlelib             sndhdr
+_codecs_kr          antigravity         imaplib             socket
+_codecs_tw          argparse            imghdr              socketserver
+_collections        array               imp                 spwd
+_collections_abc    ast                 importlib           sqlite3
+_compat_pickle      asynchat            inspect             sre_compile
+_compression        asyncio             io                  sre_constants
+_contextvars        asyncore            ipaddress           sre_parse
+_crypt              atexit              itertools           ssl
+_csv                audioop             json                stat
+_ctypes             base64              keyword             statistics
+_ctypes_test        bdb                 lib2to3             string
+_curses             binascii            linecache           stringprep
+_curses_panel       binhex              locale              struct
+_datetime           bisect              logging             subprocess
+_dbm                builtins            lzma                sunau
+_decimal            bz2                 mailbox             symtable
+_elementtree        cProfile            mailcap             sys
+_functools          calendar            marshal             sysconfig
+_hashlib            cgi                 math                syslog
+_heapq              cgitb               mimetypes           tabnanny
+_imp                chunk               mmap                tarfile
+_io                 cmath               modulefinder        telnetlib
+_json               cmd                 multiprocessing     tempfile
+_locale             code                netrc               termios
+_lsprof             codecs              nis                 textwrap
+_lzma               codeop              nntplib             this
+_markupbase         collections         ntpath              threading
+_md5                colorsys            nturl2path          time
+_multibytecodec     compileall          numbers             timeit
+_multiprocessing    concurrent          opcode              tkinter
+_opcode             configparser        operator            token
+_operator           contextlib          optparse            tokenize
+_osx_support        contextvars         os                  trace
+_pickle             copy                ossaudiodev         traceback
+_posixshmem         copyreg             pathlib             tracemalloc
+_posixsubprocess    crypt               pdb                 tty
+_py_abc             csv                 pickle              turtle
+_pydecimal          ctypes              pickletools         turtledemo
+_pyio               curses              pipes               types
+_queue              dataclasses         pkgutil             typing
+_random             datetime            platform            unicodedata
+_sha1               dbm                 plistlib            unittest
+_sha256             decimal             poplib              urllib
+_sha3               difflib             posix               uu
+_sha512             dis                 posixpath           uuid
+_signal             distutils           pprint              venv
+_sitebuiltins       doctest             profile             warnings
+_socket             email               pstats              wave
+_sqlite3            encodings           pty                 weakref
+_sre                ensurepip           pwd                 webbrowser
+_ssl                enum                py_compile          wsgiref
+_stat               errno               pyclbr              xdrlib
+_statistics         faulthandler        pydoc               xml
+_string             fcntl               pydoc_data          xmlrpc
+_strptime           filecmp             pyexpat             xxlimited
+_struct             fileinput           queue               xxlimited_35
+_symtable           fnmatch             quopri              xxsubtype
+_sysconfigdata__linux_arm-linux-gnueabi fractions           random              zipapp
+_testbuffer         ftplib              re                  zipfile
+_testcapi           functools           readline            zipimport
+_testclinic         gc                  reprlib             zlib
+_testimportmultiple genericpath         resource            zoneinfo
+
+Enter any module name to get more help.  Or, type "modules spam" to search
+for modules whose name or summary contain the string "spam".
+
+>>> exit
+Use exit() or Ctrl-D (i.e. EOF) to exit
+>>> exit()
+root@beaglebone-yocto:~# 
+
