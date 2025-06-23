@@ -1,0 +1,297 @@
+georgeca@georgeca-VirtualBox:~$ cd ~/yocto_tutorial/my_builds/
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ ls -lh
+total 5,6M
+drwxrwxr-x 3 georgeca georgeca 4,0K mai 24 09:01 '~'
+-rw-rw-r-- 1 georgeca georgeca    0 iun 12 13:59  ⚠️
+-rw-rw-r-- 1 georgeca georgeca 5,6M iun 23 10:08  bitbake-cookerdaemon.log
+drwxrwxr-x 2 georgeca georgeca 4,0K iun 23 10:08  cache
+drwxrwxr-x 3 georgeca georgeca 4,0K iun 23 09:51  conf
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 10 16:20  meta-advanced-calculator
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 11 09:36  meta_advanced-calculator-makefile
+drwxrwxr-x 4 georgeca georgeca 4,0K mai 27 16:10  meta-assignment-vars
+drwxrwxr-x 4 georgeca georgeca 4,0K iun 13 14:00  meta-custom
+drwxrwxr-x 5 georgeca georgeca 4,0K iun 13 13:25  meta-example
+drwxrwxr-x 5 georgeca georgeca 4,0K iun 18 18:08  meta-georgeca
+drwxrwxr-x 7 georgeca georgeca 4,0K iun 20 12:30  meta-tutorial
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ bitbake-layers show-layers
+bitbake-layers: command not found
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ source ../poky/oe-init-build-env .
+
+### Shell environment set up for builds. ###
+
+You can now run 'bitbake <target>'
+
+Common targets are:
+    core-image-minimal
+    core-image-full-cmdline
+    core-image-sato
+    core-image-weston
+    meta-toolchain
+    meta-ide-support
+
+You can also run generated qemu images with a command like 'runqemu qemux86'
+
+Other commonly useful commands are:
+ - 'devtool' and 'recipetool' handle common recipe tasks
+ - 'bitbake-layers' handles common layer tasks
+ - 'oe-pkgdata-util' handles common target package tasks
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ bitbake-layers show-layers
+NOTE: Starting bitbake server...
+layer                 path                                      priority
+==========================================================================
+meta                  /home/georgeca/yocto_tutorial/poky/meta   5
+meta-poky             /home/georgeca/yocto_tutorial/poky/meta-poky  5
+meta-yocto-bsp        /home/georgeca/yocto_tutorial/poky/meta-yocto-bsp  5
+meta-oe               /home/georgeca/yocto_tutorial/poky/meta-openembedded/meta-oe  5
+meta-tutorial         /home/georgeca/yocto_tutorial/my_builds/meta-tutorial  6
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ bitbake-layers show-recipes linux-yocto
+NOTE: Starting bitbake server...
+Loading cache: 100% |####################################################################################################################################################################################################################################| Time: 0:00:00
+Loaded 2787 entries from dependency cache.
+=== Matching recipes: ===
+linux-yocto:
+  meta                 5.15.150+gitAUTOINC+896128cbf5_4fca0c4373
+  meta                 5.10.130+gitAUTOINC+876ae2ac4c_3c44f12b9d
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ bitbake-layers show-recipes |  grep python3
+  meta-oe              4.1 (skipped: Recipe will be skipped because: python2 is out of support for long time, read https://www.python.org/doc/sunset-python-2/ https://python3statement.org/ and if you really have to temporarily use this, then set I_SWEAR_TO_MIGRATE_TO_PYTHON3 to "yes")
+  meta-oe              1.2.5 (skipped: Recipe will be skipped because: python2 is out of support for long time, read https://www.python.org/doc/sunset-python-2/ https://python3statement.org/ and if you really have to temporarily use this, then set I_SWEAR_TO_MIGRATE_TO_PYTHON3 to "yes")
+  meta-oe              0.10.5 (skipped: Recipe will be skipped because: python2 is out of support for long time, read https://www.python.org/doc/sunset-python-2/ https://python3statement.org/ and if you really have to temporarily use this, then set I_SWEAR_TO_MIGRATE_TO_PYTHON3 to "yes")
+python3:
+python3-alabaster:
+python3-apt:
+python3-asn1crypto:
+python3-async:
+python3-atomicwrites:
+python3-attrs:
+python3-babel:
+python3-bcrypt:
+python3-certifi:
+python3-cffi:
+python3-chardet:
+python3-cryptography:
+python3-cryptography-vectors:
+python3-cython:
+python3-dbus:
+python3-dbusmock:
+python3-distutils-extra:
+python3-docutils:
+python3-dtschema:
+python3-dtschema-wrapper:
+python3-extras:
+python3-flit-core:
+python3-gammu:
+python3-git:
+python3-gitdb:
+python3-hypothesis:
+python3-idna:
+python3-imagesize:
+python3-importlib-metadata:
+python3-iniconfig:
+python3-iniparse:
+python3-installer:
+python3-iso8601:
+python3-jinja2:
+python3-jsonpointer:
+python3-jsonschema:
+python3-libarchive-c:
+python3-magic:
+python3-mako:
+python3-markdown:
+python3-markupsafe:
+python3-more-itertools:
+python3-ndg-httpsclient:
+python3-numpy:
+python3-packaging:
+python3-pathlib2:
+python3-pbr:
+python3-pip:
+python3-pluggy:
+python3-ply:
+python3-poetry-core:
+python3-pretend:
+python3-psutil:
+python3-py:
+python3-pyasn1:
+python3-pycairo:
+python3-pycparser:
+python3-pycryptodome:
+python3-pycryptodomex:
+python3-pycups:
+python3-pyelftools:
+python3-pygments:
+python3-pygobject:
+python3-pyopenssl:
+python3-pyparsing:
+python3-pyrsistent:
+python3-pysocks:
+python3-pytest:
+python3-pytest-runner:
+python3-pytest-subtests:
+python3-pytz:
+python3-pyyaml:
+python3-requests:
+python3-rfc3339-validator:
+python3-rfc3986-validator:
+python3-rfc3987:
+python3-ruamel-yaml:
+python3-scons:
+python3-semantic-version:
+python3-setuptools:
+python3-setuptools-rust-native:
+python3-setuptools-scm:
+python3-six:
+python3-smartypants:
+python3-smmap:
+python3-snowballstemmer:
+python3-sortedcontainers:
+python3-sphinx:
+python3-sphinx-rtd-theme:
+python3-sphinxcontrib-applehelp:
+python3-sphinxcontrib-devhelp:
+python3-sphinxcontrib-htmlhelp:
+python3-sphinxcontrib-jsmath:
+python3-sphinxcontrib-qthelp:
+python3-sphinxcontrib-serializinghtml:
+python3-strict-rfc3339:
+python3-subunit:
+python3-testtools:
+python3-toml:
+python3-tomli:
+python3-typing-extensions:
+python3-typogrify:
+python3-urllib3:
+python3-vcversioner:
+python3-wcwidth:
+python3-webcolors:
+python3-wheel:
+python3-zipp:
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ ls ../poky/meta
+classes  COPYING.MIT  lib          recipes-connectivity  recipes-devtools  recipes-extended  recipes-graphics  recipes-multimedia  recipes-sato     recipes.txt
+conf     files        recipes-bsp  recipes-core          recipes-example   recipes-gnome     recipes-kernel    recipes-rt          recipes-support  site
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ ls ../poky/meta/recipes-devtools/
+apt               bison        cdrtools      desktop-file-utils  dnf            e2fsprogs    file  glide       icecc-create-env  libcomps     libtool    make      mtools      orc         pkgconf    quilt  run-postinsts   swig               unfs3
+autoconf          bootchart2   chrpath       devel-config        docbook-xml    elfutils     flex  gnu-config  icecc-toolchain   libdnf       llvm       makedevs  nasm        patch       pkgconfig  repo   rust            syslinux           unifdef
+autoconf-archive  btrfs-tools  cmake         diffstat            dosfstools     erofs-utils  gcc   go          intltool          libedit      log4cplus  meson     ninja       patchelf    pseudo     rpm    squashfs-tools  systemd-bootchart  vala
+automake          cargo        createrepo-c  distcc              dpkg           expect       gdb   help2man    jquery            libmodulemd  lua        mmc       opkg        perl        python     rsync  strace          tcf-agent          valgrind
+binutils          ccache       dejagnu       dmidecode           dwarfsrcfiles  fdisk        git   i2c-tools   json-c            librepo      m4         mtd       opkg-utils  perl-cross  qemu       ruby   subversion      tcltk              xmlto
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ ls ../poky/meta/recipes-devtools/python/
+files                                   python3-flit-core_3.7.1.bb            python3-more-itertools            python3-pycryptodomex               python3-semantic-version_2.9.0.bb               python3-typing-extensions_3.10.0.0.bb
+python3                                 python3-git_3.1.37.bb                 python3-more-itertools_8.12.0.bb  python3-pycryptodomex_3.14.1.bb     python3-setuptools                              python3-typogrify_2.0.7.bb
+python3_3.10.16.bb                      python3-gitdb_4.0.9.bb                python3-ndg-httpsclient_0.5.1.bb  python3-pyelftools_0.28.bb          python3-setuptools_59.5.0.bb                    python3-urllib3_1.26.18.bb
+python3-alabaster_0.7.12.bb             python3-hypothesis                    python3-numpy                     python3-pygments                    python3-setuptools-rust-native_1.1.2.bb         python3-vcversioner_2.16.0.0.bb
+python3-asn1crypto_1.5.1.bb             python3-hypothesis_6.39.5.bb          python3-numpy_1.22.3.bb           python3-pygments_2.11.2.bb          python3-setuptools-scm_6.4.2.bb                 python3-wcwidth
+python3-async_0.6.2.bb                  python3-idna_3.3.bb                   python3-packaging_21.3.bb         python3-pygobject                   python3-six_1.16.0.bb                           python3-wcwidth_0.2.5.bb
+python3-atomicwrites                    python3-imagesize_1.3.0.bb            python3-pathlib2_2.3.7.bb         python3-pygobject_3.42.0.bb         python3-smartypants                             python3-webcolors
+python3-atomicwrites_1.4.0.bb           python3-importlib-metadata_4.11.3.bb  python3-pbr                       python3-pyopenssl_22.0.0.bb         python3-smartypants_2.0.0.bb                    python3-webcolors_1.11.1.bb
+python3-attrs_21.4.0.bb                 python3-iniconfig_1.1.1.bb            python3-pbr_5.8.1.bb              python3-pyparsing_3.0.7.bb          python3-smmap_5.0.0.bb                          python3-wheel
+python3-babel_2.9.1.bb                  python3-iniparse_0.5.bb               python3-pip                       python3-pyrsistent_0.18.1.bb        python3-snowballstemmer_2.2.0.bb                python3-wheel_0.37.1.bb
+python3-bcrypt                          python3-installer                     python3-pip_22.0.3.bb             python3-pysocks_1.7.1.bb            python3-sortedcontainers_2.4.0.bb               python3-zipp
+python3-bcrypt_3.2.0.bb                 python3-installer_0.5.1.bb            python3-pluggy                    python3-pytest_7.1.1.bb             python3-sphinx_4.4.0.bb                         python3-zipp_3.7.0.bb
+python3-certifi                         python3-iso8601_1.0.2.bb              python3-pluggy_1.0.0.bb           python3-pytest-runner_6.0.0.bb      python3-sphinxcontrib-applehelp_1.0.2.bb        python-async.inc
+python3-certifi_2021.10.8.bb            python3-jinja2                        python3-ply_3.11.bb               python3-pytest-subtests_0.7.0.bb    python3-sphinxcontrib-devhelp_1.0.2.bb          python-cython.inc
+python3-cffi_1.15.0.bb                  python3-jinja2_3.1.4.bb               python3-poetry-core_1.0.8.bb      python3-pytz                        python3-sphinxcontrib-htmlhelp_2.0.0.bb         python-extras.inc
+python3-chardet_4.0.0.bb                python3-jsonpointer                   python3-pretend_1.0.9.bb          python3-pytz_2022.1.bb              python3-sphinxcontrib-jsmath_1.0.1.bb           python-gitdb.inc
+python3-cryptography                    python3-jsonpointer_2.2.bb            python3-psutil                    python3-pyyaml_6.0.bb               python3-sphinxcontrib-qthelp_1.0.3.bb           python-pbr.inc
+python3-cryptography_36.0.2.bb          python3-jsonschema_4.4.0.bb           python3-psutil_5.9.0.bb           python3-requests                    python3-sphinxcontrib-serializinghtml_1.1.5.bb  python-pyasn1.inc
+python3-cryptography-vectors_36.0.2.bb  python3-libarchive-c_4.0.bb           python3-py_1.11.0.bb              python3-requests_2.27.1.bb          python3-sphinx-rtd-theme_0.5.0.bb               python-pycryptodome.inc
+python3-cython_0.29.28.bb               python3-magic_0.4.25.bb               python3-pyasn1                    python3-rfc3339-validator_0.1.4.bb  python3-strict-rfc3339                          python-rfc3986-validator
+python3-dbus_1.2.18.bb                  python3-mako                          python3-pyasn1_0.4.8.bb           python3-rfc3986-validator_0.1.1.bb  python3-strict-rfc3339_0.7.bb                   python-six.inc
+python3-dbusmock_0.27.3.bb              python3-mako_1.1.6.bb                 python3-pycairo_1.21.0.bb         python3-rfc3987_1.3.8.bb            python3-subunit_1.4.0.bb                        python-testtools.inc
+python3-docutils_0.18.1.bb              python3-markdown_3.3.6.bb             python3-pycparser_2.21.bb         python3-ruamel-yaml_0.17.21.bb      python3-testtools_2.5.0.bb
+python3-dtschema_2022.1.bb              python3-markupsafe                    python3-pycryptodome              python3-scons                       python3-toml_0.10.2.bb
+python3-extras_1.0.0.bb                 python3-markupsafe_2.1.1.bb           python3-pycryptodome_3.14.1.bb    python3-scons_4.3.0.bb              python3-tomli_2.0.1.bb
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ cd ../poky/
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/poky$ git clone git://git.openembedded.org/meta-openembedded -b kirkstone
+fatal: destination path 'meta-openembedded' already exists and is not an empty directory.
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/poky$ ls -lh  meta-openembedded/
+total 52K
+drwxrwxr-x  2 georgeca georgeca 4,0K mai 26 17:54 contrib
+-rw-rw-r--  1 georgeca georgeca 1,1K mai 26 17:54 COPYING.MIT
+drwxrwxr-x  6 georgeca georgeca 4,0K mai 26 17:54 meta-filesystems
+drwxrwxr-x 10 georgeca georgeca 4,0K mai 26 17:54 meta-gnome
+drwxrwxr-x  8 georgeca georgeca 4,0K mai 26 17:54 meta-initramfs
+drwxrwxr-x 10 georgeca georgeca 4,0K mai 26 17:54 meta-multimedia
+drwxrwxr-x 17 georgeca georgeca 4,0K mai 26 17:54 meta-networking
+drwxrwxr-x 25 georgeca georgeca 4,0K mai 26 17:54 meta-oe
+drwxrwxr-x  5 georgeca georgeca 4,0K mai 26 17:54 meta-perl
+drwxrwxr-x  9 georgeca georgeca 4,0K mai 26 17:54 meta-python
+drwxrwxr-x  9 georgeca georgeca 4,0K mai 26 17:54 meta-webserver
+drwxrwxr-x 13 georgeca georgeca 4,0K mai 26 17:54 meta-xfce
+-rw-rw-r--  1 georgeca georgeca  297 mai 26 17:54 README
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/poky$ cd ../my_builds/
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ source ../poky/oe-init-build-env .
+
+### Shell environment set up for builds. ###
+
+You can now run 'bitbake <target>'
+
+Common targets are:
+    core-image-minimal
+    core-image-full-cmdline
+    core-image-sato
+    core-image-weston
+    meta-toolchain
+    meta-ide-support
+
+You can also run generated qemu images with a command like 'runqemu qemux86'
+
+Other commonly useful commands are:
+ - 'devtool' and 'recipetool' handle common recipe tasks
+ - 'bitbake-layers' handles common layer tasks
+ - 'oe-pkgdata-util' handles common target package tasks
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ bitbake-layers add-layer ../poky/meta-openembedded/meta-python/
+NOTE: Starting bitbake server...
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ bitbake-layers add-yers ../poky/meta-openembedded/meta-oe # it is written on the webpage that meta-python depends upon meta-oe
+NOTE: Starting bitbake server...
+usage: bitbake-layers [-d] [-q] [-F] [--color COLOR] [-h] <subcommand> ...
+bitbake-layers: error: argument <subcommand>: invalid choice: 'add-yers' (choose from 'layerindex-fetch', 'layerindex-show-depends', 'show-layers', 'show-overlayed', 'show-recipes', 'show-appends', 'show-cross-depends', 'add-layer', 'remove-layer', 'flatten', 'create-layer')
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ bitbake-layers add-layer ../poky/meta-openembedded/meta-oe/
+NOTE: Starting bitbake server...
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ bitbake-layers show-layers
+NOTE: Starting bitbake server...
+layer                 path                                      priority
+==========================================================================
+meta                  /home/georgeca/yocto_tutorial/poky/meta   5
+meta-poky             /home/georgeca/yocto_tutorial/poky/meta-poky  5
+meta-yocto-bsp        /home/georgeca/yocto_tutorial/poky/meta-yocto-bsp  5
+meta-oe               /home/georgeca/yocto_tutorial/poky/meta-openembedded/meta-oe  5
+meta-tutorial         /home/georgeca/yocto_tutorial/my_builds/meta-tutorial  6
+meta-python           /home/georgeca/yocto_tutorial/poky/meta-openembedded/meta-python  5
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ md5sum conf/local.conf 
+b4f6925ca144d99c511d6b232a270e22  conf/local.conf
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ nano conf/local.conf 
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ bitbake-layers show-recipes | grep python | grep colorlog
+python3-colorlog:
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ nano conf/local.conf 
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_builds$ time bitbake core-image-full-cmdline
+Loading cache: 100% |####################################################################################################################################################################################################################################| Time: 0:00:00
+Loaded 3573 entries from dependency cache.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.0.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "beaglebone-yocto"
+DISTRO               = "poky"
+DISTRO_VERSION       = "4.0.27"
+TUNE_FEATURES        = "arm vfp cortexa8 neon callconvention-hard"
+TARGET_FPU           = "hard"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "kirkstone:ab9a994a8cd8e06b519a693db444030999d273b7"
+meta-oe              = "kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0"
+meta-tutorial        = "<unknown>:<unknown>"
+meta-python          = "kirkstone:e42549cef364ae09b3b7c8b64bbeab32e50f1bb0"
+
+Initialising tasks: 100% |###############################################################################################################################################################################################################################| Time: 0:00:03
+Sstate summary: Wanted 522 Local 512 Mirrors 0 Missed 10 Current 1232 (98% match, 99% complete)
+Removing 2 stale sstate objects for arch beaglebone_yocto: 100% |########################################################################################################################################################################################| Time: 0:00:00
+NOTE: Executing Tasks
+NOTE: Tasks Summary: Attempted 4732 tasks of which 4701 didn't need to be rerun and all succeeded.
+
+real	1m46,961s
+user	0m0,566s
+sys	0m0,221s
+
