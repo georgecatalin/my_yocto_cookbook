@@ -1,4 +1,4 @@
-# A Yocto Cookbook
+# MyYocto Cookbook
 This repository contains a curated collection of Yocto Project resources, including custom recipes, configuration snippets, layer examples, build tips, and troubleshooting notes for **learning** or **refreshing** your **knowledge in Yocto Project**. 
 
 ## Personal Notes
