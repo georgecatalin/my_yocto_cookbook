@@ -19,5 +19,7 @@ The listings of the command line carry also also errors, and the steps taken for
 2. https://www.youtube.com/watch?v=HfbwRfurNfM&list=PLwqS94HTEwpQkHWbPQWBBXg4ZU5qO1ypB (Yocto Kernel Usage of DevTool for diverse operations - great learning resources)
 3. https://www.youtube.com/playlist?list=PLwqS94HTEwpRrHZLlqtbRlmNWxGO6No2j (Yocto Kernel Development - great learning resources)
 
-
-
+### About me
+* George Calin
+* george.calin [at] gmail.com
+* LinkedIn: https://www.linkedin.com/in/cgeorge1978/
