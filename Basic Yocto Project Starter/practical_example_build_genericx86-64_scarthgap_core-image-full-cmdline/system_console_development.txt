@@ -1,0 +1,31 @@
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/scarthgap-builds$ time bitbake core-image-full-cmdline
+Loading cache: 100% |###################################################################################################################################################| Time: 0:00:02
+Loaded 1878 entries from dependency cache.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.8.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "x86_64-poky-linux"
+MACHINE              = "genericx86-64"
+DISTRO               = "poky"
+DISTRO_VERSION       = "5.0.10"
+TUNE_FEATURES        = "m64 core2"
+TARGET_FPU           = ""
+meta                 
+meta-poky            
+meta-yocto-bsp       = "scarthgap:b8f8125f05e8ece078ba6bf01eebb2900cf2f9bf"
+
+Sstate summary: Wanted 838 Local 0 Mirrors 0 Missed 838 Current 2040 (0% match, 70% complete)############################################################               | ETA:  0:00:01
+Initialising tasks: 100% |##############################################################################################################################################| Time: 0:00:14
+NOTE: Executing Tasks
+WARNING: xmlto-native-0.0.28+0.0.29+git-r0 do_fetch: Failed to fetch URL git://pagure.io/xmlto.git;protocol=https;branch=master, attempting MIRRORS if available
+NOTE: Tasks Summary: Attempted 6087 tasks of which 4455 didn't need to be rerun and all succeeded.
+
+Summary: There was 1 WARNING message.
+
+real	35m46,601s
+user	1m1,166s
+sys	0m2,489s
+
