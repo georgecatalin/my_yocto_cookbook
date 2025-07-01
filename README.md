@@ -18,6 +18,8 @@ The listings of the command line carry also also errors, and the steps taken for
 1. https://www.youtube.com/watch?v=5fj05BWryhM&list=PLwqS94HTEwpQmgL1UsSwNk_2tQdzq3eVJ (Yocto Kernel from beginner to advanced concept builders - great learning resources)
 2. https://www.youtube.com/watch?v=HfbwRfurNfM&list=PLwqS94HTEwpQkHWbPQWBBXg4ZU5qO1ypB (Yocto Kernel Usage of DevTool for diverse operations - great learning resources)
 3. https://www.youtube.com/playlist?list=PLwqS94HTEwpRrHZLlqtbRlmNWxGO6No2j (Yocto Kernel Development - great learning resources)
+### Embedded Linux system updates
+1. https://www.youtube.com/watch?v=Y6r-jSTudGA (meta-rauc)
 
 ### About me
 * George Calin
