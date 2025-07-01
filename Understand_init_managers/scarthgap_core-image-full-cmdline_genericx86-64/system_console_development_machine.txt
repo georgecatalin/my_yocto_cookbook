@@ -1,0 +1,37 @@
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/scarthgap-builds$ time bitbake core-image-full-cmdline
+Loading cache: 100% |                                                                                                                                                                       | ETA:  --:--:--
+Loaded 0 entries from dependency cache.
+Parsing recipes: 100% |######################################################################################################################################################################| Time: 0:01:21
+Parsing of 2776 .bb files complete (0 cached, 2776 parsed). 4689 targets, 98 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "2.8.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "x86_64-poky-linux"
+MACHINE              = "genericx86-64"
+DISTRO               = "poky"
+DISTRO_VERSION       = "5.0.10"
+TUNE_FEATURES        = "m64 core2"
+TARGET_FPU           = ""
+meta                 
+meta-poky            
+meta-yocto-bsp       = "scarthgap:b8f8125f05e8ece078ba6bf01eebb2900cf2f9bf"
+meta-oe              
+meta-python          
+meta-networking      = "scarthgap:727811eaf256b88fd135be99559f2cbf14c82fce"
+meta-qt5             = "scarthgap:eb828418264a49b8d00035cb3d7b12fcea3be801"
+
+Sstate summary: Wanted 1954 Local 0 Mirrors 0 Missed 1954 Current 1164 (0% match, 37% complete)#############################################################################                 | ETA:  0:00:00
+Removing 1355 stale sstate objects for arch core2-64: 100% |#################################################################################################################################| Time: 0:00:09
+Removing 13 stale sstate objects for arch x86_64: 100% |#####################################################################################################################################| Time: 0:00:00
+Removing 262 stale sstate objects for arch genericx86_64: 100% |#############################################################################################################################| Time: 0:00:04
+NOTE: Tasks Summary: Attempted 6839 tasks of which 2939 didn't need to be rerun and all succeeded.
+
+Summary: There was 1 WARNING message.
+
+real	170m33,048s
+user	1m56,402s
+sys	0m33,908s
+
