@@ -1,0 +1,96 @@
+georgeca@georgeca-VirtualBox:~/Documents/my_yocto_cookbook/Understand_working_with_meta-rauc$ ls ~/yocto_tutorial/poky/
+bitbake  documentation  LICENSE.GPL-2.0-only  MAINTAINERS.md  meta               meta-poky  meta-selftest  meta-yocto-bsp     README.hardware.md  README.OE-Core.md  README.qemu.md  SECURITY.md
+contrib  LICENSE        LICENSE.MIT           MEMORIAM        meta-openembedded  meta-qt5   meta-skeleton  oe-init-build-env  README.md           README.poky.md     scripts
+georgeca@georgeca-VirtualBox:~/Documents/my_yocto_cookbook/Understand_working_with_meta-rauc$ ls ~/yocto_tutorial/poky/meta
+classes         classes-recipe  COPYING.MIT  lib          recipes-connectivity  recipes-devtools  recipes-gnome     recipes-kernel      recipes-rt    recipes-support  site
+classes-global  conf            files        recipes-bsp  recipes-core          recipes-extended  recipes-graphics  recipes-multimedia  recipes-sato  recipes.txt
+georgeca@georgeca-VirtualBox:~/Documents/my_yocto_cookbook/Understand_working_with_meta-rauc$ ls ~/yocto_tutorial/poky/meta/files/
+common-licenses           fs-perms-persistent-log.txt  layers.schema.json                 overlayfs-create-dirs.sh     ptest-perl          toolchain-shar-extract.sh
+device_table-minimal.txt  fs-perms.txt                 overlayfs-all-overlays.service.in  overlayfs-etc-preinit.sh.in  screenshot-tests    toolchain-shar-relocate.sh
+ext-sdk-prepare.py        layers.example.json          overlayfs-create-dirs.service.in   overlayfs-unit.mount.in      spdx-licenses.json
+georgeca@georgeca-VirtualBox:~/Documents/my_yocto_cookbook/Understand_working_with_meta-rauc$ ls ~/yocto_tutorial/poky/meta/files/common-licenses/
+0BSD                                  CC-BY-3.0-DE                DSSSL                             IJG                             NOSL                           Saxpath
+AAL                                   CC-BY-3.0-NL                dvipdfm                           ImageMagick                     Noweb                          SAX-PD
+Abstyles                              CC-BY-3.0-US                ECL-1.0                           iMatix                          NPL-1.0                        SCEA
+Adobe                                 CC-BY-4.0                   ECL-2.0                           Imlib2                          NPL-1.1                        Sendmail
+Adobe-2006                            CC-BY-NC-1.0                eCos-2.0                          Info-ZIP                        NPOSL-3.0                      Sendmail-8.23
+Adobe-Glyph                           CC-BY-NC-2.0                EDL-1.0                           Intel                           NRL                            SGI-1
+ADSL                                  CC-BY-NC-2.5                EFL-1.0                           Intel-ACPI                      NTP                            SGI-B-1.0
+AFL-1.1                               CC-BY-NC-3.0                EFL-2.0                           Interbase-1.0                   NTP-0                          SGI-B-1.1
+AFL-1.2                               CC-BY-NC-3.0-DE             eGenix                            IPA                             OASIS                          SGI-B-2.0
+AFL-2.0                               CC-BY-NC-4.0                Entessa                           IPL-1.0                         OCCT-PL                        SHL-0.5
+AFL-2.1                               CC-BY-NC-ND-1.0             EPICS                             ISC                             OCLC-2.0                       SHL-0.51
+AFL-3.0                               CC-BY-NC-ND-2.0             EPL-1.0                           JasPer-2.0                      ODbL-1.0                       SimPL-2.0
+Afmparse                              CC-BY-NC-ND-2.5             EPL-2.0                           JPNIC                           ODC-By-1.0                     Simple-2.0
+AGPL-1.0-only                         CC-BY-NC-ND-3.0             ErlPL-1.1                         JSON                            OFL-1.0                        SISSL
+AGPL-1.0-or-later                     CC-BY-NC-ND-3.0-DE          etalab-2.0                        LAL-1.2                         OFL-1.0-no-RFN                 SISSL-1.2
+AGPL-3.0-only                         CC-BY-NC-ND-3.0-IGO         EUDatagrid                        LAL-1.3                         OFL-1.0-RFN                    Sleepycat
+AGPL-3.0-or-later                     CC-BY-NC-ND-4.0             EUPL-1.0                          Latex2e                         OFL-1.1                        SMAIL_GPL
+Aladdin                               CC-BY-NC-SA-1.0             EUPL-1.1                          Leptonica                       OFL-1.1-no-RFN                 SMLNJ
+AMDPLPA                               CC-BY-NC-SA-2.0             EUPL-1.2                          LGPL-2.0-only                   OFL-1.1-RFN                    SMPPL
+AML                                   CC-BY-NC-SA-2.0-FR          Eurosym                           LGPL-2.0-or-later               OGC-1.0                        SNIA
+AMPAS                                 CC-BY-NC-SA-2.0-UK          Fair                              LGPL-2.1-only                   OGDL-Taiwan-1.0                Spencer-86
+ANTLR-PD                              CC-BY-NC-SA-2.5             Frameworx-1.0                     LGPL-2.1-or-later               OGL-Canada-2.0                 Spencer-94
+ANTLR-PD-fallback                     CC-BY-NC-SA-3.0             FreeBSD-DOC                       LGPL-3.0-only                   OGL-UK-1.0                     Spencer-99
+Apache-1.0                            CC-BY-NC-SA-3.0-DE          FreeImage                         LGPL-3.0-or-later               OGL-UK-2.0                     SPL-1.0
+Apache-1.1                            CC-BY-NC-SA-3.0-IGO         FSFAP                             LGPL-3.0-with-zeromq-exception  OGL-UK-3.0                     SSH-OpenSSH
+Apache-2.0                            CC-BY-NC-SA-4.0             FSFUL                             LGPLLR                          OGTSL                          SSH-short
+Apache-2.0-with-LLVM-exception        CC-BY-ND-1.0                FSFULLR                           Libpng                          OLDAP-1.1                      SSPL-1.0
+APAFML                                CC-BY-ND-2.0                FSF-Unlimited                     libpng-2.0                      OLDAP-1.2                      SugarCRM-1
+APL-1.0                               CC-BY-ND-2.5                FTL                               libselinux-1.0                  OLDAP-1.3                      SugarCRM-1.1.3
+APSL-1.0                              CC-BY-ND-3.0                GD                                libtiff                         OLDAP-1.4                      SWL
+APSL-1.1                              CC-BY-ND-3.0-DE             GFDL-1.1                          LiLiQ-P-1.1                     OLDAP-2.0                      TAPR-OHL-1.0
+APSL-1.2                              CC-BY-ND-4.0                GFDL-1.1-invariants-only          LiLiQ-R-1.1                     OLDAP-2.0.1                    TCL
+APSL-2.0                              CC-BY-SA-1.0                GFDL-1.1-invariants-or-later      LiLiQ-Rplus-1.1                 OLDAP-2.1                      TCP-wrappers
+Artistic-1.0                          CC-BY-SA-2.0                GFDL-1.1-no-invariants-only       Linux-OpenIB                    OLDAP-2.2                      TMate
+Artistic-1.0-cl8                      CC-BY-SA-2.0-UK             GFDL-1.1-no-invariants-or-later   LPL-1.0                         OLDAP-2.2.1                    TORQUE-1.1
+Artistic-1.0-Perl                     CC-BY-SA-2.1-JP             GFDL-1.1-only                     LPL-1.02                        OLDAP-2.2.2                    TOSL
+Artistic-2.0                          CC-BY-SA-2.5                GFDL-1.1-or-later                 LPPL-1.0                        OLDAP-2.3                      TU-Berlin-1.0
+Bahyph                                CC-BY-SA-3.0                GFDL-1.2                          LPPL-1.1                        OLDAP-2.4                      TU-Berlin-2.0
+Barr                                  CC-BY-SA-3.0-AT             GFDL-1.2-invariants-only          LPPL-1.2                        OLDAP-2.5                      UCB
+Beerware                              CC-BY-SA-3.0-DE             GFDL-1.2-invariants-or-later      LPPL-1.3a                       OLDAP-2.6                      UCL-1.0
+BitstreamVera                         CC-BY-SA-4.0                GFDL-1.2-no-invariants-only       LPPL-1.3c                       OLDAP-2.7                      unfs3
+BitTorrent-1.0                        CC-PDDC                     GFDL-1.2-no-invariants-or-later   MakeIndex                       OLDAP-2.8                      Unicode-DFS-2015
+BitTorrent-1.1                        CDDL-1.0                    GFDL-1.2-only                     MirOS                           OML                            Unicode-DFS-2016
+blessing                              CDDL-1.1                    GFDL-1.2-or-later                 MIT                             OpenSSL                        Unicode-TOU
+BlueOak-1.0.0                         CDL-1.0                     GFDL-1.3                          MIT-0                           OPL-1.0                        Unlicense
+Borceux                               CDLA-Permissive-1.0         GFDL-1.3-invariants-only          MIT-advertising                 OPUBL-1.0                      UPL-1.0
+BSD-1-Clause                          CDLA-Permissive-2.0         GFDL-1.3-invariants-or-later      MIT-CMU                         OSET-PL-2.1                    Vim
+BSD-2-Clause                          CDLA-Sharing-1.0            GFDL-1.3-no-invariants-only       MIT-enna                        OSL-1.0                        VOSTROM
+BSD-2-Clause-Patent                   CECILL-1.0                  GFDL-1.3-no-invariants-or-later   MIT-feh                         OSL-1.1                        VSL-1.0
+BSD-2-Clause-Views                    CECILL-1.1                  GFDL-1.3-only                     MIT-Modern-Variant              OSL-2.0                        W3C
+BSD-3-Clause                          CECILL-2.0                  GFDL-1.3-or-later                 MITNFA                          OSL-2.1                        W3C-19980720
+BSD-3-Clause-Attribution              CECILL-2.1                  Giftware                          MIT-open-group                  OSL-3.0                        W3C-20150513
+BSD-3-Clause-Clear                    CECILL-B                    GL2PS                             Motosoto                        O-UDA-1.0                      Watcom-1.0
+BSD-3-Clause-LBNL                     CECILL-C                    Glide                             mpich2                          ParaTypeFFL-1.3                Wsuipa
+BSD-3-Clause-Modification             CERN-OHL-1.1                Glulxe                            MPL-1.0                         Parity-6.0.0                   WTFPL
+BSD-3-Clause-No-Military-License      CERN-OHL-1.2                GLWTPL                            MPL-1.1                         Parity-7.0.0                   WXwindows
+BSD-3-Clause-No-Nuclear-License       CERN-OHL-P-2.0              gnuplot                           MPL-2.0                         PD                             X11
+BSD-3-Clause-No-Nuclear-License-2014  CERN-OHL-S-2.0              GPL-1.0-only                      MPL-2.0-no-copyleft-exception   PDDL-1.0                       Xerox
+BSD-3-Clause-No-Nuclear-Warranty      CERN-OHL-W-2.0              GPL-1.0-or-later                  MS-PL                           PHP-3.0                        XFree86-1.0
+BSD-3-Clause-Open-MPI                 ClArtistic                  GPL-2.0-only                      MS-RL                           PHP-3.01                       XFree86-1.1
+BSD-4-Clause                          CNRI-Jython                 GPL-2.0-or-later                  MTLL                            pkgconf                        xinetd
+BSD-4-Clause-Shortened                CNRI-Python                 GPL-2.0-with-autoconf-exception   MulanPSL-1.0                    Plexus                         Xnet
+BSD-4-Clause-UC                       CNRI-Python-GPL-Compatible  GPL-2.0-with-classpath-exception  MulanPSL-2.0                    PolyForm-Noncommercial-1.0.0   xpp
+BSD-Protection                        Condor-1.1                  GPL-2.0-with-font-exception       Multics                         PolyForm-Small-Business-1.0.0  XSkat
+BSD-Source-Code                       copyleft-next-0.3.0         GPL-2.0-with-GCC-exception        Mup                             PostgreSQL                     XSL
+BSL-1.0                               copyleft-next-0.3.1         GPL-2.0-with-OpenSSL-exception    NAIST-2003                      Proprietary                    YPL-1.0
+BUSL-1.1                              CPAL-1.0                    GPL-2-with-bison-exception        NASA-1.3                        PSF-2.0                        YPL-1.1
+bzip2-1.0.4                           CPL-1.0                     GPL-3.0-only                      Naumen                          psfrag                         Zed
+bzip2-1.0.5                           CPOL-1.02                   GPL-3.0-or-later                  NBPL-1.0                        psutils                        Zend-2.0
+bzip2-1.0.6                           Crossword                   GPL-3.0-with-autoconf-exception   NCGL-UK-2.0                     Python-2.0                     Zimbra-1.3
+CAL-1.0                               CrystalStacker              GPL-3.0-with-GCC-exception        NCSA                            Qhull                          Zimbra-1.4
+CAL-1.0-Combined-Work-Exception       CUA-OPL-1.0                 GPL-3-with-bison-exception        NetCDF                          QPL-1.0                        Zlib
+Caldera                               Cube                        gSOAP-1                           Net-SNMP                        Rdisc                          zlib-acknowledgement
+CATOSL-1.1                            C-UDA-1.0                   gSOAP-1.3b                        Newsletr                        RHeCos-1                       ZPL-1.1
+CC0-1.0                               curl                        HaskellReport                     NGPL                            RHeCos-1.1                     ZPL-2.0
+CC-BY-1.0                             D-FSL-1.0                   Hippocratic-2.1                   NIST-PD                         RPL-1.1                        ZPL-2.1
+CC-BY-2.0                             diffmark                    HPND                              NIST-PD-fallback                RPL-1.5
+CC-BY-2.5                             DOC                         HPND-sell-variant                 NLOD-1.0                        RPSL-1.0
+CC-BY-2.5-AU                          Dotseqn                     HTMLTIDY                          NLOD-2.0                        RSA-MD
+CC-BY-3.0                             DRL-1.0                     IBM-pibs                          NLPL                            RSCPL
+CC-BY-3.0-AT                          DSDP                        ICU                               Nokia                           Ruby
+georgeca@georgeca-VirtualBox:~/Documents/my_yocto_cookbook/Understand_working_with_meta-rauc$ md5sum ~/yocto_tutorial/poky/meta/files/common-licenses/MIT
+0835ade698e0bcf8506ecda2f7b4f302  /home/georgeca/yocto_tutorial/poky/meta/files/common-licenses/MIT
+
+

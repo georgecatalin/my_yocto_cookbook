@@ -1,0 +1,91 @@
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/scarthgap-builds$ ls -lh
+total 1,6M
+-rw-rw-r-- 1 georgeca georgeca 1,6M iul  1 15:48 bitbake-cookerdaemon.log
+drwxrwxr-x 2 georgeca georgeca 4,0K iul  1 15:48 cache
+drwxrwxr-x 2 georgeca georgeca 4,0K iun 30 13:50 conf
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/scarthgap-builds$ cd ..
+georgeca@georgeca-VirtualBox:~/yocto_tutorial$ ls -lh
+total 16K
+drwxrwxr-x  4 georgeca georgeca 4,0K iun 28 03:21 legacy-old
+drwxrwxr-x 15 georgeca georgeca 4,0K iun 30 15:00 poky
+drwxrwxr-x  4 georgeca georgeca 4,0K iul  1 15:48 scarthgap-builds
+drwxrwxr-x  5 georgeca georgeca 4,0K iun 28 03:47 sources
+georgeca@georgeca-VirtualBox:~/yocto_tutorial$ openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 3650 -nodes
+..+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*....+..+..........+.....+....+...+..+...+......+..........+......+.........+.....+......+...+.+..+.........+......+...+....+..+....+.....+....+......+......+...+...........+.+........+.............+..+................+......+...+...+.....+.............+.....+......+.+...+..+....+..................+.....+......+....+..+.........+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*...+...+....+........+...+....+..+......+.......+............+......+..+.+......+......+........+............+.......+...+........+....+..+.+........+....+..+...+.......+...........+....+......+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+..........+....+...+...+.....+......+..........+.....+....+.....+......+.+.........+.........+..+...+.......+.........+........+...+...+.+...+.....+.+..+.........+...+.+......+.....+.+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*.+...+...+...+..+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*......+........+...............+.+......+..+.+..........................+...............+.............+........+...............+.......+..+....+......+........+.......+..............+....+...+...+..+...+....+...+.....+.......+..+....+.....+....+...+.........+.........+...............+...........+.........+..........+..+..........+..............+...+......+.+.........+......+........+.......+.....+........................+....+..+.+.............................+..........+...+...........+.+...............+......+..+.+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+-----
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [AU]:RO
+State or Province Name (full name) [Some-State]:Galati
+Locality Name (eg, city) []:Galati
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:GEORGECA
+Organizational Unit Name (eg, section) []:
+Common Name (e.g. server FQDN or YOUR name) []:
+Email Address []:george.calin@gmail.com
+georgeca@georgeca-VirtualBox:~/yocto_tutorial$ ls -lh
+total 24K
+-rw-rw-r--  1 georgeca georgeca 2,0K iul  2 10:53 cert.pem
+-rw-------  1 georgeca georgeca 3,2K iul  2 10:52 key.pem
+drwxrwxr-x  4 georgeca georgeca 4,0K iun 28 03:21 legacy-old
+drwxrwxr-x 15 georgeca georgeca 4,0K iun 30 15:00 poky
+drwxrwxr-x  4 georgeca georgeca 4,0K iul  1 15:48 scarthgap-builds
+drwxrwxr-x  5 georgeca georgeca 4,0K iun 28 03:47 sources
+
+
+georgeca@georgeca-VirtualBox:~/yocto_tutorial$ cat key.pem 
+-----BEGIN PRIVATE KEY-----
+MIIJQQIBADANBgkqhkiG9w0BAQEFAASCCSswggknAgEAAoICAQCk5LLOacF3I9h1
+IgRLLrsfviSaOZQM4MY6ELUKgu00P9qJJ66SlFNo+U3QiFIvMFt1QkR/c1rjD4wA
+oRn7pPMpEXwF3bbun+Nn6Fas+zquJPc5IwVB5HlJoG0c1PZa3Ye47hFh0Y7fkD7u
+v0sJnlXvyiOlgcbZLjmJTE5ogKqWG9xjI3gwntokVz+eH1IWGgGbir8I4nJ7VrfS
+Twc6lpRiuo15T9M24vOKgTml+THxRt4GD2+tUuuK33YCht9JMpGax23pi6EMJTM4
+FubxflBrri2k+Eki7DO+1g6HwG5V4MnfxfjIONyWWef0dd90L2oL+0IrED375OXd
+Y9k5/qyuOA9Xlz4n7hHskOKWt1eLG5HaW5eXGxdCfsJTvbdqsrwEODRoL3nga2Ds
+nqb1yXN6LRWJW/X1NjDjX+HZsyziCmsQJ0o74oOuzVmqK+iddwQnQlFLTn0yImMC
+J+M5MhrKbzvTcwCJULeUyQVFf6agTyu3LqEWb0lhmVRNIwBIWWmu5uAFCMKtkd+g
+9IypLFocU0Kz0bYrsC1iLnhHN3sxMmgUwRNUSTn+TjCRSMWXdm0kcZbVcPRuiwy0
+v7Dxpsnyq7VaHxlRQLOYTg3XxeHGUAugYl1F/Vb/rlooR5rx8/Due+WKkBspuAPu
+nc241vJMvogXEdrgVMxR8f0izX94kQMRcyy1E3Cwqc4ZNRvAkS5ZvpJbDeKT+mgs
+j3R1uUnKA71t4/2dUeR7lAInKVFqi+prhuSRK95D+Gedg5z44N+riNUWMjpwyP6/
+G5jsvSc304AZgjmQ9+UEik9Od6FCC013HdDzojN6YiA4YGklxkNCGro5wyMP6/30
+wS420VLWvzsqw2ru6qBRAoIBAQDjJDI8B4840+vFtigEqW3RBpQJwL1xE7hdqVKy
+grdGKBpSuRDjAjQRqFURCbkeX3WvvA6y+AXfEEoPD2GCDMLTs9jlV5mfsNggy9Rl
+l4pbD6Lp+oA8wO/cItj+K8U4FaQOgchmhQ6RUH68tbaqEv1hMja6fbEgqrjkoTmm
+G51e3KU4dxKdoRNFEdmu82Lmg0foNC/qU3maJlw7pD+/uXb98njnDkGXu+fmYWEj
+7qweLgI0XqZvDP6RT1EDuy+JnNj4HXZubKW3YNgKI9Pe0RjF/NyLl/0ZPDqhCBOc
+W0G7aGJIiO8ksQ/J4TK2ookesC40zgSFYUCX2ZeF3zfrXrNPAoIBAQC51+BmwUol
+mp8hVjydV+u7YKuR8XXqFh2T5wCyOokI2nBxHLkSRGrt+ryMKOM348rVhKNY4Wyq
+JSeNjJUORkydXUZ49LMquK4U1FXmAt26ppevd/OytzQ1PJnh1nKvE9C+x0qtAdUq
+a8iOb2nQhjun0B22SbaV9W0QWGbFgIAQPjkIxXK1GX62ObRIq+i/Kq3HHiOx76aJ
+iefPS1FSQdE4MuyWqHgjc7Mu575s77jYcUCcHNpBOL6rSzOc6wsF9r7pmEJdXHJf
+/q/5rlQdyHduMw4FCL6uc/4Uwq3g
+-----END PRIVATE KEY-----
+georgeca@georgeca-VirtualBox:~/yocto_tutorial$ cat cert.pem 
+-----BEGIN CERTIFICATE-----
+MIIFszCCA5ugAwIBAgIUWQLLZ0LKqNenFtKpzw9Vu/cEpUcwDQYJKoZIhvcNAQEL
+BQAwaTELMAkGA1UEBhMCUk8xDzANBgNVBAgMBkdhbGF0aTEPMA0GA1UEBwwGR2Fs
+YXRpMREwDwYDVQQKDAhHRU9SR0VDQTElMCMGCSqGSIb3DQEJARYWZ2VvcmdlLmNh
+bGluQGdtYWlsLmNvbTAeFw0yNTA3MDIwNzUzMjdaFw0zNTA2MzAwNzUzMjdaMGkx
+CzAJBgNVBAYTAlJPMQ8wDQYDVQQIDAZHYWxhdGkxDzANBgNVBAcMBkdhbGF0aTER
+MA8GA1UECgwIR0VPUkdFQ0ExJTAjBgkqhkiG9w0BCQEWFmdlb3JnZS5jYWxpbkBn
+bWFpbC5jb20wggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAwggIKAoICAQCk5LLOacF3
+I9h1IgRLLrsfviSaOZQM4MY6ELUKgu00P9qJJ66SlFNo+U3QiFIvMFt1QkR/c1rj
+7zPxd0SRl7gZvM58+8x/vtMUaUi70JZs6XZfpb5rJtLY7+q6WK/6/EI0ST7CwKGD
+MecSd86w+2s0OCZHVghsMQXSw/VRprfm/AtRGns+zyeTNIcpwJ8N9bwMWFfyGp8K
+glnmGLj0KgbesDDliElv72y392invaLYLGKEkn3EhAARXDZuIu9DBryPLIII1WDv
+YHFQdQGYApyqIKx3Rt8vwnuXg8ts3Ts=
+-----END CERTIFICATE-----
+georgeca@georgeca-VirtualBox:~/yocto_tutorial$ # disclaimer: the certificates are not real and their content was shortened, these are only for the goal of presenting the concept 
+
+
+
+
+
+
+

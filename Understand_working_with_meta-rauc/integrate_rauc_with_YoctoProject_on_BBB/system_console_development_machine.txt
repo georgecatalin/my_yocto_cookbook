@@ -1,0 +1,69 @@
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_build$ ls -lh
+total 3,8M
+-rw-rw-r-- 1 georgeca georgeca 3,8M iul  2 18:39 bitbake-cookerdaemon.log
+drwxrwxr-x 2 georgeca georgeca 4,0K iul  2 18:39 cache
+drwxrwxr-x 2 georgeca georgeca 4,0K iul  2 18:30 conf
+drwxrwxr-x 4 georgeca georgeca 4,0K iul  2 15:18 meta-georgeca
+drwxrwxr-x 4 georgeca georgeca 4,0K iul  2 15:18 tmp
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_build$ git clone https://github.com/rauc/meta-rauc.git -b scarthgap
+Cloning into 'meta-rauc'...
+remote: Enumerating objects: 2358, done.
+remote: Counting objects: 100% (764/764), done.
+remote: Compressing objects: 100% (393/393), done.
+remote: Total 2358 (delta 465), reused 375 (delta 364), pack-reused 1594 (from 4)
+Receiving objects: 100% (2358/2358), 371.62 KiB | 1.01 MiB/s, done.
+Resolving deltas: 100% (1214/1214), done.
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_build$ git clone https://github.com/rauc/meta-rauc-community.git
+Cloning into 'meta-rauc-community'...
+remote: Enumerating objects: 2044, done.
+remote: Counting objects: 100% (639/639), done.
+remote: Compressing objects: 100% (287/287), done.
+remote: Total 2044 (delta 452), reused 355 (delta 352), pack-reused 1405 (from 2)
+Receiving objects: 100% (2044/2044), 312.92 KiB | 1.88 MiB/s, done.
+Resolving deltas: 100% (947/947), done.
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_build$ ls -lh
+total 3,9M
+-rw-rw-r--  1 georgeca georgeca 3,8M iul  2 18:39 bitbake-cookerdaemon.log
+drwxrwxr-x  2 georgeca georgeca 4,0K iul  2 18:39 cache
+drwxrwxr-x  2 georgeca georgeca 4,0K iul  2 18:30 conf
+drwxrwxr-x  4 georgeca georgeca 4,0K iul  2 15:18 meta-georgeca
+drwxrwxr-x 14 georgeca georgeca 4,0K iul  3 13:28 meta-rauc
+drwxrwxr-x 12 georgeca georgeca 4,0K iul  3 13:28 meta-rauc-community
+drwxrwxr-x  4 georgeca georgeca 4,0K iul  2 15:18 tmp
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_build$ mv meta-rauc meta-rauc-community/ ../poky/
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_build$ ls -lh
+total 3,8M
+-rw-rw-r-- 1 georgeca georgeca 3,8M iul  2 18:39 bitbake-cookerdaemon.log
+drwxrwxr-x 2 georgeca georgeca 4,0K iul  2 18:39 cache
+drwxrwxr-x 2 georgeca georgeca 4,0K iul  2 18:30 conf
+drwxrwxr-x 4 georgeca georgeca 4,0K iul  2 15:18 meta-georgeca
+drwxrwxr-x 4 georgeca georgeca 4,0K iul  2 15:18 tmp
+georgeca@georgeca-VirtualBox:~/yocto_tutorial/my_build$ ls -lh ../poky/
+total 104K
+drwxrwxr-x  6 georgeca georgeca 4,0K iun 28 03:39 bitbake
+drwxrwxr-x  4 georgeca georgeca 4,0K iun 28 03:39 contrib
+drwxrwxr-x 21 georgeca georgeca 4,0K iun 28 03:39 documentation
+-rw-rw-r--  1 georgeca georgeca  834 iun 28 03:39 LICENSE
+-rw-rw-r--  1 georgeca georgeca  16K iun 28 03:39 LICENSE.GPL-2.0-only
+-rw-rw-r--  1 georgeca georgeca 1,3K iun 28 03:39 LICENSE.MIT
+-rw-rw-r--  1 georgeca georgeca 2,2K iun 28 03:39 MAINTAINERS.md
+-rw-rw-r--  1 georgeca georgeca  244 iun 28 03:39 MEMORIAM
+drwxrwxr-x 21 georgeca georgeca 4,0K iun 28 03:39 meta
+drwxrwxr-x  4 georgeca georgeca 4,0K iul  2 13:12 meta-cornel
+drwxrwxr-x 14 georgeca georgeca 4,0K iun 30 13:16 meta-openembedded
+drwxrwxr-x  5 georgeca georgeca 4,0K iun 28 03:39 meta-poky
+drwxrwxr-x 12 georgeca georgeca 4,0K iun 30 15:00 meta-qt5
+drwxrwxr-x 14 georgeca georgeca 4,0K iul  3 13:28 meta-rauc
+drwxrwxr-x 12 georgeca georgeca 4,0K iul  3 13:28 meta-rauc-community
+drwxrwxr-x 10 georgeca georgeca 4,0K iun 28 03:39 meta-selftest
+drwxrwxr-x  7 georgeca georgeca 4,0K iun 28 03:39 meta-skeleton
+drwxrwxr-x  8 georgeca georgeca 4,0K iun 28 03:39 meta-yocto-bsp
+-rwxrwxr-x  1 georgeca georgeca 1,5K iun 28 03:39 oe-init-build-env
+lrwxrwxrwx  1 georgeca georgeca   33 iun 28 03:39 README.hardware.md -> meta-yocto-bsp/README.hardware.md
+lrwxrwxrwx  1 georgeca georgeca   14 iun 28 03:39 README.md -> README.poky.md
+-rw-rw-r--  1 georgeca georgeca  998 iun 28 03:39 README.OE-Core.md
+lrwxrwxrwx  1 georgeca georgeca   24 iun 28 03:39 README.poky.md -> meta-poky/README.poky.md
+-rw-rw-r--  1 georgeca georgeca  529 iun 28 03:39 README.qemu.md
+drwxrwxr-x 11 georgeca georgeca 4,0K iun 28 03:39 scripts
+-rw-rw-r--  1 georgeca georgeca 1,1K iun 28 03:39 SECURITY.md
+
